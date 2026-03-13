@@ -1,111 +1,844 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>About Matchmaking | Sparked Connection</title>
+  <title>About Matchmaking | Sparked Connection</title>
+  <meta name="description" content="Learn how Sparked Connection combines personality psychology, AI compatibility analysis, and human matchmaker expertise to help professionals build meaningful relationships." />
+  <link rel="canonical" href="https://sparkedconnection.com/about-matchmaking/" />
 
-<style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
 
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#fdf9f5;
-color:#1e3151;
-line-height:1.6;
-}
+  <style>
+    :root{
+      --bg:#fdf9f5;
+      --bg-soft:#f7f1ea;
+      --navy:#1e3151;
+      --navy-2:#243b63;
+      --text:#2d3b52;
+      --muted:#6b7485;
+      --accent:#c43b6b;
+      --accent-2:#ce7e98;
+      --gold:#e6a961;
+      --white:#ffffff;
+      --border:rgba(30,49,81,0.10);
+      --shadow:0 10px 30px rgba(30,49,81,0.08);
+      --shadow-soft:0 6px 20px rgba(30,49,81,0.06);
+      --radius:22px;
+      --radius-sm:14px;
+      --container:1180px;
+    }
 
-.hero{
-background:#1e3151;
-color:white;
-padding:120px 20px;
-text-align:center;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Inter',sans-serif;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
 
-.hero h1{
-font-size:48px;
-margin-bottom:10px;
-}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:80px 20px;
-}
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin:0 auto;
+    }
 
-h2{
-margin-top:50px;
-font-size:28px;
-}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(253,249,245,0.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(30,49,81,0.06);
+    }
 
-ul{
-padding-left:20px;
-}
+    .nav{
+      min-height:88px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
 
-li{
-margin-bottom:10px;
-}
+    .brand{
+      font-family:'Playfair Display',serif;
+      color:var(--navy);
+      font-size:1.95rem;
+      line-height:0.9;
+      font-weight:600;
+      letter-spacing:-0.02em;
+    }
 
-.cta{
-margin-top:60px;
-text-align:center;
-}
+    .brand small{
+      display:block;
+      font-family:'Inter',sans-serif;
+      font-size:.74rem;
+      color:var(--accent-2);
+      letter-spacing:0;
+      margin-top:8px;
+      font-weight:600;
+    }
 
-.cta a{
-background:#ce4a73;
-color:white;
-padding:16px 32px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      color:#5c6b86;
+      font-weight:600;
+      font-size:1.05rem;
+    }
 
-</style>
+    .nav-links a:hover{
+      color:var(--navy);
+    }
+
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 28px;
+      border-radius:999px;
+      background:var(--accent);
+      color:var(--white);
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(196,59,107,0.22);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+
+    .nav-cta:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 24px rgba(196,59,107,0.28);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(30,49,81,0.96), rgba(36,59,99,0.92)),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.0));
+      color:var(--white);
+      padding:96px 0 88px;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:auto -140px -120px auto;
+      width:380px;
+      height:380px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(230,169,97,0.18), rgba(230,169,97,0) 70%);
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:48px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:#f0d7af;
+      font-size:.9rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      margin:0 0 18px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.7rem, 5vw, 5rem);
+      line-height:0.98;
+      letter-spacing:-0.03em;
+      max-width:720px;
+    }
+
+    .hero h1 span{
+      color:#f2bb76;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:720px;
+      color:rgba(255,255,255,0.88);
+      font-size:1.14rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px 28px;
+      border-radius:999px;
+      font-weight:700;
+      transition:all .22s ease;
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:var(--white);
+      box-shadow:0 12px 24px rgba(196,59,107,0.24);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 15px 28px rgba(196,59,107,0.30);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.28);
+      color:var(--white);
+      background:rgba(255,255,255,0.05);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.10);
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:26px;
+      padding:28px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.16);
+      backdrop-filter:blur(12px);
+    }
+
+    .hero-card h3{
+      margin:0 0 14px;
+      font-family:'Playfair Display',serif;
+      font-size:1.6rem;
+      color:#fff;
+    }
+
+    .hero-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .hero-card li{
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,0.10);
+      color:rgba(255,255,255,0.9);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .hero-card li:last-child{border-bottom:none}
+    .tick{
+      color:#f2bb76;
+      font-weight:800;
+      line-height:1.2;
+    }
+
+    section{
+      padding:88px 0;
+    }
+
+    .section-soft{
+      background:linear-gradient(180deg, var(--bg-soft), var(--bg));
+    }
+
+    .section-heading{
+      max-width:780px;
+      margin:0 auto 48px;
+      text-align:center;
+    }
+
+    .section-heading h2{
+      margin:0 0 14px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem, 3vw, 3.3rem);
+      line-height:1.06;
+      letter-spacing:-0.02em;
+      color:var(--navy);
+    }
+
+    .section-heading p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+    }
+
+    .intro-card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:38px;
+      box-shadow:var(--shadow);
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .intro-card p{
+      margin:0;
+      font-size:1.08rem;
+      color:var(--text);
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:24px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      margin-bottom:18px;
+      background:linear-gradient(135deg, rgba(230,169,97,0.18), rgba(196,59,107,0.12));
+      color:var(--navy);
+      font-size:1.3rem;
+      font-weight:700;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-family:'Playfair Display',serif;
+      font-size:1.55rem;
+      color:var(--navy);
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .bullet-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:14px;
+    }
+
+    .bullet-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .bullet-list span{
+      color:var(--accent);
+      font-weight:800;
+    }
+
+    .process{
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:18px;
+      margin-top:10px;
+    }
+
+    .step{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:26px 20px;
+      box-shadow:var(--shadow-soft);
+      text-align:left;
+      position:relative;
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:#fff;
+      font-size:.95rem;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    .step h3{
+      margin:0 0 8px;
+      font-family:'Playfair Display',serif;
+      font-size:1.28rem;
+      line-height:1.15;
+      color:var(--navy);
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:.98rem;
+      line-height:1.6;
+    }
+
+    .split-card{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:stretch;
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .split-panel{
+      padding:38px;
+    }
+
+    .split-panel.alt{
+      background:linear-gradient(180deg, rgba(30,49,81,0.03), rgba(196,59,107,0.03));
+      border-left:1px solid var(--border);
+    }
+
+    .split-panel h3{
+      margin:0 0 14px;
+      font-family:'Playfair Display',serif;
+      font-size:1.75rem;
+      color:var(--navy);
+    }
+
+    .trust-bar{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .trust-item{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow-soft);
+      text-align:center;
+    }
+
+    .trust-item strong{
+      display:block;
+      font-size:1.1rem;
+      color:var(--navy);
+      margin-bottom:6px;
+    }
+
+    .trust-item span{
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .cta-section{
+      padding:90px 0;
+      background:linear-gradient(135deg, var(--navy), var(--navy-2));
+      color:var(--white);
+      text-align:center;
+    }
+
+    .cta-section h2{
+      margin:0 0 14px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem, 3vw, 3.2rem);
+      line-height:1.05;
+      letter-spacing:-0.02em;
+    }
+
+    .cta-section p{
+      max-width:760px;
+      margin:0 auto 30px;
+      color:rgba(255,255,255,0.82);
+      font-size:1.08rem;
+    }
+
+    .site-footer{
+      background:var(--navy-2);
+      color:rgba(255,255,255,0.86);
+      padding:64px 0 28px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.15fr 1fr 1fr 1fr;
+      gap:36px;
+      align-items:start;
+    }
+
+    .footer-brand{
+      max-width:280px;
+    }
+
+    .footer-brand .brand{
+      color:#fff;
+    }
+
+    .footer-brand p{
+      color:rgba(255,255,255,0.72);
+      margin-top:16px;
+      font-size:.97rem;
+    }
+
+    .footer-col h4{
+      margin:0 0 16px;
+      font-family:'Playfair Display',serif;
+      color:#fff;
+      font-size:1.3rem;
+    }
+
+    .footer-col a{
+      display:block;
+      color:rgba(255,255,255,0.74);
+      margin-bottom:10px;
+    }
+
+    .footer-col a:hover{
+      color:#fff;
+    }
+
+    .footer-bottom{
+      margin-top:34px;
+      padding-top:22px;
+      border-top:1px solid rgba(255,255,255,0.10);
+      font-size:.92rem;
+      color:rgba(255,255,255,0.65);
+      text-align:center;
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .process,
+      .footer-grid,
+      .trust-bar,
+      .split-card{
+        grid-template-columns:1fr;
+      }
+
+      .split-panel.alt{
+        border-left:none;
+        border-top:1px solid var(--border);
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero{
+        padding:78px 0 72px;
+      }
+    }
+
+    @media (max-width: 700px){
+      .container{
+        width:min(var(--container), calc(100% - 24px));
+      }
+
+      .nav{
+        min-height:78px;
+      }
+
+      .brand{
+        font-size:1.65rem;
+      }
+
+      .nav-cta{
+        padding:12px 18px;
+        font-size:.95rem;
+      }
+
+      .hero-card,
+      .intro-card,
+      .card,
+      .split-panel,
+      .step,
+      .trust-item{
+        padding:22px;
+      }
+
+      section{
+        padding:68px 0;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn-primary,
+      .btn-secondary{
+        width:100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="hero">
-<h1>About Matchmaking</h1>
-<p>Modern matchmaking for professionals seeking meaningful relationships.</p>
-</div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="/" class="brand">
+        Sparked<br />Connection
+        <small>Smart Matchmaking. No Swiping.</small>
+      </a>
 
-<div class="container">
+      <nav class="nav-links">
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#matching-process">Matching Process</a>
+        <a href="/plans">Plans</a>
+        <a href="/events">Events</a>
+        <a href="/#science">The Science</a>
+        <a href="/journal">Journal</a>
+      </nav>
 
-<h2>What is Sparked Connection?</h2>
+      <a href="https://tally.so/r/68JPWB" target="_blank" rel="noopener noreferrer" class="nav-cta">Create Free Profile</a>
+    </div>
+  </header>
 
-<p>
-Sparked Connection is a London-based matchmaking service for working professionals over the age of 25 who are looking for meaningful relationships.
-</p>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">About Sparked Connection</div>
+        <h1>A more thoughtful way to <span>meet someone real</span>.</h1>
+        <p>
+          Sparked Connection is a London-based matchmaking service for professionals over 25 who are looking for meaningful, long-term relationships. We combine personality psychology, AI-supported compatibility analysis, and human matchmaking expertise to create introductions with depth, intention, and real potential.
+        </p>
 
-<p>
-The service combines personality psychology, AI compatibility analysis, and human matchmaking expertise.
-</p>
+        <div class="hero-actions">
+          <a href="https://tally.so/r/68JPWB" target="_blank" rel="noopener noreferrer" class="btn-primary">Create Free Profile</a>
+          <a href="/plans" class="btn-secondary">Explore Plans</a>
+        </div>
+      </div>
 
-<h2>Who is it for?</h2>
+      <div class="hero-card">
+        <h3>Why people choose Sparked Connection</h3>
+        <ul>
+          <li><span class="tick">✓</span> A more intentional alternative to dating apps</li>
+          <li><span class="tick">✓</span> Compatibility-led introductions, not endless swiping</li>
+          <li><span class="tick">✓</span> A service designed for busy professionals</li>
+          <li><span class="tick">✓</span> Human insight supported by smart technology</li>
+          <li><span class="tick">✓</span> Curated events that help chemistry develop naturally</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<ul>
-<li>Professionals</li>
-<li>People tired of dating apps</li>
-<li>Individuals seeking long-term relationships</li>
-</ul>
+  <section>
+    <div class="container">
+      <div class="section-heading">
+        <h2>What is Sparked Connection?</h2>
+        <p>Modern matchmaking with structure, warmth, and substance.</p>
+      </div>
 
-<h2>How does it work?</h2>
+      <div class="intro-card">
+        <p>
+          Sparked Connection was created for people who want more than the unpredictability of app-based dating. We focus on meaningful compatibility by combining psychology-led profile building, intelligent analysis, and personal matchmaker review. The result is a more considered introduction process — one built around values, communication style, emotional fit, and long-term relationship potential.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<ul>
-<li>Personality assessment (Big Five, MBTI, Love Languages)</li>
-<li>AI compatibility matching</li>
-<li>Matchmaker review</li>
-<li>Introductions</li>
-<li>Curated events</li>
-</ul>
+  <section class="section-soft">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Who is it for?</h2>
+        <p>This service is designed for people who want a more serious, more compatible, and more efficient way to meet.</p>
+      </div>
 
-<div class="cta">
-<a href="/">Create Free Profile</a>
-</div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">01</div>
+          <h3>Professionals</h3>
+          <p>Busy professionals who value quality, discretion, and a more intentional route to meeting a partner.</p>
+        </div>
 
-</div>
+        <div class="card">
+          <div class="icon">02</div>
+          <h3>Tired of dating apps</h3>
+          <p>People who are exhausted by swiping, mixed intentions, and conversations that rarely lead anywhere meaningful.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">03</div>
+          <h3>Long-term minded</h3>
+          <p>Individuals seeking a genuine relationship and a stronger foundation for lasting compatibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-heading">
+        <h2>How does it work?</h2>
+        <p>Our process combines structured compatibility analysis with personal matchmaker judgement.</p>
+      </div>
+
+      <div class="process">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Personality assessment</h3>
+          <p>We build a deeper profile using frameworks such as the Big Five, MBTI, Love Languages, and wider relationship preferences.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>AI compatibility matching</h3>
+          <p>Technology helps analyse compatibility patterns, personality alignment, and relational fit across multiple dimensions.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Matchmaker review</h3>
+          <p>Every match is considered by a human matchmaker, bringing judgement, nuance, and context that algorithms alone cannot provide.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Introductions</h3>
+          <p>We make thoughtful introductions designed to feel relevant, intentional, and aligned with your relationship goals.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Curated events</h3>
+          <p>Members can also connect through elegant events that encourage natural chemistry and real-world interaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-soft">
+    <div class="container">
+      <div class="section-heading">
+        <h2>The balance of psychology, AI, and human insight</h2>
+        <p>Thoughtful matchmaking works best when it blends science with real human understanding.</p>
+      </div>
+
+      <div class="split-card">
+        <div class="split-panel">
+          <h3>Why personality psychology matters</h3>
+          <ul class="bullet-list">
+            <li><span>•</span> It helps move beyond surface-level attraction and identify deeper patterns of compatibility.</li>
+            <li><span>•</span> It offers useful insight into communication, values, conflict style, and emotional needs.</li>
+            <li><span>•</span> It creates a stronger foundation for more aligned introductions.</li>
+          </ul>
+        </div>
+
+        <div class="split-panel alt">
+          <h3>Why AI is supportive — not the whole story</h3>
+          <ul class="bullet-list">
+            <li><span>•</span> AI helps organise and analyse complex compatibility signals quickly and consistently.</li>
+            <li><span>•</span> Human matchmaking adds nuance, intuition, life-stage context, and emotional intelligence.</li>
+            <li><span>•</span> Together, they create a smarter and more personalised process than either could alone.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trust-bar">
+        <div class="trust-item">
+          <strong>Compatibility-led</strong>
+          <span>Designed around relationship fit, not swipe behaviour.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Professionally curated</strong>
+          <span>Every introduction benefits from human review and judgement.</span>
+        </div>
+        <div class="trust-item">
+          <strong>More intentional</strong>
+          <span>Created for people who want clarity, effort, and real potential.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to meet in a more meaningful way?</h2>
+      <p>
+        Join Sparked Connection and discover a modern matchmaking experience designed for professionals who want depth, compatibility, and genuine relationship potential.
+      </p>
+      <a href="https://tally.so/r/68JPWB" target="_blank" rel="noopener noreferrer" class="btn-primary">Create Free Profile</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            Sparked<br />Connection
+            <small>Smart Matchmaking. No Swiping.</small>
+          </div>
+          <p>
+            Modern matchmaking for professionals seeking meaningful relationships with more compatibility and less noise.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-matchmaking/">About Matchmaking</a>
+          <a href="/journal">Journal</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/plans">Plans</a>
+          <a href="/events">Events</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Sparked Connection. All rights reserved.
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
