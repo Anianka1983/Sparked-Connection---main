@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Science | Sparked Connection</title>
+  <meta name="description" content="Discover the science behind Sparked Connection's modern matchmaking approach, from personality assessment to guided introductions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f1ec;
+      --surface: rgba(255,255,255,0.68);
+      --navy: #213863;
+      --text: #61718c;
+      --muted: #73829b;
+      --rose: #ec86a8;
+      --blue: #6e86ff;
+      --gold: #e5cb4c;
+      --shadow: 0 12px 28px rgba(31,52,88,0.05);
+      --container: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.55;
+    }
+
+    .hero {
+      min-height: 300px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(46, 49, 60, 0.34), rgba(46, 49, 60, 0.34)),
+        url("The Science-couple.jpg") center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.10);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 940px);
+      padding: 34px 20px 28px;
+    }
+
+    .hero-top {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(28px, 3.8vw, 42px);
+      letter-spacing: 0.08em;
+      font-weight: 300;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(42px, 5.6vw, 66px);
+      font-weight: 300;
+      letter-spacing: 0.11em;
+      line-height: 1.05;
+      background: linear-gradient(90deg, #f3e396 0%, #efcba9 42%, #ebb1ca 72%, #ed8df2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: rgba(255,255,255,0.90);
+      font-size: clamp(12px, 1.3vw, 15px);
+      line-height: 1.75;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .intro {
+      padding: 24px 0 6px;
+      text-align: center;
+    }
+
+    .intro p,
+    .science-section > p {
+      margin: 0 auto;
+      max-width: 850px;
+      color: var(--muted);
+      font-size: clamp(13px, 1.15vw, 18px);
+    }
+
+    .steps {
+      padding: 18px 0 30px;
+      display: grid;
+      gap: 22px;
+      justify-items: center;
+    }
+
+    .step-card {
+      width: min(100%, 620px);
+      padding: 20px 20px 14px;
+      border-radius: 28px;
+      border: 1.5px solid transparent;
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(90deg, var(--blue), #f48fd0) border-box;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(7px);
+    }
+
+    .step-label {
+      text-align: center;
+      color: #7b6ef4;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      color: #e67f93;
+      margin-top: 2px;
+    }
+
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: clamp(15px, 1.2vw, 22px);
+      line-height: 1.2;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(12px, 1vw, 16px);
+      line-height: 1.7;
+    }
+
+    .tag-wrap {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #ef8bb0;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .science-section {
+      text-align: center;
+      padding: 26px 0 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #e7cb4b;
+      color: #4b5972;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(0,0,0,.04);
+    }
+
+    .science-section h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: clamp(28px, 3.5vw, 52px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .science-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .science-card,
+    .gdpr-card {
+      text-align: left;
+      border: 1.5px solid transparent;
+      border-radius: 30px;
+      background:
+        linear-gradient(#fffdf9, #fffdf9) padding-box,
+        linear-gradient(135deg, #b662f3 0%, #ebca4c 100%) border-box;
+      box-shadow: var(--shadow);
+    }
+
+    .science-card {
+      padding: 24px 18px 24px;
+      min-height: 255px;
+    }
+
+    .gdpr-card {
+      width: min(100%, 410px);
+      margin: 28px auto 0;
+      padding: 22px 22px 24px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .mini-icon {
+      width: 24px;
+      height: 24px;
+      color: #566e98;
+      flex: 0 0 auto;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #58657d;
+      background: #dfe7fb;
+    }
+    .pill.pink { background: #f2dee8; }
+    .pill.gold { background: #efe6a7; }
+
+    .science-card h3,
+    .gdpr-card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(14px, 1.1vw, 20px);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .science-card p,
+    .gdpr-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(11px, 0.95vw, 15px);
+      line-height: 1.75;
+    }
+
+    footer {
+      text-align: center;
+      color: #8b94a5;
+      font-size: 10px;
+      padding: 16px 0 24px;
+    }
+
+    @media (max-width: 900px) {
+      .science-grid {
+        grid-template-columns: 1fr;
+      }
+      .step-card {
+        width: min(100%, 680px);
+      }
+      .gdpr-card {
+        width: min(100%, 680px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 260px;
+      }
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+      .icon {
+        margin-top: 0;
+      }
+      .container {
+        width: min(calc(100% - 24px), var(--container));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-top">Smarter Matching</p>
+      <h1 class="hero-title">Backed by Science</h1>
+      <p class="hero-copy">
+        We combine scientifically validated personality assessments with the warmth and
+        intuition of experienced human matchmakers - creating connections built on genuine
+        compatibility, not algorithms alone.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="container intro">
+      <p>Four carefully designed steps that combine science, technology, and human wisdom to find your ideal partner.</p>
+    </section>
+
+    <section class="container steps">
+      <article class="step-card">
+        <div class="step-label">STEP 01</div>
+        <div class="step-grid">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+            <path d="M9 4.5h6M9 10h6M9 14h3"></path>
+          </svg>
+          <div>
+            <h3>In-Depth Personality Assessment</h3>
+            <p>Complete our comprehensive personality questionnaire, designed around the scientifically validated Big Five model. This forms the foundation of understanding who you truly are - your values, communication style, and relationship priorities.</p>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">Takes approximately 20 minutes</span></div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-label">STEP 02</div>
+        <div class="step-grid">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3c3.8 0 7 3.1 7 6.9 0 2.2-1 4.2-2.6 5.5-.7.6-1.2 1.4-1.4 2.3l-.2.8H9.2l-.2-.8c-.2-.9-.7-1.7-1.4-2.3A7 7 0 0 1 5 9.9C5 6.1 8.2 3 12 3Z"></path>
+            <path d="M9.5 21h5M10 18.5h4"></path>
+          </svg>
+          <div>
+            <h3>Intelligent Compatibility Analysis</h3>
+            <p>Our GDPR-compliant AI analyses your profile alongside potential matches, identifying deep compatibility patterns across personality traits, lifestyle preferences, and relationship goals. This isn't about surface-level matching - it's about meaningful alignment.</p>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">Powered by ethical AI</span></div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-label">STEP 03</div>
+        <div class="step-grid">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 18v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"></path>
+            <circle cx="10" cy="7" r="3"></circle>
+            <path d="M20 18v-1a4 4 0 0 0-3-3.9M15 4.5a3 3 0 0 1 0 5.8"></path>
+          </svg>
+          <div>
+            <h3>Matchmaker Review &amp; Human Insight</h3>
+            <p>Every potential match is reviewed by our matchmakers. They consider nuances that technology alone cannot capture - the intangibles that spark real connection.</p>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">Human expertise at every step</span></div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-label">STEP 04</div>
+        <div class="step-grid">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 5a5.4 5.4 0 0 0-7 0l-1 1-1-1a5.4 5.4 0 0 0-7 7l1 1 7 7 7-7 1-1a5.4 5.4 0 0 0 0-7"></path>
+            <path d="M12 8v5M9.5 10.5 12 13l2.5-2.5"></path>
+          </svg>
+          <div>
+            <h3>Guided Introductions</h3>
+            <p>When we find a promising match, we facilitate thoughtful introductions with care and discretion. You'll receive some insights about your match and ongoing support throughout your journey.</p>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">Personalised support included</span></div>
+      </article>
+    </section>
+
+    <section class="container science-section">
+      <div class="badge">✨ Science &amp; Trust</div>
+      <h2>Built on Proven Science</h2>
+      <p>Our approach integrates research-based personality and values matching with a comprehensive view of overall compatibility.</p>
+
+      <div class="science-grid">
+        <article class="science-card">
+          <div class="card-head">
+            <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 2v7.5L5.5 17a3 3 0 0 0 2.7 4.5h7.6A3 3 0 0 0 18.5 17L14 9.5V2"></path>
+              <path d="M8 7h8"></path>
+            </svg>
+            <span class="pill">Research-Backed</span>
+          </div>
+          <h3>Big Five Personality Model</h3>
+          <p>The gold standard in personality psychology, backed by decades of peer-reviewed research. Measures openness, conscientiousness, extraversion, agreeableness, and emotional stability.</p>
+        </article>
+
+        <article class="science-card">
+          <div class="card-head">
+            <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"></path>
+            </svg>
+            <span class="pill pink">Complementary</span>
+          </div>
+          <h3>Love Languages</h3>
+          <p>Understanding how you and your partner give and receive love helps create deeper emotional connections and prevents common communication misunderstandings.</p>
+        </article>
+
+        <article class="science-card">
+          <div class="card-head">
+            <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3Z"></path>
+              <path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z"></path>
+              <path d="M5 14l.9 2.1L8 17l-2.1.9L5 20l-.9-2.1L2 17l2.1-.9L5 14Z"></path>
+            </svg>
+            <span class="pill gold">Supplementary</span>
+          </div>
+          <h3>MBTI Personality Test</h3>
+          <p>Used as a complementary lens to understand cognitive preferences and communication styles, adding another dimension to compatibility analysis.</p>
+        </article>
+      </div>
+
+      <article class="gdpr-card">
+        <div class="card-head">
+          <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2 5 5v6c0 5 3.4 9.7 7 11 3.6-1.3 7-6 7-11V5l-7-3Z"></path>
+            <path d="M9.5 12.5 11 14l3.5-4"></path>
+          </svg>
+          <h3>GDPR-Compliant AI</h3>
+        </div>
+        <p>Our AI systems are designed with privacy at their core. Your personal data is processed securely within EU regulations, and you maintain complete control over your information at all times. We never share your details without explicit consent.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>2025 Sparked Connection. All rights reserved.</footer>
+</body>
+</html>
