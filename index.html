@@ -38,7 +38,7 @@
   </script>
 
 <style>
- .mobile-menu-panel{
+.mobile-menu-panel{
   display:none;
   position:fixed;
   top:5.5rem;
@@ -111,51 +111,56 @@
 }
 
 .hero-description{
-text-shadow:0 2px 6px rgba(0,0,0,0.35);
-font-weight:500;
+  text-shadow:0 2px 6px rgba(0,0,0,0.35);
+  font-weight:500;
 }
 
 .gradient-text{
-background:linear-gradient(90deg,#ff7a7a,#ffb86b,#ff9ad5);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+  background:linear-gradient(90deg,#ff7a7a,#ffb86b,#ff9ad5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-  
+
 .section-header h2{
-  font-size: clamp(24px, 2.6vw, 34px) !important;
-  line-height: 1.12 !important;
-  letter-spacing: -0.015em !important;
+  font-size:clamp(24px, 2.6vw, 34px) !important;
+  line-height:1.12 !important;
+  letter-spacing:-0.015em !important;
 }
-  
-  .section-eyebrow{
-  text-align: center;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #ce7e98; /* your brand pink */
-  margin-bottom: 12px;
-  font-weight: 500;
+
+.section-eyebrow{
+  text-align:center;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:#ce7e98;
+  margin-bottom:12px;
+  font-weight:500;
 }
-    .section-divider{
-  width: 60px;
-  height: 2px;
-  margin: 40px auto 0;
-  background: linear-gradient(90deg, transparent, #d6cfc7, transparent);
-  opacity: 0.8;
+
+.section-divider{
+  width:60px;
+  height:2px;
+  margin:40px auto 0;
+  background:linear-gradient(90deg, transparent, #d6cfc7, transparent);
+  opacity:0.8;
 }
-  .section-soft{
-  background-color: #f8f5f2; /* slightly lighter than your base */
+
+.section-soft{
+  background-color:#f8f5f2;
 }
-  h1, h2, h3, .font-heading{
-  font-family: "Cormorant Garamond", serif !important;
-  letter-spacing: -0.015em;
+
+h1, h2, h3, .font-heading{
+  font-family:"Cormorant Garamond", serif !important;
+  letter-spacing:-0.015em;
 }
+
 body{
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-  color: #2c3a52;
-  line-height: 1.6;
+  font-family:-apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color:#2c3a52;
+  line-height:1.6;
 }
-  .brand-wrap{
+
+.brand-wrap{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
@@ -175,18 +180,16 @@ body{
   height:72px;
   width:auto;
   display:block;
-  transform: scale(2.2) translateY(2px);
-  transform-origin: left center;
+  transform:scale(2.2) translateY(2px);
+  transform-origin:left center;
 }
 
-  @media (min-width: 768px){
+@media (min-width: 768px){
   .mobile-menu-panel{
     display:none !important;
+  }
 }
-    a.flex.items-center.shrink-0{
-  position:relative;
-  z-index:1;
-}
+</style>
 
 </style>
 
@@ -1334,15 +1337,50 @@ No swiping. No guesswork. No wasted time.
       </style>
 </template>
 </div>
+    
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
 (function(){
-  var toggle=document.getElementById('mobile-menu-toggle');
-  var panel=document.getElementById('mobile-menu-panel');
-  if(!toggle||!panel) return;
-  function closeMenu(){panel.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
-  function openMenu(){panel.classList.add('open');toggle.setAttribute('aria-expanded','true');}
-  toggle.addEventListener('click',function(){
-    if(panel.classList.contains('open')){closeMenu();} else {openMenu();}
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var panel = document.getElementById('mobile-menu-panel');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {
+    panel.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    panel.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (panel.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
-  panel.querySelectorAll('a').forEach(function(link){link.addEventListener('click', closeMenu);});
+
+  panel.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
+
+</body>
+</html>
