@@ -38,39 +38,62 @@
   </script>
 
 <style>
+ .mobile-menu-panel{
+  display:none;
+  position:fixed;
+  top:5.5rem;
+  left:0;
+  right:0;
+  z-index:80;
+  background:hsl(var(--background));
+  border-bottom:1px solid hsl(var(--border));
+  box-shadow:var(--shadow-md);
+  padding:1rem;
+}
+
+.mobile-menu-panel.open{
+  display:block;
+}
+
+.mobile-menu-link{
+  display:block;
+  padding:.875rem 0;
+  color:hsl(var(--foreground));
+  font-weight:500;
+  border-bottom:1px solid hsl(var(--border));
+}
+
+.mobile-menu-link:last-child{
+  border-bottom:0;
+}
+
+.mobile-menu-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  margin-top:1rem;
+}
+
+.mobile-menu-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:90;
+}
+
+.mobile-menu-toggle:focus-visible{
+  outline:2px solid hsl(var(--ring));
+  outline-offset:2px;
+  border-radius:.5rem;
+}
+
+@media (min-width: 768px){
   .mobile-menu-panel{
-    display:none;
-    position:fixed;
-    top:4rem;
-    left:0;
-    right:0;
-    z-index:49;
-    background:hsl(var(--background));
-    border-bottom:1px solid hsl(var(--border));
-    box-shadow:var(--shadow-md);
-    padding:1rem}
-  .mobile-menu-panel.open{
-    display:block}
-  .mobile-menu-link{
-    display:block;
-    padding:.875rem 0
-    ;color:hsl(var(--foreground))
-    ;font-weight:500;border-bottom:1px solid hsl(var(--border))}
-  .mobile-menu-link:last-child{
-    border-bottom:0}
-  .mobile-menu-cta{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;margin-top:1rem}
-  .mobile-menu-toggle{
-    display:flex;
-    align-items:center;
-    justify-content:center}
-  .mobile-menu-toggle:focus-visible{
-    outline:2px solid hsl(var(--ring));
-    outline-offset:2px;border-radius:.5rem}@media (min-width: 768px){
-    .mobile-menu-panel{display:none !important}}
+    display:none !important;
+  }
+}
 
 .hero-trust{
   display:inline-flex;
@@ -208,7 +231,51 @@ body{
     .sf-hidden{display:none!important}
    </style>
 <meta content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;" http-equiv="content-security-policy"/>
-<body>
+
+  <script>
+(function(){
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var panel = document.getElementById('mobile-menu-panel');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {
+    panel.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    panel.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (panel.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  panel.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
+  
+  
+  <body>
 <div id="root">
 <div aria-label="Notifications (F8)" role="region" style="pointer-events:none" tabindex="-1">
 <ol class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]" tabindex="-1">
