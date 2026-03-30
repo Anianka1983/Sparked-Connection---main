@@ -186,6 +186,111 @@ body{
   .site-logo{
     height:100px;
   }
+  .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hiw-card {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(206, 126, 152, 0.18);
+      border-radius: 18px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .hiw-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(30, 45, 74, 0.09);
+    }
+
+    /* Numeral circle + connector line built with ::after on cards 1 & 2 */
+    .hiw-numeral-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+    /* The line extends from the right edge of circles 1 & 2 */
+    .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: calc(50% + 38px);   /* starts just outside the circle */
+      right: calc(-50% - 30px); /* reaches into the gap + next card's left padding */
+      height: 1px;
+      background: #ce7e98;
+      opacity: 0.3;
+      transform: translateY(-50%);
+    }
+
+    .hiw-numeral {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 1.5px solid #ce7e98;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: hsl(var(--cream, 22 38% 95%));
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .hiw-numeral span {
+      font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: #ce7e98;
+      line-height: 1;
+    }
+
+    /* Step micro-label */
+    .hiw-step-label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ce7e98;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    }
+
+    /* Title */
+    .hiw-card-title {
+      font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: hsl(var(--primary, 220 50% 25%));
+      margin: 0 0 14px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    /* Body */
+    .hiw-card-body {
+      font-size: 0.9rem;
+      color: hsl(var(--muted-foreground, 220 20% 45%));
+      line-height: 1.75;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    }
+
+    /* Mobile: stack vertically, hide connectors */
+    @media (max-width: 700px) {
+      .hiw-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
+        display: none;
+
 }
 </style>
 
@@ -591,61 +696,61 @@ No swiping. No guesswork. No wasted time.
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+ <div class="container mx-auto px-4">
 
-<section class="py-20 md:py-28 section-cream">
-  <div class="container mx-auto px-4 max-w-3xl">
-
-    <!-- Eyebrow -->
-    <p class="section-eyebrow text-center">THE EXPERIENCE</p>
-
-    <!-- Heading -->
-<h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-6 text-center">
-  How It Works
-</h2>
-    <!-- Intro -->
-    <p class="editorial-body text-center mb-16">
-     A private, considered process - led by someone who genuinely cares about your outcome.
-    </p>
-
-    <!-- Step I -->
-    <div class="process-step">
-      <div class="process-number">I</div>
-      <h3 class="process-title">Start with a conversation</h3>
-      <p class="process-text">
-        It begins with a private, one-to-one consultation — a chance to understand not just who you are, but who you’re truly looking for.
-        Your values, your lifestyle, and what a meaningful relationship looks like to you.
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 52px;">
+      <p class="section-eyebrow">THE EXPERIENCE</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-4">
+        How It Works
+      </h2>
+      <p class="editorial-body" style="color: hsl(var(--muted-foreground)); font-size: 1.05rem; line-height: 1.75;">
+        A private, considered process — led by someone who genuinely cares about your outcome.
       </p>
     </div>
 
-    <!-- Divider -->
-    <div class="process-divider"></div>
+    <!-- Three-column step cards -->
+    <div class="hiw-grid">
 
-    <!-- Step II -->
-    <div class="process-step">
-      <div class="process-number">II</div>
-      <h3 class="process-title">Matched thoughtfully</h3>
-      <p class="process-text">
-        Drawing on compatibility science, personal insight, and a trusted network, potential matches are identified with care.
-        You’ll only hear from us when there is someone genuinely aligned — not just available.
-      </p>
-    </div>
+      <!-- Step I -->
+      <div class="hiw-card">
+        <div class="hiw-numeral-wrap"><div class="hiw-numeral"><span>I</span></div></div>
+        <span class="hiw-step-label">Step One</span>
+        <h3 class="hiw-card-title">Start with a conversation</h3>
+        <p class="hiw-card-body">
+          It begins with a private, one-to-one consultation — a chance to understand not just
+          who you are, but who you're truly looking for. Your values, your lifestyle, and what
+          a meaningful relationship looks like to you.
+        </p>
+      </div>
 
-    <!-- Divider -->
-    <div class="process-divider"></div>
+      <!-- Step II -->
+      <div class="hiw-card">
+        <div class="hiw-numeral-wrap"><div class="hiw-numeral"><span>II</span></div></div>
+        <span class="hiw-step-label">Step Two</span>
+        <h3 class="hiw-card-title">Matched thoughtfully</h3>
+        <p class="hiw-card-body">
+          Drawing on compatibility science, personal insight, and a trusted network, potential
+          matches are identified with care. You'll only hear from us when there is someone
+          genuinely aligned — not just available.
+        </p>
+      </div>
 
-    <!-- Step III -->
-    <div class="process-step">
-      <div class="process-number">III</div>
-      <h3 class="process-title">Introduced with intention</h3>
-      <p class="process-text">
-        When the match is right, an introduction is made — thoughtfully and discreetly.
-        No awkward exchanges. No guesswork. Just a considered beginning, handled with care.
-      </p>
-    </div>
-
+      <!-- Step III -->
+      <div class="hiw-card">
+        <div class="hiw-numeral-wrap"><div class="hiw-numeral"><span>III</span></div></div>
+        <span class="hiw-step-label">Step Three</span>
+        <h3 class="hiw-card-title">Introduced with intention</h3>
+        <p class="hiw-card-body">
+          When the match is right, an introduction is made — thoughtfully and discreetly.
+          No awkward exchanges. No guesswork. Just a considered beginning, handled with care.
+        </p>
+      </div>
   </div>
-
-</section>
+  </div>
 <section class="pt-8 pb-14 md:pt-12 md:pb-20 bg-secondary" id="plans">
 <div class="container mx-auto px-4">
 <div class="text-center max-w-3xl mx-auto mb-6">
