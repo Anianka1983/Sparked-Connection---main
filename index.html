@@ -186,112 +186,118 @@ body{
   .site-logo{
     height:100px;
   }
-  .hiw-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hiw-card {
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(206, 126, 152, 0.18);
-      border-radius: 18px;
-      padding: 32px 24px 28px;
-      text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      position: relative;
-    }
-    .hiw-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(30, 45, 74, 0.09);
-    }
-
-    /* Numeral circle + connector line built with ::after on cards 1 & 2 */
-    .hiw-numeral-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
-    /* The line extends from the right edge of circles 1 & 2 */
-    .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: calc(50% + 38px);   /* starts just outside the circle */
-      right: calc(-50% - 30px); /* reaches into the gap + next card's left padding */
-      height: 1px;
-      background: #ce7e98;
-      opacity: 0.3;
-      transform: translateY(-50%);
-    }
-
-    .hiw-numeral {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      border: 1.5px solid #ce7e98;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: hsl(var(--cream, 22 38% 95%));
-      flex-shrink: 0;
-      position: relative;
-      z-index: 2;
-    }
-    .hiw-numeral span {
-      font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-      font-size: 1.65rem;
-      font-weight: 600;
-      color: #ce7e98;
-      line-height: 1;
-    }
-
-    /* Step micro-label */
-    .hiw-step-label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #ce7e98;
-      font-weight: 600;
-      margin-bottom: 10px;
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    }
-
-    /* Title */
-    .hiw-card-title {
-      font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: hsl(var(--primary, 220 50% 25%));
-      margin: 0 0 14px;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-    }
-
-    /* Body */
-    .hiw-card-body {
-      font-size: 0.9rem;
-      color: hsl(var(--muted-foreground, 220 20% 45%));
-      line-height: 1.75;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    }
-
-    /* Mobile: stack vertically, hide connectors */
-    @media (max-width: 700px) {
-      .hiw-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
-        display: none;
-
 }
+
+  /* How It Works cards - base styles for all screen sizes */
+.hiw-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hiw-card {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(206, 126, 152, 0.18);
+  border-radius: 18px;
+  padding: 32px 24px 28px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.hiw-numeral-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.hiw-numeral {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1.5px solid #ce7e98;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(var(--cream, 22 38% 95%));
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.hiw-numeral span {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #ce7e98;
+  line-height: 1;
+}
+
+.hiw-step-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ce7e98;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+.hiw-card-title {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: hsl(var(--primary, 220 50% 25%));
+  margin: 0 0 14px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.hiw-card-body {
+  font-size: 0.9rem;
+  color: hsl(var(--muted-foreground, 220 20% 45%));
+  line-height: 1.75;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+/* Desktop only */
+@media (min-width: 768px) {
+  .hiw-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .hiw-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(30, 45, 74, 0.09);
+  }
+
+  .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 38px);
+    right: calc(-50% - 30px);
+    height: 1px;
+    background: #ce7e98;
+    opacity: 0.3;
+    transform: translateY(-50%);
+  }
+}
+
+/* Mobile only */
+@media (max-width: 767px) {
+  .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
+    display: none;
+  }
+}
+   
 </style>
 
 </head>
