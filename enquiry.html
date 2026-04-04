@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matchmaking Enquiry | Sparked Connection</title>
+  <meta name="description" content="Begin your journey to meaningful connection. Complete our short matchmaking enquiry form and a member of the Sparked Connection team will be in touch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── CSS Variables (matching Sparked Connection palette) ── */
+    :root {
+      --navy:        #1e2d4a;
+      --navy-light:  #2c3a52;
+      --rose:        #ce7e98;
+      --rose-light:  #e8a8be;
+      --cream:       #f8f5f2;
+      --cream-dark:  #f0ebe4;
+      --sand:        #d6cfc7;
+      --text:        #2c3a52;
+      --muted:       #6b7a91;
+      --white:       #ffffff;
+      --border:      rgba(206,126,152,0.22);
+      --shadow-sm:   0 2px 12px rgba(30,45,74,0.07);
+      --shadow-md:   0 8px 32px rgba(30,45,74,0.10);
+      --shadow-lg:   0 20px 60px rgba(30,45,74,0.13);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo-img {
+      height: 52px;
+      width: auto;
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-logo-main {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--rose);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      margin: 0 auto;
+    }
+    .nav-links li a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links li a:hover { color: var(--rose); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 22px;
+      background: var(--rose);
+      color: var(--white) !important;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #b86882; transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .nav-mobile-panel {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem 1.5rem;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: var(--shadow-md);
+    }
+    .nav-mobile-panel.open { display: flex; }
+    .nav-mobile-panel a {
+      display: block;
+      padding: 10px 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .nav-mobile-panel a:last-child { border-bottom: none; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .nav-cta { display: none; }
+    }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a3f5e 55%, #3b2a3d 100%);
+      padding: 72px 2rem 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 40%, rgba(206,126,152,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 80% 60%, rgba(255,154,213,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      font-weight: 600;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.2s;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, #ff9ad5, #ffb86b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-dots {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+    }
+    .hero-dot {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      letter-spacing: 0.02em;
+    }
+    .hero-dot::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rose-light);
+      flex-shrink: 0;
+    }
+
+    /* ── FORM WRAPPER ── */
+    .form-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 1.5rem 80px;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.6s;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+    .progress-track {
+      height: 3px;
+      background: var(--sand);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light));
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 44px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.7s;
+    }
+    @media (max-width: 600px) {
+      .form-card { padding: 32px 22px; }
+    }
+
+    /* ── SECTION STEPS ── */
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+
+    .step-header {
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .step-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .step-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .step-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field-group { margin-bottom: 22px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    label .req { color: var(--rose); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--cream);
+      border: 1.5px solid var(--sand);
+      border-radius: 10px;
+      font-size: 0.93rem;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--rose);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(206,126,152,0.14);
+    }
+    input.error, select.error, textarea.error {
+      border-color: #e05c7a;
+      box-shadow: 0 0 0 3px rgba(224,92,122,0.12);
+    }
+    .field-error {
+      font-size: 0.76rem;
+      color: #c0445f;
+      margin-top: 5px;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a91' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    /* ── RADIO / CHECKBOX PILL GROUPS ── */
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pill-group input[type="radio"],
+    .pill-group input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 0; height: 0;
+    }
+    .pill-group label {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 18px;
+      border-radius: 99px;
+      border: 1.5px solid var(--sand);
+      background: var(--cream);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: none;
+      letter-spacing: 0;
+      margin: 0;
+      user-select: none;
+    }
+    .pill-group input:checked + label {
+      border-color: var(--rose);
+      background: rgba(206,126,152,0.1);
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .pill-group label:hover {
+      border-color: var(--rose-light);
+      color: var(--navy);
+    }
+
+    /* ── RANGE SLIDER ── */
+    .range-wrap { position: relative; }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 99px;
+      background: linear-gradient(to right, var(--rose) 0%, var(--rose) 50%, var(--sand) 50%, var(--sand) 100%);
+      outline: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--rose);
+      box-shadow: 0 2px 8px rgba(206,126,152,0.3);
+      cursor: pointer;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .range-value {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--rose);
+      margin-top: 4px;
+    }
+
+    /* ── PRIVACY NOTE ── */
+    .privacy-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(206,126,152,0.07);
+      border: 1px solid rgba(206,126,152,0.2);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 28px;
+    }
+    .privacy-note svg { width: 18px; flex-shrink: 0; margin-top: 2px; color: var(--rose); }
+    .privacy-note p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── CONSENT ── */
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--rose);
+      cursor: pointer;
+      margin-top: 2px;
+      padding: 0;
+      border: none;
+    }
+    .consent-row label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+      margin: 0;
+    }
+    .consent-row label a { color: var(--rose); text-decoration: underline; }
+
+    /* ── NAVIGATION BUTTONS ── */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--cream-dark);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      border: none;
+      font-family: "Inter", sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rose), #bf6a88);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(206,126,152,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(206,126,152,0.45);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--sand);
+    }
+    .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 16px 0;
+    }
+    .success-screen.show { display: block; }
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(206,126,152,0.12);
+      border: 2px solid rgba(206,126,152,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .success-icon svg { width: 32px; height: 32px; color: var(--rose); }
+    .success-screen h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .success-screen p { font-size: 0.93rem; color: var(--muted); max-width: 400px; margin: 0 auto; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER STRIP ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://sparkedconnection.com/" class="nav-logo-wrap">
+      <img src="https://sparkedconnection.com/favicon-180.png" alt="Sparked Connection" class="nav-logo-img" onerror="this.style.display='none'" />
+      <div class="nav-logo-text">
+        <span class="nav-logo-main">Sparked<br>Connection</span>
+        <span class="nav-logo-tag">Smart Matchmaking. No Swiping.</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://sparkedconnection.com/#how-it-works">How It Works</a></li>
+      <li><a href="https://sparkedconnection.com/#matching">Matching Process</a></li>
+      <li><a href="https://sparkedconnection.com/#plans">Plans</a></li>
+      <li><a href="https://sparkedconnection.com/#events">Events</a></li>
+      <li><a href="https://sparkedconnection.com/#science">The Science</a></li>
+      <li><a href="https://articles.sparkedconnection.com/">Journal</a></li>
+    </ul>
+    <a href="https://sparkedconnection.com/enquiry" class="nav-cta">Create Free Profile</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+    <a href="https://sparkedconnection.com/#matching">Matching Process</a>
+    <a href="https://sparkedconnection.com/#plans">Plans</a>
+    <a href="https://sparkedconnection.com/#events">Events</a>
+    <a href="https://sparkedconnection.com/#science">The Science</a>
+    <a href="https://articles.sparkedconnection.com/">Journal</a>
+    <a href="https://sparkedconnection.com/enquiry" class="nav-cta" style="margin-top:12px;text-align:center;">Create Free Profile</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Begin Your Journey</p>
+    <h1>Find Your <em>Meaningful</em> Match</h1>
+    <p>Tell us a little about yourself. Our matchmaker will review your enquiry personally and be in touch within 2 working days.</p>
+    <div class="hero-dots">
+      <span class="hero-dot">Confidential & GDPR conscious</span>
+      <span class="hero-dot">Personal review by Anna</span>
+      <span class="hero-dot">No obligation</span>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="form-section">
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="step-label">Step 1 of 3 — About You</span>
+        <span id="step-pct">33%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progress-bar" style="width:33%"></div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="form-card" id="form-card">
+
+      <!-- STEP 1: About You -->
+      <div class="form-step active" id="step-1">
+        <div class="step-header">
+          <span class="step-tag">Step 01</span>
+          <h2 class="step-title">A little about you</h2>
+          <p class="step-sub">Basic details so we can get to know who you are.</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="first-name">First name <span class="req">*</span></label>
+            <input type="text" id="first-name" placeholder="e.g. Sophie" autocomplete="given-name" />
+            <div class="field-error" id="err-first-name">Please enter your first name.</div>
+          </div>
+          <div class="field-group">
+            <label for="last-name">Last name <span class="req">*</span></label>
+            <input type="text" id="last-name" placeholder="e.g. Clarke" autocomplete="family-name" />
+            <div class="field-error" id="err-last-name">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="email">Email address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            <div class="field-error" id="err-email">Please enter a valid email address.</div>
+          </div>
+          <div class="field-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" placeholder="+44 7700 000000" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="age">Age <span class="req">*</span></label>
+            <input type="number" id="age" placeholder="e.g. 34" min="21" max="99" />
+            <div class="field-error" id="err-age">Please enter your age (21–99).</div>
+          </div>
+          <div class="field-group">
+            <label for="location">Where are you based? <span class="req">*</span></label>
+            <input type="text" id="location" placeholder="e.g. London, Manchester" />
+            <div class="field-error" id="err-location">Please enter your location.</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Gender <span class="req">*</span></label>
+          <div class="pill-group" id="gender-group">
+            <input type="radio" name="gender" id="g-woman" value="Woman" />
+            <label for="g-woman">Woman</label>
+            <input type="radio" name="gender" id="g-man" value="Man" />
+            <label for="g-man">Man</label>
+            <input type="radio" name="gender" id="g-other" value="Other" />
+            <label for="g-other">Other</label>
+          </div>
+          <div class="field-error" id="err-gender">Please select an option.</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="profession">Profession <span class="req">*</span></label>
+            <input type="text" id="profession" placeholder="e.g. Solicitor, Marketing Director…" />
+            <div class="field-error" id="err-profession">Please tell us your profession.</div>
+          </div>
+          <div class="field-group">
+            <label for="industry">Industry <span class="req">*</span></label>
+            <input type="text" id="industry" placeholder="e.g. Finance, Tech, Healthcare…" />
+            <div class="field-error" id="err-industry">Please tell us your industry.</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="linkedin">LinkedIn profile <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:0.78rem">(optional)</span></label>
+          <input type="text" id="linkedin" placeholder="https://linkedin.com/in/yourname" />
+        </div>
+      </div>
+
+      <!-- STEP 2: Relationship Goals -->
+      <div class="form-step" id="step-2">
+        <div class="step-header">
+          <span class="step-tag">Step 02</span>
+          <h2 class="step-title">Your relationship goals</h2>
+          <p class="step-sub">Helping us understand what you're truly looking for.</p>
+        </div>
+
+        <div class="field-group">
+          <label>What are you looking for? <span class="req">*</span></label>
+          <div class="pill-group" id="goal-group">
+            <input type="radio" name="goal" id="goal-ltr" value="A long-term relationship" />
+            <label for="goal-ltr">A long-term relationship</label>
+            <input type="radio" name="goal" id="goal-marriage" value="Marriage / life partner" />
+            <label for="goal-marriage">Marriage / life partner</label>
+            <input type="radio" name="goal" id="goal-open" value="Open to seeing where it goes" />
+            <label for="goal-open">Open to seeing where it goes</label>
+          </div>
+          <div class="field-error" id="err-goal">Please select what you're looking for.</div>
+        </div>
+
+        <div class="field-group">
+          <label>Current relationship status <span class="req">*</span></label>
+          <div class="pill-group" id="status-group">
+            <input type="radio" name="status" id="st-single" value="Single" />
+            <label for="st-single">Single</label>
+            <input type="radio" name="status" id="st-divorced" value="Divorced / separated" />
+            <label for="st-divorced">Divorced / separated</label>
+            <input type="radio" name="status" id="st-widowed" value="Widowed" />
+            <label for="st-widowed">Widowed</label>
+          </div>
+          <div class="field-error" id="err-status">Please select your status.</div>
+        </div>
+
+        <div class="field-group">
+          <label>Do you have children? <span class="req">*</span></label>
+          <div class="pill-group" id="children-group">
+            <input type="radio" name="children" id="ch-no" value="No" />
+            <label for="ch-no">No</label>
+            <input type="radio" name="children" id="ch-yes-home" value="Yes" />
+            <label for="ch-yes-home">Yes</label>
+            <input type="radio" name="children" id="ch-yes-grown" value="Yes, grown up / not at home" />
+            <label for="ch-yes-grown">Yes, grown up / not at home</label>
+          </div>
+          <div class="field-error" id="err-children">Please select an option.</div>
+        </div>
+
+
+        <div class="field-group">
+          <label for="partner-age-min">Ideal partner age range <span class="req">*</span></label>
+          <div class="field-row">
+            <div>
+              <input type="number" id="partner-age-min" placeholder="Min age, e.g. 30" min="21" max="90" />
+            </div>
+            <div>
+              <input type="number" id="partner-age-max" placeholder="Max age, e.g. 50" min="21" max="99" />
+            </div>
+          </div>
+          <div class="field-error" id="err-partner-age">Please enter a valid age range.</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: How We Can Help -->
+      <div class="form-step" id="step-3">
+        <div class="step-header">
+          <span class="step-tag">Step 03</span>
+          <h2 class="step-title">How we can help</h2>
+          <p class="step-sub">A couple of final details to complete your enquiry.</p>
+        </div>
+
+        <div class="field-group">
+          <label>How did you hear about Sparked Connection?</label>
+          <select id="referral">
+            <option value="" disabled selected>Please select…</option>
+            <option>Google / online search</option>
+            <option>Instagram or social media</option>
+            <option>Recommendation from a friend</option>
+            <option>Press or media coverage</option>
+            <option>Attended a Sparked event</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Which service interests you most?</label>
+          <div class="pill-group" id="service-group">
+            <input type="radio" name="service" id="svc-match" value="Matchmaking" />
+            <label for="svc-match">Matchmaking</label>
+            <input type="radio" name="service" id="svc-events" value="Singles events" />
+            <label for="svc-events">Singles events</label>
+            <input type="radio" name="service" id="svc-both" value="Both" />
+            <label for="svc-both">Both</label>
+            <input type="radio" name="service" id="svc-unsure" value="Not sure yet" />
+            <label for="svc-unsure">Not sure yet</label>
+          </div>
+        </div>
+
+        <div class="privacy-note">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="9" width="14" height="10" rx="2"/>
+            <path d="M7 9V6a3 3 0 016 0v3"/>
+          </svg>
+          <p>Your information is treated with the utmost care and discretion. It will only ever be used by the Sparked Connection team and will never be shared with third parties without your explicit consent. We are GDPR conscious.</p>
+        </div>
+
+        <div class="consent-row">
+          <input type="checkbox" id="consent" />
+          <label for="consent">I confirm I am over 21 and agree to Sparked Connection storing my enquiry details in order to respond to my request. I have read the <a href="#">Privacy Policy</a>. <span class="req" style="color:var(--rose)">*</span></label>
+        </div>
+        <div class="field-error" id="err-consent" style="margin-top:-16px;margin-bottom:16px;">Please accept the privacy policy to continue.</div>
+      </div>
+
+
+      <!-- SUCCESS -->
+      <div class="success-screen" id="success-screen">
+        <div class="success-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 16l7 7 13-13"/>
+          </svg>
+        </div>
+        <h2>Your enquiry is on its way</h2>
+        <p style="margin-bottom:16px;">Thank you for taking the first step — it means a great deal. Anna will personally review everything you've shared and will be in touch within <strong style="color:var(--navy)">2 working days</strong> to introduce herself and talk through your journey together.</p>
+        <p>In the meantime, feel free to explore <a href="https://sparkedconnection.com/" style="color:var(--rose);text-decoration:underline;">sparkedconnection.com</a> — and know that something wonderful may already be just around the corner.</p>
+      </div>
+
+      <!-- NAV BUTTONS -->
+      <div class="btn-row" id="btn-row">
+        <button class="btn btn-ghost" id="btn-back" style="visibility:hidden" onclick="prevStep()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 12L6 8l4-4"/>
+          </svg>
+          Back
+        </button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextStep()">
+          Continue
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 4l4 4-4 4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Sparked Connection · <a href="https://sparkedconnection.com/privacy">Privacy Policy</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a>
+  </footer>
+
+  <script>
+    // ── STATE ──────────────────────────────────────────
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    const stepLabels = [
+      "Step 1 of 3 — About You",
+      "Step 2 of 3 — Relationship Goals",
+      "Step 3 of 3 — How We Can Help",
+    ];
+
+    // ── PROGRESS ──────────────────────────────────────
+    function updateProgress() {
+      const pct = Math.round((currentStep / totalSteps) * 100);
+      document.getElementById("progress-bar").style.width = pct + "%";
+      document.getElementById("step-label").textContent = stepLabels[currentStep - 1];
+      document.getElementById("step-pct").textContent = pct + "%";
+    }
+
+    // ── VALIDATION ────────────────────────────────────
+    function validateStep(step) {
+      let valid = true;
+
+      function showErr(id, show) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle("visible", show);
+      }
+      function markField(id, error) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle("error", error);
+        if (error) valid = false;
+      }
+      function radioSelected(name) {
+        return document.querySelector(`input[name="${name}"]:checked`) !== null;
+      }
+
+      if (step === 1) {
+        const firstName = document.getElementById("first-name").value.trim();
+        markField("first-name", !firstName);
+        showErr("err-first-name", !firstName);
+
+        const lastName = document.getElementById("last-name").value.trim();
+        markField("last-name", !lastName);
+        showErr("err-last-name", !lastName);
+
+        const email = document.getElementById("email").value.trim();
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        markField("email", !emailOk);
+        showErr("err-email", !emailOk);
+
+        const age = parseInt(document.getElementById("age").value);
+        const ageOk = age >= 21 && age <= 99;
+        markField("age", !ageOk);
+        showErr("err-age", !ageOk);
+
+        const loc = document.getElementById("location").value.trim();
+        markField("location", !loc);
+        showErr("err-location", !loc);
+
+        const genderOk = radioSelected("gender");
+        document.getElementById("err-gender").classList.toggle("visible", !genderOk);
+        if (!genderOk) valid = false;
+
+        const prof = document.getElementById("profession").value.trim();
+        markField("profession", !prof);
+        showErr("err-profession", !prof);
+
+        const industry = document.getElementById("industry").value.trim();
+        markField("industry", !industry);
+        showErr("err-industry", !industry);
+      }
+
+      if (step === 2) {
+        const goalOk = radioSelected("goal");
+        document.getElementById("err-goal").classList.toggle("visible", !goalOk);
+        if (!goalOk) valid = false;
+
+        const statusOk = radioSelected("status");
+        document.getElementById("err-status").classList.toggle("visible", !statusOk);
+        if (!statusOk) valid = false;
+
+        const childrenOk = radioSelected("children");
+        document.getElementById("err-children").classList.toggle("visible", !childrenOk);
+        if (!childrenOk) valid = false;
+
+        const minAge = parseInt(document.getElementById("partner-age-min").value);
+        const maxAge = parseInt(document.getElementById("partner-age-max").value);
+        const ageRangeOk = minAge >= 21 && maxAge <= 99 && minAge < maxAge;
+        document.getElementById("err-partner-age").classList.toggle("visible", !ageRangeOk);
+        if (!ageRangeOk) valid = false;
+      }
+
+      if (step === 3) {
+        const consent = document.getElementById("consent").checked;
+        document.getElementById("err-consent").classList.toggle("visible", !consent);
+        if (!consent) valid = false;
+      }
+
+      return valid;
+    }
+
+    // ── NAVIGATION ────────────────────────────────────
+    function nextStep() {
+      if (!validateStep(currentStep)) return;
+
+      if (currentStep === totalSteps) {
+        submitForm();
+        return;
+      }
+
+      document.getElementById(`step-${currentStep}`).classList.remove("active");
+      currentStep++;
+      document.getElementById(`step-${currentStep}`).classList.add("active");
+      updateProgress();
+      updateBtns();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function prevStep() {
+      if (currentStep <= 1) return;
+      document.getElementById(`step-${currentStep}`).classList.remove("active");
+      currentStep--;
+      document.getElementById(`step-${currentStep}`).classList.add("active");
+      updateProgress();
+      updateBtns();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateBtns() {
+      const back = document.getElementById("btn-back");
+      const next = document.getElementById("btn-next");
+      back.style.visibility = currentStep > 1 ? "visible" : "hidden";
+      if (currentStep === totalSteps) {
+        next.innerHTML = `Send my enquiry <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>`;
+      } else {
+        next.innerHTML = `Continue <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>`;
+      }
+    }
+
+    // ── COLLECT DATA ──────────────────────────────────
+    function collectFormData() {
+      const getRadio = (name) => {
+        const el = document.querySelector(`input[name="${name}"]:checked`);
+        return el ? el.value : "";
+      };
+
+      return {
+        firstName:      document.getElementById("first-name").value.trim(),
+        lastName:       document.getElementById("last-name").value.trim(),
+        email:          document.getElementById("email").value.trim(),
+        phone:          document.getElementById("phone").value.trim(),
+        age:            document.getElementById("age").value,
+        location:       document.getElementById("location").value.trim(),
+        gender:         getRadio("gender"),
+        profession:     document.getElementById("profession").value.trim(),
+        industry:       document.getElementById("industry").value.trim(),
+        linkedin:       document.getElementById("linkedin").value.trim(),
+        goal:           getRadio("goal"),
+        status:         getRadio("status"),
+        children:       getRadio("children"),
+        partnerAgeMin:  document.getElementById("partner-age-min").value,
+        partnerAgeMax:  document.getElementById("partner-age-max").value,
+        referral:       document.getElementById("referral").value,
+        service:        getRadio("service"),
+      };
+    }
+
+    // ── SUBMIT ────────────────────────────────────────
+    async function submitForm() {
+      const btn = document.getElementById("btn-next");
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      const data = collectFormData();
+
+      try {
+        await fetch("https://formspree.io/f/xvzvvppr", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            name:           `${data.firstName} ${data.lastName}`,
+            email:          data.email,
+            phone:          data.phone || "Not provided",
+            age:            data.age,
+            location:       data.location,
+            gender:         data.gender,
+            profession:     data.profession,
+            industry:       data.industry,
+            linkedin:       data.linkedin || "Not provided",
+            looking_for:    data.goal,
+            status:         data.status,
+            children:       data.children,
+            partner_age:    `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+            service:        data.service || "Not specified",
+            heard_via:      data.referral || "Not specified",
+          })
+        });
+      } catch(e) {
+        console.error("Submission error:", e);
+      }
+
+      // Show success screen
+      document.getElementById(`step-${currentStep}`).classList.remove("active");
+      document.getElementById("success-screen").classList.add("show");
+      document.getElementById("btn-row").style.display = "none";
+      document.querySelector(".progress-wrap").style.display = "none";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ── INIT ──────────────────────────────────────────
+    updateBtns();
+    updateProgress();
+
+    // ── MOBILE NAV ────────────────────────────────────
+    document.getElementById("nav-hamburger").addEventListener("click", function() {
+      document.getElementById("nav-mobile-panel").classList.toggle("open");
+    });
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest("nav") && !e.target.closest(".nav-mobile-panel")) {
+        document.getElementById("nav-mobile-panel").classList.remove("open");
+      }
+    });
+  </script>
+</body>
+</html>
