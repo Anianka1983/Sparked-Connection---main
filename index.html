@@ -58,7 +58,7 @@
 .mobile-menu-link{
   display:block;
   padding:.875rem 0;
-color:hsl(var(--muted-foreground));
+  color:hsl(var(--foreground));
   font-weight:500;
   border-bottom:1px solid hsl(var(--border));
 }
@@ -296,22 +296,6 @@ html, body {
     opacity: 0.3;
     transform: translateY(-50%);
   }
-.nav-link{
-  color: hsl(var(--muted-foreground));
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover{
-  color: hsl(var(--primary));
-}
-
-.nav-link.active{
-  color: hsl(var(--primary));
-  font-weight: 600;
-}
 }
 
 /* Mobile only */
@@ -422,19 +406,22 @@ html, body {
 <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
 </a>
 <div class="hidden md:flex items-center gap-8">
-
-  <a class="nav-link" href="#how-it-works">How It Works</a>
-
-  <a class="nav-link active" href="/plans/">Plans</a>
-
-  <a class="nav-link" href="#events">Events</a>
-
-  <a class="nav-link" href="/the-science/">The Science</a>
-
-  <a class="nav-link" href="https://articles.sparkedconnection.com/" target="_blank">Journal</a>
-
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="#how-it-works">
+           How It Works
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="/plans/">
+           Plans
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="#events">
+           Events
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="https://sparkedconnection.com/the-science/">
+           The Science
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">
+           Journal
+          </a>
 </div>
-
 <div class="hidden md:block">
 <a href="/enquiry" rel="noopener noreferrer" target="_blank">
 <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-full">
