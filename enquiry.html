@@ -43,23 +43,24 @@
     /* ── NAV ── */
 
 /* ── NAV (matched to main site) ── */
-nav{
+  
+  nav{
   position:fixed;
   top:0;
   left:0;
   right:0;
   z-index:100;
-  background:hsl(22 38% 95% / 0.95);
+  background:rgba(248,245,242,0.95);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid hsl(36 20% 88%);
+  border-bottom:1px solid rgba(214,207,199,0.55);
 }
 
 .nav-inner{
   max-width:1400px;
   margin:0 auto;
   padding:0 1rem;
-  height:80px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -68,7 +69,7 @@ nav{
 
 @media (min-width:768px){
   .nav-inner{
-    height:96px;
+    height:88px;
   }
 }
 
@@ -160,11 +161,11 @@ nav{
 .nav-mobile-panel{
   display:none;
   position:fixed;
-  top:80px;
+  top:72px;
   left:0;
   right:0;
-  background:hsl(22 38% 95% / 0.98);
-  border-bottom:1px solid hsl(36 20% 88%);
+  background:rgba(248,245,242,0.98);
+  border-bottom:1px solid rgba(214,207,199,0.55);
   padding:1rem 1.5rem 1.5rem;
   z-index:99;
   flex-direction:column;
@@ -190,10 +191,11 @@ nav{
   border-bottom:none;
 }
 
-@media (max-width:900px){
-  .nav-links{
-    display:none;
+@media (min-width:768px){
+  .nav-mobile-panel{
+    top:88px;
   }
+}
 
   .nav-hamburger{
     display:flex;
