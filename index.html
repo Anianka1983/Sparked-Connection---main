@@ -188,6 +188,12 @@ html, body {
   width:auto;
   display:block;
 }
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 1rem;
+}
 
 @media (min-width: 768px){
   .site-logo{
@@ -400,9 +406,9 @@ html, body {
 </section>
 <div class="min-h-screen">
 <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-<div class="mx-auto w-full max-w-[1200px] px-4">
-<div class="flex items-center justify-between h-16 md:h-20">
-  <a class="flex items-center shrink-0" href="https://sparkedconnection.com/">
+<div class="container">
+  <div style="display:flex;align-items:center;justify-content:space-between;height:80px;">
+    <a href="https://sparkedconnection.com/" style="display:flex;align-items:center;flex-shrink:0;">
 <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
 </a>
 <div class="hidden md:flex items-center gap-8">
