@@ -213,14 +213,14 @@ nav{
 }
 
     /* ── HERO BANNER ── */
-    .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #2a3f5e 55%, #3b2a3d 100%);
-      padding: 72px 2rem 80px;
-      padding-top: 120px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+   .hero{
+  background: linear-gradient(135deg, var(--navy) 0%, #2a3f5e 55%, #3b2a3d 100%);
+  padding: 160px 2rem 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+  
     .hero::before {
       content: "";
       position: absolute;
@@ -672,7 +672,24 @@ nav{
     });
   })();
 </script>
+<script>
+(function () {
+  const btn = document.getElementById("navHamburger");
+  const panel = document.getElementById("navMobilePanel");
+  if (!btn || !panel) return;
 
+  btn.addEventListener("click", function () {
+    panel.classList.toggle("open");
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!panel.contains(e.target) && !btn.contains(e.target)) {
+      panel.classList.remove("open");
+    }
+  });
+})();
+</script>
+  
 <body>
 
   <!-- NAV -->
