@@ -48,11 +48,14 @@
       background: var(--cream);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
-      height: 80px;
+      height: 88px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      nav { height: 108px; }
     }
     .nav-logo-wrap {
       display: flex;
@@ -67,9 +70,7 @@
       display: block;
     }
     @media (min-width: 768px) {
-      .nav-logo-img {
-        height: 100px;
-      }
+      .nav-logo-img { height: 100px; }
     }
     .nav-logo-text {
       display: flex;
@@ -144,7 +145,7 @@
     .nav-mobile-panel {
       display: none;
       position: fixed;
-      top: 80px;
+      top: 88px;
       left: 0; right: 0;
       background: var(--cream);
       border-bottom: 1px solid var(--border);
