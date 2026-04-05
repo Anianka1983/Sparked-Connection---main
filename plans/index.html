@@ -372,12 +372,12 @@
 <!-- ── Nav (identical to main site) ─────────────────────────────── -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:hsl(var(--background)/.95);backdrop-filter:blur(12px);border-bottom:1px solid hsl(var(--border));">
   <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;height:80px;">
+<div style="display:flex; align-items:center; justify-content:space-between; height:80px; position:relative;">
       <a href="https://sparkedconnection.com/" style="display:flex;align-items:center;flex-shrink:0;">
         <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
       </a>
       <!-- Desktop nav -->
-     <div style="display:none;" class="desktop-nav">
+<div class="desktop-nav" style="display:none; position:absolute; left:50%; transform:translateX(-50%);">
   <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
   <a class="plans-nav-link" href="/plans/">Plans</a>
   <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
