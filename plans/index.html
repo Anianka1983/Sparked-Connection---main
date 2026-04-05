@@ -120,7 +120,31 @@
     }
     .cta-spark-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 20px #b2345e59, 0 4px 8px #b2345e33, inset 0 1px #fff3; }
     .cta-spark-btn:hover::before { animation: spark-sweep .6s ease-out forwards; }
-    @keyframes spark-sweep { 0% { left: -60%; } to { left: 120%; } }
+    @keyframes spark-sweep { 0% { left: -60%; } to { left: 120%; }
+
+.top-nav-link{
+  color:hsl(var(--muted-foreground));
+  font-weight:500;
+  font-size:0.875rem;
+  text-decoration:none;
+  margin-right:32px;
+  transition:color 0.2s ease;
+}
+
+.top-nav-link:hover{
+  color:hsl(var(--primary));
+}
+
+.top-nav-link:last-child{
+  margin-right:0;
+}
+
+.top-nav-active{
+  color:hsl(var(--primary));
+  font-weight:600;
+}
+
+ }
 
     /* ── Page hero ────────────────────────────────────────────── */
     .plans-hero {
@@ -351,66 +375,13 @@
         <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
       </a>
       <!-- Desktop nav -->
-      <div style="display:none;" class="desktop-nav">
-<a href="/plans/" style="
-  color:hsl(var(--muted-foreground));
-  font-weight:500;
-  font-size:0.875rem;
-  text-decoration:none;
-  margin-right:32px;
-  transition: color 0.2s ease;
-"
-onmouseover="this.style.color='hsl(var(--primary))'"
-onmouseout="this.style.color='hsl(var(--muted-foreground))'">
-How It Works</a>
-
-<a href="/plans/" style="
-  color:hsl(var(--muted-foreground));
-  font-weight:500;
-  font-size:0.875rem;
-  text-decoration:none;
-  margin-right:32px;
-  transition: color 0.2s ease;
-"
-onmouseover="this.style.color='hsl(var(--primary))'"
-onmouseout="this.style.color='hsl(var(--muted-foreground))'">
-  Plans
-</a>
-      <a href="/plans/" style="
-  color:hsl(var(--muted-foreground));
-  font-weight:500;
-  font-size:0.875rem;
-  text-decoration:none;
-  margin-right:32px;
-  transition: color 0.2s ease;
-"
-onmouseover="this.style.color='hsl(var(--primary))'"
-onmouseout="this.style.color='hsl(var(--muted-foreground))'">
-Events</a>
-
-<a href="/plans/" style="
-  color:hsl(var(--muted-foreground));
-  font-weight:500;
-  font-size:0.875rem;
-  text-decoration:none;
-  margin-right:32px;
-  transition: color 0.2s ease;
-"
-onmouseover="this.style.color='hsl(var(--primary))'"
-onmouseout="this.style.color='hsl(var(--muted-foreground))'">
-The Science</a>
-
-<a href="/plans/" style="
-  color:hsl(var(--muted-foreground));
-  font-weight:500;
-  font-size:0.875rem;
-  text-decoration:none;
-  margin-right:32px;
-  transition: color 0.2s ease;
-"
-onmouseover="this.style.color='hsl(var(--primary))'"
-onmouseout="this.style.color='hsl(var(--muted-foreground))'">
-Journal</a>
+     <div style="display:none;" class="desktop-nav">
+  <a class="top-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="top-nav-link top-nav-active" href="/plans/">Plans</a>
+  <a class="top-nav-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="top-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="top-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
+</div>
 
       </div>
       <div style="display:none;" class="desktop-cta">
