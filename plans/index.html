@@ -340,22 +340,28 @@
     }
     .footer-bottom p { font-size: 0.8rem; color: hsl(var(--primary-foreground) / .5); }
 @media (min-width: 768px) {
-  .desktop-nav a {
-    font-family: "Inter", sans-serif !important;
-    font-size: 0.875rem !important;
-    font-weight: 400 !important;
-    color: hsl(var(--muted-foreground)) !important;
-    transition: color 0.2s ease, font-weight 0.2s ease;
+  .desktop-nav {
+    display: flex !important;
+    align-items: center;
   }
 
-  .desktop-nav a:hover {
-    color: hsl(var(--primary)) !important;
-    font-weight: 600 !important;
+  .desktop-nav .plans-nav-link {
+    color: hsl(var(--muted-foreground));
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-right: 32px;
+    white-space: nowrap;
   }
 
-  .desktop-nav a[href="/plans/"] {
-    color: hsl(var(--primary)) !important;
-    font-weight: 600 !important;
+  .desktop-nav .plans-nav-link:last-child {
+    margin-right: 0;
+  }
+
+  .desktop-nav .plans-nav-link:hover {
+    color: hsl(var(--primary));
   }
 }
   </style>
@@ -371,13 +377,13 @@
         <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
       </a>
       <!-- Desktop nav -->
-      <div style="display:none;" class="desktop-nav">
-        <a style="color:hsl(var(--muted-foreground));font-weight:500;font-size:.865rem;transition:color .2s;text-decoration:none;margin-right:32px;" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-        <a style="color:hsl(var(--muted-foreground));font-weight:500;font-size:.875rem;transition:color .2s;text-decoration:none;margin-right:32px;" href="/plans/">Plans</a>
-        <a style="color:hsl(var(--muted-foreground));font-weight:500;font-size:.875rem;transition:color .2s;text-decoration:none;margin-right:32px;" href="https://sparkedconnection.com/#events">Events</a>
-        <a style="color:hsl(var(--muted-foreground));font-weight:500;font-size:.875rem;transition:color .2s;text-decoration:none;margin-right:32px;" href="https://sparkedconnection.com/the-science/">The Science</a>
-        <a style="color:hsl(var(--muted-foreground));font-weight:500;font-size:.875rem;transition:color .2s;text-decoration:none;" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
-      </div>
+     <div style="display:none;" class="desktop-nav">
+  <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="plans-nav-link" href="/plans/">Plans</a>
+  <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
+</div>
       <div style="display:none;" class="desktop-cta">
         <a href="/enquiry" rel="noopener noreferrer" target="_blank">
           <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:600;">Create Free Profile</button>
