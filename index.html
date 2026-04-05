@@ -303,12 +303,6 @@ html, body {
   .hiw-card:not(:last-child) .hiw-numeral-wrap::after {
     display: none;
   }
-.container{
-  width:100%;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 1rem;
-}
 }
    
 </style>
@@ -406,14 +400,17 @@ html, body {
 </section>
 <div class="min-h-screen">
 <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-<div class="container">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:80px;">
-    <a href="https://sparkedconnection.com/" style="display:flex;align-items:center;flex-shrink:0;">
-      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
-    </a>
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between h-16 md:h-20">
+  <a class="flex items-center shrink-0" href="https://sparkedconnection.com/">
+<img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+</a>
 <div class="hidden md:flex items-center gap-8">
 <a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="#how-it-works">
            How It Works
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="#how-it-works">
+           Matching Process
           </a>
 <a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="/plans/">
            Plans
@@ -449,7 +446,8 @@ html, body {
 </div>
 </nav>
 <div class="mobile-menu-panel" id="mobile-menu-panel">
-  <a class="mobile-menu-link" href="#how-it-works"</a>
+  <a class="mobile-menu-link" href="#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="#how-it-works">Matching Process</a>
   <a class="mobile-menu-link" href="/plans">Plans</a>
   <a class="mobile-menu-link" href="#events">Events</a>
   <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
@@ -722,15 +720,13 @@ No swiping. No guesswork. No wasted time.
 </div>
 <div class="container mx-auto px-4" style="padding-top: 80px; padding-bottom: 80px;">
   <!-- Header -->
-    </section>
-<section class="py-14 md:py-20 bg-background" id="how-it-works">
     <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 52px;">
-      <p class="section-eyebrow">THE MATCHING EXPERIENCE</p>
+      <p class="section-eyebrow">THE EXPERIENCE</p>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-4">
         How It Works
       </h2>
       <p class="editorial-body" style="color: hsl(var(--muted-foreground)); font-size: 1.05rem; line-height: 1.75;">
-        A private, considered process - led by someone who genuinely cares about your outcome.
+        A private, considered process — led by someone who genuinely cares about your outcome.
       </p>
     </div>
 
