@@ -126,38 +126,44 @@
 .desktop-nav {
   display: none;
   align-items: center;
-  gap: 32px;
 }
 
-/* Show on desktop */
+/* Desktop only */
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
   }
 }
 
-/* Nav links */
+/* NAV LINKS */
 .nav-link {
   font-family: "Inter", sans-serif;
-  font-weight: 500;
+  font-weight: 400; /* 👈 regular (not bold) */
   font-size: 0.875rem;
   color: hsl(var(--muted-foreground));
   text-decoration: none;
   transition: color 0.2s ease;
+
+  /* 👇 THIS fixes spacing without affecting layout */
+  margin-left: 32px;
 }
 
-/* Hover */
+/* remove space before first item */
+.desktop-nav .nav-link:first-child {
+  margin-left: 0;
+}
+
+/* hover */
 .nav-link:hover {
   color: hsl(var(--primary));
 }
 
-/* Active page (Plans) */
+/* active page */
 .nav-link.active {
   color: hsl(var(--primary));
-  font-weight: 600;
+  font-weight: 500; /* subtle highlight, not bold */
 }
- }
-
+}
     /* ── Page hero ────────────────────────────────────────────── */
     .plans-hero {
       padding: 100px 0 4px;
@@ -394,11 +400,6 @@
   <a class="nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
   <a class="nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
 </div>
-      <div style="display:none;" class="desktop-cta">
-        <a href="/enquiry" rel="noopener noreferrer" target="_blank">
-          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:600;">Create Free Profile</button>
-        </a>
-      </div>
       <!-- Burger button -->
       <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" style="background:none;border:none;padding:8px;color:hsl(var(--foreground));">
         <svg class="lucide lucide-menu" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
