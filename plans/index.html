@@ -245,6 +245,7 @@
       transition: all .3s;
     }
 
+
     /* ── Footnotes ────────────────────────────────────────────── */
     .plans-footnotes {
       max-width: 680px;
@@ -338,6 +339,25 @@
       gap: 8px;
     }
     .footer-bottom p { font-size: 0.8rem; color: hsl(var(--primary-foreground) / .5); }
+@media (min-width: 768px) {
+  .desktop-nav a {
+    font-family: "Inter", sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    color: hsl(var(--muted-foreground)) !important;
+    transition: color 0.2s ease, font-weight 0.2s ease;
+  }
+
+  .desktop-nav a:hover {
+    color: hsl(var(--primary)) !important;
+    font-weight: 600 !important;
+  }
+
+  .desktop-nav a[href="/plans/"] {
+    color: hsl(var(--primary)) !important;
+    font-weight: 600 !important;
+  }
+}
   </style>
 </head>
 
