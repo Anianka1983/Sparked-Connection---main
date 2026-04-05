@@ -349,7 +349,7 @@
     color: hsl(var(--muted-foreground));
     font-family: "Inter", sans-serif;
     font-size: 0.875rem;
-    font-weight: 400;
+    font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease;
     margin-right: 32px;
@@ -363,9 +363,6 @@
   .desktop-nav .plans-nav-link:hover {
     color: hsl(var(--primary));
   }
-nav > .container{
-  max-width: 1400px;
-}
 }
   </style>
 </head>
@@ -375,21 +372,21 @@ nav > .container{
 <!-- ── Nav (identical to main site) ─────────────────────────────── -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:hsl(var(--background)/.95);backdrop-filter:blur(12px);border-bottom:1px solid hsl(var(--border));">
   <div class="container">
-<div style="display:flex; align-items:center; justify-content:space-between; height:80px; position:relative;">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:80px;">
       <a href="https://sparkedconnection.com/" style="display:flex;align-items:center;flex-shrink:0;">
         <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
       </a>
       <!-- Desktop nav -->
-<div class="desktop-nav" style="display:none; position:absolute; left:50%; transform:translateX(-50%);">
+     <div style="display:none;" class="desktop-nav">
   <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
   <a class="plans-nav-link" href="/plans/">Plans</a>
   <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
   <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
   <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
 </div>
-<div class="desktop-cta" style="display:none; margin-left:auto;">
+      <div style="display:none;" class="desktop-cta">
         <a href="/enquiry" rel="noopener noreferrer" target="_blank">
-          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:400;">Create Free Profile</button>
+          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:600;">Create Free Profile</button>
         </a>
       </div>
       <!-- Burger button -->
