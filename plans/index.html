@@ -345,16 +345,16 @@
     align-items: center;
   }
 
-.desktop-nav .plans-nav-link {
-  color: hsl(var(--muted-foreground));
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400; 
-  text-decoration: none;
-  transition: color 0.2s ease;
-  margin-right: 32px;
-  white-space: nowrap;
-}
+  .desktop-nav .plans-nav-link {
+    color: hsl(var(--muted-foreground));
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin-right: 32px;
+    white-space: nowrap;
+  }
 
   .desktop-nav .plans-nav-link:last-child {
     margin-right: 0;
@@ -371,37 +371,25 @@
 
 <!-- ── Nav (identical to main site) ─────────────────────────────── -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:hsl(var(--background)/.95);backdrop-filter:blur(12px);border-bottom:1px solid hsl(var(--border));">
- <div class="container">
-  <div style="display:flex; align-items:center; justify-content:space-between; height:80px;">
-
-    <!-- LOGO -->
-    <a href="https://sparkedconnection.com/" style="display:flex; align-items:center; flex-shrink:0;">
-      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
-    </a>
-
-    <!-- RIGHT SIDE (nav + button together) -->
-    <div style="display:flex; align-items:center; gap:40px;">
-
-      <!-- NAV -->
-      <div class="desktop-nav">
-        <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-<a class="plans-nav-link" href="/plans/">Plans</a>
-        <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
-        <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
-        <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" target="_blank">Journal</a>
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:80px;">
+      <a href="https://sparkedconnection.com/" style="display:flex;align-items:center;flex-shrink:0;">
+        <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+      </a>
+      <!-- Desktop nav -->
+     <div style="display:none;" class="desktop-nav">
+  <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="plans-nav-link" href="/plans/">Plans</a>
+  <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
+</div>
+      <div style="display:none;" class="desktop-cta">
+        <a href="/enquiry" rel="noopener noreferrer" target="_blank">
+          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:600;">Create Free Profile</button>
+        </a>
       </div>
-
-      <!-- CTA BUTTON -->
-      <div class="desktop-cta">
-<a href="/enquiry">
-  <button class="cta-spark-btn">Create Free Profile</button>
-</a>
-      </div>
-
-    </div>
-
-  </div>
-</div>      <!-- Burger button -->
+      <!-- Burger button -->
       <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" style="background:none;border:none;padding:8px;color:hsl(var(--foreground));">
         <svg class="lucide lucide-menu" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
