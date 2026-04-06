@@ -23,6 +23,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -52,33 +53,41 @@
       pointer-events: none;
     }
 
-@media (max-width: 640px) {
-  .hero {
-    min-height: 520px;
-    background:
-      linear-gradient(rgba(46, 49, 60, 0.34), rgba(46, 49, 60, 0.34)),
-      url("the-science-couple.jpg") center top / cover no-repeat;
-  }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 940px);
+      padding: 34px 20px 28px;
+    }
 
-  .hero-inner {
-    padding: 80px 20px 28px;
-  }
+    .hero-top {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,0.95);
+      font-size: clamp(28px, 3.8vw, 42px);
+      letter-spacing: 0.08em;
+      font-weight: 300;
+    }
 
-  .hero-top {
-    font-size: 22px;
-  }
+    .hero-title {
+      margin: 0;
+      font-size: clamp(42px, 5.6vw, 66px);
+      font-weight: 300;
+      letter-spacing: 0.11em;
+      line-height: 1.05;
+      background: linear-gradient(90deg, #f3e396 0%, #efcba9 42%, #ebb1ca 72%, #ed8df2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-  .hero-title {
-    font-size: 46px;
-  }
+    .hero-copy {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: rgba(255,255,255,0.90);
+      font-size: clamp(12px, 1.3vw, 15px);
+      line-height: 1.75;
+    }
 
-
-
-.hero-copy {
-  max-width: 760px;
-  margin: 16px auto 0;
-  color: rgba(255,255,255,0.85);
-}
     .container {
       width: min(calc(100% - 40px), var(--container));
       margin: 0 auto;
@@ -251,6 +260,7 @@
       color: #58657d;
       background: #dfe7fb;
     }
+
     .pill.pink { background: #f2dee8; }
     .pill.gold { background: #efe6a7; }
 
@@ -282,9 +292,11 @@
       .science-grid {
         grid-template-columns: 1fr;
       }
+
       .step-card {
         width: min(100%, 680px);
       }
+
       .gdpr-card {
         width: min(100%, 680px);
       }
@@ -292,19 +304,41 @@
 
     @media (max-width: 640px) {
       .hero {
-        min-height: 260px;
+        min-height: 520px;
+        background:
+          linear-gradient(rgba(46, 49, 60, 0.34), rgba(46, 49, 60, 0.34)),
+          url("the-science-couple.jpg") center top / cover no-repeat;
       }
+
+      .hero-inner {
+        padding: 80px 20px 28px;
+      }
+
+      .hero-top {
+        font-size: 22px;
+        color: rgba(255,255,255,0.95);
+      }
+
+      .hero-title {
+        font-size: 46px;
+      }
+
+      .hero-copy {
+        color: rgba(255,255,255,0.90);
+      }
+
       .step-grid {
         grid-template-columns: 1fr;
       }
+
       .icon {
         margin-top: 0;
       }
+
       .container {
         width: min(calc(100% - 24px), var(--container));
       }
     }
-
 
     /* ── Top panel copied from main page ─────────────────────── */
     .sc-topnav {
@@ -520,7 +554,6 @@
         display: none !important;
       }
     }
-
   </style>
 </head>
 <body>
@@ -583,7 +616,6 @@
   </header>
 
   <main>
-  
     <section class="container science-section">
       <div class="badge">✨ Science &amp; Trust</div>
       <h2>Built on Proven Science</h2>
@@ -642,32 +674,32 @@
 
   <footer>2025 Sparked Connection. All rights reserved.</footer>
 
-<script>
-  (function () {
-    var toggle = document.getElementById('sc-mobile-toggle');
-    var panel = document.getElementById('sc-mobile-panel');
-    if (!toggle || !panel) return;
+  <script>
+    (function () {
+      var toggle = document.getElementById('sc-mobile-toggle');
+      var panel = document.getElementById('sc-mobile-panel');
+      if (!toggle || !panel) return;
 
-    toggle.addEventListener('click', function () {
-      var isOpen = panel.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
+      toggle.addEventListener('click', function () {
+        var isOpen = panel.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
 
-    document.addEventListener('click', function (event) {
-      if (!panel.classList.contains('open')) return;
-      if (panel.contains(event.target) || toggle.contains(event.target)) return;
-      panel.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-
-    panel.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
+      document.addEventListener('click', function (event) {
+        if (!panel.classList.contains('open')) return;
+        if (panel.contains(event.target) || toggle.contains(event.target)) return;
         panel.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
-    });
-  })();
-</script>
+
+      panel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          panel.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
