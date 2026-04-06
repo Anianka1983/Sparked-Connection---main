@@ -328,8 +328,10 @@
     }
 
     .sc-nav-shell {
-      width: min(100% - 32px, 1280px);
+      width: 100%;
+      max-width: 1400px;
       margin: 0 auto;
+      padding: 0 16px;
     }
 
     .sc-nav-row {
@@ -357,8 +359,7 @@
       display: none;
       align-items: center;
       gap: 32px;
-      margin-left: auto;
-      margin-right: 0;
+      flex: 0 1 auto;
     }
 
     .sc-nav-link {
