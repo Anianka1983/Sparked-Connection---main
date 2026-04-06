@@ -52,41 +52,34 @@
       pointer-events: none;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 940px);
-      padding: 34px 20px 28px;
-    }
+@media (max-width: 640px) {
+  .hero {
+    min-height: 520px;
+    background:
+      linear-gradient(rgba(46, 49, 60, 0.34), rgba(46, 49, 60, 0.34)),
+      url("the-science-couple.jpg") center top / cover no-repeat;
+  }
 
-    .hero-top {
-      margin: 0 0 10px;
-      color: rgba(255,255,255,0.95);
-      font-size: clamp(28px, 3.8vw, 42px);
-      letter-spacing: 0.08em;
-      font-weight: 300;
-    }
+  .hero-inner {
+    padding: 80px 20px 28px;
+  }
 
-    .hero-title {
-      margin: 0;
-      font-size: clamp(42px, 5.6vw, 66px);
-      font-weight: 300;
-      letter-spacing: 0.11em;
-      line-height: 1.05;
-      background: linear-gradient(90deg, #f3e396 0%, #efcba9 42%, #ebb1ca 72%, #ed8df2 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+  .hero-top {
+    font-size: 22px;
+  }
 
-    .hero-copy {
-      max-width: 760px;
-      margin: 16px auto 0;
-      color: rgba(255,255,255,0.90);
-      font-size: clamp(12px, 1.3vw, 15px);
-      line-height: 1.75;
-    }
+  .hero-title {
+    font-size: 46px;
+  }
 
+  .hero-copy {
+    max-width: 760px;
+    margin: 16px auto 0;
+    color: rgba(255,255,255,0.90);
+    font-size: clamp(12px, 1.3vw, 15px);
+    line-height: 1.75;
+  }
+}
     .container {
       width: min(calc(100% - 40px), var(--container));
       margin: 0 auto;
