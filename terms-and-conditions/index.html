@@ -1,1 +1,840 @@
-set
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms &amp; Conditions | Sparked Connection</title>
+  <meta name="description" content="Terms and Conditions for Sparked Connection Ltd — the rules governing your membership and use of our matchmaking service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --background: 22 38% 95%;
+      --foreground: 220 45% 20%;
+      --primary: 220 50% 25%;
+      --primary-foreground: 36 33% 96%;
+      --secondary: 22 30% 92%;
+      --muted: 36 20% 90%;
+      --muted-foreground: 220 20% 45%;
+      --accent: 340 55% 45%;
+      --accent-foreground: 0 0% 100%;
+      --border: 36 20% 88%;
+      --shadow-md: 0 4px 6px -1px hsl(220 30% 20% / .06), 0 2px 4px -2px hsl(220 30% 20% / .04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background-color: hsl(var(--background) / .95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+    }
+
+    .site-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      transform: translateX(100px);
+    }
+    @media (min-width: 768px) { .site-logo { height: 100px; } }
+
+    .nav-links { display: none; }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; align-items: center; gap: 2rem; }
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: hsl(var(--accent)); }
+    .nav-links a.refer { color: hsl(340 55% 45%); }
+
+    .nav-cta { display: none; position: relative; left: -102px; }
+    @media (min-width: 768px) { .nav-cta { display: block; } }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 4px 6px hsl(340 55% 45% / .25);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px hsl(340 55% 45% / .35);
+      background-color: hsl(340 55% 40%);
+    }
+
+    .mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 5rem; left: 0; right: 0;
+      z-index: 80;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+      padding: 1rem;
+    }
+    .mobile-menu-panel.open { display: block; }
+
+    .mobile-menu-link {
+      display: block;
+      padding: .875rem 0;
+      color: hsl(var(--foreground));
+      font-weight: 500;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .mobile-menu-link:last-of-type { border-bottom: 0; }
+    .mobile-cta-wrap { display: flex; justify-content: center; margin-top: 1rem; }
+    .mobile-cta-wrap .cta-btn { width: 100%; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .eyebrow {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      margin-bottom: .75rem;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      font-size: .9rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── TOC ── */
+    .toc-wrap {
+      max-width: 760px;
+      margin: 3rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .toc {
+      background: hsl(var(--secondary));
+      border: 1px solid hsl(var(--border));
+      border-radius: .875rem;
+      padding: 1.75rem 2rem;
+    }
+
+    .toc-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .3rem;
+    }
+    @media (min-width: 560px) {
+      .toc-grid { grid-template-columns: 1fr 1fr; gap: .3rem .5rem; }
+    }
+
+    .toc-grid a {
+      font-size: .82rem;
+      color: hsl(var(--muted-foreground));
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      padding: .2rem 0;
+      transition: color .2s;
+    }
+    .toc-grid a:hover { color: hsl(var(--accent)); }
+
+    .toc-grid a span.num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: .78rem;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 1.4rem;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    .policy-section { margin-bottom: 3rem; }
+
+    .policy-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.01em;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: baseline;
+      gap: .6rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: .925rem;
+      color: hsl(220 25% 32%);
+      margin-bottom: .75rem;
+      line-height: 1.75;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-list {
+      list-style: none;
+      margin: .5rem 0 .75rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .policy-list li {
+      font-size: .9rem;
+      color: hsl(220 25% 32%);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .policy-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: hsl(var(--accent));
+      font-size: .75rem;
+      top: .15em;
+    }
+
+    /* Definition box */
+    .definition-box {
+      background: hsl(220 50% 25% / .05);
+      border: 1px solid hsl(220 50% 25% / .12);
+      border-radius: .625rem;
+      padding: 1rem 1.25rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      color: hsl(220 25% 30%);
+      line-height: 1.7;
+    }
+
+    .definition-box strong {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: hsl(var(--primary));
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    /* Callout */
+    .callout {
+      background: hsl(340 55% 45% / .06);
+      border-left: 3px solid hsl(var(--accent));
+      border-radius: 0 .5rem .5rem 0;
+      padding: .9rem 1.1rem;
+      margin: 1rem 0;
+      font-size: .88rem;
+      color: hsl(220 25% 30%);
+      line-height: 1.65;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: hsl(var(--accent));
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Section divider */
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, hsl(var(--accent) / .4), transparent);
+      margin: 2.5rem 0;
+    }
+
+    a.email-link {
+      color: hsl(var(--accent));
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    a.email-link:hover { color: hsl(340 55% 35%); }
+
+    /* Final note */
+    .final-note {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: hsl(var(--secondary));
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+
+    .final-note p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: hsl(var(--primary));
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    .final-note .accent-mark { color: hsl(var(--accent)); }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding-bottom: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      justify-items: center;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 2rem; } }
+
+    footer h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      color: hsl(var(--primary-foreground));
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+
+    footer ul a {
+      font-size: .875rem;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: color .2s;
+    }
+    footer ul a:hover { color: hsl(var(--accent)); }
+
+    .footer-social { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+
+    .social-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 9999px;
+      background: hsl(var(--primary-foreground) / .1);
+      display: flex; align-items: center; justify-content: center;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+    .social-icon:hover { background: hsl(var(--accent)); color: #fff; }
+
+    .footer-bottom {
+      border-top: 1px solid hsl(var(--primary-foreground) / .1);
+      margin-top: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+
+    .footer-bottom p { font-size: .875rem; color: hsl(var(--primary-foreground) / .5); }
+    .footer-bottom .heart { color: hsl(var(--accent)); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://sparkedconnection.com/" aria-label="Sparked Connection home">
+      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+    </a>
+
+    <div class="nav-links">
+      <a href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+      <a href="https://sparkedconnection.com/plans/">Plans</a>
+      <a href="https://sparkedconnection.com/#events">Events</a>
+      <a href="https://sparkedconnection.com/the-science/">The Science</a>
+      <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+      <a href="https://www.sparkedconnection.com/refer-a-friend" class="refer">Refer a Friend</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
+        <button class="cta-btn">Create Free Profile</button>
+      </a>
+    </div>
+
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-menu">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
+  <div class="mobile-cta-wrap">
+    <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer" style="width:100%;">
+      <button class="cta-btn" style="width:100%;">Create Free Profile</button>
+    </a>
+  </div>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<header class="page-hero">
+  <p class="eyebrow">Legal &amp; Trust</p>
+  <h1>Terms &amp; Conditions</h1>
+  <p>Sparked Connection Ltd &mdash; Last updated April 2026</p>
+</header>
+
+<!-- ── TABLE OF CONTENTS ── -->
+<nav class="toc-wrap" aria-label="Table of contents">
+  <div class="toc">
+    <p class="toc-title">Contents</p>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1.</span> About Us</a>
+      <a href="#s2"><span class="num">2.</span> Nature of the Service</a>
+      <a href="#s3"><span class="num">3.</span> Eligibility &amp; Acceptance</a>
+      <a href="#s4"><span class="num">4.</span> Definitions</a>
+      <a href="#s5"><span class="num">5.</span> Memberships &amp; Duration</a>
+      <a href="#s6"><span class="num">6.</span> Number of Introductions</a>
+      <a href="#s7"><span class="num">7.</span> No Guaranteed Outcomes</a>
+      <a href="#s8"><span class="num">8.</span> Client Responsibilities</a>
+      <a href="#s9"><span class="num">9.</span> Behaviour &amp; Conduct</a>
+      <a href="#s10"><span class="num">10.</span> Fees, Payments &amp; Refunds</a>
+      <a href="#s11"><span class="num">11.</span> Right to Cancel</a>
+      <a href="#s12"><span class="num">12.</span> Privacy &amp; Confidentiality</a>
+      <a href="#s13"><span class="num">13.</span> Profile Information Sharing</a>
+      <a href="#s14"><span class="num">14.</span> Use of AI-Assisted Tools</a>
+      <a href="#s15"><span class="num">15.</span> Limitation of Liability</a>
+      <a href="#s16"><span class="num">16.</span> Service Availability</a>
+      <a href="#s17"><span class="num">17.</span> No Exclusivity</a>
+      <a href="#s18"><span class="num">18.</span> Changes to These Terms</a>
+      <a href="#s19"><span class="num">19.</span> Governing Law</a>
+      <a href="#s20"><span class="num">20.</span> Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── CONTENT ── -->
+<main class="content-wrap">
+
+  <div class="policy-section" id="s1">
+    <h2><span class="section-num">1.</span> About Us</h2>
+    <p><strong>Sparked Connection Ltd</strong> ("we", "us", "our") provides a professional matchmaking and introduction service for individuals seeking meaningful relationships.</p>
+    <p>By submitting an application, purchasing a membership, or using our services, you agree to be bound by these Terms.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s2">
+    <h2><span class="section-num">2.</span> Nature of the Service</h2>
+    <p>Sparked Connection offers a personalised, compatibility-led matchmaking service, supported by structured questionnaires, compatibility assessment, human matchmaker review, and curated introductions.</p>
+    <div class="callout">
+      We do not operate as a dating app, and we do not provide open browsing, swiping, or public profiles.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s3">
+    <h2><span class="section-num">3.</span> Eligibility &amp; Acceptance</h2>
+    <ul class="policy-list">
+      <li>All applications are subject to review</li>
+      <li>Submission of a questionnaire or payment does not guarantee acceptance</li>
+      <li>We reserve the right to decline or discontinue membership at our discretion where appropriate</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s4">
+    <h2><span class="section-num">4.</span> Definitions</h2>
+    <div class="definition-box">
+      <strong>"Agreed Introduction"</strong>
+      An introduction where both parties have confirmed willingness to be introduced and to receive each other's profile or contact details.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s5">
+    <h2><span class="section-num">5.</span> Memberships &amp; Duration</h2>
+    <p>Memberships are offered for a fixed duration of 12 months, beginning on the date of acceptance or purchase.</p>
+    <p>The service is deemed to commence when Sparked Connection begins reviewing the Client's application, questionnaire, or profile for matchmaking purposes.</p>
+    <p>Memberships are designed to allow sufficient time for considered introductions and are not based on fixed schedules or guaranteed timelines.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s6">
+    <h2><span class="section-num">6.</span> Number of Introductions</h2>
+    <p>Depending on the membership selected, Clients may be entitled to a minimum number of Agreed Introductions. These are subject to:</p>
+    <ul class="policy-list">
+      <li>Reasonable availability of suitable matches</li>
+      <li>Mutual interest</li>
+      <li>The Client's active participation and responsiveness</li>
+    </ul>
+    <p>Introductions are not time-bound and may occur at any stage during the membership period.</p>
+    <div class="callout">
+      Where introductions remain outstanding at the end of the membership period, we may extend the service for the purpose of fulfilling remaining introductions.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s7">
+    <h2><span class="section-num">7.</span> No Guaranteed Outcomes</h2>
+    <p>Sparked Connection does not guarantee the timing or frequency of introductions, compatibility or mutual attraction, or relationship outcomes.</p>
+    <p>Introductions are based on available information, compatibility insights, and professional judgement.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s8">
+    <h2><span class="section-num">8.</span> Client Responsibilities</h2>
+    <p>Clients agree to:</p>
+    <ul class="policy-list">
+      <li>Provide accurate, truthful, and up-to-date information</li>
+      <li>Engage respectfully with introductions</li>
+      <li>Remain reasonably responsive to communications</li>
+    </ul>
+    <p>Where a Client becomes unresponsive or unavailable for a reasonable period, the matchmaking process may be paused. Repeated non-engagement without reasonable explanation may result in suspension or conclusion of the service.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s9">
+    <h2><span class="section-num">9.</span> Behaviour &amp; Conduct</h2>
+    <p>We reserve the right to suspend or terminate membership where a Client behaves in a manner that is inappropriate, misleading, unsafe, disrespectful, or inconsistent with the values of the service.</p>
+    <p>This includes, but is not limited to, harassment, dishonesty, and misuse of introductions.</p>
+    <div class="callout">
+      <strong>Please note</strong>
+      In such cases, unused introductions may, at our discretion, be deemed fulfilled.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s10">
+    <h2><span class="section-num">10.</span> Fees, Payments &amp; Refunds</h2>
+    <p>Membership fees are payable in advance. Once the service has commenced, fees are non-refundable except where required by UK consumer law.</p>
+    <div class="callout">
+      <strong>Cooling-off period</strong>
+      By requesting that matchmaking services begin within the 14-day cooling-off period, the Client expressly acknowledges and agrees that their right to cancel may be lost once the service has commenced.
+    </div>
+    <p>Nothing in these Terms affects your statutory rights.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s11">
+    <h2><span class="section-num">11.</span> Right to Cancel (Consumer Rights)</h2>
+    <p>Where applicable under UK law, Clients may have a 14-day cooling-off period.</p>
+    <p>If the Client requests that services begin during this period, and the service commences, the right to cancel may be reduced or lost.</p>
+    <p>Further details are set out in our <a class="email-link" href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation Policy</a>.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s12">
+    <h2><span class="section-num">12.</span> Privacy &amp; Confidentiality</h2>
+    <p>We handle all personal data in accordance with our <a class="email-link" href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a>.</p>
+    <p>Client information is treated with discretion and confidentiality. Personal contact details are only shared following an Agreed Introduction.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s13">
+    <h2><span class="section-num">13.</span> Profile Information Sharing</h2>
+    <p>By joining the service, Clients agree that Sparked Connection may share limited profile information with potential matches, including:</p>
+    <ul class="policy-list">
+      <li>First name or initial</li>
+      <li>General location</li>
+      <li>Profession or lifestyle overview</li>
+      <li>Selected photographs</li>
+      <li>High-level preferences</li>
+    </ul>
+    <div class="callout">
+      This information is shared solely for the purpose of assessing compatibility and mutual interest. Personal contact details are only shared following mutual agreement to proceed.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s14">
+    <h2><span class="section-num">14.</span> Use of AI-Assisted Tools</h2>
+    <p>We may use AI-assisted tools to support compatibility analysis. However, all matchmaking decisions are made by a human matchmaker, and no decisions are made solely by automated means.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s15">
+    <h2><span class="section-num">15.</span> Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, Sparked Connection shall not be liable for:</p>
+    <ul class="policy-list">
+      <li>Actions or behaviour of third parties</li>
+      <li>Dissatisfaction with introductions where the service has been delivered as described</li>
+      <li>Indirect or consequential losses</li>
+    </ul>
+    <p>Nothing in these Terms excludes or limits liability where it cannot be excluded by law.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s16">
+    <h2><span class="section-num">16.</span> Service Availability</h2>
+    <p>We are not liable for delays or interruptions caused by events outside our reasonable control, including technical issues, illness, or availability of suitable matches.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s17">
+    <h2><span class="section-num">17.</span> No Exclusivity</h2>
+    <p>Sparked Connection does not guarantee exclusivity of introductions. Where appropriate, individuals may be introduced to more than one compatible Client.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s18">
+    <h2><span class="section-num">18.</span> Changes to These Terms</h2>
+    <p>We may update these Terms from time to time. The version in force at the time of purchase will apply to that membership.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s19">
+    <h2><span class="section-num">19.</span> Governing Law</h2>
+    <p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of its courts.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="policy-section" id="s20">
+    <h2><span class="section-num">20.</span> Contact</h2>
+    <p>If you have any questions about these Terms, please contact us at <a class="email-link" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a></p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="final-note">
+    <p>We're committed to running a service built on <span class="accent-mark">trust, transparency, and genuine care</span> — for every person we introduce.</p>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <h4>Follow Us</h4>
+        <div class="footer-social">
+          <a class="social-icon" href="https://www.instagram.com/sparked_connection/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.facebook.com/people/Sparked-Connection/61584598310374/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/company/sparked-connection" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/about-matchmaking/">About Matchmaking</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/#how-it-works">Matchmaking</a></li>
+          <li><a href="https://sparkedconnection.com/#events">Events</a></li>
+          <li><a href="https://sparkedconnection.com/plans/">Plans</a></li>
+          <li><a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a></li>
+          <li><a href="https://sparkedconnection.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+          <li><a href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation</a></li>
+          <li><a href="https://sparkedconnection.com/accessibility-statement">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@sparkedconnection.com" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
+          hello@sparkedconnection.com
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sparked Connection. All rights reserved.</p>
+      <p>Made with <span class="heart">❤️</span> for singles everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const panel  = document.getElementById('mobile-menu');
+  if (toggle && panel) {
+    toggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    }));
+    document.addEventListener('click', e => {
+      if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+  }
+
+  // Smooth scroll for TOC links
+  document.querySelectorAll('a[href^="#s"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        const offset = 100;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
