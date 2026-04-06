@@ -194,6 +194,9 @@ html, body {
     height:100px;
   }
 
+}
+
+
 /* Accessibility: stronger hero contrast */
 .hero-overlay {
   background: rgba(0, 0, 0, 0.42) !important;
@@ -216,12 +219,40 @@ html, body {
   text-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
 }
 
-/* Specifically strengthen the pale second line */
 .hero .text-white,
 .hero .text-white\/90 {
   color: rgba(255, 255, 255, 0.98) !important;
 }
-  
+
+/* Accessibility: footer contrast fixes */
+footer,
+footer * {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+footer a:hover {
+  color: #ffffff !important;
+}
+
+footer .text-primary-foreground\/60,
+footer .text-primary-foreground\/70,
+footer .text-primary-foreground\/85 {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+footer .text-accent,
+footer .text-accent-foreground {
+  color: #ffd1dc !important;
+}
+
+footer .text-accent span,
+footer span.text-accent,
+footer .heart-icon {
+  color: #ff5a7a !important;
 }
 
   /* How It Works cards - base styles for all screen sizes */
@@ -325,38 +356,6 @@ html, body {
     opacity: 0.3;
     transform: translateY(-50%);
   }
-
-  /* Accessibility: footer contrast fixes */
-footer,
-footer * {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-footer a {
-  color: rgba(255, 255, 255, 0.92) !important;
-}
-
-footer a:hover {
-  color: #ffffff !important;
-}
-
-footer .text-primary-foreground\/60,
-footer .text-primary-foreground\/70,
-footer .text-primary-foreground\/85 {
-  color: rgba(255, 255, 255, 0.92) !important;
-}
-
-footer .text-accent,
-footer .text-accent-foreground {
-  color: #ffd1dc !important;
-}
-
-/* Heart icon */
-footer .text-accent span,
-footer span.text-accent,
-footer .heart-icon {
-  color: #ff5a7a !important;
-}
 }
 
 /* Mobile only */
@@ -536,19 +535,17 @@ For Busy Professionals
 </span>
 
 </h1>
-<p class="text-lg md:text-xl text-white leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-in-up hero-description" style="animation-delay:0.1s">          
+<p class="text-lg md:text-xl text-white leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-in-up hero-description" style="animation-delay:0.1s">
   A modern matchmaking service for professionals in the UK, combining personality compatibility with curated introductions and events.
-          <div class="animate-fade-in-up" style="animation-delay:0.15s">
-<a href="/enquiry" rel="noopener noreferrer" target="_blank">
-<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-11 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-14 py-8 text-xl rounded-full font-semibold">
-             Create Free Profile
-             <svg class="lucide lucide-arrow-right w-6 h-6 ml-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 12h14">
-</path>
-<path d="m12 5 7 7-7 7">
-</path>
-</svg>
-</button>
+</p>
+<div class="animate-fade-in-up" style="animation-delay:0.15s">
+<a href="/enquiry" rel="noopener noreferrer" target="_blank"
+   class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-11 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-14 py-8 text-xl rounded-full font-semibold">
+  Create Free Profile
+  <svg class="lucide lucide-arrow-right w-6 h-6 ml-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 12h14"></path>
+    <path d="m12 5 7 7-7 7"></path>
+  </svg>
 </a>
 </div>
 <div class="hero-trust animate-fade-in-up" style="animation-delay:0.2s; margin-top:30px; color:#ffffff;">
@@ -1159,16 +1156,14 @@ No swiping. No guesswork. No wasted time.
 <p class="text-lg md:text-xl text-primary-foreground/85 mb-10 leading-relaxed">
           Join our community of intentional singles who've chosen a smarter approach to finding love. Your story could be next.
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<a href="/enquiry" rel="noopener noreferrer" target="_blank">
-<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-11 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-lg font-semibold rounded-full">
-             Create Free Profile
+<a href="/enquiry" rel="noopener noreferrer" target="_blank" class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-11 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-lg font-semibold rounded-full">
+Create Free Profile
              <svg class="lucide lucide-arrow-right w-5 h-5 ml-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 12h14">
 </path>
 <path d="m12 5 7 7-7 7">
 </path>
 </svg>
-</button>
 </a>
 <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 backdrop-blur-sm hover:text-accent-foreground h-11 border-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/50 px-8 py-6 text-lg rounded-full">
             Browse Events
@@ -1292,15 +1287,14 @@ No swiping. No guesswork. No wasted time.
 </div>
 </div>
 <div class="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-  <p class="text-sm text-primary-foreground/80">
+  <p class="text-sm text-primary-foreground/90">
     &copy; 2026 Sparked Connection. All rights reserved.
   </p>
 
   <p class="text-sm text-primary-foreground/90 flex items-center gap-1">
     Made with
-    <span style="color:#ff5a7a;">&#10084;&#65039;</span>
+    <span class="heart-icon" style="color:#ff5a7a;">&#10084;&#65039;</span>
     for singles everywhere.
   </p>
 </div>
 </div>
-
