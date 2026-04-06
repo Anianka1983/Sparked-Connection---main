@@ -175,22 +175,9 @@
     }
 
     /* ── TOC ── */
-    .toc-wrap {
-      max-width: 760px;
-      margin: 3rem auto 0;
-      padding: 0 1.5rem;
-    }
-
-    .toc {
-      background: hsl(var(--secondary));
-      border: 1px solid hsl(var(--border));
-      border-radius: .875rem;
-      padding: 1.75rem 2rem;
-    }
-
     .toc-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.05rem;
+      font-size: 1.45rem;
       font-weight: 600;
       color: hsl(var(--primary));
       margin-bottom: 1rem;
@@ -201,13 +188,14 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: .3rem;
+      margin-bottom: .5rem;
     }
     @media (min-width: 560px) {
       .toc-grid { grid-template-columns: 1fr 1fr; gap: .3rem .5rem; }
     }
 
     .toc-grid a {
-      font-size: .82rem;
+      font-size: .88rem;
       color: hsl(var(--muted-foreground));
       display: flex;
       align-items: baseline;
@@ -219,7 +207,7 @@
 
     .toc-grid a span.num {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: .78rem;
+      font-size: .82rem;
       color: hsl(var(--accent));
       font-weight: 600;
       flex-shrink: 0;
@@ -490,9 +478,10 @@
   <p>Sparked Connection Ltd &mdash; Last updated April 2026</p>
 </header>
 
-<!-- ── TABLE OF CONTENTS ── -->
-<nav class="toc-wrap" aria-label="Table of contents">
-  <div class="toc">
+<!-- ── CONTENT ── -->
+<main class="content-wrap">
+
+  <div class="policy-section">
     <p class="toc-title">Contents</p>
     <div class="toc-grid">
       <a href="#s1"><span class="num">1.</span> About Us</a>
@@ -517,10 +506,8 @@
       <a href="#s20"><span class="num">20.</span> Contact</a>
     </div>
   </div>
-</nav>
 
-<!-- ── CONTENT ── -->
-<main class="content-wrap">
+  <div class="section-divider"></div>
 
   <div class="policy-section" id="s1">
     <h2><span class="section-num">1.</span> About Us</h2>
@@ -715,7 +702,7 @@
 
   <div class="policy-section" id="s20">
     <h2><span class="section-num">20.</span> Contact</h2>
-    <p>If you have any questions about these Terms, please contact us at <a class="email-link" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a></p>
+    <p>If you have any questions about these Terms, please contact us at <a class="email-link" href="/cdn-cgi/l/email-protection#2d45484141426d5e5d4c5f4648494e424343484e59444243034e4240"><span class="__cf_email__" data-cfemail="9ef6fbf2f2f1deedeeffecf5fbfafdf1f0f0fbfdeaf7f1f0b0fdf1f3">[email&#160;protected]</span></a></p>
   </div>
 
   <div class="section-divider"></div>
@@ -781,8 +768,8 @@
 
       <div>
         <h4>Contact</h4>
-        <a href="mailto:hello@sparkedconnection.com" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
-          hello@sparkedconnection.com
+        <a href="/cdn-cgi/l/email-protection#7f171a1313103f0c0f1e0d141a1b1c1011111a1c0b161011511c1012" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
+          <span class="__cf_email__" data-cfemail="9ef6fbf2f2f1deedeeffecf5fbfafdf1f0f0fbfdeaf7f1f0b0fdf1f3">[email&#160;protected]</span>
         </a>
       </div>
 
@@ -795,7 +782,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const toggle = document.getElementById('mobile-toggle');
   const panel  = document.getElementById('mobile-menu');
   if (toggle && panel) {
@@ -823,18 +810,4 @@
   }
 
   // Smooth scroll for TOC links
-  document.querySelectorAll('a[href^="#s"]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        const offset = 100;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-</script>
-
-</body>
-</html>
+  document.querySelectorAl
