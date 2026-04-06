@@ -348,7 +348,7 @@ html, body {
 <meta content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;" http-equiv="content-security-policy"/>
 
   <script>
-(function(){
+document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.getElementById('mobile-menu-toggle');
   var panel = document.getElementById('mobile-menu-panel');
   if (!toggle || !panel) return;
@@ -363,7 +363,7 @@ html, body {
     toggle.setAttribute('aria-expanded', 'true');
   }
 
-  toggle.addEventListener('click', function(e) {
+  toggle.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
     if (panel.classList.contains('open')) {
@@ -373,20 +373,20 @@ html, body {
     }
   });
 
-  panel.querySelectorAll('a').forEach(function(link) {
+  panel.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', closeMenu);
   });
 
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     if (!panel.contains(e.target) && !toggle.contains(e.target)) {
       closeMenu();
     }
   });
 
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();
   });
-})();
+});
 </script>
   
   
