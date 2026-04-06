@@ -312,9 +312,140 @@
         width: min(calc(100% - 24px), var(--container));
       }
     }
+  
+
+    /* ── Top panel copied from main page ───────────────────────── */
+.nav-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: hsl(var(--background) / .95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-link .site-logo {
+  transform: translateX(100px);
+}
+
+.desktop-nav,
+.desktop-cta {
+  display: none;
+}
+
+.desktop-nav {
+  align-items: center;
+  gap: 32px;
+}
+
+.desktop-nav .plans-nav-link,
+.desktop-nav .refer-link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.desktop-nav .plans-nav-link {
+  color: hsl(var(--muted-foreground));
+}
+
+.desktop-nav .plans-nav-link:hover {
+  color: hsl(var(--primary));
+}
+
+.desktop-nav .refer-link {
+  color: hsl(340 55% 45%);
+}
+
+.desktop-cta {
+  position: relative;
+  left: -102px;
+}
+
+.mobile-menu-toggle {
+  padding: 8px;
+  color: hsl(var(--foreground));
+}
+
+@media (min-width: 768px) {
+  .nav-inner {
+    height: 80px;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .desktop-cta {
+    display: block !important;
+  }
+}
   </style>
 </head>
 <body>
+
+<!-- ── Nav (matched to main page top panel) ─────────────────────── -->
+<nav class="nav-shell">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-logo-link" href="https://sparkedconnection.com/">
+        <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+      </a>
+      <div class="desktop-nav">
+        <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+        <a class="plans-nav-link" href="/plans/">Plans</a>
+        <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
+        <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+        <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
+        <a class="refer-link" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a>
+      </div>
+      <div class="desktop-cta">
+        <a href="/enquiry" rel="noopener noreferrer" target="_blank">
+          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;">Create Free Profile</button>
+        </a>
+      </div>
+      <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" style="background:none;border:none;">
+        <svg class="lucide lucide-menu" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-menu-panel">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="/plans">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
+  <a class="mobile-menu-cta" href="/enquiry" rel="noopener noreferrer" target="_blank">
+    <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;width:100%;">Create Free Profile</button>
+  </a>
+</div>
+
   <header class="hero">
     <div class="hero-inner">
       <p class="hero-top">Smarter Matching</p>
@@ -386,5 +517,38 @@
   </main>
 
   <footer>2025 Sparked Connection. All rights reserved.</footer>
+
+<script>
+/* ── Responsive nav ──────────────────────────────────────────────── */
+(function() {
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var panel  = document.getElementById('mobile-menu-panel');
+  if (!toggle || !panel) return;
+
+  function closeMenu() { panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  function openMenu()  { panel.classList.add('open');    toggle.setAttribute('aria-expanded','true');  }
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    panel.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  panel.querySelectorAll('a').forEach(function(l){ l.addEventListener('click', closeMenu); });
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+  /* Show desktop nav items at ≥768px */
+  function applyLayout() {
+    var isDesktop = window.innerWidth >= 768;
+    document.querySelector('.desktop-nav').style.display  = isDesktop ? 'flex'  : 'none';
+    document.querySelector('.desktop-cta').style.display  = isDesktop ? 'block' : 'none';
+    toggle.style.display = isDesktop ? 'none' : 'flex';
+    if (isDesktop) closeMenu();
+  }
+  applyLayout();
+  window.addEventListener('resize', applyLayout);
+})();
+</script>
 </body>
 </html>
