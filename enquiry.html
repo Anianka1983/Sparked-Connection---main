@@ -42,178 +42,185 @@
 
     /* ── NAV ── */
 
-/* ── NAV (matched to main site) ── */
-  
-  nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:100;
-  background:rgba(248,245,242,0.95);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(214,207,199,0.55);
-}
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(248,245,242,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(214,207,199,0.55);
+    }
 
-.nav-inner{
-  max-width:1400px;
-  margin:0 auto;
-  padding:0 1rem;
-  height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1rem;
-}
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
-@media (min-width:768px){
-  .nav-inner{
-    height:88px;
-  }
-}
+    .nav-logo-wrap {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
 
-.nav-logo-wrap{
-  display:flex;
-  align-items:center;
-  flex-shrink:0;
-  text-decoration:none;
-}
+    .nav-logo-img {
+      height: 80px;
+      width: auto;
+      display: block;
+      transform: translateX(100px);
+    }
 
-.nav-logo-img{
-  height:80px;
-  width:auto;
-  display:block;
-}
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+    }
 
-@media (min-width:768px){
-  .nav-logo-img{
-    height:100px;
-  }
-}
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7a91;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color .2s ease;
+    }
 
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:0;
-  list-style:none;
-  margin:0 auto;
-  padding:0;
-}
+    .nav-link:hover {
+      color: #1e3151;
+    }
 
-.nav-links li a{
-  display:block;
-  padding:8px 14px;
-  font-size:0.85rem;
-  font-weight:500;
-  color:#1e3151;
-  text-decoration:none;
-  white-space:nowrap;
-  transition:color .2s ease;
-}
+    .nav-link-referral {
+      color: hsl(340 55% 45%);
+    }
 
-.nav-links li a:hover{
-  color:#ce7e98;
-}
+    .nav-link-referral:hover {
+      color: hsl(340 55% 40%);
+    }
 
-.nav-cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 22px;
-  background:#c54773;
-  color:#fff !important;
-  border-radius:999px;
-  font-size:0.85rem;
-  font-weight:600;
-  text-decoration:none;
-  white-space:nowrap;
-  flex-shrink:0;
-  box-shadow:0 6px 18px rgba(197,71,115,0.22);
-  transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
-}
+    .nav-cta-wrap {
+      display: none;
+      position: relative;
+      left: -102px;
+    }
 
-.nav-cta:hover{
-  background:#b23f69;
-  transform:translateY(-1px);
-  box-shadow:0 8px 22px rgba(197,71,115,0.28);
-}
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background: hsl(340 55% 45%);
+      color: #fff;
+      border-radius: 9999px;
+      padding: 0.5rem 1.25rem;
+      min-height: 2.75rem;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 4px 6px rgba(178,52,94,0.25), 0 2px 3px rgba(178,52,94,0.15), inset 0 1px rgba(255,255,255,0.15);
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
 
-.nav-hamburger{
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:4px;
-  flex-shrink:0;
-}
+    .nav-cta:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(178,52,94,0.35), 0 4px 8px rgba(178,52,94,0.2), inset 0 1px rgba(255,255,255,0.2);
+    }
 
-.nav-hamburger span{
-  display:block;
-  width:22px;
-  height:2px;
-  background:#1e3151;
-  border-radius:2px;
-}
+    .mobile-menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      padding: 0.5rem;
+      color: #1e3151;
+      cursor: pointer;
+      position: relative;
+      z-index: 90;
+    }
 
-.nav-mobile-panel{
-  display:none;
-  position:fixed;
-  top:72px;
-  left:0;
-  right:0;
-  background:rgba(248,245,242,0.98);
-  border-bottom:1px solid rgba(214,207,199,0.55);
-  padding:1rem 1.5rem 1.5rem;
-  z-index:99;
-  flex-direction:column;
-  gap:4px;
-  box-shadow:0 8px 24px rgba(30,49,81,0.08);
-}
+    .mobile-menu-toggle:focus-visible {
+      outline: 2px solid #1e3151;
+      outline-offset: 2px;
+      border-radius: .5rem;
+    }
 
-.nav-mobile-panel.open{
-  display:flex;
-}
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 4rem;
+      left: 0;
+      right: 0;
+      z-index: 80;
+      background: hsl(22 38% 95%);
+      border-bottom: 1px solid rgba(214,207,199,0.55);
+      box-shadow: 0 4px 6px -1px rgba(30,45,74,0.06), 0 2px 4px -2px rgba(30,45,74,0.04);
+      padding: 1rem;
+    }
 
-.nav-mobile-panel a{
-  display:block;
-  padding:10px 0;
-  font-size:0.9rem;
-  font-weight:500;
-  color:#1e3151;
-  text-decoration:none;
-  border-bottom:1px solid #ebe3dc;
-}
+    .mobile-menu-panel.open {
+      display: block;
+    }
 
-.nav-mobile-panel a:last-child{
-  border-bottom:none;
-}
+    .mobile-menu-link {
+      display: block;
+      padding: .875rem 0;
+      color: #2c3a52;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,207,199,0.55);
+    }
 
-@media (min-width:768px){
-  .nav-mobile-panel{
-    top:88px;
-  }
-}
+    .mobile-menu-link:last-child {
+      border-bottom: 0;
+    }
 
-  .nav-hamburger{
-    display:flex;
-  }
-}
+    .mobile-menu-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
 
-@media (max-width:600px){
-  .nav-cta{
-    display:none;
-  }
-}
+    @media (min-width: 768px) {
+      .nav-inner {
+        height: 80px;
+      }
 
-@media (max-width: 600px) {
-  .nav-cta {
-    display: none;
-  }
-}
+      .nav-logo-img {
+        height: 100px;
+      }
 
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-cta-wrap {
+        display: block;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+      }
+
+      .mobile-menu-panel {
+        top: 5rem;
+      }
+    }
     /* ── HERO BANNER ── */
    .hero{
   background: linear-gradient(135deg, var(--navy) 0%, #2a3f5e 55%, #3b2a3d 100%);
@@ -656,42 +663,6 @@
     footer a { color: var(--rose); text-decoration: none; }
   </style>
 </head>
-
-<script>
-  (function () {
-    const btn = document.getElementById("navHamburger");
-    const panel = document.getElementById("navMobilePanel");
-    if (!btn || !panel) return;
-
-    btn.addEventListener("click", function () {
-      panel.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!panel.contains(e.target) && !btn.contains(e.target)) {
-        panel.classList.remove("open");
-      }
-    });
-  })();
-</script>
-<script>
-(function () {
-  const btn = document.getElementById("navHamburger");
-  const panel = document.getElementById("navMobilePanel");
-  if (!btn || !panel) return;
-
-  btn.addEventListener("click", function () {
-    panel.classList.toggle("open");
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!panel.contains(e.target) && !btn.contains(e.target)) {
-      panel.classList.remove("open");
-    }
-  });
-})();
-</script>
-  
 <body>
 
   <!-- NAV -->
@@ -702,41 +673,38 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="https://sparkedconnection.com/#how-it-works"></a></li>
-      <li><a href="https://sparkedconnection.com/plans/">Plans</a></li>
-      <li><a href="https://sparkedconnection.com/#events">Events</a></li>
-      <li><a href="https://sparkedconnection.com/the-science/">The Science</a></li>
-      <li><a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/plans/">Plans</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/#events">Events</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/the-science/">The Science</a></li>
+      <li><a class="nav-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+      <li><a class="nav-link nav-link-referral" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a></li>
     </ul>
 
-    <a class="nav-cta" href="https://tally.so/r/PdDxWb" target="_blank" rel="noopener noreferrer">
-      Create Free Profile
-    </a>
+    <div class="nav-cta-wrap">
+      <a class="nav-cta" href="/enquiry" target="_blank" rel="noopener noreferrer">Create Free Profile</a>
+    </div>
 
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" type="button">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" type="button">
+      <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
     </button>
   </div>
 </nav>
 
-<div class="nav-mobile-panel" id="navMobilePanel">
-  <a href="https://sparkedconnection.com/#how-it-works"></a>
-  <a href="https://sparkedconnection.com/plans/">Plans</a>
-  <a href="https://sparkedconnection.com/#events">Events</a>
-  <a href="https://sparkedconnection.com/the-science/">The Science</a>
-  <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+<div class="mobile-menu-panel" id="mobile-menu-panel">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%); font-weight:600;">Refer a Friend</a>
+  <a class="mobile-menu-cta nav-cta" href="/enquiry" target="_blank" rel="noopener noreferrer">Create Free Profile</a>
 </div>
-</nav>
 
-<div class="nav-mobile-panel" id="navMobilePanel">
-  <a href="https://sparkedconnection.com/#how-it-works"></a>
-  <a href="https://sparkedconnection.com/plans/">Plans</a>
-  <a href="https://sparkedconnection.com/#events">Events</a>
-  <a href="https://sparkedconnection.com/the-science/">The Science</a>
-  <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
-</div>
   <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Begin Your Journey</p>
@@ -1214,5 +1182,47 @@
       }
     });
   </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var panel = document.getElementById('mobile-menu-panel');
+  if (!toggle || !panel) return;
+
+  function closeMenu() {
+    panel.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function openMenu() {
+    panel.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (panel.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  panel.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+});
+</script>
 </body>
 </html>
