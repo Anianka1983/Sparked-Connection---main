@@ -312,139 +312,270 @@
         width: min(calc(100% - 24px), var(--container));
       }
     }
-  
 
-    /* ── Top panel copied from main page ───────────────────────── */
-.nav-shell {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background: hsl(var(--background) / .95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid hsl(var(--border));
-}
 
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
+    /* ── Top panel copied from main page ─────────────────────── */
+    .sc-topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(245, 241, 236, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(213, 206, 199, 0.9);
+    }
 
-.nav-logo-link {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
+    .sc-nav-shell {
+      width: min(100% - 32px, 1280px);
+      margin: 0 auto;
+    }
 
-.nav-logo-link .site-logo {
-  transform: translateX(100px);
-}
+    .sc-nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 20px;
+    }
 
-.desktop-nav,
-.desktop-cta {
-  display: none;
-}
+    .sc-logo-link {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
-.desktop-nav {
-  align-items: center;
-  gap: 32px;
-}
+    .sc-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      transform: translateX(100px);
+    }
 
-.desktop-nav .plans-nav-link,
-.desktop-nav .refer-link {
-  font-family: "Inter", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  white-space: nowrap;
-}
+    .sc-nav-links {
+      display: none;
+      align-items: center;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 0;
+    }
 
-.desktop-nav .plans-nav-link {
-  color: hsl(var(--muted-foreground));
-}
+    .sc-nav-link {
+      color: #61718c;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1;
+      transition: color .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
 
-.desktop-nav .plans-nav-link:hover {
-  color: hsl(var(--primary));
-}
+    .sc-nav-link:hover {
+      color: #213863;
+    }
 
-.desktop-nav .refer-link {
-  color: hsl(340 55% 45%);
-}
+    .sc-nav-link.refer {
+      color: hsl(340 55% 45%);
+    }
 
-.desktop-cta {
-  position: relative;
-  left: -102px;
-}
+    .sc-cta-wrap {
+      display: none;
+      position: relative;
+      left: -102px;
+      flex-shrink: 0;
+    }
 
-.mobile-menu-toggle {
-  padding: 8px;
-  color: hsl(var(--foreground));
-}
+    .sc-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 9999px;
+      background: hsl(340 55% 45%);
+      color: #fff;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1;
+      box-shadow: 0 4px 6px rgba(178,52,94,.25), 0 2px 3px rgba(178,52,94,.15), inset 0 1px rgba(255,255,255,.15);
+      overflow: hidden;
+      position: relative;
+      transform: translateY(0);
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-@media (min-width: 768px) {
-  .nav-inner {
-    height: 80px;
-  }
+    .sc-cta::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,236,200,.45), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-  .desktop-nav {
-    display: flex !important;
-  }
+    .sc-cta:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 20px rgba(178,52,94,.35), 0 4px 8px rgba(178,52,94,.2), inset 0 1px rgba(255,255,255,.2);
+    }
 
-  .desktop-cta {
-    display: block !important;
-  }
-}
+    .sc-cta:hover::before {
+      animation: sc-spark-sweep .6s ease-out forwards;
+    }
+
+    @keyframes sc-spark-sweep {
+      0% { left: -60%; }
+      100% { left: 120%; }
+    }
+
+    .sc-mobile-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: transparent;
+      color: #213863;
+      padding: 8px;
+      position: relative;
+      z-index: 1002;
+    }
+
+    .sc-mobile-toggle:focus-visible {
+      outline: 2px solid #213863;
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+
+    .sc-mobile-panel {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #f5f1ec;
+      border-bottom: 1px solid rgba(213, 206, 199, 0.9);
+      box-shadow: 0 4px 6px -1px rgba(31,52,88,.06), 0 2px 4px -2px rgba(31,52,88,.04);
+      padding: 16px;
+    }
+
+    .sc-mobile-panel.open {
+      display: block;
+    }
+
+    .sc-mobile-link {
+      display: block;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(213, 206, 199, 0.9);
+      color: #213863;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .sc-mobile-link:last-child {
+      border-bottom: 0;
+    }
+
+    .sc-mobile-link.refer {
+      color: hsl(340 55% 45%);
+      font-weight: 600;
+    }
+
+    .sc-mobile-cta-wrap {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      text-decoration: none;
+    }
+
+    .sc-mobile-cta-wrap .sc-cta {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .sc-nav-row {
+        height: 80px;
+      }
+
+      .sc-logo {
+        height: 100px;
+      }
+
+      .sc-nav-links {
+        display: flex;
+      }
+
+      .sc-cta-wrap {
+        display: block;
+      }
+
+      .sc-mobile-toggle,
+      .sc-mobile-panel {
+        display: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-<!-- ── Nav (matched to main page top panel) ─────────────────────── -->
-<nav class="nav-shell">
-  <div class="container">
-    <div class="nav-inner">
-      <a class="nav-logo-link" href="https://sparkedconnection.com/">
-        <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
-      </a>
-      <div class="desktop-nav">
-        <a class="plans-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-        <a class="plans-nav-link" href="/plans/">Plans</a>
-        <a class="plans-nav-link" href="https://sparkedconnection.com/#events">Events</a>
-        <a class="plans-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
-        <a class="plans-nav-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
-        <a class="refer-link" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a>
-      </div>
-      <div class="desktop-cta">
-        <a href="/enquiry" rel="noopener noreferrer" target="_blank">
-          <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;">Create Free Profile</button>
+  <nav class="sc-topnav">
+    <div class="sc-nav-shell">
+      <div class="sc-nav-row">
+        <a class="sc-logo-link" href="https://sparkedconnection.com/">
+          <img src="/logo.svg" alt="Sparked Connection" class="sc-logo">
         </a>
-      </div>
-      <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" style="background:none;border:none;">
-        <svg class="lucide lucide-menu" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
 
-<div class="mobile-menu-panel" id="mobile-menu-panel">
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-  <a class="mobile-menu-link" href="/plans">Plans</a>
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
-  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
-  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
-  <a class="mobile-menu-cta" href="/enquiry" rel="noopener noreferrer" target="_blank">
-    <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;width:100%;">Create Free Profile</button>
-  </a>
-</div>
+        <div class="sc-nav-links">
+          <a class="sc-nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+          <a class="sc-nav-link" href="https://sparkedconnection.com/plans/">Plans</a>
+          <a class="sc-nav-link" href="https://sparkedconnection.com/#events">Events</a>
+          <a class="sc-nav-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+          <a class="sc-nav-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+          <a class="sc-nav-link refer" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a>
+        </div>
+
+        <div class="sc-cta-wrap">
+          <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
+            <button class="sc-cta">Create Free Profile</button>
+          </a>
+        </div>
+
+        <button aria-label="Toggle menu" class="sc-mobile-toggle" id="sc-mobile-toggle" aria-expanded="false" aria-controls="sc-mobile-panel">
+          <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sc-mobile-panel" id="sc-mobile-panel">
+    <a class="sc-mobile-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+    <a class="sc-mobile-link" href="https://sparkedconnection.com/plans/">Plans</a>
+    <a class="sc-mobile-link" href="https://sparkedconnection.com/#events">Events</a>
+    <a class="sc-mobile-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+    <a class="sc-mobile-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+    <a class="sc-mobile-link refer" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a>
+    <a class="sc-mobile-cta-wrap" href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
+      <button class="sc-cta">Create Free Profile</button>
+    </a>
+  </div>
 
   <header class="hero">
     <div class="hero-inner">
@@ -519,36 +650,31 @@
   <footer>2025 Sparked Connection. All rights reserved.</footer>
 
 <script>
-/* ── Responsive nav ──────────────────────────────────────────────── */
-(function() {
-  var toggle = document.getElementById('mobile-menu-toggle');
-  var panel  = document.getElementById('mobile-menu-panel');
-  if (!toggle || !panel) return;
+  (function () {
+    var toggle = document.getElementById('sc-mobile-toggle');
+    var panel = document.getElementById('sc-mobile-panel');
+    if (!toggle || !panel) return;
 
-  function closeMenu() { panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
-  function openMenu()  { panel.classList.add('open');    toggle.setAttribute('aria-expanded','true');  }
+    toggle.addEventListener('click', function () {
+      var isOpen = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
 
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    panel.classList.contains('open') ? closeMenu() : openMenu();
-  });
-  panel.querySelectorAll('a').forEach(function(l){ l.addEventListener('click', closeMenu); });
-  document.addEventListener('click', function(e) {
-    if (!panel.contains(e.target) && !toggle.contains(e.target)) closeMenu();
-  });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    document.addEventListener('click', function (event) {
+      if (!panel.classList.contains('open')) return;
+      if (panel.contains(event.target) || toggle.contains(event.target)) return;
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
 
-  /* Show desktop nav items at ≥768px */
-  function applyLayout() {
-    var isDesktop = window.innerWidth >= 768;
-    document.querySelector('.desktop-nav').style.display  = isDesktop ? 'flex'  : 'none';
-    document.querySelector('.desktop-cta').style.display  = isDesktop ? 'block' : 'none';
-    toggle.style.display = isDesktop ? 'none' : 'flex';
-    if (isDesktop) closeMenu();
-  }
-  applyLayout();
-  window.addEventListener('resize', applyLayout);
-})();
+    panel.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
 </script>
+
 </body>
 </html>
