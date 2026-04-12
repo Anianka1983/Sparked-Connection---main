@@ -505,7 +505,7 @@
 
     <div class="plans-grid">
 
-      <!-- BRONZE -->
+  <!-- BRONZE -->
       <a class="plan-card" href="/enquiry" rel="noopener noreferrer" target="_blank" style="border-color: rgb(139,94,60);">
         <h3 class="plan-title" style="color:rgb(139,94,60);">BRONZE</h3>
         <div class="plan-icon">
@@ -620,6 +620,7 @@
   </div>
 </section>
 
+
 <!-- ── "Not sure which plan" CTA ────────────────────────────────── -->
 <section class="not-sure-section">
   <div class="container">
@@ -677,7 +678,7 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="/cdn-cgi/l/email-protection#95fdf0f9f9fad5e6e5f4e7fef0f1f6fafbfbf0f6e1fcfafbbbf6faf8" style="font-size:.875rem;"><span class="__cf_email__" data-cfemail="670f020b0b0827141706150c0203040809090204130e08094904080a">[email&#160;protected]</span></a>
+        <a href="mailto:hello@sparkedconnection.com" style="font-size:.875rem;">hello@sparkedconnection.com</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -687,7 +688,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Responsive nav ──────────────────────────────────────────────── */
 (function() {
   var toggle = document.getElementById('mobile-menu-toggle');
@@ -711,4 +712,14 @@
   function applyLayout() {
     var isDesktop = window.innerWidth >= 768;
     document.querySelector('.desktop-nav').style.display  = isDesktop ? 'flex'  : 'none';
-    document.querySelector('.des
+    document.querySelector('.desktop-cta').style.display  = isDesktop ? 'block' : 'none';
+    toggle.style.display = isDesktop ? 'none' : 'flex';
+    if (isDesktop) closeMenu();
+  }
+  applyLayout();
+  window.addEventListener('resize', applyLayout);
+})();
+</script>
+
+</body>
+</html>
