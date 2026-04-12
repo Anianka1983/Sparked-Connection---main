@@ -1216,53 +1216,35 @@ No swiping. No guesswork. No wasted time.
 <a class="text-primary-foreground/70 hover:text-accent transition-colors duration-200" href="https://sparkedconnection.com/refund-cancellation" rel="noopener noreferrer" target="_blank">
                Refund &amp; Cancellation
               </a>
- <li><a href="https://sparkedconnection.com/accessibility-statement" target="_blank">Accessibility</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="mailto:hello@sparkedconnection.com" style="font-size:.875rem;">hello@sparkedconnection.com</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Sparked Connection. All rights reserved.</p>
-      <p>Made with <span style="color:hsl(var(--accent));">❤️</span> for singles everywhere.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-/* ── Responsive nav ──────────────────────────────────────────────── */
-(function() {
-  var toggle = document.getElementById('mobile-menu-toggle');
-  var panel  = document.getElementById('mobile-menu-panel');
-  if (!toggle || !panel) return;
-
-  function closeMenu() { panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
-  function openMenu()  { panel.classList.add('open');    toggle.setAttribute('aria-expanded','true');  }
-
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    panel.classList.contains('open') ? closeMenu() : openMenu();
-  });
-  panel.querySelectorAll('a').forEach(function(l){ l.addEventListener('click', closeMenu); });
-  document.addEventListener('click', function(e) {
-    if (!panel.contains(e.target) && !toggle.contains(e.target)) closeMenu();
-  });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
-
-  /* Show desktop nav items at ≥768px */
-  function applyLayout() {
-    var isDesktop = window.innerWidth >= 768;
-    document.querySelector('.desktop-nav').style.display  = isDesktop ? 'flex'  : 'none';
-    document.querySelector('.desktop-cta').style.display  = isDesktop ? 'block' : 'none';
-    toggle.style.display = isDesktop ? 'none' : 'flex';
-    if (isDesktop) closeMenu();
-  }
-  applyLayout();
-  window.addEventListener('resize', applyLayout);
-})();
-</script>
-
-</body>
-</html>
+<li>
+<a class="text-primary-foreground/70 hover:text-accent transition-colors duration-200" href="https://sparkedconnection.com/accessibility-statement" rel="noopener noreferrer" target="_blank">
+                Accessibility
+               </a>
+</li>
+</li>
+</li>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="font-heading font-semibold text-primary-foreground mb-4">
+           Contact
+          </h4>
+<a class="text-primary-foreground/70 hover:text-accent transition-colors duration-200" href="/cdn-cgi/l/email-protection#432a2d252c0330332231282627202c2d2d2620372a2c2d6d202c2e">
+  <span class="__cf_email__" data-cfemail="e088858c8c8fa0939081928b8584838f8e8e858394898f8ece838f8d">[email&#160;protected]</span>
+</a>
+</div>
+</div>
+<div class="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-sm text-primary-foreground/70">
+          &copy; 2026 Sparked Connection. All rights reserved.
+          <p class="text-sm text-primary-foreground/70 flex items-center gap-1">
+           Made with
+         <span style="color:#ffb3c7;">
+          &#10084;&#65039;
+          </span>  
+           for singles everywhere.
+          </p>
+</p>
+</div>
+</div>
