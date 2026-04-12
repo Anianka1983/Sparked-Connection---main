@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund &amp; Cancellation Policy | Sparked Connection</title>
+  <meta name="description" content="Refund and Cancellation Policy for Sparked Connection Ltd — your rights and our approach to cancellations and refunds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --background: 22 38% 95%;
+      --foreground: 220 45% 20%;
+      --primary: 220 50% 25%;
+      --primary-foreground: 36 33% 96%;
+      --secondary: 22 30% 92%;
+      --muted: 36 20% 90%;
+      --muted-foreground: 220 20% 45%;
+      --accent: 340 55% 45%;
+      --accent-foreground: 0 0% 100%;
+      --border: 36 20% 88%;
+      --shadow-md: 0 4px 6px -1px hsl(220 30% 20% / .06), 0 2px 4px -2px hsl(220 30% 20% / .04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background-color: hsl(var(--background) / .95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+    }
+
+    .site-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      transform: translateX(100px);
+    }
+    @media (min-width: 768px) { .site-logo { height: 100px; } }
+
+    .nav-links { display: none; }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; align-items: center; gap: 2rem; }
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: hsl(var(--accent)); }
+    .nav-links a.refer { color: hsl(340 55% 45%); }
+
+    .nav-cta { display: none; position: relative; left: -102px; }
+    @media (min-width: 768px) { .nav-cta { display: block; } }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 4px 6px hsl(340 55% 45% / .25);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px hsl(340 55% 45% / .35);
+      background-color: hsl(340 55% 40%);
+    }
+
+    .mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 5rem; left: 0; right: 0;
+      z-index: 80;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+      padding: 1rem;
+    }
+    .mobile-menu-panel.open { display: block; }
+
+    .mobile-menu-link {
+      display: block;
+      padding: .875rem 0;
+      color: hsl(var(--foreground));
+      font-weight: 500;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .mobile-menu-link:last-of-type { border-bottom: 0; }
+    .mobile-cta-wrap { display: flex; justify-content: center; margin-top: 1rem; }
+    .mobile-cta-wrap .cta-btn { width: 100%; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .eyebrow {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      margin-bottom: .75rem;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      font-size: .9rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── TOC ── */
+    .toc-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .3rem;
+      margin-bottom: .5rem;
+    }
+    @media (min-width: 560px) {
+      .toc-grid { grid-template-columns: 1fr 1fr; gap: .3rem .5rem; }
+    }
+
+    .toc-grid a {
+      font-size: .88rem;
+      color: hsl(var(--muted-foreground));
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      padding: .2rem 0;
+      transition: color .2s;
+    }
+    .toc-grid a:hover { color: hsl(var(--accent)); }
+
+    .toc-grid a span.num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: .82rem;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 1.4rem;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    .policy-section { margin-bottom: 3rem; }
+
+    .policy-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.01em;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: baseline;
+      gap: .6rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: .925rem;
+      color: hsl(220 25% 32%);
+      margin-bottom: .75rem;
+      line-height: 1.75;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-list {
+      list-style: none;
+      margin: .5rem 0 .75rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .policy-list li {
+      font-size: .9rem;
+      color: hsl(220 25% 32%);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .policy-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: hsl(var(--accent));
+      font-size: .75rem;
+      top: .15em;
+    }
+
+    /* Definition box */
+    .definition-box {
+      background: hsl(220 50% 25% / .05);
+      border: 1px solid hsl(220 50% 25% / .12);
+      border-radius: .625rem;
+      padding: 1rem 1.25rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      color: hsl(220 25% 30%);
+      line-height: 1.7;
+    }
+
+    .definition-box strong {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: hsl(var(--primary));
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    /* Callout */
+    .callout {
+      background: hsl(340 55% 45% / .06);
+      border-left: 3px solid hsl(var(--accent));
+      border-radius: 0 .5rem .5rem 0;
+      padding: .9rem 1.1rem;
+      margin: 1rem 0;
+      font-size: .88rem;
+      color: hsl(220 25% 30%);
+      line-height: 1.65;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: hsl(var(--accent));
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Section divider */
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, hsl(var(--accent) / .4), transparent);
+      margin: 2.5rem 0;
+    }
+
+    a.email-link {
+      color: hsl(var(--accent));
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    a.email-link:hover { color: hsl(340 55% 35%); }
+
+    /* Final note */
+    .final-note {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: hsl(var(--secondary));
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+
+    .final-note p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: hsl(var(--primary));
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    .final-note .accent-mark { color: hsl(var(--accent)); }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding-bottom: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      justify-items: center;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 2rem; } }
+
+    footer h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      color: hsl(var(--primary-foreground));
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+
+    footer ul a {
+      font-size: .875rem;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: color .2s;
+    }
+    footer ul a:hover { color: hsl(var(--accent)); }
+
+    .footer-social { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+
+    .social-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 9999px;
+      background: hsl(var(--primary-foreground) / .1);
+      display: flex; align-items: center; justify-content: center;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+    .social-icon:hover { background: hsl(var(--accent)); color: #fff; }
+
+    .footer-bottom {
+      border-top: 1px solid hsl(var(--primary-foreground) / .1);
+      margin-top: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+
+    .footer-bottom p { font-size: .875rem; color: hsl(var(--primary-foreground) / .5); }
+    .footer-bottom .heart { color: hsl(var(--accent)); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://sparkedconnection.com/" aria-label="Sparked Connection home">
+      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+    </a>
+
+    <div class="nav-links">
+      <a href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+      <a href="https://sparkedconnection.com/plans/">Plans</a>
+      <a href="https://sparkedconnection.com/#events">Events</a>
+      <a href="https://sparkedconnection.com/the-science/">The Science</a>
+      <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+      <a href="https://www.sparkedconnection.com/refer-a-friend" class="refer">Refer a Friend</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
+        <button class="cta-btn">Create Free Profile</button>
+      </a>
+    </div>
+
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-menu">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
+  <div class="mobile-cta-wrap">
+    <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer" style="width:100%;">
+      <button class="cta-btn" style="width:100%;">Create Free Profile</button>
+    </a>
+  </div>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<header class="page-hero">
+  <p class="eyebrow">Legal &amp; Trust</p>
+  <h1>Refund &amp; Cancellation Policy</h1>
+  <p>Sparked Connection Ltd &mdash; Last updated April 2026</p>
+</header>
+ 
+<!-- ── CONTENT ── -->
+<main class="content-wrap">
+ 
+  <div class="policy-section">
+    <p class="toc-title">Contents</p>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">1.</span> Overview</a>
+      <a href="#s2"><span class="num">2.</span> Membership Tiers &amp; Fees</a>
+      <a href="#s3"><span class="num">3.</span> Cooling-Off Period</a>
+      <a href="#s4"><span class="num">4.</span> When the Service Begins</a>
+      <a href="#s5"><span class="num">5.</span> Refunds After Commencement</a>
+      <a href="#s6"><span class="num">6.</span> Introduction Guarantee &amp; Extensions</a>
+      <a href="#s7"><span class="num">7.</span> Cancellation by the Client</a>
+      <a href="#s8"><span class="num">8.</span> Client Participation &amp; Responsibility</a>
+      <a href="#s9"><span class="num">9.</span> Suspension or Termination</a>
+      <a href="#s10"><span class="num">10.</span> Exceptional Circumstances</a>
+      <a href="#s11"><span class="num">11.</span> Statutory Rights</a>
+      <a href="#s12"><span class="num">12.</span> Contact</a>
+      <a href="#s13"><span class="num">13.</span> A Final Note</a>
+    </div>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s1">
+    <h2><span class="section-num">1.</span> Overview</h2>
+    <p>This Refund &amp; Cancellation Policy explains your rights and our approach to cancellations and refunds when using Sparked Connection's matchmaking services.</p>
+    <p>Sparked Connection provides a bespoke, personalised matchmaking service, involving time, expertise, and human judgement. As such, refund rights are limited once the service has begun.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s2">
+    <h2><span class="section-num">2.</span> Membership Tiers &amp; Fees</h2>
+    <p>Sparked Connection offers three membership tiers, each with different terms:</p>
+    <ul class="policy-list">
+      <li><strong>Bronze (Free)</strong> — no fee is charged; no refund applies</li>
+      <li><strong>Gold (£800)</strong> — 12-month active membership with a minimum of 5 Agreed Introductions</li>
+      <li><strong>Platinum (£1,500)</strong> — two simultaneous 12-month Gold memberships, each entitled to a minimum of 5 Agreed Introductions, with priority matching and a dedicated matchmaker</li>
+    </ul>
+    <p>Fees for Gold and Platinum memberships are payable in full in advance.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s3">
+    <h2><span class="section-num">3.</span> Cooling-Off Period (Consumer Rights)</h2>
+    <p>If you purchase a membership online or at a distance, you may have the right to cancel within 14 days under UK consumer law.</p>
+    <div class="callout">
+      <strong>Important</strong>
+      By requesting that matchmaking services begin within the 14-day cooling-off period, you expressly acknowledge and agree that your right to cancel may be lost once the service has commenced.
+    </div>
+    <p>This does not affect your statutory rights where applicable.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s4">
+    <h2><span class="section-num">4.</span> When the Service Begins</h2>
+    <p>For the purposes of cancellations and refunds, the service is deemed to commence when Sparked Connection begins reviewing your application, questionnaire, or profile for matchmaking purposes.</p>
+    <p>This may include:</p>
+    <ul class="policy-list">
+      <li>Reviewing your submitted information</li>
+      <li>Assessing compatibility or preferences</li>
+      <li>Preparing or considering potential matches</li>
+      <li>Conducting consultation or personalised review</li>
+    </ul>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s5">
+    <h2><span class="section-num">5.</span> Refunds After Service Commencement</h2>
+    <p>Once the service has commenced, membership fees are non-refundable except where required by UK law. This reflects the time, expertise, and personalised nature of the service.</p>
+    <div class="callout">
+      Dissatisfaction with introductions or outcomes does not entitle the Client to a refund where the service has been delivered as described.
+    </div>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s6">
+    <h2><span class="section-num">6.</span> Introduction Guarantee &amp; Extensions</h2>
+    <p>Gold and Platinum members are entitled to a minimum of <strong>5 Agreed Introductions</strong> over their 12-month Membership Period.</p>
+    <p>If the minimum of 5 Agreed Introductions has not been fulfilled by the end of the Membership Period through no fault of the Client, Sparked Connection will extend the membership at no additional cost until the minimum is met.</p>
+    <p>The extension applies only where:</p>
+    <ul class="policy-list">
+      <li>The Client has actively engaged with the process and responded to communications</li>
+      <li>Delays are attributable to match availability or operational reasons, not Client non-participation</li>
+    </ul>
+    <div class="callout">
+      <strong>Please note</strong>
+      Bronze members are part of our Singles Network but are not entitled to a guaranteed minimum number of introductions. Unused introductions do not entitle any Client to a refund.
+    </div>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s7">
+    <h2><span class="section-num">7.</span> Cancellation by the Client</h2>
+    <p>You may cancel your membership at any time by contacting us in writing. Upon cancellation, matchmaking activity will cease and fees already paid remain non-refundable once the service has commenced.</p>
+    <p>Where applicable, Sparked Connection may offer a reasonable extension of the service instead of a refund, subject to availability and cooperation.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s8">
+    <h2><span class="section-num">8.</span> Client Participation &amp; Responsibility</h2>
+    <p>The effectiveness of the service depends on your engagement. Where a Client does not actively participate, respond, or engage with the matchmaking process, this may affect the ability to provide introductions and does not entitle the Client to a refund or extension.</p>
+    <p>Any period of non-responsiveness by the Client may not count toward the 12-month Membership Period for the purposes of the introduction guarantee.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s9">
+    <h2><span class="section-num">9.</span> Suspension or Termination by Sparked Connection</h2>
+    <p>We reserve the right to suspend or terminate membership where information provided is misleading or inaccurate, behaviour is inappropriate, unsafe, or inconsistent with the service, or there is repeated non-responsiveness without reasonable explanation.</p>
+    <div class="callout">
+      <strong>Please note</strong>
+      In such cases, refunds are not guaranteed and unused introductions may, at our discretion, be deemed fulfilled.
+    </div>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s10">
+    <h2><span class="section-num">10.</span> Exceptional Circumstances</h2>
+    <p>We may consider partial refunds or alternative arrangements in exceptional circumstances. Any such decision is made at our sole discretion and does not create a precedent.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s11">
+    <h2><span class="section-num">11.</span> Statutory Rights</h2>
+    <p>Nothing in this policy affects your statutory rights under UK consumer law.</p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="policy-section" id="s12">
+    <h2><span class="section-num">12.</span> Contact</h2>
+    <p>If you have any questions regarding cancellations or refunds, please contact us at <a class="email-link" href="/cdn-cgi/l/email-protection#2e464b4242416e5d5e4f5c454b4a4d4140404b4d5a474140004d4143"><span class="__cf_email__" data-cfemail="afc7cac3c3c0efdcdfceddc4cacbccc0c1c1caccdbc6c0c181ccc0c2">[email&#160;protected]</span></a></p>
+  </div>
+ 
+  <div class="section-divider"></div>
+ 
+  <div class="final-note" id="s13">
+    <p>We aim to deliver a thoughtful, high-quality matchmaking experience.<br>Each case is handled with <span class="accent-mark">fairness, discretion, and care</span>, reflecting the personal nature of the service.</p>
+  </div>
+ 
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <h4>Follow Us</h4>
+        <div class="footer-social">
+          <a class="social-icon" href="https://www.instagram.com/sparked_connection/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.facebook.com/people/Sparked-Connection/61584598310374/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/company/sparked-connection" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/about-matchmaking/">About Matchmaking</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/#how-it-works">Matchmaking</a></li>
+          <li><a href="https://sparkedconnection.com/#events">Events</a></li>
+          <li><a href="https://sparkedconnection.com/plans/">Plans</a></li>
+          <li><a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a></li>
+          <li><a href="https://sparkedconnection.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+          <li><a href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation</a></li>
+          <li><a href="https://sparkedconnection.com/accessibility-statement">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="/cdn-cgi/l/email-protection#7f171a1313103f0c0f1e0d141a1b1c1011111a1c0b161011511c1012" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
+          <span class="__cf_email__" data-cfemail="9ef6fbf2f2f1deedeeffecf5fbfafdf1f0f0fbfdeaf7f1f0b0fdf1f3">[email&#160;protected]</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sparked Connection. All rights reserved.</p>
+      <p>Made with <span class="heart">❤️</span> for singles everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const toggle = document.getElementById('mobile-toggle');
+  const panel  = document.getElementById('mobile-menu');
+  if (toggle && panel) {
+    toggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    }));
+    document.addEventListener('click', e => {
+      if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+  }
+
+  // Smooth scroll for TOC links
+  document.querySelectorAl
