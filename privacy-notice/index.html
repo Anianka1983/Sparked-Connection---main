@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Notice | Sparked Connection</title>
+  <meta name="description" content="Privacy Notice for Sparked Connection Ltd — how we collect, use and protect your personal data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── CSS variables (from main site) ── */
+    :root {
+      --background: 22 38% 95%;
+      --foreground: 220 45% 20%;
+      --primary: 220 50% 25%;
+      --primary-foreground: 36 33% 96%;
+      --secondary: 22 30% 92%;
+      --muted: 36 20% 90%;
+      --muted-foreground: 220 20% 45%;
+      --accent: 340 55% 45%;
+      --accent-foreground: 0 0% 100%;
+      --border: 36 20% 88%;
+      --cream: 22 38% 95%;
+      --shadow-md: 0 4px 6px -1px hsl(220 30% 20% / .06), 0 2px 4px -2px hsl(220 30% 20% / .04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV (identical to main site) ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background-color: hsl(var(--background) / .95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+    }
+
+    .site-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      transform: translateX(100px);
+    }
+    @media (min-width: 768px) { .site-logo { height: 100px; } }
+
+    .nav-links {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: hsl(var(--accent)); }
+    .nav-links a.refer { color: hsl(340 55% 45%); }
+
+    .nav-cta {
+      display: none;
+      position: relative;
+      left: -102px;
+    }
+    @media (min-width: 768px) { .nav-cta { display: block; } }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: .875rem;
+      font-weight: 500;
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 4px 6px hsl(340 55% 45% / .25);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px hsl(340 55% 45% / .35);
+      background-color: hsl(340 55% 40%);
+    }
+
+    /* Mobile hamburger */
+    .mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: .5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--foreground));
+    }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+
+    .mobile-menu-panel {
+      display: none;
+      position: fixed;
+      top: 5rem;
+      left: 0; right: 0;
+      z-index: 80;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-md);
+      padding: 1rem;
+    }
+    .mobile-menu-panel.open { display: block; }
+
+    .mobile-menu-link {
+      display: block;
+      padding: .875rem 0;
+      color: hsl(var(--foreground));
+      font-weight: 500;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .mobile-menu-link:last-of-type { border-bottom: 0; }
+    .mobile-cta-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .mobile-cta-wrap .cta-btn { width: 100%; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+      background: hsl(var(--background));
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .eyebrow {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      margin-bottom: .75rem;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      font-size: .9rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    /* Section block */
+    .policy-section {
+      margin-bottom: 3rem;
+    }
+
+    .policy-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: hsl(var(--primary));
+      letter-spacing: -.01em;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: baseline;
+      gap: .6rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      color: hsl(var(--accent));
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: .925rem;
+      color: hsl(220 25% 32%);
+      margin-bottom: .75rem;
+      line-height: 1.75;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    /* Inline list items */
+    .policy-list {
+      list-style: none;
+      margin: .5rem 0 .75rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .policy-list li {
+      font-size: .9rem;
+      color: hsl(220 25% 32%);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .policy-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: hsl(var(--accent));
+      font-size: .75rem;
+      top: .15em;
+    }
+
+    /* Call-out box */
+    .callout {
+      background: hsl(340 55% 45% / .06);
+      border-left: 3px solid hsl(var(--accent));
+      border-radius: 0 .5rem .5rem 0;
+      padding: .9rem 1.1rem;
+      margin: 1rem 0;
+      font-size: .88rem;
+      color: hsl(220 25% 30%);
+      line-height: 1.65;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: hsl(var(--accent));
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Divider */
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, hsl(var(--accent) / .4), transparent);
+      margin: 2.5rem 0;
+    }
+
+    /* Contact link */
+    a.email-link {
+      color: hsl(var(--accent));
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    a.email-link:hover { color: hsl(340 55% 35%); }
+
+    /* Final note */
+    .final-note {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: hsl(var(--secondary));
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+
+    .final-note p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: hsl(var(--primary));
+      line-height: 1.6;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    .final-note .accent-mark {
+      color: hsl(var(--accent));
+    }
+
+    /* ── FOOTER (from main site) ── */
+    footer {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding-bottom: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      justify-items: center;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+    }
+
+    footer h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      color: hsl(var(--primary-foreground));
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+
+    footer ul a {
+      font-size: .875rem;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: color .2s;
+    }
+    footer ul a:hover { color: hsl(var(--accent)); }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 9999px;
+      background: hsl(var(--primary-foreground) / .1);
+      display: flex; align-items: center; justify-content: center;
+      color: hsl(var(--primary-foreground) / .7);
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+    .social-icon:hover {
+      background: hsl(var(--accent));
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid hsl(var(--primary-foreground) / .1);
+      margin-top: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+
+    .footer-bottom p {
+      font-size: .875rem;
+      color: hsl(var(--primary-foreground) / .5);
+    }
+
+    .footer-bottom .heart { color: hsl(var(--accent)); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://sparkedconnection.com/" aria-label="Sparked Connection home">
+      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
+    </a>
+
+    <div class="nav-links">
+      <a href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+      <a href="https://sparkedconnection.com/plans/">Plans</a>
+      <a href="https://sparkedconnection.com/#events">Events</a>
+      <a href="https://sparkedconnection.com/the-science/">The Science</a>
+      <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+      <a href="https://www.sparkedconnection.com/refer-a-friend" class="refer">Refer a Friend</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
+        <button class="cta-btn">Create Free Profile</button>
+      </a>
+    </div>
+
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-menu">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
+  <div class="mobile-cta-wrap">
+    <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer" style="width:100%;">
+      <button class="cta-btn" style="width:100%;">Create Free Profile</button>
+    </a>
+  </div>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<header class="page-hero">
+  <p class="eyebrow">Legal &amp; Trust</p>
+  <h1>Privacy Notice</h1>
+  <p>Sparked Connection Ltd &mdash; Last updated April 2026</p>
+</header>
+
+<!-- ── CONTENT ── -->
+<main class="content-wrap">
+
+  <!-- 1 -->
+  <div class="policy-section">
+    <h2><span class="section-num">1.</span> Who We Are</h2>
+    <p><strong>Sparked Connection Ltd</strong> ("we", "us", "our") provides a modern, personalised matchmaking service for professionals.</p>
+    <p>We act as the data controller for your personal data under UK data protection law.</p>
+    <p>Contact: <a class="email-link" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a></p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 2 -->
+  <div class="policy-section">
+    <h2><span class="section-num">2.</span> Our Approach to Privacy</h2>
+    <p>Matchmaking is personal. We treat your information with care, discretion, and confidentiality.</p>
+    <p>We only collect and use data that is necessary to understand you, assess compatibility, and introduce you thoughtfully to others.</p>
+    <div class="callout">
+      <strong>Important</strong>
+      We do not operate like dating apps, and your data is never used for mass matching or algorithmic exposure.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 3 -->
+  <div class="policy-section">
+    <h2><span class="section-num">3.</span> What Personal Data We Collect</h2>
+    <p><strong>Information you provide</strong></p>
+    <ul class="policy-list">
+      <li>Name, email address, contact details</li>
+      <li>Age or date of birth</li>
+      <li>Location (city/region)</li>
+      <li>Relationship preferences and intentions</li>
+      <li>Lifestyle information (interests, habits, values)</li>
+      <li>Personality assessment responses</li>
+      <li>Photographs (where provided)</li>
+      <li>Messages or communications with us</li>
+    </ul>
+    <p><strong>Sensitive / special category data</strong></p>
+    <p>Some information (e.g. personal values, beliefs, lifestyle preferences) may be considered special category data. We only process this data with your explicit consent, where it is necessary for matchmaking, and with appropriate safeguards in place.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 4 -->
+  <div class="policy-section">
+    <h2><span class="section-num">4.</span> How We Use Your Data</h2>
+    <p>We use your data to:</p>
+    <ul class="policy-list">
+      <li>Assess your suitability for matchmaking</li>
+      <li>Understand compatibility and preferences</li>
+      <li>Provide curated, considered introductions</li>
+      <li>Communicate with you about your membership</li>
+      <li>Manage payments and service access</li>
+      <li>Improve our services</li>
+    </ul>
+    <div class="callout">
+      Your data is used only for the purpose of providing a personalised matchmaking service.
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 5 -->
+  <div class="policy-section">
+    <h2><span class="section-num">5.</span> AI-Assisted Analysis &amp; Human Oversight</h2>
+    <p>We may use secure, private AI-assisted tools to support analysing questionnaire responses, identifying compatibility patterns, and improving matching insight.</p>
+    <div class="callout">
+      <strong>Human-first approach</strong>
+      All decisions are reviewed by a human matchmaker. No decisions are made solely by automated means. AI supports — it does not replace — human judgement.
+    </div>
+    <p>This ensures a considered, personal approach at every stage.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 6 -->
+  <div class="policy-section">
+    <h2><span class="section-num">6.</span> Lawful Basis for Processing</h2>
+    <p>We rely on the following legal bases:</p>
+    <ul class="policy-list">
+      <li><strong>Contract</strong> – to provide matchmaking services you request</li>
+      <li><strong>Legitimate interests</strong> – to assess compatibility and operate responsibly</li>
+      <li><strong>Consent</strong> – where required (e.g. optional communications, sensitive data)</li>
+      <li><strong>Legal obligations</strong> – for accounting or regulatory purposes</li>
+    </ul>
+    <p>You may withdraw consent at any time where applicable.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 7 -->
+  <div class="policy-section">
+    <h2><span class="section-num">7.</span> How We Share Your Information</h2>
+    <p>We do not sell or distribute your data.</p>
+    <p><strong>With potential matches</strong></p>
+    <p>As part of the matchmaking process, we may share limited profile information, such as first name or initial, general location, profession or lifestyle overview, selected photographs, and high-level preferences.</p>
+    <div class="callout">
+      <strong>Important</strong>
+      We only share information necessary to assess mutual interest. Identifiable details (e.g. contact information) are only shared after both parties agree to proceed. Photographs or detailed profiles are shared only with your explicit consent.
+    </div>
+    <p><strong>With service providers</strong></p>
+    <p>We may use trusted third parties for website hosting, payment processing, communication tools, and secure data handling. All providers are subject to data protection agreements.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 8 -->
+  <div class="policy-section">
+    <h2><span class="section-num">8.</span> What We Do Not Do</h2>
+    <ul class="policy-list">
+      <li>We do not publicly display your profile</li>
+      <li>We do not allow browsing or swiping</li>
+      <li>We do not sell your data</li>
+      <li>We do not make automated matchmaking decisions</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 9 -->
+  <div class="policy-section">
+    <h2><span class="section-num">9.</span> International Data Transfers</h2>
+    <p>Where data is processed outside the UK, we ensure appropriate safeguards, such as UK adequacy regulations and standard contractual clauses.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 10 -->
+  <div class="policy-section">
+    <h2><span class="section-num">10.</span> Data Storage &amp; Security</h2>
+    <p>We use appropriate technical and organisational measures, including restricted access controls, secure systems and environments, and confidentiality safeguards. Your data is accessed only where necessary.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 11 -->
+  <div class="policy-section">
+    <h2><span class="section-num">11.</span> Data Retention</h2>
+    <ul class="policy-list">
+      <li><strong>Active clients:</strong> for the duration of membership</li>
+      <li><strong>Inactive applications:</strong> limited retention for review</li>
+      <li><strong>Legal/accounting data:</strong> as required by law</li>
+    </ul>
+    <p>Photographs and personal profiles can be deleted upon request.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 12 -->
+  <div class="policy-section">
+    <h2><span class="section-num">12.</span> Your Rights</h2>
+    <p>Under UK GDPR, you have the right to access your personal data, correct inaccurate data, request deletion, restrict or object to processing, request data portability, and withdraw consent where applicable.</p>
+    <p>To exercise your rights, contact us at <a class="email-link" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a></p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 13 -->
+  <div class="policy-section">
+    <h2><span class="section-num">13.</span> Complaints</h2>
+    <p>If you have concerns, please contact us first. You may also contact the UK Information Commissioner's Office (ICO) at <a class="email-link" href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 14 -->
+  <div class="policy-section">
+    <h2><span class="section-num">14.</span> Cookies &amp; Website Analytics</h2>
+    <p>Our website may use cookies or analytics tools to understand website usage and improve performance. Where required, we will obtain your consent before placing non-essential cookies.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 15 -->
+  <div class="policy-section">
+    <h2><span class="section-num">15.</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Notice from time to time. The latest version will always be available on our website.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Final note -->
+  <div class="final-note">
+    <p>Matchmaking relies on trust.<br>We are committed to handling your information with the same <span class="accent-mark">care, discretion, and respect</span> that we bring to every introduction.</p>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <h4>Follow Us</h4>
+        <div class="footer-social">
+          <a class="social-icon" href="https://www.instagram.com/sparked_connection/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.facebook.com/people/Sparked-Connection/61584598310374/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/company/sparked-connection" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/about-matchmaking/">About Matchmaking</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/#how-it-works">Matchmaking</a></li>
+          <li><a href="https://sparkedconnection.com/#events">Events</a></li>
+          <li><a href="https://sparkedconnection.com/plans/">Plans</a></li>
+          <li><a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a></li>
+          <li><a href="https://sparkedconnection.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+          <li><a href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation</a></li>
+          <li><a href="https://sparkedconnection.com/accessibility-statement">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@sparkedconnection.com" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
+          hello@sparkedconnection.com
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sparked Connection. All rights reserved.</p>
+      <p>Made with <span class="heart">❤️</span> for singles everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const panel  = document.getElementById('mobile-menu');
+  if (toggle && panel) {
+    toggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = panel.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    }));
+    document.addEventListener('click', e => {
+      if (!panel.contains(e.target) && !toggle.contains(e.target)) {
+        panel.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { panel.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }
+    });
+  }
+</script>
+
+</body>
+</html>
