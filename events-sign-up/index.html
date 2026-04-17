@@ -390,49 +390,51 @@
 
   <div class="sc-main">
 
-<form id="form-wrapper" action="https://formspree.io/f/mbdqoaao" method="POST">
+<form id="form-wrapper" action="https://formspree.io/f/mbdqoaao" method="POST" onsubmit="return handleSubmit(event)">
 
       <div class="sc-card">
         <div class="sc-section-label">Your details</div>
 
         <div class="sc-row">
-          <div class="sc-field" id="field-first">
-            <label for="first-name">First name <span class="req">*</span></label>
-            <input type="text" id="first-name" placeholder="e.g. Sophie" autocomplete="given-name">
-            <span class="error-msg">Please enter your first name</span>
-          </div>
-          <div class="sc-field" id="field-last">
-            <label for="last-name">Last name <span class="req">*</span></label>
-            <input type="text" id="last-name" placeholder="e.g. Mitchell" autocomplete="family-name">
-            <span class="error-msg">Please enter your last name</span>
-          </div>
-        </div>
+  <div class="sc-field" id="field-first">
+    <label for="first-name">First name <span class="req">*</span></label>
+    <input type="text" id="first-name" name="first_name" placeholder="e.g. Sophie" autocomplete="given-name">
+    <span class="error-msg">Please enter your first name</span>
+  </div>
+
+  <div class="sc-field" id="field-last">
+    <label for="last-name">Last name <span class="req">*</span></label>
+    <input type="text" id="last-name" name="last_name" placeholder="e.g. Mitchell" autocomplete="family-name">
+    <span class="error-msg">Please enter your last name</span>
+  </div>
+</div>
 
         <div class="sc-row">
-          <div class="sc-field" id="field-email">
-            <label for="email">Email address <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-            <span class="error-msg">Please enter a valid email</span>
-          </div>
-          <div class="sc-field" id="field-phone">
-            <label for="phone">Phone number</label>
-            <input type="tel" id="phone" placeholder="+44 7700 900123" autocomplete="tel">
-          </div>
-        </div>
+  <div class="sc-field" id="field-email">
+    <label for="email">Email address <span class="req">*</span></label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+    <span class="error-msg">Please enter a valid email</span>
+  </div>
+
+  <div class="sc-field" id="field-phone">
+    <label for="phone">Phone number</label>
+    <input type="tel" id="phone" name="phone" placeholder="+44 7700 900123" autocomplete="tel">
+  </div>
+</div>
 
         <div class="sc-row">
-          <div class="sc-field" id="field-city">
-            <label for="city">City / location <span class="req">*</span></label>
-            <input type="text" id="city" placeholder="e.g. London" autocomplete="address-level2">
-            <span class="error-msg">Please enter your city</span>
-          </div>
-          <div class="sc-field" id="field-age">
-            <label for="age">Age <span class="req">*</span></label>
-            <input type="number" id="age" placeholder="e.g. 32" min="18" max="99">
-            <span class="error-msg">Please enter your age (18+)</span>
-          </div>
-        </div>
-      </div>
+  <div class="sc-field" id="field-city">
+    <label for="city">City / location <span class="req">*</span></label>
+    <input type="text" id="city" name="city" placeholder="e.g. London" autocomplete="address-level2">
+    <span class="error-msg">Please enter your city</span>
+  </div>
+
+  <div class="sc-field" id="field-age">
+    <label for="age">Age <span class="req">*</span></label>
+    <input type="number" id="age" name="age" placeholder="e.g. 32" min="18" max="99">
+    <span class="error-msg">Please enter your age (18+)</span>
+  </div>
+</div>
 
       <div class="sc-card">
         <div class="sc-section-label">Events I'm interested in</div>
@@ -441,7 +443,7 @@
         <div class="events-grid" id="events-grid">
 
           <label class="event-checkbox" id="ev-pubquiz">
-            <input type="checkbox" value="pub_quiz">
+<input type="checkbox" name="events[]" value="pub_quiz">
             <div>
               <div class="event-label-text">Pub quizzes</div>
               <div class="event-label-sub">Fun team-based quiz nights</div>
@@ -449,7 +451,7 @@
           </label>
 
           <label class="event-checkbox" id="ev-workshops">
-            <input type="checkbox" value="workshops">
+<input type="checkbox" name="events[]" value="workshops">
             <div>
               <div class="event-label-text">Workshops</div>
               <div class="event-label-sub">Skill-building &amp; social sessions</div>
@@ -457,7 +459,7 @@
           </label>
 
           <label class="event-checkbox" id="ev-trips">
-            <input type="checkbox" value="trips_abroad">
+           <input type="checkbox" name="events[]" value="trips_abroad">
             <div>
               <div class="event-label-text">Trips abroad</div>
               <div class="event-label-sub">Group travel &amp; adventures</div>
@@ -465,7 +467,7 @@
           </label>
 
           <label class="event-checkbox" id="ev-hiking">
-            <input type="checkbox" value="hiking">
+            <input type="checkbox" name="events[]" value="hiking">
             <div>
               <div class="event-label-text">Hiking adventures</div>
               <div class="event-label-sub">Scenic walks &amp; nature days</div>
@@ -473,7 +475,7 @@
           </label>
 
           <label class="event-checkbox" id="ev-online">
-            <input type="checkbox" value="online_social">
+            <input type="checkbox" name="events[]" value="online_social">
             <div>
               <div class="event-label-text">Online social events</div>
               <div class="event-label-sub">Virtual meet-ups &amp; games</div>
@@ -481,7 +483,7 @@
           </label>
 
           <label class="event-checkbox" id="ev-any">
-            <input type="checkbox" value="all_events">
+            <input type="checkbox" name="events[]" value="all_events">
             <div>
               <div class="event-label-text">Surprise me!</div>
               <div class="event-label-sub">Send me everything</div>
@@ -491,6 +493,8 @@
         </div>
         <span class="error-msg" id="events-error" style="display:none; margin-top:0.75rem; font-size:0.78rem;">Please select at least one event type</span>
       </div>
+<input type="hidden" name="_subject" value="New Events Signup - Sparked Connection">
+<input type="hidden" name="_captcha" value="false">
 
      <button type="submit" class="sc-submit">
 Sign me up &#8594;</button>
@@ -512,7 +516,7 @@ Sign me up &#8594;</button>
 </div>
 
 <script>
-  document.querySelectorAll('.event-checkbox').forEach(function(label) {
+   document.querySelectorAll('.event-checkbox').forEach(function(label) {
     var cb = label.querySelector('input[type="checkbox"]');
     cb.addEventListener('change', function() {
       if (this.checked) {
@@ -531,7 +535,7 @@ Sign me up &#8594;</button>
     else el.classList.remove('field-error');
   }
 
-  function handleSubmit() {
+  function handleSubmit(event) {
     var firstName = document.getElementById('first-name').value.trim();
     var lastName = document.getElementById('last-name').value.trim();
     var email = document.getElementById('email').value.trim();
@@ -551,7 +555,7 @@ Sign me up &#8594;</button>
     var ageNum = parseInt(age, 10);
     setError('field-age', !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99);
 
-    if (!firstName || !lastName || !email || !emailRe.test(email) || !city || !age || isNaN(ageNum) || ageNum < 18) {
+    if (!firstName || !lastName || !email || !emailRe.test(email) || !city || !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
       hasError = true;
     }
 
@@ -560,17 +564,11 @@ Sign me up &#8594;</button>
       hasError = true;
     }
 
-    if (hasError) return;
+    if (hasError) {
+      event.preventDefault();
+      return false;
+    }
 
-    var eventNames = Array.from(checked).map(function(cb) {
-      return cb.closest('.event-checkbox').querySelector('.event-label-text').textContent;
-    });
-
-   var msg = 'Thanks ' + firstName + '! We\u2019ll send you invitations for: ' + eventNames.join(', ') + '. Please note our emails can sometimes land in your Junk or Spam folder \u2014 be sure to keep an eye on it, or add hello@sparkedconnection.com to your safe senders list so you never miss an invite.';
-    
-    document.getElementById('ty-msg').textContent = msg;
-
-    document.getElementById('form-wrapper').style.display = 'none';
-    document.getElementById('thank-you').classList.add('visible');
+    return true;
   }
 </script>
