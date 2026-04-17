@@ -253,7 +253,7 @@ html, body {
   font-weight: 600;
   margin-bottom: 10px;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-}
+
 
 .hiw-card-title {
   font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
@@ -272,7 +272,21 @@ html, body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
 }
+.sc-submit {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 14px 36px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(178, 52, 94, 0.25);
 
+  display: inline-block;
+  white-space: nowrap;
+
+  min-width: 320px;   /* ⬅️ THIS is the key fix */
+  text-align: center;
+}
 /* Desktop only */
 @media (min-width: 768px) {
   .hiw-grid {
@@ -1007,9 +1021,9 @@ No swiping. No guesswork. No wasted time.
 </div>
 <div class="text-center mt-16">
 <a href="/events-sign-up/">
-<button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:shadow-md h-11 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg transition-all duration-300 px-8 rounded-full">
-          Sign-Up For Upcoming Events
-         </button>
+<button class="inline-flex items-center justify-center text-base font-semibold bg-accent text-accent-foreground rounded-full px-14 py-3 min-w-[380px] whitespace-nowrap shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cta-spark-btn">
+  Sign-Up For Upcoming Events
+</button>
 </div>
 </div>
 </section>
