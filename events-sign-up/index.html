@@ -390,7 +390,7 @@
 
   <div class="sc-main">
 
-    <div id="form-wrapper">
+    <form id="form-wrapper">
 
       <div class="sc-card">
         <div class="sc-section-label">Your details</div>
@@ -432,7 +432,7 @@
             <span class="error-msg">Please enter your age (18+)</span>
           </div>
         </div>
-      </div>
+     </form>
 
       <div class="sc-card">
         <div class="sc-section-label">Events I'm interested in</div>
@@ -493,8 +493,7 @@
       </div>
 <input type="hidden" name="_subject" value="New Events Signup - Sparked Connection">
 
-      <button class="sc-submit" onclick="handleSubmit()">Sign me up &#8594;</button>
-
+<button type="button" class="sc-submit" onclick="handleSubmit(event)">Sign me up &#8594;</button>
       <p class="sc-privacy">
         By signing up you agree to our <a href="#">privacy policy</a>. We'll only use your details to send event invitations and never share them with third parties.
       </p>
@@ -588,7 +587,7 @@
       });
 
       if (response.ok) {
-        var msg = 'Thanks ' + firstName + '! We’ll send you invitations for: ' + eventNames.join(', ') + '. Please note our emails can sometimes land in your Junk or Spam folder — be sure to keep an eye on it, or add hello@sparkedconnection.com to your safe senders list so you never miss an invite.';
+        var msg = 'Thanks ' + firstName + '! We’ll send you invitations for: ' + eventNames.join(', ') + '. Please note our emails can sometimes land in your Junk or Spam folder - be sure to keep an eye on it, or add hello@sparkedconnection.com to your safe senders list so you never miss an invite.';
 
         document.getElementById('ty-msg').textContent = msg;
         form.style.display = 'none';
