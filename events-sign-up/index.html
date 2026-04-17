@@ -565,7 +565,8 @@
       return cb.closest('.event-checkbox').querySelector('.event-label-text').textContent;
     });
 
-    var msg = 'Thanks ' + firstName + '! We\u2019ll send you invitations for: ' + eventNames.join(', ') + '.';
+   var msg = 'Thanks ' + firstName + '! We\u2019ll send you invitations for: ' + eventNames.join(', ') + '. Please note our emails can sometimes land in your Junk or Spam folder \u2014 be sure to keep an eye on it, or add hello@sparkedconnection.com to your safe senders list so you never miss an invite.';
+    
     document.getElementById('ty-msg').textContent = msg;
 
     document.getElementById('form-wrapper').style.display = 'none';
