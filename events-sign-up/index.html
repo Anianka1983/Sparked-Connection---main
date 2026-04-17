@@ -1,0 +1,574 @@
+
+<style>
+  :root {
+    --navy: hsl(220, 50%, 25%);
+    --navy-dark: hsl(220, 55%, 18%);
+    --plum: hsl(340, 55%, 45%);
+    --plum-light: hsl(340, 45%, 75%);
+    --gold: hsl(32, 85%, 55%);
+    --cream: hsl(22, 38%, 95%);
+    --cream-dark: hsl(22, 25%, 90%);
+    --warm-white: hsl(36, 40%, 99%);
+    --shadow-card: 0 4px 24px -4px hsl(220 30% 20% / 0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  .sc-page {
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sc-nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sc-nav-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: hsl(22, 38%, 95%);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .sc-nav-back {
+    color: hsl(22, 38%, 90%);
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+  }
+
+  .sc-hero {
+    background: var(--navy-dark);
+    text-align: center;
+    padding: 3.5rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sc-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--plum);
+    opacity: 0.12;
+  }
+
+  .sc-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.10;
+  }
+
+  .sc-badge {
+    display: inline-block;
+    background: hsl(340, 55%, 45%, 0.18);
+    border: 1px solid hsl(340, 55%, 60%, 0.35);
+    color: hsl(340, 55%, 78%);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .sc-hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: hsl(36, 40%, 99%);
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+
+  .sc-hero h1 span {
+    background: linear-gradient(135deg, #cb4d77, #f2ab5a, #ce7e98);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sc-hero p {
+    color: hsl(220, 30%, 75%);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .sc-main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .sc-card {
+    background: var(--warm-white);
+    border-radius: 1rem;
+    border: 1px solid hsl(36, 20%, 88%);
+    box-shadow: var(--shadow-card);
+    padding: 2rem 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .sc-section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sc-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: hsl(340, 35%, 88%);
+  }
+
+  .sc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 520px) {
+    .sc-row { grid-template-columns: 1fr; }
+    .sc-card { padding: 1.5rem 1.25rem; }
+  }
+
+  .sc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sc-field.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: hsl(220, 45%, 28%);
+  }
+
+  label span.req {
+    color: var(--plum);
+    margin-left: 2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select {
+    border: 1px solid hsl(36, 20%, 84%);
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: hsl(220, 45%, 20%);
+    background: hsl(36, 30%, 98%);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus {
+    border-color: var(--plum);
+    box-shadow: 0 0 0 3px hsl(340, 55%, 45%, 0.12);
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 420px) {
+    .events-grid { grid-template-columns: 1fr; }
+  }
+
+  .event-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.65rem;
+    border: 1px solid hsl(36, 20%, 86%);
+    background: hsl(36, 30%, 98%);
+    transition: border-color 0.18s, background 0.18s;
+    user-select: none;
+  }
+
+  .event-checkbox:hover {
+    border-color: var(--plum-light);
+    background: hsl(340, 55%, 45%, 0.04);
+  }
+
+  .event-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    accent-color: var(--plum);
+    margin-top: 1px;
+    cursor: pointer;
+  }
+
+  .event-checkbox.checked {
+    border-color: var(--plum);
+    background: hsl(340, 55%, 45%, 0.07);
+  }
+
+  .event-label-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: hsl(220, 45%, 22%);
+    line-height: 1.3;
+    margin-bottom: 1px;
+  }
+
+  .event-label-sub {
+    font-size: 0.73rem;
+    color: hsl(215, 25%, 52%);
+    line-height: 1.3;
+  }
+
+  .event-icon {
+    font-size: 16px;
+    line-height: 1;
+    margin-right: 2px;
+  }
+
+  .sc-submit {
+    width: 100%;
+    padding: 0.85rem 2rem;
+    background: var(--plum);
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sc-submit:hover { background: hsl(340, 55%, 40%); transform: translateY(-1px); }
+  .sc-submit:active { transform: translateY(0); }
+
+  .sc-privacy {
+    text-align: center;
+    font-size: 0.75rem;
+    color: hsl(215, 25%, 55%);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .sc-privacy a { color: var(--plum); text-decoration: none; }
+
+  .sc-thank-you {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .sc-thank-you.visible { display: block; }
+
+  .sc-thank-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: hsl(340, 55%, 45%, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 28px;
+  }
+
+  .sc-thank-you h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .sc-thank-you p {
+    font-size: 0.95rem;
+    color: hsl(215, 25%, 45%);
+    max-width: 380px;
+    margin: 0 auto 2rem;
+    line-height: 1.65;
+  }
+
+  .sc-back-btn {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    border: 1.5px solid var(--navy);
+    border-radius: 0.65rem;
+    color: var(--navy);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .sc-back-btn:hover { background: var(--navy); color: white; }
+
+  .error-msg {
+    font-size: 0.75rem;
+    color: hsl(340, 65%, 42%);
+    margin-top: 3px;
+    display: none;
+  }
+
+  .field-error input, .field-error select {
+    border-color: hsl(340, 65%, 55%);
+  }
+
+  .field-error .error-msg { display: block; }
+</style>
+
+<div class="sc-page">
+  <nav class="sc-nav">
+    <span class="sc-nav-logo">Sparked Connection</span>
+    <button class="sc-nav-back" onclick="window.history.back()">&#8592; Back to main page</button>
+  </nav>
+
+  <div class="sc-hero">
+    <div class="sc-badge">Events sign-up</div>
+    <h1>Find your <span>spark</span> at<br>our upcoming events</h1>
+    <p>Tell us a little about yourself and which events excite you — we'll keep you in the loop with tailored invitations.</p>
+  </div>
+
+  <div class="sc-main">
+
+    <div id="form-wrapper">
+
+      <div class="sc-card">
+        <div class="sc-section-label">Your details</div>
+
+        <div class="sc-row">
+          <div class="sc-field" id="field-first">
+            <label for="first-name">First name <span class="req">*</span></label>
+            <input type="text" id="first-name" placeholder="e.g. Sophie" autocomplete="given-name">
+            <span class="error-msg">Please enter your first name</span>
+          </div>
+          <div class="sc-field" id="field-last">
+            <label for="last-name">Last name <span class="req">*</span></label>
+            <input type="text" id="last-name" placeholder="e.g. Mitchell" autocomplete="family-name">
+            <span class="error-msg">Please enter your last name</span>
+          </div>
+        </div>
+
+        <div class="sc-row">
+          <div class="sc-field" id="field-email">
+            <label for="email">Email address <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+            <span class="error-msg">Please enter a valid email</span>
+          </div>
+          <div class="sc-field" id="field-phone">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" placeholder="+44 7700 900123" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="sc-row">
+          <div class="sc-field" id="field-city">
+            <label for="city">City / location <span class="req">*</span></label>
+            <input type="text" id="city" placeholder="e.g. London" autocomplete="address-level2">
+            <span class="error-msg">Please enter your city</span>
+          </div>
+          <div class="sc-field" id="field-age">
+            <label for="age">Age <span class="req">*</span></label>
+            <input type="number" id="age" placeholder="e.g. 32" min="18" max="99">
+            <span class="error-msg">Please enter your age (18+)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-section-label">Events I'm interested in</div>
+        <p style="font-size:0.83rem; color:hsl(215,25%,50%); margin: -0.5rem 0 1rem; line-height:1.5;">Select all the types of events you'd like to hear about. You can always update your preferences later.</p>
+
+        <div class="events-grid" id="events-grid">
+
+          <label class="event-checkbox" id="ev-pubquiz">
+            <input type="checkbox" value="pub_quiz">
+            <div>
+              <div class="event-label-text">Pub quizzes</div>
+              <div class="event-label-sub">Fun team-based quiz nights</div>
+            </div>
+          </label>
+
+          <label class="event-checkbox" id="ev-workshops">
+            <input type="checkbox" value="workshops">
+            <div>
+              <div class="event-label-text">Workshops</div>
+              <div class="event-label-sub">Skill-building &amp; social sessions</div>
+            </div>
+          </label>
+
+          <label class="event-checkbox" id="ev-trips">
+            <input type="checkbox" value="trips_abroad">
+            <div>
+              <div class="event-label-text">Trips abroad</div>
+              <div class="event-label-sub">Group travel &amp; adventures</div>
+            </div>
+          </label>
+
+          <label class="event-checkbox" id="ev-hiking">
+            <input type="checkbox" value="hiking">
+            <div>
+              <div class="event-label-text">Hiking adventures</div>
+              <div class="event-label-sub">Scenic walks &amp; nature days</div>
+            </div>
+          </label>
+
+          <label class="event-checkbox" id="ev-online">
+            <input type="checkbox" value="online_social">
+            <div>
+              <div class="event-label-text">Online social events</div>
+              <div class="event-label-sub">Virtual meet-ups &amp; games</div>
+            </div>
+          </label>
+
+          <label class="event-checkbox" id="ev-any">
+            <input type="checkbox" value="all_events">
+            <div>
+              <div class="event-label-text">Surprise me!</div>
+              <div class="event-label-sub">Send me everything</div>
+            </div>
+          </label>
+
+        </div>
+        <span class="error-msg" id="events-error" style="display:none; margin-top:0.75rem; font-size:0.78rem;">Please select at least one event type</span>
+      </div>
+
+      <button class="sc-submit" onclick="handleSubmit()">Sign me up &#8594;</button>
+
+      <p class="sc-privacy">
+        By signing up you agree to our <a href="#">privacy policy</a>. We'll only use your details to send event invitations and never share them with third parties.
+      </p>
+
+    </div>
+
+    <div class="sc-card sc-thank-you" id="thank-you">
+      <div class="sc-thank-icon">&#10084;</div>
+      <h2>You're on the list!</h2>
+      <p id="ty-msg">Thanks for signing up. We'll be in touch soon with invitations to the events you've chosen.</p>
+      <button class="sc-back-btn" onclick="window.history.back()">Back to Sparked Connection</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.event-checkbox').forEach(function(label) {
+    var cb = label.querySelector('input[type="checkbox"]');
+    cb.addEventListener('change', function() {
+      if (this.checked) {
+        label.classList.add('checked');
+      } else {
+        label.classList.remove('checked');
+      }
+      document.getElementById('events-error').style.display = 'none';
+    });
+  });
+
+  function setError(fieldId, show) {
+    var el = document.getElementById(fieldId);
+    if (!el) return;
+    if (show) el.classList.add('field-error');
+    else el.classList.remove('field-error');
+  }
+
+  function handleSubmit() {
+    var firstName = document.getElementById('first-name').value.trim();
+    var lastName = document.getElementById('last-name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var city = document.getElementById('city').value.trim();
+    var age = document.getElementById('age').value.trim();
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    var checked = document.querySelectorAll('.events-grid input[type="checkbox"]:checked');
+
+    var hasError = false;
+
+    setError('field-first', !firstName);
+    setError('field-last', !lastName);
+    setError('field-email', !email || !emailRe.test(email));
+    setError('field-city', !city);
+
+    var ageNum = parseInt(age, 10);
+    setError('field-age', !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99);
+
+    if (!firstName || !lastName || !email || !emailRe.test(email) || !city || !age || isNaN(ageNum) || ageNum < 18) {
+      hasError = true;
+    }
+
+    if (checked.length === 0) {
+      document.getElementById('events-error').style.display = 'block';
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    var eventNames = Array.from(checked).map(function(cb) {
+      return cb.closest('.event-checkbox').querySelector('.event-label-text').textContent;
+    });
+
+    var msg = 'Thanks ' + firstName + '! We\u2019ll send you invitations for: ' + eventNames.join(', ') + '.';
+    document.getElementById('ty-msg').textContent = msg;
+
+    document.getElementById('form-wrapper').style.display = 'none';
+    document.getElementById('thank-you').classList.add('visible');
+  }
+</script>
