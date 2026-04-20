@@ -440,7 +440,13 @@
 </div>
 
 <div class="form-wrap">
-<form id="questionnaire" novalidate>
+<form 
+  id="questionnaire" 
+  action="https://formspree.io/f/xojynjke" 
+  method="POST" 
+  enctype="multipart/form-data"
+  novalidate
+>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
@@ -1597,5 +1603,85 @@
   document.getElementById('questionnaire').addEventListener('input', updateProgress);
   document.getElementById('questionnaire').addEventListener('change', updateProgress);
 </script>
+
+<script>
+// ===============================
+// PHOTO UPLOAD VALIDATION + UX
+// ===============================
+
+// Instant feedback when user selects photos
+document.getElementById("photo-upload").addEventListener("change", function () {
+  const preview = document.getElementById("photo-preview");
+  const files = this.files;
+
+  // Reset message
+  preview.innerHTML = "";
+
+  if (files.length === 0) return;
+
+  if (files.length < 2) {
+    preview.innerHTML =
+      "<span style='color:#ce7e98;'>Please upload at least 2 photos.</span>";
+    return;
+  }
+
+  // Calculate total size
+  let totalSize = 0;
+  for (let i = 0; i < files.length; i++) {
+    totalSize += files[i].size;
+  }
+
+  const maxSize = 10 * 1024 * 1024; // 10MB
+
+  if (totalSize > maxSize) {
+    preview.innerHTML =
+      "<span style='color:#ce7e98;'>Total file size must be under 10MB.</span>";
+    return;
+  }
+
+  // Success state
+  preview.innerHTML =
+    "<span style='color:#1e3151;'>Photos ready ✔</span>";
+});
+
+
+// Final validation on submit
+document.getElementById("questionnaire").addEventListener("submit", function (e) {
+  const preview = document.getElementById("photo-preview");
+  const fileInput = document.getElementById("photo-upload");
+  const files = fileInput.files;
+
+  // Clear previous messages
+  preview.innerHTML = "";
+
+  // Minimum 2 photos
+  if (files.length < 2) {
+    e.preventDefault();
+    preview.innerHTML =
+      "<span style='color:#ce7e98;'>Please upload at least 2 photos.</span>";
+    return;
+  }
+
+  // Max total size
+  let totalSize = 0;
+  for (let i = 0; i < files.length; i++) {
+    totalSize += files[i].size;
+  }
+
+  const maxSize = 10 * 1024 * 1024;
+
+  if (totalSize > maxSize) {
+    e.preventDefault();
+    preview.innerHTML =
+      "<span style='color:#ce7e98;'>Total file size must be under 10MB.</span>";
+    return;
+  }
+
+  // Optional: success confirmation (briefly visible before submit)
+  preview.innerHTML =
+    "<span style='color:#1e3151;'>Photos ready ✔</span>";
+});
+</script>
+  
 </body>
 </html>
