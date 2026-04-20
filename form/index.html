@@ -495,10 +495,14 @@
       </div>
     </div>
 
-    <div class="field">
-      <label>Where are you based? <span class="req">*</span></label>
-      <input type="text" name="fi-text-location" placeholder="e.g. London, UK">
-    </div>
+ <div class="field">
+  <label>Where are you based?</label>
+  <input 
+    type="text" 
+    name="fi-text-location" 
+    placeholder="e.g. London, UK"
+  >
+</div>
 
     <div class="field">
       <label>Country of Origin <span class="req">*</span></label>
@@ -1090,16 +1094,40 @@
       </div>
     </div>
 
-    <div class="field">
-      <label>Is location important to you? <span class="req">*</span></label>
-      <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-location_important" value="Yes – I'd like to meet someone local"> Yes – I'd like to meet someone local</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-location_important" value="Flexible within my country"> Flexible within my country</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-location_important" value="Open internationally"> Open internationally</label>
-      </div>
-    </div>
-  </div>
+<div class="field">
+  <label>Is location important to you?</label>
 
+  <div class="radio-group">
+
+    <label class="radio-pill">
+      <input 
+        type="radio" 
+        name="fi-radio-locationPreference" 
+        value="Yes – I prefer someone local"
+      >
+      Yes – I prefer someone local
+    </label>
+
+    <label class="radio-pill">
+      <input 
+        type="radio" 
+        name="fi-radio-locationPreference" 
+        value="Flexible within my country"
+      >
+      Flexible within my country
+    </label>
+
+    <label class="radio-pill">
+      <input 
+        type="radio" 
+        name="fi-radio-locationPreference" 
+        value="Open internationally"
+      >
+      Open internationally
+    </label>
+
+  </div>
+</div>
   <div class="field-group-label">Dealbreakers &amp; Additional Notes</div>
   <div class="fields-stack">
     <div class="field">
