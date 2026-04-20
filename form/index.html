@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matchmaking Questionnaire | Sparked Connection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    h1,h2,h3,h4,p,ul,ol { margin: 0; }
+    ul { list-style: none; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg:        hsl(22 38% 95%);
+      --card:      hsl(36 30% 98%);
+      --primary:   hsl(220 50% 25%);
+      --accent:    hsl(340 55% 45%);
+      --accent-fg: hsl(0 0% 100%);
+      --muted:     hsl(220 20% 45%);
+      --border:    hsl(36 20% 86%);
+      --input-bg:  hsl(36 30% 98%);
+      --label:     hsl(220 45% 20%);
+      --section-num: hsl(340 55% 45%);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--label);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: hsl(22 38% 95% / .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-back {
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, hsl(220 50% 25%) 0%, hsl(220 50% 18%) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 72px 1.5rem 56px;
+    }
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: hsl(340 55% 70%); margin-bottom: 16px; font-weight: 500;
+    }
+    .hero h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 600; line-height: 1.1; margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1rem; color: hsl(220 30% 80%);
+      max-width: 560px; margin: 0 auto 32px; line-height: 1.7;
+    }
+    .hero-steps {
+      display: flex; justify-content: center; gap: 32px;
+      flex-wrap: wrap; margin-top: 32px;
+    }
+    .hero-step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .8rem; color: hsl(220 30% 75%);
+    }
+    .hero-step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: hsl(340 55% 45%); color: #fff;
+      font-size: .75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .time-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: hsl(340 55% 45% / .15);
+      border: 1px solid hsl(340 55% 45% / .3);
+      color: hsl(340 55% 70%);
+      padding: 6px 16px; border-radius: 999px;
+      font-size: .78rem; font-weight: 500;
+    }
+
+    /* ── FORM CONTAINER ───────────────────────────────────────── */
+    .form-wrap {
+      max-width: 820px; margin: 0 auto;
+      padding: 48px 1.5rem 80px;
+    }
+
+    /* ── SECTION CARD ─────────────────────────────────────────── */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 36px 40px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px hsl(220 30% 20% / .05);
+    }
+    @media (max-width: 600px) { .section-card { padding: 24px 20px; } }
+
+    .section-header {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 32px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent); color: #fff;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .section-title-block h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.55rem; font-weight: 600;
+      color: var(--primary); margin-bottom: 4px;
+    }
+    .section-title-block p {
+      font-size: .82rem; color: var(--muted); line-height: 1.5;
+    }
+    .section-time {
+      margin-left: auto; flex-shrink: 0;
+      font-size: .72rem; color: var(--muted);
+      background: var(--bg); padding: 4px 10px;
+      border-radius: 999px; border: 1px solid var(--border);
+      white-space: nowrap; align-self: flex-start;
+    }
+
+    /* ── GRID LAYOUTS ─────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+    .col-span-2 { grid-column: 1 / -1; }
+
+    /* ── FORM ELEMENTS ────────────────────────────────────────── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field + .field { margin-top: 0; }
+    .fields-stack { display: flex; flex-direction: column; gap: 20px; }
+
+    label {
+      font-size: .82rem; font-weight: 600; color: var(--label);
+      display: flex; align-items: center; gap: 4px;
+    }
+    label .req { color: var(--accent); font-size: .9em; }
+    label .opt { color: var(--muted); font-weight: 400; font-size: .78rem; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--input-bg);
+      font-family: "Inter", sans-serif;
+      font-size: .875rem;
+      color: var(--label);
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px hsl(340 55% 45% / .1);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238896b3' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+
+    .hint { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+
+    /* ── CHECKBOX / RADIO ─────────────────────────────────────── */
+    .check-list { display: flex; flex-direction: column; gap: 10px; }
+    .check-list.col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 500px) { .check-list.col-2 { grid-template-columns: 1fr; } }
+
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      font-size: .85rem;
+    }
+    .check-item:hover { border-color: var(--accent); background: hsl(340 55% 45% / .04); }
+    .check-item input[type="checkbox"],
+    .check-item input[type="radio"] {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px;
+      accent-color: var(--accent);
+      padding: 0; border: none;
+    }
+    .check-item.selected { border-color: var(--accent); background: hsl(340 55% 45% / .06); }
+
+    /* ── RADIO PILL ───────────────────────────────────────────── */
+    .radio-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .radio-pill {
+      padding: 8px 18px; border-radius: 999px;
+      border: 1.5px solid var(--border);
+      font-size: .82rem; cursor: pointer;
+      background: var(--bg); transition: all .2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .radio-pill input { display: none; }
+    .radio-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .radio-pill.selected { border-color: var(--accent); background: hsl(340 55% 45% / .08); color: var(--accent); font-weight: 600; }
+
+    /* ── SCALE ────────────────────────────────────────────────── */
+    .scale-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .scale-labels { display: flex; justify-content: space-between; font-size: .73rem; color: var(--muted); }
+    .scale-track {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .scale-track input[type="range"] {
+      flex: 1; accent-color: var(--accent);
+      border: none; padding: 0; background: transparent;
+    }
+    .scale-value {
+      min-width: 32px; text-align: center;
+      font-weight: 700; font-size: .9rem;
+      color: var(--accent);
+    }
+
+    /* ── PSYCHOLOGY CARD ──────────────────────────────────────── */
+    .psych-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      background: var(--bg);
+      margin-bottom: 24px;
+    }
+    .psych-card:last-child { margin-bottom: 0; }
+    .psych-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      margin-bottom: 14px;
+    }
+    .psych-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--primary); margin-bottom: 4px;
+    }
+    .psych-time {
+      font-size: .72rem; color: var(--muted);
+      background: var(--card); padding: 3px 10px;
+      border-radius: 999px; border: 1px solid var(--border);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .psych-desc { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .psych-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 600;
+      color: var(--accent);
+      border: 1.5px solid hsl(340 55% 45% / .3);
+      padding: 7px 16px; border-radius: 999px;
+      transition: all .2s; margin-bottom: 20px;
+      background: hsl(340 55% 45% / .04);
+    }
+    .psych-link:hover { background: hsl(340 55% 45% / .1); border-color: var(--accent); }
+    .psych-fields { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ── CONSENT ──────────────────────────────────────────────── */
+    .consent-intro {
+      font-size: .85rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 20px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .consent-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .consent-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      background: var(--bg); font-size: .83rem; line-height: 1.5;
+      cursor: pointer; transition: border-color .2s;
+    }
+    .consent-item input { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--accent); padding: 0; border: none; }
+    .consent-item:hover { border-color: var(--accent); }
+    .consent-never {
+      font-size: .82rem; font-weight: 700; color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .consent-withdraw {
+      font-size: .78rem; color: var(--muted); margin-bottom: 24px;
+    }
+    .consent-withdraw a { color: var(--accent); text-decoration: underline; }
+    .consent-legal {
+      display: flex; gap: 20px; font-size: .78rem;
+      margin-top: 8px;
+    }
+    .consent-legal a { color: var(--accent); text-decoration: underline; }
+
+    /* ── UPLOAD ───────────────────────────────────────────────── */
+    .upload-box {
+      border: 2px dashed var(--border); border-radius: 12px;
+      padding: 40px 24px; text-align: center;
+      background: var(--bg); cursor: pointer; transition: border-color .2s;
+    }
+    .upload-box:hover { border-color: var(--accent); }
+    .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .upload-title { font-size: .9rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+    .upload-sub { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+    .upload-btn {
+      display: inline-block; margin-top: 16px;
+      padding: 9px 22px; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .upload-btn:hover { opacity: .88; }
+    .upload-input { display: none; }
+
+    /* ── SUBMIT ───────────────────────────────────────────────── */
+    .submit-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px;
+      text-align: center; margin-top: 0;
+    }
+    .submit-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.6rem; color: var(--primary); margin-bottom: 8px;
+    }
+    .submit-sub { font-size: .85rem; color: var(--muted); margin-bottom: 28px; }
+    .submit-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 48px; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-size: 1rem; font-weight: 700; border: none;
+      box-shadow: 0 6px 20px hsl(340 55% 45% / .35);
+      transition: all .3s; letter-spacing: .01em;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px hsl(340 55% 45% / .45); }
+
+    /* ── PROGRESS ─────────────────────────────────────────────── */
+    .progress-bar {
+      position: sticky; top: 64px; z-index: 40;
+      height: 3px; background: var(--border);
+    }
+    .progress-fill {
+      height: 100%; background: var(--accent);
+      width: 0%; transition: width .4s ease;
+    }
+
+    /* ── SECTION DIVIDER ──────────────────────────────────────── */
+    .section-gap { height: 8px; }
+
+    /* ── CONDITIONAL ──────────────────────────────────────────── */
+    .conditional { display: none; margin-top: 16px; }
+    .conditional.visible { display: block; }
+
+    /* ── INFO BOX ─────────────────────────────────────────────── */
+    .info-box {
+      background: hsl(220 50% 25% / .05);
+      border: 1px solid hsl(220 50% 25% / .12);
+      border-radius: 8px; padding: 14px 16px;
+      font-size: .8rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* ── FIELDSET GROUP ───────────────────────────────────────── */
+    .field-group-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 14px; margin-top: 28px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+    .field-group-label:first-child { margin-top: 0; }
+
+    /* ── OTHER FREE TEXT ──────────────────────────────────────── */
+    .other-field { margin-top: 8px; display: none; }
+    .other-field.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Sparked<span>Connection</span></div>
+    <a class="nav-back" href="/plans/">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+      Back to Plans
+    </a>
+  </div>
+</nav>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">New Member Profile</p>
+  <h1>Your Matchmaking Questionnaire</h1>
+  <p>This questionnaire helps us understand who you are and what you're truly looking for — so we can make meaningful, well-matched introductions.</p>
+  <div class="time-badge">⏱ Estimated time: 20–30 minutes</div>
+  <div class="hero-steps">
+    <div class="hero-step"><div class="hero-step-num">1</div> About You</div>
+    <div class="hero-step"><div class="hero-step-num">2</div> Lifestyle</div>
+    <div class="hero-step"><div class="hero-step-num">3</div> Relationship Goals</div>
+    <div class="hero-step"><div class="hero-step-num">4</div> Match Preferences</div>
+    <div class="hero-step"><div class="hero-step-num">5</div> Values</div>
+    <div class="hero-step"><div class="hero-step-num">6</div> Psychology</div>
+    <div class="hero-step"><div class="hero-step-num">7</div> Services</div>
+  </div>
+</div>
+
+<div class="form-wrap">
+<form id="questionnaire" novalidate>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: ABOUT YOU -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title-block">
+      <h2>About You</h2>
+      <p>Tell us the basics — your background, appearance, and lifestyle.</p>
+    </div>
+  </div>
+
+  <div class="field-group-label">Personal Details</div>
+  <div class="grid-2">
+    <div class="field">
+      <label>First Name <span class="req">*</span></label>
+      <input type="text" name="first_name" placeholder="Your first name" required>
+    </div>
+    <div class="field">
+      <label>Surname <span class="req">*</span></label>
+      <input type="text" name="last_name" placeholder="Your surname" required>
+    </div>
+    <div class="field">
+      <label>Date of Birth <span class="req">*</span></label>
+      <input type="date" name="dob" required>
+    </div>
+    <div class="field">
+      <label>Gender <span class="req">*</span></label>
+      <select name="gender" required>
+        <option value="">Select gender</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="fields-stack" style="margin-top:20px;">
+    <div class="field">
+      <label>I am interested in dating… <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Men"> Men</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Women"> Women</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Both"> Both</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="No preference"> No preference</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Where are you based? <span class="req">*</span></label>
+      <input type="text" name="location" placeholder="e.g. London, UK">
+    </div>
+
+    <div class="field">
+      <label>Country of Origin <span class="req">*</span></label>
+      <input type="text" name="country_of_origin" placeholder="e.g. United Kingdom">
+    </div>
+
+    <div class="field">
+      <label>Ethnicity <span class="req">*</span></label>
+      <select name="ethnicity">
+        <option value="">Select ethnicity</option>
+        <option>White British</option>
+        <option>White Irish</option>
+        <option>White – Other</option>
+        <option>Mixed – White &amp; Black Caribbean</option>
+        <option>Mixed – White &amp; Black African</option>
+        <option>Mixed – White &amp; Asian</option>
+        <option>Mixed – Other</option>
+        <option>Asian – Indian</option>
+        <option>Asian – Pakistani</option>
+        <option>Asian – Bangladeshi</option>
+        <option>Asian – Chinese</option>
+        <option>Asian – Other</option>
+        <option>Black African</option>
+        <option>Black Caribbean</option>
+        <option>Black – Other</option>
+        <option>Arab</option>
+        <option>Latin American</option>
+        <option>Middle Eastern</option>
+        <option>Jewish</option>
+        <option>Prefer not to say</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group-label">Languages</div>
+  <div class="field">
+    <label>What languages do you speak? <span class="req">*</span></label>
+    <p class="hint">Select all that apply</p>
+    <div class="check-list col-2" id="languages-list">
+      <label class="check-item"><input type="checkbox" name="languages" value="English"> English</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="French"> French</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Spanish"> Spanish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="German"> German</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Italian"> Italian</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Portuguese"> Portuguese</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Arabic"> Arabic</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Mandarin"> Mandarin</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Punjabi"> Punjabi</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Urdu"> Urdu</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Turkish"> Turkish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Polish"> Polish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Russian"> Russian</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Greek"> Greek</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Hebrew"> Hebrew</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Japanese"> Japanese</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Korean"> Korean</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Farsi / Persian"> Farsi / Persian</label>
+      <label class="check-item" id="lang-other-check"><input type="checkbox" name="languages" value="Other" id="lang-other-cb"> Other</label>
+    </div>
+    <div class="other-field" id="lang-other-field">
+      <input type="text" name="languages_other" placeholder="Please specify other language(s)">
+    </div>
+  </div>
+
+  <div class="field-group-label">Appearance</div>
+  <div class="grid-2">
+    <div class="field">
+      <label>Height <span class="req">*</span></label>
+      <select name="height">
+        <option value="">Select height</option>
+        <option>Under 5'0" / 152cm</option>
+        <option>5'0" – 5'2" / 152–157cm</option>
+        <option>5'3" – 5'5" / 160–165cm</option>
+        <option>5'6" – 5'8" / 168–173cm</option>
+        <option>5'9" – 5'11" / 175–180cm</option>
+        <option>6'0" – 6'2" / 183–188cm</option>
+        <option>6'3" – 6'5" / 190–195cm</option>
+        <option>Over 6'5" / 195cm+</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Body Shape <span class="req">*</span></label>
+      <select name="body_shape">
+        <option value="">Select body shape</option>
+        <option>Very slim</option>
+        <option>Slim</option>
+        <option>Athletic / Toned</option>
+        <option>Average build</option>
+        <option>A few extra pounds</option>
+        <option>Muscular</option>
+        <option>Plus-size</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Hair Colour <span class="req">*</span></label>
+      <select name="hair_colour">
+        <option value="">Select hair colour</option>
+        <option>Black</option>
+        <option>Dark brown</option>
+        <option>Medium brown</option>
+        <option>Light brown / Chestnut</option>
+        <option>Blonde</option>
+        <option>Strawberry blonde</option>
+        <option>Red / Auburn</option>
+        <option>Grey</option>
+        <option>White / Silver</option>
+        <option>Bald / Shaved</option>
+        <option>Coloured / Dyed</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Hair Length <span class="req">*</span></label>
+      <select name="hair_length">
+        <option value="">Select hair length</option>
+        <option>Bald / Shaved</option>
+        <option>Very short</option>
+        <option>Short</option>
+        <option>Medium length</option>
+        <option>Long</option>
+        <option>Very long</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Eye Colour <span class="req">*</span></label>
+      <select name="eye_colour">
+        <option value="">Select eye colour</option>
+        <option>Brown</option>
+        <option>Dark brown / Black</option>
+        <option>Hazel</option>
+        <option>Green</option>
+        <option>Blue</option>
+        <option>Grey</option>
+        <option>Amber</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group-label">Living Situation &amp; Career</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>My living situation <span class="req">*</span></label>
+      <select name="living_situation">
+        <option value="">Select living situation</option>
+        <option>Home-owner &amp; live alone</option>
+        <option>Home-owner &amp; living with flatmates</option>
+        <option>Renting &amp; live alone</option>
+        <option>Renting &amp; live with flatmates</option>
+        <option>Currently living with parents</option>
+        <option>Other (please specify)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>What is your highest level of education? <span class="req">*</span></label>
+      <select name="education">
+        <option value="">Select education level</option>
+        <option>Secondary school (GCSEs / O-levels)</option>
+        <option>A-levels / Sixth form</option>
+        <option>Vocational / Trade qualification</option>
+        <option>Some university (no degree)</option>
+        <option>Undergraduate degree (Bachelor's)</option>
+        <option>Postgraduate degree (Master's)</option>
+        <option>Doctorate / PhD</option>
+        <option>Professional qualification (e.g. law, medicine, accounting)</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Current occupation or field <span class="req">*</span></label>
+        <input type="text" name="occupation" placeholder="e.g. Marketing Manager, Doctor…">
+      </div>
+      <div class="field">
+        <label>Profession level <span class="req">*</span></label>
+        <select name="profession_level">
+          <option value="">Select profession level</option>
+          <option>Early career</option>
+          <option>Mid-Level professional</option>
+          <option>Senior professional</option>
+          <option>Manager / Lead</option>
+          <option>Director</option>
+          <option>C-suite / Executive</option>
+          <option>Entrepreneur / Business owner</option>
+          <option>Medical doctor</option>
+          <option>Other (please specify)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Select income range <span class="opt">(Optional)</span></label>
+      <select name="income">
+        <option value="">Prefer not to say</option>
+        <option>Under £25,000</option>
+        <option>£25,000 – £40,000</option>
+        <option>£40,000 – £60,000</option>
+        <option>£60,000 – £80,000</option>
+        <option>£80,000 – £100,000</option>
+        <option>£100,000 – £150,000</option>
+        <option>£150,000 – £250,000</option>
+        <option>£250,000+</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group-label">Children</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Do you have children? <span class="req">*</span></label>
+      <div class="radio-pills" id="has-children-group">
+        <label class="radio-pill"><input type="radio" name="has_children" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="has_children" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="has_children" value="Prefer not to say"> Prefer not to say</label>
+      </div>
+    </div>
+    <div class="conditional" id="children-count">
+      <div class="field">
+        <label>How many children do you have? <span class="req">*</span></label>
+        <select name="children_count">
+          <option value="">Select</option>
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5+</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Are you open to dating people with children? <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="It depends"> It depends</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: LIFESTYLE & PERSONALITY -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title-block">
+      <h2>Lifestyle &amp; Personality</h2>
+      <p>Help us understand how you live and what matters to you day-to-day.</p>
+    </div>
+  </div>
+
+  <div class="field-group-label">Health &amp; Habits</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Do you smoke? <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="smoking" value="Non-smoker"> Non-smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Social smoker"> Social smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Smoker"> Smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Vaper"> Vaper</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Prefer not to say"> Prefer not to say</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Do you drink alcohol? <span class="req">*</span></label>
+      <div class="radio-pills" id="alcohol-group">
+        <label class="radio-pill"><input type="radio" name="alcohol" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Occasionally"> Occasionally</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Prefer not to say"> Prefer not to say</label>
+      </div>
+    </div>
+    <div class="conditional" id="alcohol-freq">
+      <div class="field">
+        <label>How often do you drink per week? <span class="req">*</span></label>
+        <select name="alcohol_frequency">
+          <option value="">Select</option>
+          <option>1–2 times</option>
+          <option>3–4 times</option>
+          <option>5–6 times</option>
+          <option>Every day</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How often do you exercise? <span class="req">*</span></label>
+      <select name="exercise">
+        <option value="">Select</option>
+        <option>Never</option>
+        <option>Rarely (once a month or less)</option>
+        <option>Occasionally (a few times a month)</option>
+        <option>Regularly (1–2 times a week)</option>
+        <option>Often (3–4 times a week)</option>
+        <option>Daily</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Describe your diet <span class="req">*</span></label>
+      <select name="diet">
+        <option value="">Select</option>
+        <option>No restrictions / Omnivore</option>
+        <option>Flexitarian</option>
+        <option>Pescatarian</option>
+        <option>Vegetarian</option>
+        <option>Vegan</option>
+        <option>Halal</option>
+        <option>Kosher</option>
+        <option>Gluten-free</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-group-label">Religion &amp; Spirituality</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Religion / Spirituality <span class="req">*</span></label>
+      <select name="religion">
+        <option value="">Select</option>
+        <option>Christian</option>
+        <option>Catholic</option>
+        <option>Jewish</option>
+        <option>Muslim</option>
+        <option>Hindu</option>
+        <option>Buddhist</option>
+        <option>Sikh</option>
+        <option>Spiritual but not religious</option>
+        <option>Agnostic</option>
+        <option>Atheist</option>
+        <option>Prefer not to say</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>How important is religion or spirituality to you? <span class="req">*</span></label>
+      <p class="hint">1 = Not important at all, 5 = Very important</p>
+      <div class="scale-wrap">
+        <div class="scale-track">
+          <input type="range" name="religion_importance" min="1" max="5" value="3" oninput="document.getElementById('rel-val').textContent=this.value">
+          <div class="scale-value" id="rel-val">3</div>
+        </div>
+        <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group-label">Personality &amp; Values</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Do you want to have children (in the future)? <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="want_children" value="Yes, definitely"> Yes, definitely</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="Open to it"> Open to it</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="Not sure yet"> Not sure yet</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="No"> No</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How introverted or extraverted are you? <span class="req">*</span></label>
+      <p class="hint">1 = Quiet night in, 10 = Social butterfly</p>
+      <div class="scale-wrap">
+        <div class="scale-track">
+          <input type="range" name="introvert_extravert" min="1" max="10" value="5" oninput="document.getElementById('intro-val').textContent=this.value">
+          <div class="scale-value" id="intro-val">5</div>
+        </div>
+        <div class="scale-labels"><span>1 – Quiet night in</span><span>10 – Social butterfly</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Which of these best describes your values? <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="values" value="Family-first"> Family-first</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Career-driven"> Career-driven</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Adventure & travel"> Adventure &amp; travel</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Health & wellbeing"> Health &amp; wellbeing</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Creativity & the arts"> Creativity &amp; the arts</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Intellectual curiosity"> Intellectual curiosity</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Community & giving back"> Community &amp; giving back</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Financial security"> Financial security</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Spirituality & faith"> Spirituality &amp; faith</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Independence"> Independence</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Loyalty & commitment"> Loyalty &amp; commitment</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Fun & spontaneity"> Fun &amp; spontaneity</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3: RELATIONSHIP GOALS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title-block">
+      <h2>Relationship Goals</h2>
+      <p>Tell us what you're looking for and how you approach relationships.</p>
+    </div>
+  </div>
+
+  <div class="fields-stack">
+    <div class="field">
+      <label>What kind of a relationship are you looking for? <span class="req">*</span></label>
+      <select name="relationship_type">
+        <option value="">Select relationship type</option>
+        <option>Marriage</option>
+        <option>Long-term relationship</option>
+        <option>Casual dating</option>
+        <option>Friendship first</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>How long was your last relationship? <span class="req">*</span></label>
+      <select name="last_relationship_length">
+        <option value="">Select</option>
+        <option>I haven't had a relationship before</option>
+        <option>Less than 6 months</option>
+        <option>6 months – 1 year</option>
+        <option>1–2 years</option>
+        <option>2–5 years</option>
+        <option>5–10 years</option>
+        <option>Over 10 years</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>How do you prefer to handle conflict in a relationship? <span class="req">*</span></label>
+      <select name="conflict_style">
+        <option value="">Select</option>
+        <option>Talk it through calmly as soon as it arises</option>
+        <option>Take space first, then discuss</option>
+        <option>Write out my feelings before talking</option>
+        <option>Seek a compromise without dwelling on it</option>
+        <option>I find conflict difficult and tend to avoid it</option>
+        <option>It depends on the situation</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>In your ideal relationship, how much time would you spend together vs. independently? <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Mostly together"> Mostly together</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Balanced – roughly 50/50"> Balanced – roughly 50/50</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Mostly independent with quality time"> Mostly independent with quality time</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Very independent"> Very independent</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>What does a great first date look like to you? <span class="req">*</span></label>
+      <textarea name="first_date" placeholder="Describe your ideal first date…"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4: YOUR MATCH PREFERENCES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title-block">
+      <h2>Your Match Preferences</h2>
+      <p>Help us understand the qualities you're looking for in a partner.</p>
+    </div>
+  </div>
+
+  <div class="field-group-label">Age &amp; Appearance</div>
+  <div class="grid-2">
+    <div class="field">
+      <label>Preferred minimum age of match <span class="req">*</span></label>
+      <input type="number" name="pref_age_min" placeholder="e.g. 28" min="18" max="80">
+    </div>
+    <div class="field">
+      <label>Preferred maximum age of match <span class="req">*</span></label>
+      <input type="number" name="pref_age_max" placeholder="e.g. 45" min="18" max="100">
+    </div>
+  </div>
+
+  <div class="fields-stack" style="margin-top:20px;">
+    <div class="field">
+      <label>Partner's preferred ethnicity <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="No preference"> No preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="White"> White</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Mixed heritage"> Mixed heritage</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Asian"> Asian</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Black"> Black</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Arab / Middle Eastern"> Arab / Middle Eastern</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Latin American"> Latin American</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Jewish"> Jewish</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Your partner's ideal height <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="pref_height" value="No preference"> No preference</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Shorter than me"> Shorter than me</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Same height as me"> Same height</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Taller than me"> Taller than me</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Specific range"> Specific range</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Partner's preferred hair colour <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Black"> Black</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Dark brown"> Dark brown</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Brown"> Brown</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Blonde"> Blonde</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Red / Auburn"> Red / Auburn</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Grey / Silver"> Grey / Silver</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Bald"> Bald</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Partner's preferred hair length <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Very short hair"> Very short hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Short styles"> Short styles</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Medium-length hair"> Medium-length hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Long hair"> Long hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Very long hair"> Very long hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Fine or thinning hair"> Fine or thinning hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Bald"> Bald</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Other"> Other</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Partner's preferred body type <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Very slim"> Very slim</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Slim"> Slim</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Athletic / Toned"> Athletic / Toned</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Average build"> Average build</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="A few extra pounds"> A few extra pounds</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Muscular"> Muscular</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Plus-size"> Plus-size</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Are there any physical characteristics you would prefer to avoid? <span class="opt">(Optional)</span></label>
+      <textarea name="pref_avoid_physical" placeholder="Please describe any physical characteristics you would prefer not to be matched with…" style="min-height:80px;"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group-label">Religion &amp; Location</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Do you have specific religious preferences for your partner? <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="I don't mind"> I don't mind</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Christian"> Christian</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Catholic"> Catholic</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Jewish"> Jewish</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Muslim"> Muslim</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Hindu"> Hindu</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Buddhist"> Buddhist</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Sikh"> Sikh</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Spiritual but not religious"> Spiritual but not religious</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Agnostic"> Agnostic</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Atheist"> Atheist</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Other (please specify)"><span></span> Other</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Is location important to you? <span class="req">*</span></label>
+      <div class="radio-pills">
+        <label class="radio-pill"><input type="radio" name="location_important" value="Yes – I'd like to meet someone local"> Yes – I'd like to meet someone local</label>
+        <label class="radio-pill"><input type="radio" name="location_important" value="Flexible within my country"> Flexible within my country</label>
+        <label class="radio-pill"><input type="radio" name="location_important" value="Open internationally"> Open internationally</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group-label">Dealbreakers &amp; Additional Notes</div>
+  <div class="fields-stack">
+    <div class="field">
+      <label>Are there any absolute dealbreakers for you? <span class="req">*</span></label>
+      <p class="hint">Select all that apply</p>
+      <div class="check-list col-2">
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Smoking"> Smoking</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Heavy drinking"> Heavy drinking</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Drug use"> Drug use</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Has children"> Has children</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Doesn't want children"> Doesn't want children</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Different religion"> Different religion</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Different political views"> Different political views</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Not financially stable"> Not financially stable</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Long-distance only"> Long-distance only</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="No ambition / drive"> No ambition / drive</label>
+        <label class="check-item" id="dealbreaker-other-check"><input type="checkbox" name="dealbreakers" value="Other" id="dealbreaker-other-cb"> Other</label>
+      </div>
+      <div class="other-field" id="dealbreaker-other-field">
+        <input type="text" name="dealbreakers_other" placeholder="Please specify other dealbreakers">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Do you have any specific preferences for your partner? <span class="opt">(Optional)</span></label>
+      <p class="hint">e.g. preferred nationality, hobbies, type of lifestyle, background, or any other particular qualities that we should consider when looking for a match</p>
+      <textarea name="specific_preferences" placeholder="Share any other specific preferences here…"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5: VALUES & COMPATIBILITY -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title-block">
+      <h2>Values &amp; Compatibility</h2>
+      <p>Understanding your values helps us find someone truly aligned with who you are.</p>
+    </div>
+  </div>
+
+  <div class="fields-stack">
+    <div class="field">
+      <label>How important is it for your partner to be religious or spiritual? <span class="req">*</span></label>
+      <p class="hint">1 = Not important at all, 5 = Very important</p>
+      <div class="scale-wrap">
+        <div class="scale-track">
+          <input type="range" name="partner_religion_importance" min="1" max="5" value="3" oninput="document.getElementById('prel-val').textContent=this.value">
+          <div class="scale-value" id="prel-val">3</div>
+        </div>
+        <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How important are political views in your life? <span class="req">*</span></label>
+      <select name="politics_importance">
+        <option value="">Select importance of politics</option>
+        <option>Very important — it strongly influences my values and decisions</option>
+        <option>Somewhat important — I have views, but they're not central</option>
+        <option>Not very important — I rarely engage with politics</option>
+        <option>Not important at all</option>
+        <option>Prefer not to say</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>How would you describe your political views? <span class="req">*</span></label>
+      <p class="hint">1 = Very liberal, 10 = Very conservative</p>
+      <div class="scale-wrap">
+        <div class="scale-track">
+          <input type="range" name="political_views" min="1" max="10" value="5" oninput="document.getElementById('pol-val').textContent=this.value">
+          <div class="scale-value" id="pol-val">5</div>
+        </div>
+        <div class="scale-labels"><span>1 – Very liberal</span><span>10 – Very conservative</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How important is it for your partner to share similar political views? <span class="req">*</span></label>
+      <p class="hint">1 = Not important, 10 = Very important</p>
+      <div class="scale-wrap">
+        <div class="scale-track">
+          <input type="range" name="partner_politics_importance" min="1" max="10" value="5" oninput="document.getElementById('ppol-val').textContent=this.value">
+          <div class="scale-value" id="ppol-val">5</div>
+        </div>
+        <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Which statement best describes your general approach to money? <span class="req">*</span></label>
+      <p class="hint">Select the option that feels most accurate</p>
+      <div class="check-list">
+        <label class="check-item"><input type="radio" name="money_approach" value="careful"> I'm careful and value financial security above all</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="thoughtful"> I'm thoughtful with money but enjoy spending on meaningful experiences</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="plan_and_save"> I plan and save, while also allowing room for enjoyment</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="comfortable_spending"> I'm comfortable spending and prioritise lifestyle and experiences</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="spontaneous"> I'm more spontaneous with money and prefer living in the moment</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>In a relationship, how important is it that your partner's approach to money is similar to yours? <span class="req">*</span></label>
+      <div class="check-list">
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Very important"> Very important</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Somewhat important"> Somewhat important</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Nice to have, but not essential"> Nice to have, but not essential</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Not important"> Not important</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>What are your long-term life goals? <span class="opt">(Optional)</span></label>
+      <p class="hint">e.g. gain financial freedom, retire abroad, travel the world, have a big family etc.</p>
+      <textarea name="life_goals" placeholder="Share your long-term goals and aspirations…"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6: PHOTOS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title-block">
+      <h2>Photos</h2>
+      <p>Please upload a minimum of 2 photos. Photos are reviewed discreetly.</p>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-bottom:24px;">
+    <strong>Photo requirements:</strong> Please upload at least 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
+  </div>
+
+  <div class="upload-box" onclick="document.getElementById('photo-upload').click()">
+    <div class="upload-icon">📷</div>
+    <div class="upload-title">Upload your photos</div>
+    <div class="upload-sub">
+      Minimum 2 photos required (1 face photo + 1 full-length photo)<br>
+      Maximum 10MB total · JPEG preferred
+    </div>
+    <div class="upload-btn">Choose Photos</div>
+    <input type="file" class="upload-input" id="photo-upload" name="photos" accept="image/*" multiple>
+  </div>
+  <div id="photo-preview" style="margin-top:12px;font-size:.8rem;color:var(--muted);"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title-block">
+      <h2>Personality &amp; Psychology</h2>
+      <p>These scientifically-validated tests help us make much deeper, more meaningful matches. Your progress is saved — you can return with your results at any time.</p>
+    </div>
+    <div class="section-time">⏱ ~35–40 min total</div>
+  </div>
+
+  <!-- BIG FIVE -->
+  <div class="psych-card">
+    <div class="psych-header">
+      <div>
+        <div class="psych-title">1. The 'Big Five' Personality Test</div>
+        <div class="psych-desc">This is a trusted, scientifically validated test used for reliable personal matching. You'll receive your scores and a personal results link — then return to this form to add both. Your progress is saved — return with your results anytime.</div>
+      </div>
+      <div class="psych-time">⏱ Takes 10–12 minutes</div>
+    </div>
+    <a class="psych-link" href="https://www.truity.com/test/big-five-personality-test" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
+      Take the FREE Big Five test
+    </a>
+    <div class="psych-fields">
+      <div class="grid-2">
+        <div class="field">
+          <label>Openness Score <span class="req">*</span></label>
+          <input type="number" name="big5_openness" placeholder="1–120" min="1" max="120">
+        </div>
+        <div class="field">
+          <label>Extraversion Score <span class="req">*</span></label>
+          <input type="number" name="big5_extraversion" placeholder="1–120" min="1" max="120">
+        </div>
+        <div class="field">
+          <label>Conscientiousness Score <span class="req">*</span></label>
+          <input type="number" name="big5_conscientiousness" placeholder="1–120" min="1" max="120">
+        </div>
+        <div class="field">
+          <label>Agreeableness Score <span class="req">*</span></label>
+          <input type="number" name="big5_agreeableness" placeholder="1–120" min="1" max="120">
+        </div>
+        <div class="field">
+          <label>Neuroticism Score <span class="req">*</span></label>
+          <input type="number" name="big5_neuroticism" placeholder="1–120" min="1" max="120">
+        </div>
+      </div>
+      <div class="field">
+        <label>Paste your Big Five result link <span class="req">*</span></label>
+        <input type="url" name="big5_link" placeholder="e.g. 691f0d4f82e52q582a869572">
+      </div>
+    </div>
+  </div>
+
+  <!-- LOVE LANGUAGE -->
+  <div class="psych-card">
+    <div class="psych-header">
+      <div>
+        <div class="psych-title">2. The 'Love Language' Test</div>
+        <div class="psych-desc">
+          <strong>A)</strong> Please take the free test in the link below. This test reveals how you feel most appreciated in a relationship — essentially, how you like to <em>receive</em> love. Your progress is saved — return with your results anytime.
+        </div>
+      </div>
+      <div class="psych-time">⏱ Takes 5 minutes</div>
+    </div>
+    <a class="psych-link" href="https://5lovelanguages.com/quizzes/love-language" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
+      Take the FREE Love Language test
+    </a>
+    <div class="psych-fields">
+      <div class="field">
+        <label>What makes you feel loved? (how you receive love) <span class="req">*</span></label>
+        <select name="love_language_receive">
+          <option value="">What makes you feel loved?</option>
+          <option>Words of affirmation</option>
+          <option>Quality time</option>
+          <option>Acts of service</option>
+          <option>Receiving gifts</option>
+          <option>Physical touch</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>How do you most naturally give/show love? <span class="req">*</span></label>
+        <p class="hint">The Love Language Test does not measure how you 'give' love. But based on your own judgement, how do you most naturally 'give/show' love to someone? (Choose the answer that feels most true for you.)</p>
+        <select name="love_language_give">
+          <option value="">How do you show love?</option>
+          <option>Words of Affirmation</option>
+          <option>Acts of Service</option>
+          <option>Giving Gifts</option>
+          <option>Quality Time</option>
+          <option>Physical Touch</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTACHMENT STYLE -->
+  <div class="psych-card">
+    <div class="psych-header">
+      <div>
+        <div class="psych-title">3. Attachment Style Test</div>
+        <div class="psych-desc">This test measures how you bond, connect, and relate to others in close relationships. Understanding your attachment style helps us find someone whose relational patterns complement yours. It identifies whether you are predominantly Secure, Anxious, Avoidant, or Disorganised in how you attach to a partner. Your progress is saved — return with your results anytime.</div>
+      </div>
+      <div class="psych-time">⏱ Takes 5–7 minutes</div>
+    </div>
+    <a class="psych-link" href="https://www.attachmentproject.com/attachment-style-quiz/" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
+      Take the Attachment test
+    </a>
+    <div class="psych-fields">
+      <div class="field">
+        <label>My attachment style is <span class="req">*</span></label>
+        <select name="attachment_style">
+          <option value="">Select your attachment style</option>
+          <option>Secure</option>
+          <option>Anxious / Preoccupied</option>
+          <option>Dismissive-Avoidant</option>
+          <option>Fearful-Avoidant (Disorganised)</option>
+          <option>Not sure / mixed</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- MBTI -->
+  <div class="psych-card">
+    <div class="psych-header">
+      <div>
+        <div class="psych-title">4. The Myers-Briggs Personality Test (MBTI)</div>
+        <div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world. Once completed, select your personality type below. Your progress is saved — return with your results anytime.</div>
+      </div>
+      <div class="psych-time">⏱ Takes 10–12 minutes</div>
+    </div>
+    <a class="psych-link" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
+      Take the MBTI test
+    </a>
+    <div class="psych-fields">
+      <div class="field">
+        <label>MBTI Personality <span class="req">*</span></label>
+        <select name="mbti">
+          <option value="">MBTI Personality</option>
+          <option>INTJ – Architect / Strategist</option>
+          <option>INTP – Logician / Thinker</option>
+          <option>ENTJ – Commander / Executive Leader</option>
+          <option>ENTP – Debater / Innovator</option>
+          <option>INFJ – Advocate / Visionary</option>
+          <option>INFP – Mediator / Idealist</option>
+          <option>ENFJ – Protagonist / Mentor</option>
+          <option>ENFP – Campaigner / Inspirer</option>
+          <option>ISTJ – Logistician / Inspector</option>
+          <option>ISFJ – Defender / Nurturer</option>
+          <option>ESTJ – Executive / Supervisor</option>
+          <option>ESFJ – Consul / Caregiver</option>
+          <option>ISTP – Virtuoso / Trouble-shooter</option>
+          <option>ISFP – Adventurer / Artist</option>
+          <option>ESTP – Entrepreneur / Dynamo</option>
+          <option>ESFP – Entertainer / Performer</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8: PREFERRED SERVICES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title-block">
+      <h2>Preferred Services</h2>
+      <p>Let us know which of our services interest you.</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Which of our services are you interested in? <span class="req">*</span></label>
+    <p class="hint">Select all that apply</p>
+    <div class="check-list">
+      <label class="check-item"><input type="checkbox" name="services" value="Matchmaking"> Matchmaking services</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Monthly Socials"> Monthly Socials (curated events for singles – Premium members will receive early email notifications when your compatible matches are expected to attend)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Online Events"> Online Events (e.g. online trivia games) – meet people, have fun and mingle – from the comfort of your own home! (via Zoom or Teams)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Group Workshops"> Group Workshops &amp; Group Classes – learn &amp; meet other singles (e.g. painting lessons, pottery, wine tasting, cooking classes, dance classes etc.)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Mini-Retreats"> Mini-Retreats &amp; Wellness evenings (e.g. hiking trips, Spa outings etc.)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Dating Coaching"> Dating Coaching sessions</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Find-a-Friend"> Find-a-Friend meet-ups/events – occasion to meet new people (Premium members will receive early email notifications when people compatible with you are expected to attend. Compatibility will be based on MBTI scores.)</label>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 9: CONSENT & CONTACT -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title-block">
+      <h2>Consent &amp; Contact Details</h2>
+      <p>Please review and confirm before submitting your profile.</p>
+    </div>
+  </div>
+
+  <p class="consent-intro">The information you've shared helps us create meaningful, well-matched introductions. Your information is treated with discretion and used solely for the purpose of matchmaking.</p>
+  <p style="font-size:.84rem;font-weight:700;color:var(--label);margin-bottom:16px;">Please take a moment to review and confirm the following:</p>
+
+  <div class="consent-list">
+    <label class="consent-item">
+      <input type="checkbox" name="consent_accurate" required>
+      <span>I confirm that the information I have provided is accurate and truthful to the best of my knowledge. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_use" required>
+      <span>I understand that my responses will be used for the purpose of personality-based matchmaking and curated introductions through Sparked Connection, including review by AI-assisted tools and a human matchmaker. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_special_data" required>
+      <span>I explicitly consent to Sparked Connection processing special category personal data that I choose to provide (such as sexual orientation, relationship preferences, values, or personality assessment results) for the purpose of providing matchmaking and introduction services. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_privacy" required>
+      <span>I have read and understood the Privacy Policy and understand how my personal data will be stored and processed. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_terms" required>
+      <span>I have read and agree to the Terms &amp; Conditions of the matchmaking service. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_sharing" required>
+      <span>I understand that limited profile information may be shared with potential matches for the purpose of assessing compatibility and mutual interest. <span style="color:var(--accent)">*</span></span>
+    </label>
+    <label class="consent-item">
+      <input type="checkbox" name="consent_marketing">
+      <span>I would like to receive occasional updates about events or services from Sparked Connection. (Optional)</span>
+    </label>
+  </div>
+
+  <p class="consent-never">We will never share your personal contact details with any potential match without your permission.</p>
+  <p class="consent-withdraw">You may withdraw your consent at any time by contacting us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p>
+
+  <div class="field-group-label">Your Contact Details</div>
+  <div class="grid-2">
+    <div class="field">
+      <label>Email address <span class="req">*</span></label>
+      <input type="email" name="email" placeholder="Email" required>
+    </div>
+    <div class="field">
+      <label>Mobile number <span class="req">*</span></label>
+      <input type="tel" name="mobile" placeholder="Mobile number" required>
+    </div>
+  </div>
+
+  <div class="consent-legal" style="margin-top:20px;">
+    <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
+    <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
+  </div>
+</div>
+
+<!-- SUBMIT -->
+<div class="submit-wrap">
+  <div class="submit-title">Ready to find your match?</div>
+  <p class="submit-sub">Once submitted, our team will review your profile and be in touch within 3–5 working days.</p>
+  <button type="submit" class="submit-btn">
+    Submit My Profile
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </button>
+</div>
+
+</form>
+</div>
+
+<script>
+  // Radio pill toggle
+  document.querySelectorAll('.radio-pill').forEach(pill => {
+    const input = pill.querySelector('input[type="radio"]');
+    if (!input) return;
+    pill.addEventListener('click', () => {
+      const name = input.name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        r.closest('.radio-pill')?.classList.remove('selected');
+      });
+      pill.classList.add('selected');
+    });
+  });
+
+  // Checkbox item highlight
+  document.querySelectorAll('.check-item').forEach(item => {
+    const input = item.querySelector('input');
+    if (!input) return;
+    input.addEventListener('change', () => {
+      if (input.type === 'radio') {
+        const name = input.name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+          r.closest('.check-item')?.classList.remove('selected');
+        });
+      }
+      item.classList.toggle('selected', input.checked || input.type === 'radio');
+    });
+  });
+
+  // Conditional: children count
+  document.querySelectorAll('input[name="has_children"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const show = r.value === 'Yes';
+      document.getElementById('children-count').classList.toggle('visible', show);
+    });
+  });
+
+  // Conditional: alcohol frequency
+  document.querySelectorAll('input[name="alcohol"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const show = r.value === 'Yes' || r.value === 'Occasionally';
+      document.getElementById('alcohol-freq').classList.toggle('visible', show);
+    });
+  });
+
+  // Other: language free text
+  document.getElementById('lang-other-cb').addEventListener('change', function() {
+    document.getElementById('lang-other-field').classList.toggle('visible', this.checked);
+  });
+
+  // Other: dealbreaker free text
+  document.getElementById('dealbreaker-other-cb').addEventListener('change', function() {
+    document.getElementById('dealbreaker-other-field').classList.toggle('visible', this.checked);
+  });
+
+  // Photo preview
+  document.getElementById('photo-upload').addEventListener('change', function() {
+    const preview = document.getElementById('photo-preview');
+    if (this.files.length > 0) {
+      preview.textContent = `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
+    }
+  });
+
+  // Progress bar
+  function updateProgress() {
+    const fields = document.querySelectorAll('input[required], select[required], textarea[required]');
+    let filled = 0;
+    fields.forEach(f => {
+      if (f.type === 'checkbox' || f.type === 'radio') {
+        const group = document.querySelectorAll(`input[name="${f.name}"]:checked`);
+        if (group.length > 0) filled++;
+      } else if (f.value.trim()) filled++;
+    });
+    const pct = Math.min(100, Math.round((filled / fields.length) * 100));
+    document.getElementById('progress').style.width = pct + '%';
+  }
+  document.getElementById('questionnaire').addEventListener('input', updateProgress);
+  document.getElementById('questionnaire').addEventListener('change', updateProgress);
+</script>
+</body>
+</html>
