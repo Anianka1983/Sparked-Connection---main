@@ -442,11 +442,13 @@
 <div class="form-wrap">
 <form 
   id="questionnaire" 
-  action="https://formspree.io/f/xojynjke" 
+  action="https://forminit.com/f/ucefir70syh" 
   method="POST" 
   enctype="multipart/form-data"
   novalidate
 >
+
+<input type="hidden" name="_redirect" value="https://forminit.com/thank-you">
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
@@ -1225,7 +1227,9 @@
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 6: PHOTOS -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6: PHOTOS -->
 <div class="section-card">
+
   <div class="section-header">
     <div class="section-num">6</div>
     <div class="section-title-block">
@@ -1235,21 +1239,38 @@
   </div>
 
   <div class="info-box" style="margin-bottom:24px;">
-    <strong>Photo requirements:</strong> Please upload at least 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
+    <strong>Photo requirements:</strong>
+    Please upload at least 1 recent face photo and 1 recent full-length photo.
+    Maximum 10MB total. JPEG preferred.
+    Photos are reviewed discreetly and only shared with potential matches where appropriate.
   </div>
 
+  <!-- Upload box -->
   <div class="upload-box" onclick="document.getElementById('photo-upload').click()">
     <div class="upload-icon">📷</div>
     <div class="upload-title">Upload your photos</div>
     <div class="upload-sub">
-      Minimum 2 photos required (1 face photo + 1 full-length photo)<br>
+      Minimum 2 photos required (1 face + 1 full-length)<br>
       Maximum 10MB total · JPEG preferred
     </div>
     <div class="upload-btn">Choose Photos</div>
-    <input type="file" class="upload-input" id="photo-upload" name="photos" accept="image/*" multiple>
+
+    <!-- IMPORTANT: Forminit-compatible file input -->
+    <input 
+      type="file" 
+      class="upload-input" 
+      id="photo-upload" 
+      name="photos[]" 
+      accept="image/*" 
+      multiple
+    >
   </div>
-  <div id="photo-preview" style="margin-top:12px;font-size:.8rem;color:var(--muted);"></div>
+
+  <!-- Preview / messages -->
+  <div id="photo-preview" style="margin-top:12px;font-size:0.8rem;color:var(--muted);"></div>
+
 </div>
+ 
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
