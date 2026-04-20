@@ -1499,12 +1499,37 @@
       <label>Email address <span class="req">*</span></label>
       <input type="email" name="fi-sender-email" placeholder="Email" required>
     </div>
-    <div class="field">
-      <label>Mobile number <span class="req">*</span></label>
-      <input type="tel" name="fi-sender-phone" placeholder="Mobile number" required>
-    </div>
+<div class="field">
+  <label>Mobile number <span class="req">*</span></label>
+
+  <div style="display:flex; gap:10px;">
+
+    <!-- Country code -->
+    <select name="fi-select-countryCode" required style="max-width:140px;">
+      <option value="+44">🇬🇧 +44</option>
+      <option value="+1">🇺🇸 +1</option>
+      <option value="+33">🇫🇷 +33</option>
+      <option value="+49">🇩🇪 +49</option>
+      <option value="+48">🇵🇱 +48</option>
+      <option value="+34">🇪🇸 +34</option>
+      <option value="+39">🇮🇹 +39</option>
+    </select>
+
+    <!-- Phone number -->
+    <input 
+      type="tel" 
+      name="fi-text-phoneLocal" 
+      placeholder="e.g. 7784939929" 
+      required
+      style="flex:1;"
+    >
+
   </div>
 
+  <p class="hint">
+    Enter your number without the leading 0. For example: 7784939929
+  </p>
+</div>
   <div class="consent-legal" style="margin-top:20px;">
     <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
     <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
