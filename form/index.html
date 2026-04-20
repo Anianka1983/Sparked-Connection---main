@@ -232,6 +232,7 @@
 
     /* ── RADIO PILL ───────────────────────────────────────────── */
     .radio-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.radio-group { display: flex; flex-direction: column; gap: 14px; }
     .radio-pill {
       padding: 8px 18px; border-radius: 999px;
       border: 1.5px solid var(--border);
@@ -412,7 +413,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">
-      <img src="logo.svg" alt="Sparked Connection" style="height: 100px; width: auto; display: block;">
+      <img src="logo.svg" alt="Sparked Connection" style="height: 40px; width: auto; display: block;">
     </div>
     <a class="nav-back" href="https://www.sparkedconnection.com">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
@@ -440,10 +441,10 @@
 </div>
 
 <div class="form-wrap">
-<form
-  id="questionnaire"
-  action="https://forminit.com/f/ucefir70syh"
-  method="POST"
+<form 
+  id="questionnaire" 
+  action="https://formspree.io/f/xojynjke" 
+  method="POST" 
   enctype="multipart/form-data"
   novalidate
 >
@@ -464,19 +465,19 @@
   <div class="grid-2">
     <div class="field">
       <label>First Name <span class="req">*</span></label>
-      <input type="text" name="fi-sender-firstName" placeholder="Your first name" required>
+      <input type="text" name="first_name" placeholder="Your first name" required>
     </div>
     <div class="field">
       <label>Surname <span class="req">*</span></label>
-      <input type="text" name="fi-sender-lastName" placeholder="Your surname" required>
+      <input type="text" name="last_name" placeholder="Your surname" required>
     </div>
     <div class="field">
       <label>Date of Birth <span class="req">*</span></label>
-      <input type="date" name="fi-date-dob" required>
+      <input type="date" name="dob" required>
     </div>
     <div class="field">
       <label>Gender <span class="req">*</span></label>
-      <select name="fi-select-gender" required>
+      <select name="gender" required>
         <option value="">Select gender</option>
         <option>Male</option>
         <option>Female</option>
@@ -488,30 +489,26 @@
     <div class="field">
       <label>I am interested in dating… <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-interested_in" value="Men"> Men</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-interested_in" value="Women"> Women</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-interested_in" value="Both"> Both</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-interested_in" value="No preference"> No preference</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Men"> Men</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Women"> Women</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="Both"> Both</label>
+        <label class="radio-pill"><input type="radio" name="interested_in" value="No preference"> No preference</label>
       </div>
     </div>
 
- <div class="field">
-  <label>Where are you based?</label>
-  <input 
-    type="text" 
-    name="fi-text-location" 
-    placeholder="e.g. London, UK"
-  >
-</div>
+    <div class="field">
+      <label>Where are you based? <span class="req">*</span></label>
+      <input type="text" name="fi-text-currentLocation" placeholder="e.g. London, UK">
+    </div>
 
     <div class="field">
       <label>Country of Origin <span class="req">*</span></label>
-      <input type="text" name="fi-text-country_of_origin" placeholder="e.g. United Kingdom">
+      <input type="text" name="country_of_origin" placeholder="e.g. United Kingdom">
     </div>
 
     <div class="field">
       <label>Ethnicity <span class="req">*</span></label>
-      <select name="fi-select-ethnicity">
+      <select name="ethnicity">
         <option value="">Select ethnicity</option>
         <option>White British</option>
         <option>White Irish</option>
@@ -543,29 +540,29 @@
     <label>What languages do you speak? <span class="req">*</span></label>
     <p class="hint">Select all that apply</p>
     <div class="check-list col-2" id="languages-list">
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="English"> English</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="French"> French</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Spanish"> Spanish</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="German"> German</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Italian"> Italian</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Portuguese"> Portuguese</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Arabic"> Arabic</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Mandarin"> Mandarin</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Hindi"> Hindi</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Punjabi"> Punjabi</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Urdu"> Urdu</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Turkish"> Turkish</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Polish"> Polish</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Russian"> Russian</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Greek"> Greek</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Hebrew"> Hebrew</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Japanese"> Japanese</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Korean"> Korean</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-languages" value="Farsi / Persian"> Farsi / Persian</label>
-      <label class="check-item" id="lang-other-check"><input type="checkbox" name="fi-checkbox-languages" value="Other" id="lang-other-cb"> Other</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="English"> English</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="French"> French</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Spanish"> Spanish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="German"> German</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Italian"> Italian</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Portuguese"> Portuguese</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Arabic"> Arabic</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Mandarin"> Mandarin</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Punjabi"> Punjabi</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Urdu"> Urdu</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Turkish"> Turkish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Polish"> Polish</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Russian"> Russian</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Greek"> Greek</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Hebrew"> Hebrew</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Japanese"> Japanese</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Korean"> Korean</label>
+      <label class="check-item"><input type="checkbox" name="languages" value="Farsi / Persian"> Farsi / Persian</label>
+      <label class="check-item" id="lang-other-check"><input type="checkbox" name="languages" value="Other" id="lang-other-cb"> Other</label>
     </div>
     <div class="other-field" id="lang-other-field">
-      <input type="text" name="fi-text-languages_other" placeholder="Please specify other language(s)">
+      <input type="text" name="languages_other" placeholder="Please specify other language(s)">
     </div>
   </div>
 
@@ -573,7 +570,7 @@
   <div class="grid-2">
     <div class="field">
       <label>Height <span class="req">*</span></label>
-      <select name="fi-select-height">
+      <select name="height">
         <option value="">Select height</option>
         <option>Under 5'0" / 152cm</option>
         <option>5'0" – 5'2" / 152–157cm</option>
@@ -587,7 +584,7 @@
     </div>
     <div class="field">
       <label>Body Shape <span class="req">*</span></label>
-      <select name="fi-select-body_shape">
+      <select name="body_shape">
         <option value="">Select body shape</option>
         <option>Very slim</option>
         <option>Slim</option>
@@ -601,7 +598,7 @@
     </div>
     <div class="field">
       <label>Hair Colour <span class="req">*</span></label>
-      <select name="fi-select-hair_colour">
+      <select name="hair_colour">
         <option value="">Select hair colour</option>
         <option>Black</option>
         <option>Dark brown</option>
@@ -619,7 +616,7 @@
     </div>
     <div class="field">
       <label>Hair Length <span class="req">*</span></label>
-      <select name="fi-select-hair_length">
+      <select name="hair_length">
         <option value="">Select hair length</option>
         <option>Bald / Shaved</option>
         <option>Very short</option>
@@ -631,7 +628,7 @@
     </div>
     <div class="field">
       <label>Eye Colour <span class="req">*</span></label>
-      <select name="fi-select-eye_colour">
+      <select name="eye_colour">
         <option value="">Select eye colour</option>
         <option>Brown</option>
         <option>Dark brown / Black</option>
@@ -649,7 +646,7 @@
   <div class="fields-stack">
     <div class="field">
       <label>My living situation <span class="req">*</span></label>
-      <select name="fi-select-living_situation">
+      <select name="living_situation">
         <option value="">Select living situation</option>
         <option>Home-owner &amp; live alone</option>
         <option>Home-owner &amp; living with flatmates</option>
@@ -662,7 +659,7 @@
 
     <div class="field">
       <label>What is your highest level of education? <span class="req">*</span></label>
-      <select name="fi-select-education">
+      <select name="education">
         <option value="">Select education level</option>
         <option>Secondary school (GCSEs / O-levels)</option>
         <option>A-levels / Sixth form</option>
@@ -679,11 +676,11 @@
     <div class="grid-2">
       <div class="field">
         <label>Current occupation or field <span class="req">*</span></label>
-        <input type="text" name="fi-text-occupation" placeholder="e.g. Marketing Manager, Doctor…">
+        <input type="text" name="occupation" placeholder="e.g. Marketing Manager, Doctor…">
       </div>
       <div class="field">
         <label>Profession level <span class="req">*</span></label>
-        <select name="fi-select-profession_level">
+        <select name="profession_level">
           <option value="">Select profession level</option>
           <option>Early career</option>
           <option>Mid-Level professional</option>
@@ -700,7 +697,7 @@
 
     <div class="field">
       <label>Select income range <span class="opt">(Optional)</span></label>
-      <select name="fi-select-income">
+      <select name="income">
         <option value="">Prefer not to say</option>
         <option>Under £25,000</option>
         <option>£25,000 – £40,000</option>
@@ -719,15 +716,15 @@
     <div class="field">
       <label>Do you have children? <span class="req">*</span></label>
       <div class="radio-pills" id="has-children-group">
-        <label class="radio-pill"><input type="radio" name="fi-radio-has_children" value="No"> No</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-has_children" value="Yes"> Yes</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-has_children" value="Prefer not to say"> Prefer not to say</label>
+        <label class="radio-pill"><input type="radio" name="has_children" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="has_children" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="has_children" value="Prefer not to say"> Prefer not to say</label>
       </div>
     </div>
     <div class="conditional" id="children-count">
       <div class="field">
         <label>How many children do you have? <span class="req">*</span></label>
-        <select name="fi-select-children_count">
+        <select name="children_count">
           <option value="">Select</option>
           <option>1</option><option>2</option><option>3</option>
           <option>4</option><option>5+</option>
@@ -737,9 +734,9 @@
     <div class="field">
       <label>Are you open to dating people with children? <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-open_to_children" value="Yes"> Yes</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-open_to_children" value="No"> No</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-open_to_children" value="It depends"> It depends</label>
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="open_to_children" value="It depends"> It depends</label>
       </div>
     </div>
   </div>
@@ -762,27 +759,27 @@
     <div class="field">
       <label>Do you smoke? <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-smoking" value="Non-smoker"> Non-smoker</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-smoking" value="Social smoker"> Social smoker</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-smoking" value="Smoker"> Smoker</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-smoking" value="Vaper"> Vaper</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-smoking" value="Prefer not to say"> Prefer not to say</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Non-smoker"> Non-smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Social smoker"> Social smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Smoker"> Smoker</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Vaper"> Vaper</label>
+        <label class="radio-pill"><input type="radio" name="smoking" value="Prefer not to say"> Prefer not to say</label>
       </div>
     </div>
 
     <div class="field">
       <label>Do you drink alcohol? <span class="req">*</span></label>
       <div class="radio-pills" id="alcohol-group">
-        <label class="radio-pill"><input type="radio" name="fi-radio-alcohol" value="No"> No</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-alcohol" value="Occasionally"> Occasionally</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-alcohol" value="Yes"> Yes</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-alcohol" value="Prefer not to say"> Prefer not to say</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Occasionally"> Occasionally</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Yes"> Yes</label>
+        <label class="radio-pill"><input type="radio" name="alcohol" value="Prefer not to say"> Prefer not to say</label>
       </div>
     </div>
     <div class="conditional" id="alcohol-freq">
       <div class="field">
         <label>How often do you drink per week? <span class="req">*</span></label>
-        <select name="fi-select-alcohol_frequency">
+        <select name="alcohol_frequency">
           <option value="">Select</option>
           <option>1–2 times</option>
           <option>3–4 times</option>
@@ -794,7 +791,7 @@
 
     <div class="field">
       <label>How often do you exercise? <span class="req">*</span></label>
-      <select name="fi-select-exercise">
+      <select name="exercise">
         <option value="">Select</option>
         <option>Never</option>
         <option>Rarely (once a month or less)</option>
@@ -807,7 +804,7 @@
 
     <div class="field">
       <label>Describe your diet <span class="req">*</span></label>
-      <select name="fi-select-diet">
+      <select name="diet">
         <option value="">Select</option>
         <option>No restrictions / Omnivore</option>
         <option>Flexitarian</option>
@@ -826,7 +823,7 @@
   <div class="fields-stack">
     <div class="field">
       <label>Religion / Spirituality <span class="req">*</span></label>
-      <select name="fi-select-religion">
+      <select name="religion">
         <option value="">Select</option>
         <option>Christian</option>
         <option>Catholic</option>
@@ -847,7 +844,7 @@
       <p class="hint">1 = Not important at all, 5 = Very important</p>
       <div class="scale-wrap">
         <div class="scale-track">
-          <input type="range" name="fi-number-religion_importance" min="1" max="5" value="3" oninput="document.getElementById('rel-val').textContent=this.value">
+          <input type="range" name="religion_importance" min="1" max="5" value="3" oninput="document.getElementById('rel-val').textContent=this.value">
           <div class="scale-value" id="rel-val">3</div>
         </div>
         <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
@@ -860,10 +857,10 @@
     <div class="field">
       <label>Do you want to have children (in the future)? <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-want_children" value="Yes, definitely"> Yes, definitely</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-want_children" value="Open to it"> Open to it</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-want_children" value="Not sure yet"> Not sure yet</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-want_children" value="No"> No</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="Yes, definitely"> Yes, definitely</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="Open to it"> Open to it</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="Not sure yet"> Not sure yet</label>
+        <label class="radio-pill"><input type="radio" name="want_children" value="No"> No</label>
       </div>
     </div>
 
@@ -872,7 +869,7 @@
       <p class="hint">1 = Quiet night in, 10 = Social butterfly</p>
       <div class="scale-wrap">
         <div class="scale-track">
-          <input type="range" name="fi-number-introvert_extravert" min="1" max="10" value="5" oninput="document.getElementById('intro-val').textContent=this.value">
+          <input type="range" name="introvert_extravert" min="1" max="10" value="5" oninput="document.getElementById('intro-val').textContent=this.value">
           <div class="scale-value" id="intro-val">5</div>
         </div>
         <div class="scale-labels"><span>1 – Quiet night in</span><span>10 – Social butterfly</span></div>
@@ -883,18 +880,18 @@
       <label>Which of these best describes your values? <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Family-first"> Family-first</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Career-driven"> Career-driven</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Adventure & travel"> Adventure &amp; travel</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Health & wellbeing"> Health &amp; wellbeing</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Creativity & the arts"> Creativity &amp; the arts</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Intellectual curiosity"> Intellectual curiosity</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Community & giving back"> Community &amp; giving back</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Financial security"> Financial security</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Spirituality & faith"> Spirituality &amp; faith</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Independence"> Independence</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Loyalty & commitment"> Loyalty &amp; commitment</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-values" value="Fun & spontaneity"> Fun &amp; spontaneity</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Family-first"> Family-first</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Career-driven"> Career-driven</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Adventure & travel"> Adventure &amp; travel</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Health & wellbeing"> Health &amp; wellbeing</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Creativity & the arts"> Creativity &amp; the arts</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Intellectual curiosity"> Intellectual curiosity</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Community & giving back"> Community &amp; giving back</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Financial security"> Financial security</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Spirituality & faith"> Spirituality &amp; faith</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Independence"> Independence</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Loyalty & commitment"> Loyalty &amp; commitment</label>
+        <label class="check-item"><input type="checkbox" name="values" value="Fun & spontaneity"> Fun &amp; spontaneity</label>
       </div>
     </div>
   </div>
@@ -915,7 +912,7 @@
   <div class="fields-stack">
     <div class="field">
       <label>What kind of a relationship are you looking for? <span class="req">*</span></label>
-      <select name="fi-select-relationship_type">
+      <select name="relationship_type">
         <option value="">Select relationship type</option>
         <option>Marriage</option>
         <option>Long-term relationship</option>
@@ -927,7 +924,7 @@
 
     <div class="field">
       <label>How long was your last relationship? <span class="req">*</span></label>
-      <select name="fi-select-last_relationship_length">
+      <select name="last_relationship_length">
         <option value="">Select</option>
         <option>I haven't had a relationship before</option>
         <option>Less than 6 months</option>
@@ -942,7 +939,7 @@
 
     <div class="field">
       <label>How do you prefer to handle conflict in a relationship? <span class="req">*</span></label>
-      <select name="fi-select-conflict_style">
+      <select name="conflict_style">
         <option value="">Select</option>
         <option>Talk it through calmly as soon as it arises</option>
         <option>Take space first, then discuss</option>
@@ -956,16 +953,16 @@
     <div class="field">
       <label>In your ideal relationship, how much time would you spend together vs. independently? <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-togetherness" value="Mostly together"> Mostly together</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-togetherness" value="Balanced – roughly 50/50"> Balanced – roughly 50/50</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-togetherness" value="Mostly independent with quality time"> Mostly independent with quality time</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-togetherness" value="Very independent"> Very independent</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Mostly together"> Mostly together</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Balanced – roughly 50/50"> Balanced – roughly 50/50</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Mostly independent with quality time"> Mostly independent with quality time</label>
+        <label class="radio-pill"><input type="radio" name="togetherness" value="Very independent"> Very independent</label>
       </div>
     </div>
 
     <div class="field">
       <label>What does a great first date look like to you? <span class="req">*</span></label>
-      <textarea name="fi-text-first_date" placeholder="Describe your ideal first date…"></textarea>
+      <textarea name="first_date" placeholder="Describe your ideal first date…"></textarea>
     </div>
   </div>
 </div>
@@ -986,11 +983,11 @@
   <div class="grid-2">
     <div class="field">
       <label>Preferred minimum age of match <span class="req">*</span></label>
-      <input type="number" name="fi-number-pref_age_min" placeholder="e.g. 28" min="18" max="80">
+      <input type="number" name="pref_age_min" placeholder="e.g. 28" min="18" max="80">
     </div>
     <div class="field">
       <label>Preferred maximum age of match <span class="req">*</span></label>
-      <input type="number" name="fi-number-pref_age_max" placeholder="e.g. 45" min="18" max="100">
+      <input type="number" name="pref_age_max" placeholder="e.g. 45" min="18" max="100">
     </div>
   </div>
 
@@ -999,25 +996,25 @@
       <label>Partner's preferred ethnicity <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="No preference"> No preference</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="White"> White</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Mixed heritage"> Mixed heritage</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Asian"> Asian</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Black"> Black</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Arab / Middle Eastern"> Arab / Middle Eastern</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Latin American"> Latin American</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_ethnicity" value="Jewish"> Jewish</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="No preference"> No preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="White"> White</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Mixed heritage"> Mixed heritage</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Asian"> Asian</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Black"> Black</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Arab / Middle Eastern"> Arab / Middle Eastern</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Latin American"> Latin American</label>
+        <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Jewish"> Jewish</label>
       </div>
     </div>
 
     <div class="field">
       <label>Your partner's ideal height <span class="req">*</span></label>
       <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="fi-radio-pref_height" value="No preference"> No preference</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-pref_height" value="Shorter than me"> Shorter than me</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-pref_height" value="Same height as me"> Same height</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-pref_height" value="Taller than me"> Taller than me</label>
-        <label class="radio-pill"><input type="radio" name="fi-radio-pref_height" value="Specific range"> Specific range</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="No preference"> No preference</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Shorter than me"> Shorter than me</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Same height as me"> Same height</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Taller than me"> Taller than me</label>
+        <label class="radio-pill"><input type="radio" name="pref_height" value="Specific range"> Specific range</label>
       </div>
     </div>
 
@@ -1025,14 +1022,14 @@
       <label>Partner's preferred hair colour <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="No strong preference"> No strong preference</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Black"> Black</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Dark brown"> Dark brown</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Brown"> Brown</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Blonde"> Blonde</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Red / Auburn"> Red / Auburn</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Grey / Silver"> Grey / Silver</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_colour" value="Bald"> Bald</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Black"> Black</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Dark brown"> Dark brown</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Brown"> Brown</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Blonde"> Blonde</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Red / Auburn"> Red / Auburn</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Grey / Silver"> Grey / Silver</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_colour" value="Bald"> Bald</label>
       </div>
     </div>
 
@@ -1040,15 +1037,15 @@
       <label>Partner's preferred hair length <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="No strong preference"> No strong preference</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Very short hair"> Very short hair</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Short styles"> Short styles</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Medium-length hair"> Medium-length hair</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Long hair"> Long hair</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Very long hair"> Very long hair</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Fine or thinning hair"> Fine or thinning hair</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Bald"> Bald</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_hair_length" value="Other"> Other</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Very short hair"> Very short hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Short styles"> Short styles</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Medium-length hair"> Medium-length hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Long hair"> Long hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Very long hair"> Very long hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Fine or thinning hair"> Fine or thinning hair</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Bald"> Bald</label>
+        <label class="check-item"><input type="checkbox" name="pref_hair_length" value="Other"> Other</label>
       </div>
     </div>
 
@@ -1056,20 +1053,20 @@
       <label>Partner's preferred body type <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="No strong preference"> No strong preference</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Very slim"> Very slim</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Slim"> Slim</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Athletic / Toned"> Athletic / Toned</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Average build"> Average build</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="A few extra pounds"> A few extra pounds</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Muscular"> Muscular</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_body_type" value="Plus-size"> Plus-size</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="No strong preference"> No strong preference</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Very slim"> Very slim</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Slim"> Slim</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Athletic / Toned"> Athletic / Toned</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Average build"> Average build</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="A few extra pounds"> A few extra pounds</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Muscular"> Muscular</label>
+        <label class="check-item"><input type="checkbox" name="pref_body_type" value="Plus-size"> Plus-size</label>
       </div>
     </div>
 
     <div class="field">
       <label>Are there any physical characteristics you would prefer to avoid? <span class="opt">(Optional)</span></label>
-      <textarea name="fi-text-pref_avoid_physical" placeholder="Please describe any physical characteristics you would prefer not to be matched with…" style="min-height:80px;"></textarea>
+      <textarea name="pref_avoid_physical" placeholder="Please describe any physical characteristics you would prefer not to be matched with…" style="min-height:80px;"></textarea>
     </div>
   </div>
 
@@ -1079,82 +1076,58 @@
       <label>Do you have specific religious preferences for your partner? <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="I don't mind"> I don't mind</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Christian"> Christian</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Catholic"> Catholic</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Jewish"> Jewish</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Muslim"> Muslim</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Hindu"> Hindu</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Buddhist"> Buddhist</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Sikh"> Sikh</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Spiritual but not religious"> Spiritual but not religious</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Agnostic"> Agnostic</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Atheist"> Atheist</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-pref_religion" value="Other (please specify)"><span></span> Other</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="I don't mind"> I don't mind</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Christian"> Christian</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Catholic"> Catholic</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Jewish"> Jewish</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Muslim"> Muslim</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Hindu"> Hindu</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Buddhist"> Buddhist</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Sikh"> Sikh</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Spiritual but not religious"> Spiritual but not religious</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Agnostic"> Agnostic</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Atheist"> Atheist</label>
+        <label class="check-item"><input type="checkbox" name="pref_religion" value="Other (please specify)"><span></span> Other</label>
       </div>
     </div>
 
-<div class="field">
-  <label>Is location important to you?</label>
-
-  <div class="radio-group">
-
-    <label class="radio-pill">
-      <input 
-        type="radio" 
-        name="fi-radio-locationPreference" 
-        value="Yes – I prefer someone local"
-      >
-      Yes – I prefer someone local
-    </label>
-
-    <label class="radio-pill">
-      <input 
-        type="radio" 
-        name="fi-radio-locationPreference" 
-        value="Flexible within my country"
-      >
-      Flexible within my country
-    </label>
-
-    <label class="radio-pill">
-      <input 
-        type="radio" 
-        name="fi-radio-locationPreference" 
-        value="Open internationally"
-      >
-      Open internationally
-    </label>
-
+    <div class="field">
+      <label>Is location important to you? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-pill"><input type="radio" name="fi-radio-locationPriority" value="Yes – I'd like to meet someone local"> Yes – I'd like to meet someone local</label>
+        <label class="radio-pill"><input type="radio" name="fi-radio-locationPriority" value="Flexible within my country"> Flexible within my country</label>
+        <label class="radio-pill"><input type="radio" name="fi-radio-locationPriority" value="Open internationally"> Open internationally</label>
+      </div>
+    </div>
   </div>
-</div>
+
   <div class="field-group-label">Dealbreakers &amp; Additional Notes</div>
   <div class="fields-stack">
     <div class="field">
       <label>Are there any absolute dealbreakers for you? <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Smoking"> Smoking</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Heavy drinking"> Heavy drinking</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Drug use"> Drug use</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Has children"> Has children</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Doesn't want children"> Doesn't want children</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Different religion"> Different religion</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Different political views"> Different political views</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Not financially stable"> Not financially stable</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Long-distance only"> Long-distance only</label>
-        <label class="check-item"><input type="checkbox" name="fi-checkbox-dealbreakers" value="No ambition / drive"> No ambition / drive</label>
-        <label class="check-item" id="dealbreaker-other-check"><input type="checkbox" name="fi-checkbox-dealbreakers" value="Other" id="dealbreaker-other-cb"> Other</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Smoking"> Smoking</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Heavy drinking"> Heavy drinking</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Drug use"> Drug use</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Has children"> Has children</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Doesn't want children"> Doesn't want children</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Different religion"> Different religion</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Different political views"> Different political views</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Not financially stable"> Not financially stable</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="Long-distance only"> Long-distance only</label>
+        <label class="check-item"><input type="checkbox" name="dealbreakers" value="No ambition / drive"> No ambition / drive</label>
+        <label class="check-item" id="dealbreaker-other-check"><input type="checkbox" name="dealbreakers" value="Other" id="dealbreaker-other-cb"> Other</label>
       </div>
       <div class="other-field" id="dealbreaker-other-field">
-        <input type="text" name="fi-text-dealbreakers_other" placeholder="Please specify other dealbreakers">
+        <input type="text" name="dealbreakers_other" placeholder="Please specify other dealbreakers">
       </div>
     </div>
 
     <div class="field">
       <label>Do you have any specific preferences for your partner? <span class="opt">(Optional)</span></label>
       <p class="hint">e.g. preferred nationality, hobbies, type of lifestyle, background, or any other particular qualities that we should consider when looking for a match</p>
-      <textarea name="fi-text-specific_preferences" placeholder="Share any other specific preferences here…"></textarea>
+      <textarea name="specific_preferences" placeholder="Share any other specific preferences here…"></textarea>
     </div>
   </div>
 </div>
@@ -1177,7 +1150,7 @@
       <p class="hint">1 = Not important at all, 5 = Very important</p>
       <div class="scale-wrap">
         <div class="scale-track">
-          <input type="range" name="fi-number-partner_religion_importance" min="1" max="5" value="3" oninput="document.getElementById('prel-val').textContent=this.value">
+          <input type="range" name="partner_religion_importance" min="1" max="5" value="3" oninput="document.getElementById('prel-val').textContent=this.value">
           <div class="scale-value" id="prel-val">3</div>
         </div>
         <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
@@ -1186,7 +1159,7 @@
 
     <div class="field">
       <label>How important are political views in your life? <span class="req">*</span></label>
-      <select name="fi-select-politics_importance">
+      <select name="politics_importance">
         <option value="">Select importance of politics</option>
         <option>Very important — it strongly influences my values and decisions</option>
         <option>Somewhat important — I have views, but they're not central</option>
@@ -1201,7 +1174,7 @@
       <p class="hint">1 = Very liberal, 10 = Very conservative</p>
       <div class="scale-wrap">
         <div class="scale-track">
-          <input type="range" name="fi-number-political_views" min="1" max="10" value="5" oninput="document.getElementById('pol-val').textContent=this.value">
+          <input type="range" name="political_views" min="1" max="10" value="5" oninput="document.getElementById('pol-val').textContent=this.value">
           <div class="scale-value" id="pol-val">5</div>
         </div>
         <div class="scale-labels"><span>1 – Very liberal</span><span>10 – Very conservative</span></div>
@@ -1213,7 +1186,7 @@
       <p class="hint">1 = Not important, 10 = Very important</p>
       <div class="scale-wrap">
         <div class="scale-track">
-          <input type="range" name="fi-number-partner_politics_importance" min="1" max="10" value="5" oninput="document.getElementById('ppol-val').textContent=this.value">
+          <input type="range" name="partner_politics_importance" min="1" max="10" value="5" oninput="document.getElementById('ppol-val').textContent=this.value">
           <div class="scale-value" id="ppol-val">5</div>
         </div>
         <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
@@ -1224,28 +1197,28 @@
       <label>Which statement best describes your general approach to money? <span class="req">*</span></label>
       <p class="hint">Select the option that feels most accurate</p>
       <div class="check-list">
-        <label class="check-item"><input type="radio" name="fi-radio-money_approach" value="careful"> I'm careful and value financial security above all</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_approach" value="thoughtful"> I'm thoughtful with money but enjoy spending on meaningful experiences</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_approach" value="plan_and_save"> I plan and save, while also allowing room for enjoyment</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_approach" value="comfortable_spending"> I'm comfortable spending and prioritise lifestyle and experiences</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_approach" value="spontaneous"> I'm more spontaneous with money and prefer living in the moment</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="careful"> I'm careful and value financial security above all</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="thoughtful"> I'm thoughtful with money but enjoy spending on meaningful experiences</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="plan_and_save"> I plan and save, while also allowing room for enjoyment</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="comfortable_spending"> I'm comfortable spending and prioritise lifestyle and experiences</label>
+        <label class="check-item"><input type="radio" name="money_approach" value="spontaneous"> I'm more spontaneous with money and prefer living in the moment</label>
       </div>
     </div>
 
     <div class="field">
       <label>In a relationship, how important is it that your partner's approach to money is similar to yours? <span class="req">*</span></label>
       <div class="check-list">
-        <label class="check-item"><input type="radio" name="fi-radio-money_compatibility" value="Very important"> Very important</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_compatibility" value="Somewhat important"> Somewhat important</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_compatibility" value="Nice to have, but not essential"> Nice to have, but not essential</label>
-        <label class="check-item"><input type="radio" name="fi-radio-money_compatibility" value="Not important"> Not important</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Very important"> Very important</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Somewhat important"> Somewhat important</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Nice to have, but not essential"> Nice to have, but not essential</label>
+        <label class="check-item"><input type="radio" name="money_compatibility" value="Not important"> Not important</label>
       </div>
     </div>
 
     <div class="field">
       <label>What are your long-term life goals? <span class="opt">(Optional)</span></label>
       <p class="hint">e.g. gain financial freedom, retire abroad, travel the world, have a big family etc.</p>
-      <textarea name="fi-text-life_goals" placeholder="Share your long-term goals and aspirations…"></textarea>
+      <textarea name="life_goals" placeholder="Share your long-term goals and aspirations…"></textarea>
     </div>
   </div>
 </div>
@@ -1274,7 +1247,7 @@
       Maximum 10MB total · JPEG preferred
     </div>
     <div class="upload-btn">Choose Photos</div>
-    <input type="file" class="upload-input" id="photo-upload" name="fi-file-photos[]" accept="image/*" multiple>
+    <input type="file" class="upload-input" id="photo-upload" name="photos" accept="image/*" multiple>
   </div>
   <div id="photo-preview" style="margin-top:12px;font-size:.8rem;color:var(--muted);"></div>
 </div>
@@ -1287,7 +1260,7 @@
     <div class="section-num">7</div>
     <div class="section-title-block">
       <h2>Personality &amp; Psychology</h2>
-      <p>These scientifically-validated tests help us make much deeper, more meaningful matches. This section is optional, but highly recommended if you'd like us to match you with greater accuracy. Your progress is saved — you can return with your results at any time.</p>
+      <p>These scientifically-validated tests help us make much deeper, more meaningful matches. They are optional, but highly recommended if you'd like us to match you with greater accuracy. Your progress is saved — you can return with your results at any time.</p>
     </div>
     <div class="section-time">⏱ ~35–40 min total</div>
   </div>
@@ -1308,29 +1281,29 @@
     <div class="psych-fields">
       <div class="grid-2">
         <div class="field">
-          <label>Openness Score <span class="opt">(Optional)</span></label>
-          <input type="number" name="fi-number-big5_openness" placeholder="1–120" min="1" max="120">
+          <label>Openness Score <span class="req">*</span></label>
+          <input type="number" name="big5_openness" placeholder="1–120" min="1" max="120">
         </div>
         <div class="field">
-          <label>Extraversion Score <span class="opt">(Optional)</span></label>
-          <input type="number" name="fi-number-big5_extraversion" placeholder="1–120" min="1" max="120">
+          <label>Extraversion Score <span class="req">*</span></label>
+          <input type="number" name="big5_extraversion" placeholder="1–120" min="1" max="120">
         </div>
         <div class="field">
-          <label>Conscientiousness Score <span class="opt">(Optional)</span></label>
-          <input type="number" name="fi-number-big5_conscientiousness" placeholder="1–120" min="1" max="120">
+          <label>Conscientiousness Score <span class="req">*</span></label>
+          <input type="number" name="big5_conscientiousness" placeholder="1–120" min="1" max="120">
         </div>
         <div class="field">
-          <label>Agreeableness Score <span class="opt">(Optional)</span></label>
-          <input type="number" name="fi-number-big5_agreeableness" placeholder="1–120" min="1" max="120">
+          <label>Agreeableness Score <span class="req">*</span></label>
+          <input type="number" name="big5_agreeableness" placeholder="1–120" min="1" max="120">
         </div>
         <div class="field">
-          <label>Neuroticism Score <span class="opt">(Optional)</span></label>
-          <input type="number" name="fi-number-big5_neuroticism" placeholder="1–120" min="1" max="120">
+          <label>Neuroticism Score <span class="req">*</span></label>
+          <input type="number" name="big5_neuroticism" placeholder="1–120" min="1" max="120">
         </div>
       </div>
       <div class="field">
-        <label>Paste your Big Five result link <span class="opt">(Optional)</span></label>
-        <input type="url" name="fi-text-big5_link" placeholder="e.g. 691f0d4f82e52q582a869572">
+        <label>Paste your Big Five result link <span class="req">*</span></label>
+        <input type="url" name="big5_link" placeholder="e.g. 691f0d4f82e52q582a869572">
       </div>
     </div>
   </div>
@@ -1352,8 +1325,8 @@
     </a>
     <div class="psych-fields">
       <div class="field">
-        <label>What makes you feel loved? (how you receive love) <span class="opt">(Optional)</span></label>
-        <select name="fi-select-love_language_receive">
+        <label>What makes you feel loved? (how you receive love) <span class="req">*</span></label>
+        <select name="love_language_receive">
           <option value="">What makes you feel loved?</option>
           <option>Words of affirmation</option>
           <option>Quality time</option>
@@ -1363,9 +1336,9 @@
         </select>
       </div>
       <div class="field">
-        <label>How do you most naturally give/show love? <span class="opt">(Optional)</span></label>
+        <label>How do you most naturally give/show love? <span class="req">*</span></label>
         <p class="hint">The Love Language Test does not measure how you 'give' love. But based on your own judgement, how do you most naturally 'give/show' love to someone? (Choose the answer that feels most true for you.)</p>
-        <select name="fi-select-love_language_give">
+        <select name="love_language_give">
           <option value="">How do you show love?</option>
           <option>Words of Affirmation</option>
           <option>Acts of Service</option>
@@ -1392,8 +1365,8 @@
     </a>
     <div class="psych-fields">
       <div class="field">
-        <label>My attachment style is <span class="opt">(Optional)</span></label>
-        <select name="fi-select-attachment_style">
+        <label>My attachment style is <span class="req">*</span></label>
+        <select name="attachment_style">
           <option value="">Select your attachment style</option>
           <option>Secure</option>
           <option>Anxious / Preoccupied</option>
@@ -1420,8 +1393,8 @@
     </a>
     <div class="psych-fields">
       <div class="field">
-        <label>MBTI Personality <span class="opt">(Optional)</span></label>
-        <select name="fi-select-mbti">
+        <label>MBTI Personality <span class="req">*</span></label>
+        <select name="mbti">
           <option value="">MBTI Personality</option>
           <option>INTJ – Architect / Strategist</option>
           <option>INTP – Logician / Thinker</option>
@@ -1461,13 +1434,13 @@
     <label>Which of our services are you interested in? <span class="req">*</span></label>
     <p class="hint">Select all that apply</p>
     <div class="check-list">
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Matchmaking"> Matchmaking services</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Monthly Socials"> Monthly Socials (curated events for singles – Premium members will receive early email notifications when your compatible matches are expected to attend)</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Online Events"> Online Events (e.g. online trivia games) – meet people, have fun and mingle – from the comfort of your own home! (via Zoom or Teams)</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Group Workshops"> Group Workshops &amp; Group Classes – learn &amp; meet other singles (e.g. painting lessons, pottery, wine tasting, cooking classes, dance classes etc.)</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Mini-Retreats"> Mini-Retreats &amp; Wellness evenings (e.g. hiking trips, Spa outings etc.)</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Dating Coaching"> Dating Coaching sessions</label>
-      <label class="check-item"><input type="checkbox" name="fi-checkbox-services" value="Find-a-Friend"> Find-a-Friend meet-ups/events – occasion to meet new people (Premium members will receive early email notifications when people compatible with you are expected to attend. Compatibility will be based on MBTI scores.)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Matchmaking"> Matchmaking services</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Monthly Socials"> Monthly Socials (curated events for singles – Premium members will receive early email notifications when your compatible matches are expected to attend)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Online Events"> Online Events (e.g. online trivia games) – meet people, have fun and mingle – from the comfort of your own home! (via Zoom or Teams)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Group Workshops"> Group Workshops &amp; Group Classes – learn &amp; meet other singles (e.g. painting lessons, pottery, wine tasting, cooking classes, dance classes etc.)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Mini-Retreats"> Mini-Retreats &amp; Wellness evenings (e.g. hiking trips, Spa outings etc.)</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Dating Coaching"> Dating Coaching sessions</label>
+      <label class="check-item"><input type="checkbox" name="services" value="Find-a-Friend"> Find-a-Friend meet-ups/events – occasion to meet new people (Premium members will receive early email notifications when people compatible with you are expected to attend. Compatibility will be based on MBTI scores.)</label>
     </div>
   </div>
 </div>
@@ -1489,31 +1462,31 @@
 
   <div class="consent-list">
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_accurate" required>
+      <input type="checkbox" name="consent_accurate" required>
       <span>I confirm that the information I have provided is accurate and truthful to the best of my knowledge. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_use" required>
+      <input type="checkbox" name="consent_use" required>
       <span>I understand that my responses will be used for the purpose of personality-based matchmaking and curated introductions through Sparked Connection, including review by AI-assisted tools and a human matchmaker. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_special_data" required>
+      <input type="checkbox" name="consent_special_data" required>
       <span>I explicitly consent to Sparked Connection processing special category personal data that I choose to provide (such as sexual orientation, relationship preferences, values, or personality assessment results) for the purpose of providing matchmaking and introduction services. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_privacy" required>
+      <input type="checkbox" name="consent_privacy" required>
       <span>I have read and understood the Privacy Policy and understand how my personal data will be stored and processed. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_terms" required>
+      <input type="checkbox" name="consent_terms" required>
       <span>I have read and agree to the Terms &amp; Conditions of the matchmaking service. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_sharing" required>
+      <input type="checkbox" name="consent_sharing" required>
       <span>I understand that limited profile information may be shared with potential matches for the purpose of assessing compatibility and mutual interest. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="fi-checkbox-consent_marketing">
+      <input type="checkbox" name="consent_marketing">
       <span>I would like to receive occasional updates about events or services from Sparked Connection. (Optional)</span>
     </label>
   </div>
@@ -1525,39 +1498,14 @@
   <div class="grid-2">
     <div class="field">
       <label>Email address <span class="req">*</span></label>
-      <input type="email" name="fi-sender-email" placeholder="Email" required>
+      <input type="email" name="email" placeholder="Email" required>
     </div>
-<div class="field">
-  <label>Mobile number <span class="req">*</span></label>
-
-  <div style="display:flex; gap:10px;">
-
-    <!-- Country code -->
-    <select name="fi-select-countryCode" required style="max-width:140px;">
-      <option value="+44">🇬🇧 +44</option>
-      <option value="+1">🇺🇸 +1</option>
-      <option value="+33">🇫🇷 +33</option>
-      <option value="+49">🇩🇪 +49</option>
-      <option value="+48">🇵🇱 +48</option>
-      <option value="+34">🇪🇸 +34</option>
-      <option value="+39">🇮🇹 +39</option>
-    </select>
-
-    <!-- Phone number -->
-    <input 
-      type="tel" 
-      name="fi-text-phoneLocal" 
-      placeholder="e.g. 7784939929" 
-      required
-      style="flex:1;"
-    >
-
+    <div class="field">
+      <label>Mobile number <span class="req">*</span></label>
+      <input type="tel" name="mobile" placeholder="Mobile number" required>
+    </div>
   </div>
 
-  <p class="hint">
-    Enter your number without the leading 0. For example: 7784939929
-  </p>
-</div>
   <div class="consent-legal" style="margin-top:20px;">
     <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
     <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
@@ -1607,7 +1555,7 @@
   });
 
   // Conditional: children count
-  document.querySelectorAll('input[name="fi-radio-has_children"]').forEach(r => {
+  document.querySelectorAll('input[name="has_children"]').forEach(r => {
     r.addEventListener('change', () => {
       const show = r.value === 'Yes';
       document.getElementById('children-count').classList.toggle('visible', show);
@@ -1615,7 +1563,7 @@
   });
 
   // Conditional: alcohol frequency
-  document.querySelectorAll('input[name="fi-radio-alcohol"]').forEach(r => {
+  document.querySelectorAll('input[name="alcohol"]').forEach(r => {
     r.addEventListener('change', () => {
       const show = r.value === 'Yes' || r.value === 'Occasionally';
       document.getElementById('alcohol-freq').classList.toggle('visible', show);
