@@ -624,15 +624,18 @@
   <div class="fields-stack">
     <div class="field">
       <label>My living situation <span class="req">*</span></label>
-      <select name="living_situation">
+      <select name="living_situation" id="living-situation">
         <option value="">Select living situation</option>
         <option>Home-owner &amp; live alone</option>
         <option>Home-owner &amp; living with flatmates</option>
         <option>Renting &amp; live alone</option>
         <option>Renting &amp; live with flatmates</option>
         <option>Currently living with parents</option>
-        <option>Other (please specify)</option>
+        <option value="Other">Other (please specify)</option>
       </select>
+    </div>
+    <div class="other-field" id="living-other-field">
+      <input type="text" name="living_situation_other" placeholder="Please describe your living situation">
     </div>
 
     <div class="field">
@@ -1118,19 +1121,19 @@
     <div class="section-num">6</div>
     <div class="section-title-block">
       <h2>Photos</h2>
-      <p>Please upload a minimum of 2 photos. Photos are reviewed discreetly.</p>
+      <p>Uploading photos is optional, but highly recommended to improve match quality. Photos are reviewed discreetly.</p>
     </div>
   </div>
 
   <div class="info-box" style="margin-bottom:24px;">
-    <strong>Photo requirements:</strong> Please upload at least 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
+    <strong>Photo guidance:</strong> If you choose to upload photos, we recommend 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
   </div>
 
   <div class="upload-box" onclick="document.getElementById('photo-upload').click()">
     <div class="upload-icon">📷</div>
     <div class="upload-title">Upload your photos</div>
     <div class="upload-sub">
-      Minimum 2 photos required (1 face photo + 1 full-length photo)<br>
+      Recommended: 1 face photo + 1 full-length photo<br>
       Maximum 10MB total · JPEG preferred
     </div>
     <div class="upload-btn">Choose Photos</div>
@@ -1454,10 +1457,27 @@
     document.getElementById('dealbreaker-other-field').classList.toggle('visible', this.checked);
   });
 
-  // Photo preview
+  // Other: living situation free text
+  const livingSituationSelect = document.getElementById('living-situation');
+  const livingOtherField = document.getElementById('living-other-field');
+  const livingOtherInput = livingOtherField ? livingOtherField.querySelector('input') : null;
+
+  if (livingSituationSelect && livingOtherField) {
+    livingSituationSelect.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      livingOtherField.classList.toggle('visible', show);
+      if (livingOtherInput) {
+        livingOtherInput.required = show;
+      }
+    });
+  }
+
+  // Photo preview (optional upload)
   document.getElementById('photo-upload').addEventListener('change', function() {
     const preview = document.getElementById('photo-preview');
-    if (this.files.length > 0) {
+    if (this.files.length === 0) {
+      preview.innerHTML = "<span style='color:#8896b3;'>No photos uploaded (optional)</span>";
+    } else {
       preview.textContent = `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
     }
   });
