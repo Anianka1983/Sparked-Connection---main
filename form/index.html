@@ -35,20 +35,32 @@
       line-height: 1.6;
     }
 
-  <!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <img src="logo.svg" alt="Sparked Connection" style="height: 100px; width: auto; display: block;">
-    </div>
-    <a class="nav-back" href="https://www.sparkedconnection.com">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
-      Back to Main Page
-    </a>
-  </div>
-</nav>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-
+    /* ── NAV ─────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: hsl(22 38% 95% / .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-back {
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--accent); }
 
     /* ── HERO ─────────────────────────────────────────────────── */
     .hero {
@@ -399,10 +411,12 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo">Sparked<span>Connection</span></div>
-    <a class="nav-back" href="/plans/">
+    <div class="nav-logo">
+      <img src="logo.svg" alt="Sparked Connection" style="height: 40px; width: auto; display: block;">
+    </div>
+    <a class="nav-back" href="https://www.sparkedconnection.com">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
-      Back to Plans
+      Back to Main Page
     </a>
   </div>
 </nav>
