@@ -440,7 +440,7 @@
 </div>
 
 <div class="form-wrap">
-<form id="questionnaire" novalidate>
+<form id="questionnaire" action="https://forminit.com/f/ucefir70syh" method="POST" enctype="multipart/form-data" accept-charset="UTF-8" novalidate>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
@@ -624,15 +624,18 @@
   <div class="fields-stack">
     <div class="field">
       <label>My living situation <span class="req">*</span></label>
-      <select name="living_situation">
+      <select name="living_situation" id="living-situation">
         <option value="">Select living situation</option>
         <option>Home-owner &amp; live alone</option>
         <option>Home-owner &amp; living with flatmates</option>
         <option>Renting &amp; live alone</option>
         <option>Renting &amp; live with flatmates</option>
         <option>Currently living with parents</option>
-        <option>Other (please specify)</option>
+        <option value="Other">Other (please specify)</option>
       </select>
+    </div>
+    <div class="other-field" id="living-other-field">
+      <input type="text" name="living_situation_other" placeholder="Please describe your living situation">
     </div>
 
     <div class="field">
@@ -928,20 +931,34 @@
         <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Latin American"> Latin American</label>
         <label class="check-item"><input type="checkbox" name="pref_ethnicity" value="Jewish"> Jewish</label>
       </div>
-    </div>
-
-    <div class="field">
-      <label>Your partner's ideal height <span class="req">*</span></label>
-      <div class="radio-pills">
-        <label class="radio-pill"><input type="radio" name="pref_height" value="No preference"> No preference</label>
-        <label class="radio-pill"><input type="radio" name="pref_height" value="Shorter than me"> Shorter than me</label>
-        <label class="radio-pill"><input type="radio" name="pref_height" value="Same height as me"> Same height</label>
-        <label class="radio-pill"><input type="radio" name="pref_height" value="Taller than me"> Taller than me</label>
-        <label class="radio-pill"><input type="radio" name="pref_height" value="Specific range"> Specific range</label>
+      
+  <div class="field">
+      <label>Partner's preferred height (cm) <span class="req">*</span></label>
+      <div class="grid-2">
+        <div>
+          <input
+            type="number"
+            name="fi-number-heightMin"
+            placeholder="Minimum (e.g. 170)"
+            min="140"
+            max="220"
+            required
+          >
+        </div>
+        <div>
+          <input
+            type="number"
+            name="fi-number-heightMax"
+            placeholder="Maximum (e.g. 190)"
+            min="140"
+            max="220"
+            required
+          >
+        </div>
       </div>
+      <p class="hint">Enter a height range in centimetres (e.g. 175–190)</p>
     </div>
-
-    <div class="field">
+<div class="field">
       <label>Partner's preferred body type <span class="req">*</span></label>
       <p class="hint">Select all that apply</p>
       <div class="check-list col-2">
@@ -1004,20 +1021,7 @@
       </div>
     </div>
   </div>
-<div class="section-card">
-  <div class="section-header">
-    <div class="section-title-block">
-      <h2>Additional Insight</h2>
-      <p>This helps us understand compatibility beyond preferences.</p>
-    </div>
-  </div>
 
-  <textarea 
-    name="fi-text-non_negotiables" 
-    placeholder="What are your absolute non-negotiables in a partner?"
-    style="width:100%; min-height:120px;"
-  ></textarea>
-</div>
   <div class="field-group-label">Dealbreakers &amp; Additional Notes</div>
   <div class="fields-stack">
     <div class="field">
@@ -1108,14 +1112,6 @@
       </div>
     </div>
 
-    <div class="field">
-      <label>What are your long-term life goals? <span class="opt">(Optional)</span></label>
-      <p class="hint">e.g. gain financial freedom, retire abroad, travel the world, have a big family etc.</p>
-      <textarea name="life_goals" placeholder="Share your long-term goals and aspirations…"></textarea>
-    </div>
-  </div>
-</div>
-
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 6: PHOTOS -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1124,19 +1120,19 @@
     <div class="section-num">6</div>
     <div class="section-title-block">
       <h2>Photos</h2>
-      <p>Please upload a minimum of 2 photos. Photos are reviewed discreetly.</p>
+      <p>Uploading photos is optional, but highly recommended to improve match quality. Photos are reviewed discreetly.</p>
     </div>
   </div>
 
   <div class="info-box" style="margin-bottom:24px;">
-    <strong>Photo requirements:</strong> Please upload at least 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
+    <strong>Photo guidance:</strong> If you choose to upload photos, we recommend 1 recent face photo and 1 recent full-length photo. Maximum 10MB total. We advise uploading JPEG photos. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.
   </div>
 
   <div class="upload-box" onclick="document.getElementById('photo-upload').click()">
     <div class="upload-icon">📷</div>
     <div class="upload-title">Upload your photos</div>
     <div class="upload-sub">
-      Minimum 2 photos required (1 face photo + 1 full-length photo)<br>
+      Recommended: 1 face photo + 1 full-length photo<br>
       Maximum 10MB total · JPEG preferred
     </div>
     <div class="upload-btn">Choose Photos</div>
@@ -1158,54 +1154,13 @@
     <div class="section-time">⏱ ~35–40 min total</div>
   </div>
 
-  <!-- BIG FIVE -->
-  <div class="psych-card">
-    <div class="psych-header">
-      <div>
-        <div class="psych-title">1. The 'Big Five' Personality Test</div>
-        <div class="psych-desc">This is a trusted, scientifically validated test used for reliable personal matching. You'll receive your scores and a personal results link — then return to this form to add both. Your progress is saved — return with your results anytime.</div>
-      </div>
-      <div class="psych-time">⏱ Takes 10–12 minutes</div>
-    </div>
-    <a class="psych-link" href="https://www.truity.com/test/big-five-personality-test" target="_blank" rel="noopener noreferrer">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="m10 14 11-11"/></svg>
-      Take the FREE Big Five test
-    </a>
-    <div class="psych-fields">
-      <div class="grid-2">
-        <div class="field">
-          <label>Openness Score <span class="req">*</span></label>
-          <input type="number" name="big5_openness" placeholder="1–120" min="1" max="120">
-        </div>
-        <div class="field">
-          <label>Extraversion Score <span class="req">*</span></label>
-          <input type="number" name="big5_extraversion" placeholder="1–120" min="1" max="120">
-        </div>
-        <div class="field">
-          <label>Conscientiousness Score <span class="req">*</span></label>
-          <input type="number" name="big5_conscientiousness" placeholder="1–120" min="1" max="120">
-        </div>
-        <div class="field">
-          <label>Agreeableness Score <span class="req">*</span></label>
-          <input type="number" name="big5_agreeableness" placeholder="1–120" min="1" max="120">
-        </div>
-        <div class="field">
-          <label>Neuroticism Score <span class="req">*</span></label>
-          <input type="number" name="big5_neuroticism" placeholder="1–120" min="1" max="120">
-        </div>
-      </div>
-      <div class="field">
-        <label>Paste your Big Five result link <span class="req">*</span></label>
-        <input type="url" name="big5_link" placeholder="e.g. 691f0d4f82e52q582a869572">
-      </div>
-    </div>
-  </div>
+
 
   <!-- LOVE LANGUAGE -->
   <div class="psych-card">
     <div class="psych-header">
       <div>
-        <div class="psych-title">2. The 'Love Language' Test</div>
+        <div class="psych-title">1. The 'Love Language' Test</div>
         <div class="psych-desc">
           <strong>A)</strong> Please take the free test in the link below. This test reveals how you feel most appreciated in a relationship — essentially, how you like to <em>receive</em> love. Your progress is saved — return with your results anytime.
         </div>
@@ -1247,7 +1202,7 @@
   <div class="psych-card">
     <div class="psych-header">
       <div>
-        <div class="psych-title">3. Attachment Style Test</div>
+        <div class="psych-title">2. Attachment Style Test</div>
         <div class="psych-desc">This test measures how you bond, connect, and relate to others in close relationships. Understanding your attachment style helps us find someone whose relational patterns complement yours. It identifies whether you are predominantly Secure, Anxious, Avoidant, or Disorganised in how you attach to a partner. Your progress is saved — return with your results anytime.</div>
       </div>
       <div class="psych-time">⏱ Takes 5–7 minutes</div>
@@ -1275,7 +1230,7 @@
   <div class="psych-card">
     <div class="psych-header">
       <div>
-        <div class="psych-title">4. The Myers-Briggs Personality Test (MBTI)</div>
+        <div class="psych-title">3. The Myers-Briggs Personality Test (MBTI)</div>
         <div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world. Once completed, select your personality type below. Your progress is saved — return with your results anytime.</div>
       </div>
       <div class="psych-time">⏱ Takes 10–12 minutes</div>
@@ -1312,12 +1267,13 @@
 </div>
 
 
+
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 9: CONSENT & CONTACT -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-card">
   <div class="section-header">
-    <div class="section-num">9</div>
+    <div class="section-num">8</div>
     <div class="section-title-block">
       <h2>Consent &amp; Contact Details</h2>
       <p>Please review and confirm before submitting your profile.</p>
@@ -1325,7 +1281,6 @@
   </div>
 
   <p class="consent-intro">The information you've shared helps us create meaningful, well-matched introductions. Your information is treated with discretion and used solely for the purpose of matchmaking.</p>
-  <p style="font-size:.84rem;font-weight:700;color:var(--label);margin-bottom:16px;">Please take a moment to review and confirm the following:</p>
 
   <div class="consent-list">
     <label class="consent-item">
@@ -1334,52 +1289,21 @@
     </label>
     <label class="consent-item">
       <input type="checkbox" name="consent_use" required>
-      <span>I understand that my responses will be used for the purpose of personality-based matchmaking and curated introductions through Sparked Connection, including review by AI-assisted tools and a human matchmaker. <span style="color:var(--accent)">*</span></span>
+      <span>I understand that my responses will be used for compatibility-based matchmaking, including review by AI-assisted tools and a human matchmaker. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="consent_special_data" required>
-      <span>I explicitly consent to Sparked Connection processing special category personal data that I choose to provide (such as sexual orientation, relationship preferences, values, or personality assessment results) for the purpose of providing matchmaking and introduction services. <span style="color:var(--accent)">*</span></span>
+      <input type="checkbox" name="consent_sensitive" required>
+      <span>I understand that some of the information I provide may be sensitive and I consent to its use for matchmaking purposes. <span style="color:var(--accent)">*</span></span>
     </label>
     <label class="consent-item">
-      <input type="checkbox" name="consent_privacy" required>
-      <span>I have read and understood the Privacy Policy and understand how my personal data will be stored and processed. <span style="color:var(--accent)">*</span></span>
-    </label>
-    <label class="consent-item">
-      <input type="checkbox" name="consent_terms" required>
-      <span>I have read and agree to the Terms &amp; Conditions of the matchmaking service. <span style="color:var(--accent)">*</span></span>
-    </label>
-    <label class="consent-item">
-      <input type="checkbox" name="consent_sharing" required>
-      <span>I understand that limited profile information may be shared with potential matches for the purpose of assessing compatibility and mutual interest. <span style="color:var(--accent)">*</span></span>
-    </label>
-    <label class="consent-item">
-      <input type="checkbox" name="consent_marketing">
-      <span>I would like to receive occasional updates about events or services from Sparked Connection. (Optional)</span>
+      <input type="checkbox" name="consent_privacy_terms" required>
+      <span>I have read the Privacy Notice and Terms &amp; Conditions, and I understand that a brief profile may be shared with a suitable match where appropriate. <span style="color:var(--accent)">*</span></span>
     </label>
   </div>
 
-  <p class="consent-never">We will never share your personal contact details with any potential match without your permission.</p>
-  <p class="consent-withdraw">You may withdraw your consent at any time by contacting us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p>
-
-  <div class="field-group-label">Your Contact Details</div>
-  <div class="grid-2">
-    <div class="field">
-      <label>Email address <span class="req">*</span></label>
-      <input type="email" name="email" placeholder="Email" required>
-    </div>
-    <div class="field">
-      <label>Mobile number <span class="req">*</span></label>
-      <input type="tel" name="mobile" placeholder="Mobile number" required>
-    </div>
-  </div>
-
-  <div class="consent-legal" style="margin-top:20px;">
-    <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
-    <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
-  </div>
+  <div class="consent-withdraw">You may withdraw your consent at any time by contacting us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</div>
 </div>
 
-<!-- SUBMIT -->
 <div class="submit-wrap">
   <div class="submit-title">Ready to find your match?</div>
   <p class="submit-sub">Once submitted, our team will review your profile and be in touch within 3–5 working days.</p>
@@ -1459,10 +1383,27 @@
     document.getElementById('dealbreaker-other-field').classList.toggle('visible', this.checked);
   });
 
-  // Photo preview
+  // Other: living situation free text
+  const livingSituationSelect = document.getElementById('living-situation');
+  const livingOtherField = document.getElementById('living-other-field');
+  const livingOtherInput = livingOtherField ? livingOtherField.querySelector('input') : null;
+
+  if (livingSituationSelect && livingOtherField) {
+    livingSituationSelect.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      livingOtherField.classList.toggle('visible', show);
+      if (livingOtherInput) {
+        livingOtherInput.required = show;
+      }
+    });
+  }
+
+  // Photo preview (optional upload)
   document.getElementById('photo-upload').addEventListener('change', function() {
     const preview = document.getElementById('photo-preview');
-    if (this.files.length > 0) {
+    if (this.files.length === 0) {
+      preview.innerHTML = "<span style='color:#8896b3;'>No photos uploaded (optional)</span>";
+    } else {
       preview.textContent = `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
     }
   });
