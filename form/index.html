@@ -1232,6 +1232,51 @@ These scientifically-validated tests help us make much deeper, more meaningful m
 </div>
 <div class="consent-withdraw">You may withdraw your consent at any time by contacting us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</div>
 </div>
+
+ <div class="field-group-label">Your Contact Details</div>
+  <div class="grid-2">
+    <div class="field">
+      <label>Email address <span class="req">*</span></label>
+      <input type="email" name="fi-sender-email" placeholder="Email" required>
+    </div>
+<div class="field">
+  <label>Mobile number <span class="req">*</span></label>
+
+  <div style="display:flex; gap:10px;">
+
+    <!-- Country code -->
+    <select name="fi-select-countryCode" required style="max-width:140px;">
+      <option value="+44">🇬🇧 +44</option>
+      <option value="+1">🇺🇸 +1</option>
+      <option value="+33">🇫🇷 +33</option>
+      <option value="+49">🇩🇪 +49</option>
+      <option value="+48">🇵🇱 +48</option>
+      <option value="+34">🇪🇸 +34</option>
+      <option value="+39">🇮🇹 +39</option>
+    </select>
+
+    <!-- Phone number -->
+    <input 
+      type="tel" 
+      name="fi-text-phoneLocal" 
+      placeholder="e.g. 7784939929" 
+      required
+      style="flex:1;"
+    >
+
+  </div>
+
+  <p class="hint">
+    Enter your number without the leading 0. For example: 7784939929
+  </p>
+</div>
+  <div class="consent-legal" style="margin-top:20px;">
+    <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
+    <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
+  </div>
+</div>
+
+<!-- SUBMIT -->
 <div class="submit-wrap">
 <div class="submit-title">Ready to find your match?</div>
 <p class="submit-sub">Once submitted, our team will review your profile and be in touch within 3–5 working days.</p>
