@@ -284,6 +284,10 @@
       border-radius: 999px; border: 1px solid var(--border);
       white-space: nowrap; flex-shrink: 0;
     }
+    @media (max-width: 600px) {
+      .psych-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .psych-time { align-self: flex-start; }
+    }
     .psych-desc { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
     .psych-link {
       display: inline-flex; align-items: center; gap: 6px;
@@ -521,7 +525,7 @@
 </div>
 <div class="field-group-label">Languages</div>
 <div class="field">
-<label>What languages do you speak? <span class="req">*</span></label>
+<label>What languages do you speak? <span class="opt">(Optional)</span></label>
 <p class="hint">Select all that apply</p>
 <div class="check-list col-2" id="languages-list">
 <label class="check-item"><input name="languages" type="checkbox" value="English"/> English</label>
@@ -552,7 +556,7 @@
 <div class="field-group-label">Appearance</div>
 <div class="grid-2">
 <div class="field">
-<label>Height <span class="req">*</span></label>
+<label>Height <span class="opt">(Optional)</span></label>
 <select name="height">
 <option value="">Select height</option>
 <option>Under 5'0" / 152cm</option>
@@ -566,7 +570,7 @@
 </select>
 </div>
 <div class="field">
-<label>Body Shape <span class="req">*</span></label>
+<label>Body Shape <span class="opt">(Optional)</span></label>
 <select name="body_shape">
 <option value="">Select body shape</option>
 <option>Very slim</option>
@@ -580,7 +584,7 @@
 </select>
 </div>
 <div class="field">
-<label>Hair Colour <span class="req">*</span></label>
+<label>Hair Colour <span class="opt">(Optional)</span></label>
 <select name="hair_colour">
 <option value="">Select hair colour</option>
 <option>Black</option>
@@ -598,7 +602,7 @@
 </select>
 </div>
 <div class="field">
-<label>Hair Length <span class="req">*</span></label>
+<label>Hair Length <span class="opt">(Optional)</span></label>
 <select name="hair_length">
 <option value="">Select hair length</option>
 <option>Bald / Shaved</option>
@@ -678,7 +682,7 @@
 </div>
 <div class="conditional" id="children-count">
 <div class="field">
-<label>How many children do you have? <span class="req">*</span></label>
+<label>How many children do you have? <span class="opt">(Optional)</span></label>
 <select name="children_count">
 <option value="">Select</option>
 <option>1</option><option>2</option><option>3</option>
@@ -687,7 +691,7 @@
 </div>
 </div>
 <div class="field">
-<label>Are you open to dating people with children? <span class="req">*</span></label>
+<label>Are you open to dating people with children? <span class="opt">(Optional)</span></label>
 <div class="radio-pills">
 <label class="radio-pill"><input name="open_to_children" type="radio" value="Yes"/> Yes</label>
 <label class="radio-pill"><input name="open_to_children" type="radio" value="No"/> No</label>
@@ -710,7 +714,7 @@
 <div class="field-group-label">Health &amp; Habits</div>
 <div class="fields-stack">
 <div class="field">
-<label>Do you smoke? <span class="req">*</span></label>
+<label>Do you smoke? <span class="opt">(Optional)</span></label>
 <div class="radio-pills">
 <label class="radio-pill"><input name="smoking" type="radio" value="Non-smoker"/> Non-smoker</label>
 <label class="radio-pill"><input name="smoking" type="radio" value="Social smoker"/> Social smoker</label>
@@ -720,7 +724,7 @@
 </div>
 </div>
 <div class="field">
-<label>Do you drink alcohol? <span class="req">*</span></label>
+<label>Do you drink alcohol? <span class="opt">(Optional)</span></label>
 <div class="radio-pills" id="alcohol-group">
 <label class="radio-pill"><input name="alcohol" type="radio" value="No"/> No</label>
 <label class="radio-pill"><input name="alcohol" type="radio" value="Occasionally"/> Occasionally</label>
@@ -729,7 +733,7 @@
 </div>
 </div>
 <div class="field">
-<label>How often do you exercise? <span class="req">*</span></label>
+<label>How often do you exercise? <span class="opt">(Optional)</span></label>
 <select name="exercise">
 <option value="">Select</option>
 <option>Never</option>
@@ -741,7 +745,7 @@
 </select>
 </div>
 <div class="field">
-<label>Describe your diet <span class="req">*</span></label>
+<label>Describe your diet <span class="opt">(Optional)</span></label>
 <select name="diet">
 <option value="">Select</option>
 <option>No restrictions / Omnivore</option>
@@ -759,7 +763,7 @@
 <div class="field-group-label">Religion &amp; Spirituality</div>
 <div class="fields-stack">
 <div class="field">
-<label>Religion / Spirituality <span class="req">*</span></label>
+<label>Religion / Spirituality <span class="opt">(Optional)</span></label>
 <select name="religion">
 <option value="">Select</option>
 <option>Christian</option>
@@ -777,7 +781,7 @@
 </select>
 </div>
 <div class="field">
-<label>How important is religion or spirituality to you? <span class="req">*</span></label>
+<label>How important is religion or spirituality to you? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Not important at all, 5 = Very important</p>
 <div class="scale-wrap">
 <div class="scale-track">
@@ -791,7 +795,7 @@
 <div class="field-group-label">Personality &amp; Values</div>
 <div class="fields-stack">
 <div class="field">
-<label>Do you want to have children (in the future)? <span class="req">*</span></label>
+<label>Do you want to have children (in the future)? <span class="opt">(Optional)</span></label>
 <div class="radio-pills">
 <label class="radio-pill"><input name="want_children" type="radio" value="Yes, definitely"/> Yes, definitely</label>
 <label class="radio-pill"><input name="want_children" type="radio" value="Open to it"/> Open to it</label>
@@ -800,7 +804,7 @@
 </div>
 </div>
 <div class="field">
-<label>How introverted or extraverted are you? <span class="req">*</span></label>
+<label>How introverted or extraverted are you? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Quiet night in, 5 = Social butterfly</p>
 <div class="scale-wrap">
 <div class="scale-track">
@@ -811,7 +815,7 @@
 </div>
 </div>
 <div class="field">
-<label>Which of these best describes your values? <span class="req">*</span></label>
+<label>Which of these best describes your values? <span class="opt">(Optional)</span></label>
 <p class="hint">Select up to 3 answers</p>
 <div class="check-list col-2" id="values-list">
 <label class="check-item"><input name="values" type="checkbox" value="Family-first"/> Family-first</label>
@@ -844,7 +848,7 @@
 </div>
 <div class="fields-stack">
 <div class="field">
-<label>What kind of a relationship are you looking for? <span class="req">*</span></label>
+<label>What kind of a relationship are you looking for? <span class="opt">(Optional)</span></label>
 <select name="relationship_type">
 <option value="">Select relationship type</option>
 <option>Marriage</option>
@@ -855,7 +859,7 @@
 </select>
 </div>
 <div class="field">
-<label>How do you prefer to handle conflict in a relationship? <span class="req">*</span></label>
+<label>How do you prefer to handle conflict in a relationship? <span class="opt">(Optional)</span></label>
 <select name="conflict_style">
 <option value="">Select</option>
 <option>Talk it through calmly as soon as it arises</option>
@@ -882,17 +886,17 @@
 <div class="field-group-label">Age &amp; Appearance</div>
 <div class="grid-2">
 <div class="field">
-<label>Preferred minimum age of match <span class="req">*</span></label>
+<label>Preferred minimum age of match <span class="opt">(Optional)</span></label>
 <input max="80" min="18" name="pref_age_min" placeholder="e.g. 28" type="number"/>
 </div>
 <div class="field">
-<label>Preferred maximum age of match <span class="req">*</span></label>
+<label>Preferred maximum age of match <span class="opt">(Optional)</span></label>
 <input max="100" min="18" name="pref_age_max" placeholder="e.g. 45" type="number"/>
 </div>
 </div>
 <div class="fields-stack" style="margin-top:20px;">
 <div class="field">
-<label>Partner's preferred ethnicity <span class="req">*</span></label>
+<label>Partner's preferred ethnicity <span class="opt">(Optional)</span></label>
 <p class="hint">Select all that apply</p>
 <div class="check-list col-2">
 <label class="check-item"><input name="pref_ethnicity" type="checkbox" value="No preference"/> No preference</label>
@@ -905,7 +909,7 @@
 <label class="check-item"><input name="pref_ethnicity" type="checkbox" value="Jewish"/> Jewish</label>
 </div>
 <div class="field">
-<label>Partner's preferred height (cm) <span class="req">*</span></label>
+<label>Partner's preferred height (cm) <span class="opt">(Optional)</span></label>
 <div class="grid-2">
 <div>
 <input max="220" min="140" name="heightMin" placeholder="Minimum (e.g. 170)" required="" type="number"/>
@@ -916,7 +920,7 @@
 </div>
 </div>
 <div class="field">
-<label>Partner's preferred body type <span class="req">*</span></label>
+<label>Partner's preferred body type <span class="opt">(Optional)</span></label>
 <p class="hint">Select all that apply</p>
 <div class="check-list col-2">
 <label class="check-item"><input name="pref_body_type" type="checkbox" value="No strong preference"/> No strong preference</label>
@@ -937,7 +941,7 @@
 <div class="field-group-label">Religion &amp; Location</div>
 <div class="fields-stack">
 <div class="field">
-<label>Do you have specific religious preferences for your partner? <span class="req">*</span></label>
+<label>Do you have specific religious preferences for your partner? <span class="opt">(Optional)</span></label>
 <p class="hint">Select all that apply</p>
 <div class="check-list col-2">
 <label class="check-item"><input name="pref_religion" type="checkbox" value="I don't mind"/> I don't mind</label>
@@ -955,7 +959,7 @@
 </div>
 </div>
 <div class="field">
-<label>How important is it for your partner to be religious or spiritual? <span class="req">*</span></label>
+<label>How important is it for your partner to be religious or spiritual? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Not important at all, 5 = Very important</p>
 <div class="scale-wrap">
 <div class="scale-track">
@@ -966,7 +970,7 @@
 </div>
 </div>
 <div class="field">
-<label>Is location important to you? <span class="req">*</span></label>
+<label>Is location important to you? <span class="opt">(Optional)</span></label>
 <div class="radio-pills">
 <label class="radio-pill"><input name="location_important" type="radio" value="Yes – I'd like to meet someone local"/> Yes – I'd like to meet someone local</label>
 <label class="radio-pill"><input name="location_important" type="radio" value="Flexible within my country"/> Flexible within my country</label>
@@ -977,7 +981,7 @@
 <div class="field-group-label">Dealbreakers &amp; Additional Notes</div>
 <div class="fields-stack">
 <div class="field">
-<label>Are there any absolute dealbreakers for you? <span class="req">*</span></label>
+<label>Are there any absolute dealbreakers for you? <span class="opt">(Optional)</span></label>
 <p class="hint">Select all that apply</p>
 <div class="check-list col-2">
 <label class="check-item"><input name="dealbreakers" type="checkbox" value="Smoking"/> Smoking</label>
@@ -1015,7 +1019,7 @@
 </div>
 <div class="fields-stack">
 <div class="field">
-<label>How would you describe your political views? <span class="req">*</span></label>
+<label>How would you describe your political views? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Very liberal, 5 = Very conservative</p>
 <div class="scale-wrap">
 <div class="scale-track">
@@ -1026,7 +1030,7 @@
 </div>
 </div>
 <div class="field">
-<label>How important is it for your partner to share similar political views? <span class="req">*</span></label>
+<label>How important is it for your partner to share similar political views? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Not important, 5 = Very important</p>
 <div class="scale-wrap">
 <div class="scale-track">
@@ -1037,7 +1041,7 @@
 </div>
 </div>
 <div class="field">
-<label>Which statement best describes your general approach to money? <span class="req">*</span></label>
+<label>Which statement best describes your general approach to money? <span class="opt">(Optional)</span></label>
 <p class="hint">Select the option that feels most accurate</p>
 <div class="check-list">
 <label class="check-item"><input name="money_approach" type="radio" value="careful"/> I'm careful and value financial security above all</label>
@@ -1048,7 +1052,7 @@
 </div>
 </div>
 <div class="field">
-<label>In a relationship, how important is it that your partner's approach to money is similar to yours? <span class="req">*</span></label>
+<label>In a relationship, how important is it that your partner's approach to money is similar to yours? <span class="opt">(Optional)</span></label>
 <div class="check-list">
 <label class="check-item"><input name="money_compatibility" type="radio" value="Very important"/> Very important</label>
 <label class="check-item"><input name="money_compatibility" type="radio" value="Somewhat important"/> Somewhat important</label>
@@ -1093,7 +1097,7 @@
     </a>
 <div class="psych-fields">
 <div class="field">
-<label>What makes you feel loved? (Primary love language)<span class="req">*</span></label>
+<label>What makes you feel loved? (Primary love language) <span class="opt">(Optional)</span></label>
 <select name="love_language_primary">
 <option value="">What makes you feel loved?</option>
 <option>Words of affirmation</option>
@@ -1104,7 +1108,7 @@
 </select>
 </div>
 <div class="field">
-<label>What makes you feel loved? (Secondary love language) <span class="req">*</span></label>
+<label>What makes you feel loved? (Secondary love language) <span class="opt">(Optional)</span></label>
 <select name="love_language_secondary">
 <option value="">How do you show love?</option>
 <option>Words of Affirmation</option>
@@ -1131,7 +1135,7 @@
     </a>
 <div class="psych-fields">
 <div class="field">
-<label>My attachment style is <span class="req">*</span></label>
+<label>My attachment style is <span class="opt">(Optional)</span></label>
 <select name="attachment_style">
 <option value="">Select your attachment style</option>
 <option>Secure</option>
@@ -1158,7 +1162,7 @@
     </a>
 <div class="psych-fields">
 <div class="field">
-<label>MBTI Personality <span class="req">*</span></label>
+<label>MBTI Personality <span class="opt">(Optional)</span></label>
 <select name="mbti">
 <option value="">MBTI Personality</option>
 <option>INTJ – Architect / Strategist</option>
