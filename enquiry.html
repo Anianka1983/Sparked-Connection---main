@@ -1190,7 +1190,24 @@
   } catch (e) {
     console.error("Backup failed", e);
   }
+try {
+  const res3 = await fetch("https://script.google.com/macros/s/AKfycbz5LYL2UaXjU7iIubLzeEvjLANL650lt0p64K8TyGXHspJWa-XAyN7fyLOGhu3O3_-u/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      ...data,
+      pageUrl: window.location.href
+    })
+  });
 
+  success = true;
+
+} catch (e) {
+  console.error("Google Sheets logging failed", e);
+}
   if (!success) {
     alert("Something went wrong. Please try again or email hello@sparkedconnection.com directly.");
     btn.disabled = false;
