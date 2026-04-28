@@ -413,26 +413,30 @@
     /* ── SUBMISSION VALIDATION / SUCCESS ───────────────────────── */
     .field-error-message {
       color: var(--accent);
-      font-size: .78rem;
-      font-weight: 600;
-      margin-top: 6px;
+      font-size: .76rem;
+      font-weight: 500;
+      margin-top: 7px;
+      line-height: 1.45;
+      letter-spacing: .01em;
     }
     .form-error-summary {
       display: none;
       margin: 0 0 24px;
-      padding: 14px 16px;
-      border: 1.5px solid var(--accent);
-      border-radius: 10px;
-      background: hsl(340 55% 45% / .07);
+      padding: 16px 18px;
+      border: 1px solid hsl(340 55% 45% / .28);
+      border-radius: 14px;
+      background: linear-gradient(135deg, hsl(340 55% 45% / .07), hsl(36 30% 98%));
       color: var(--primary);
       font-size: .86rem;
-      font-weight: 600;
-      line-height: 1.5;
+      font-weight: 500;
+      line-height: 1.55;
+      box-shadow: 0 8px 24px hsl(220 30% 20% / .06);
     }
     .form-error-summary.visible { display: block; }
     .required-missing {
-      border-color: var(--accent) !important;
-      box-shadow: 0 0 0 3px hsl(340 55% 45% / .12) !important;
+      border-color: hsl(340 55% 45% / .65) !important;
+      box-shadow: 0 0 0 4px hsl(340 55% 45% / .09) !important;
+      background: hsl(340 55% 45% / .025) !important;
     }
     .success-screen {
       display: none;
@@ -492,7 +496,7 @@
 <p class="hero-eyebrow">New Member Profile</p>
 <h1>Your Matchmaking Questionnaire</h1>
 <p>This questionnaire helps us understand who you are and what you're truly looking for - so we can make meaningful, well-matched introductions.</p>
-<div class="time-badge">⏱ Estimated time: 20–30 minutes</div>
+<div class="time-badge"> No rush - most questions are optional. Simply share what feels right.</div>
 <div class="hero-steps">
 <div class="hero-step"><div class="hero-step-num">1</div> About You</div>
 <div class="hero-step"><div class="hero-step-num">2</div> Lifestyle</div>
@@ -506,7 +510,7 @@
 </div>
 <div class="form-wrap">
 <form accept-charset="UTF-8" action="https://formspree.io/f/xojynjke" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate>
-<div class="form-error-summary" id="form-error-summary" role="alert">Please complete all required fields and tick all consent boxes before submitting.</div>
+<div class="form-error-summary" id="form-error-summary" role="alert">Almost there — please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
@@ -621,8 +625,8 @@
 <div class="field-group-label">Appearance</div>
 <div class="grid-2">
 <div class="field">
-<label>Height <span class="opt">(Optional)</span></label>
-<select name="height">
+<label>Height <span class="req">*</span></label>
+<select name="height" required>
 <option value="">Select height</option>
 <option>Under 5'0" / 152cm</option>
 <option>5'0" – 5'2" / 152–157cm</option>
@@ -635,8 +639,8 @@
 </select>
 </div>
 <div class="field">
-<label>Body Shape <span class="opt">(Optional)</span></label>
-<select name="body_shape">
+<label>Body Shape <span class="req">*</span></label>
+<select name="body_shape" required>
 <option value="">Select body shape</option>
 <option>Very slim</option>
 <option>Slim</option>
@@ -649,8 +653,8 @@
 </select>
 </div>
 <div class="field">
-<label>Hair Colour <span class="opt">(Optional)</span></label>
-<select name="hair_colour">
+<label>Hair Colour <span class="req">*</span></label>
+<select name="hair_colour" required>
 <option value="">Select hair colour</option>
 <option>Black</option>
 <option>Dark brown</option>
@@ -667,8 +671,8 @@
 </select>
 </div>
 <div class="field">
-<label>Hair Length <span class="opt">(Optional)</span></label>
-<select name="hair_length">
+<label>Hair Length <span class="req">*</span></label>
+<select name="hair_length" required>
 <option value="">Select hair length</option>
 <option>Bald / Shaved</option>
 <option>Very short</option>
@@ -1398,7 +1402,7 @@
       if (input.type === 'checkbox') {
         if (!input.checked) {
           valid = false;
-          markRequiredGroup(input, 'This box must be ticked before you can submit.');
+          markRequiredGroup(input, 'Please confirm this before we send your profile.');
         }
         return;
       }
@@ -1409,7 +1413,7 @@
         const checked = form.querySelector(`input[type="radio"][name="${CSS.escape(input.name)}"]:checked`);
         if (!checked) {
           valid = false;
-          markRequiredGroup(input, 'Please select an option.');
+          markRequiredGroup(input, 'Please choose the option that feels closest.');
         }
         return;
       }
@@ -1417,14 +1421,14 @@
       if (!input.value || !input.value.trim()) {
         valid = false;
         input.classList.add('required-missing');
-        addFieldMessage(input.closest('.field') || input.parentElement, 'This field is required.');
+        addFieldMessage(input.closest('.field') || input.parentElement, 'Please add this detail before continuing.');
         return;
       }
 
       if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
         valid = false;
         input.classList.add('required-missing');
-        addFieldMessage(input.closest('.field') || input.parentElement, 'Please enter a valid email address.');
+        addFieldMessage(input.closest('.field') || input.parentElement, 'Please enter a valid email address so we can contact you.');
       }
     });
 
@@ -1532,7 +1536,7 @@
     hideErrorSummary();
 
     if (!validateRequiredFields()) {
-      showErrorSummary('Please complete all required fields and tick all consent boxes before submitting.');
+      showErrorSummary('Almost there — a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
 
