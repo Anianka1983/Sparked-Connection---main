@@ -1128,67 +1128,84 @@
     }
 
     // ── SUBMIT ────────────────────────────────────────
-    async function submitForm() {
-      const btn = document.getElementById("btn-next");
-      btn.disabled = true;
-      btn.textContent = "Sending…";
+   async function submitForm() {
+  const btn = document.getElementById("btn-next");
+  btn.disabled = true;
+  btn.textContent = "Sending…";
 
-      const data = collectFormData();
+  const data = collectFormData();
 
-      try {
-        const response = await fetch("https://formspree.io/f/xvzvvppr", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            _subject:       "New Sparked Connection enquiry",
-            _replyto:       data.email,
-            name:           `${data.firstName} ${data.lastName}`,
-            email:          data.email,
-            phone:          data.phone || "Not provided",
-            age:            data.age,
-            location:       data.location,
-            gender:         data.gender,
-            profession:     data.profession,
-            industry:       data.industry,
-            linkedin:       data.linkedin || "Not provided",
-            looking_for:    data.goal,
-            status:         data.status,
-            children:       data.children,
-            partner_age:    `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
-            service:        data.service || "Not specified",
-            heard_via:      data.referral || "Not specified",
-            submitted_from: window.location.href,
-            submitted_at:   new Date().toISOString()
-          })
-        });
+  let success = false;
 
-        const result = await response.json().catch(() => ({}));
+  try {
+    // PRIMARY: Formspree
+    const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone || "Not provided",
+        age: data.age,
+        location: data.location,
+        gender: data.gender,
+        profession: data.profession,
+        industry: data.industry,
+        linkedin: data.linkedin || "Not provided",
+        looking_for: data.goal,
+        status: data.status,
+        children: data.children,
+        partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+        service: data.service || "Not specified",
+        heard_via: data.referral || "Not specified",
+        _subject: "🔥 New Sparked Connection Enquiry",
+        _replyto: data.email
+      })
+    });
 
-        if (!response.ok) {
-          const message = result && result.errors
-            ? result.errors.map(error => error.message).join(" ")
-            : "The enquiry could not be sent. Please try again or email hello@sparkedconnection.com.";
-          throw new Error(message);
-        }
+    if (res1.ok) success = true;
 
-        // Show success screen only after Formspree confirms the submission
-        document.getElementById(`step-${currentStep}`).classList.remove("active");
-        document.getElementById("success-screen").classList.add("show");
-        document.getElementById("btn-row").style.display = "none";
-        document.querySelector(".progress-wrap").style.display = "none";
-        window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (e) {
+    console.error("Formspree failed", e);
+  }
 
-      } catch(e) {
-        console.error("Submission error:", e);
-        alert("Sorry — your enquiry could not be sent. Please try again, or email hello@sparkedconnection.com directly.");
-        btn.disabled = false;
-        updateBtns();
-      }
-    }
+  try {
+    // BACKUP: FormSubmit (VERY reliable)
+    const res2 = await fetch("https://formsubmit.co/ajax/hello@sparkedconnection.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        message: JSON.stringify(data, null, 2),
+        _subject: "Backup Enquiry Submission"
+      })
+    });
 
+    if (res2.ok) success = true;
+
+  } catch (e) {
+    console.error("Backup failed", e);
+  }
+
+  if (!success) {
+    alert("Something went wrong. Please try again or email hello@sparkedconnection.com directly.");
+    btn.disabled = false;
+    btn.textContent = "Send my enquiry";
+    return;
+  }
+
+  // ✅ ONLY show success if actually sent
+  document.getElementById(`step-${currentStep}`).classList.remove("active");
+  document.getElementById("success-screen").classList.add("show");
+  document.getElementById("btn-row").style.display = "none";
+  document.querySelector(".progress-wrap").style.display = "none";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
     // ── INIT ──────────────────────────────────────────
     updateBtns();
     updateProgress();
