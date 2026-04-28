@@ -492,18 +492,20 @@
 <p class="hero-eyebrow">New Member Profile</p>
 <h1>Your Matchmaking Questionnaire</h1>
 <p>This questionnaire helps us understand who you are and what you're truly looking for - so we can make meaningful, well-matched introductions.</p>
+<div class="time-badge">⏱ Estimated time: 20–30 minutes</div>
 <div class="hero-steps">
 <div class="hero-step"><div class="hero-step-num">1</div> About You</div>
 <div class="hero-step"><div class="hero-step-num">2</div> Lifestyle</div>
 <div class="hero-step"><div class="hero-step-num">3</div> Relationship Goals</div>
 <div class="hero-step"><div class="hero-step-num">4</div> Match Preferences</div>
 <div class="hero-step"><div class="hero-step-num">5</div> Values</div>
-<div class="hero-step"><div class="hero-step-num">6</div> Psychology</div>
-<div class="hero-step"><div class="hero-step-num">7</div> Services</div>
+<div class="hero-step"><div class="hero-step-num">6</div> Photos</div>
+<div class="hero-step"><div class="hero-step-num">7</div> Psychology</div>
+<div class="hero-step"><div class="hero-step-num">8</div> Consent</div>
 </div>
 </div>
 <div class="form-wrap">
-<form accept-charset="UTF-8" action="https://formspree.io/f/xojyjnjke" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate>
+<form accept-charset="UTF-8" action="https://formspree.io/f/xojynjke" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate>
 <div class="form-error-summary" id="form-error-summary" role="alert">Please complete all required fields and tick all consent boxes before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1345,7 +1347,7 @@
 </div>
 <script>
 
-  const FORM_ENDPOINT = 'https://formspree.io/f/xojyjnjke';
+  const FORM_ENDPOINT = 'https://formspree.io/f/xojynjke';
   const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/hello@sparkedconnection.com';
   const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyKrKHx4wZKvW-Xu7QLcH7Wc9H1WrOEVKdMR4iF_NrBJ7vJQjmqAieNV9JWISVxorhq/exec';
 
@@ -1450,6 +1452,7 @@
       email: data['fi-sender-email'] || '',
       phone: `${data['fi-select-countryCode'] || ''} ${data['fi-text-phoneLocal'] || ''}`.trim(),
       formType: 'Full Questionnaire',
+      form_source: 'Sparked Connection Full Questionnaire',
       pageUrl: window.location.href,
       submittedAt: new Date().toISOString(),
       ...data
@@ -1457,13 +1460,23 @@
   }
 
   async function submitToFormspree(payload) {
+    const body = new URLSearchParams();
+    Object.entries(payload).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        body.append(key, value.join(', '));
+      } else if (value !== undefined && value !== null) {
+        body.append(key, String(value));
+      }
+    });
+    body.append('full_raw_submission', JSON.stringify(payload));
+
     const response = await fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: body.toString()
     });
 
     if (!response.ok) {
