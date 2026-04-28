@@ -919,7 +919,7 @@
 
         <div class="consent-row">
           <input type="checkbox" id="consent" />
-          <label for="consent">I confirm I am over 21 and agree to Sparked Connection storing my enquiry details in order to respond to my request. I have read the <a href="#">Privacy Policy</a>. <span class="req" style="color:var(--rose)">*</span></label>
+          <label for="consent">I confirm I am over 21 and agree to Sparked Connection storing my enquiry details in order to respond to my request. I have read the <a href="https://sparkedconnection.com/privacy">Privacy Policy</a>. <span class="req" style="color:var(--rose)">*</span></label>
         </div>
         <div class="field-error" id="err-consent" style="margin-top:-16px;margin-bottom:16px;">Please accept the privacy policy to continue.</div>
       </div>
@@ -1136,10 +1136,15 @@
       const data = collectFormData();
 
       try {
-        await fetch("https://formspree.io/f/xvzvvppr", {
+        const response = await fetch("https://formspree.io/f/xvzvvppr", {
           method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
           body: JSON.stringify({
+            _subject:       "New Sparked Connection enquiry",
+            _replyto:       data.email,
             name:           `${data.firstName} ${data.lastName}`,
             email:          data.email,
             phone:          data.phone || "Not provided",
@@ -1155,33 +1160,40 @@
             partner_age:    `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
             service:        data.service || "Not specified",
             heard_via:      data.referral || "Not specified",
+            submitted_from: window.location.href,
+            submitted_at:   new Date().toISOString()
           })
         });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          const message = result && result.errors
+            ? result.errors.map(error => error.message).join(" ")
+            : "The enquiry could not be sent. Please try again or email hello@sparkedconnection.com.";
+          throw new Error(message);
+        }
+
+        // Show success screen only after Formspree confirms the submission
+        document.getElementById(`step-${currentStep}`).classList.remove("active");
+        document.getElementById("success-screen").classList.add("show");
+        document.getElementById("btn-row").style.display = "none";
+        document.querySelector(".progress-wrap").style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
       } catch(e) {
         console.error("Submission error:", e);
+        alert("Sorry — your enquiry could not be sent. Please try again, or email hello@sparkedconnection.com directly.");
+        btn.disabled = false;
+        updateBtns();
       }
-
-      // Show success screen
-      document.getElementById(`step-${currentStep}`).classList.remove("active");
-      document.getElementById("success-screen").classList.add("show");
-      document.getElementById("btn-row").style.display = "none";
-      document.querySelector(".progress-wrap").style.display = "none";
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     // ── INIT ──────────────────────────────────────────
     updateBtns();
     updateProgress();
 
-    // ── MOBILE NAV ────────────────────────────────────
-    document.getElementById("nav-hamburger").addEventListener("click", function() {
-      document.getElementById("nav-mobile-panel").classList.toggle("open");
-    });
-    document.addEventListener("click", function(e) {
-      if (!e.target.closest("nav") && !e.target.closest(".nav-mobile-panel")) {
-        document.getElementById("nav-mobile-panel").classList.remove("open");
-      }
-    });
+    // Mobile nav is handled safely in the DOMContentLoaded script below.
   </script>
 
 <script>
