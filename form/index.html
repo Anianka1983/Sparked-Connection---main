@@ -409,6 +409,68 @@
     /* ── OTHER FREE TEXT ──────────────────────────────────────── */
     .other-field { margin-top: 8px; display: none; }
     .other-field.visible { display: block; }
+
+    /* ── SUBMISSION VALIDATION / SUCCESS ───────────────────────── */
+    .field-error-message {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    .form-error-summary {
+      display: none;
+      margin: 0 0 24px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--accent);
+      border-radius: 10px;
+      background: hsl(340 55% 45% / .07);
+      color: var(--primary);
+      font-size: .86rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .form-error-summary.visible { display: block; }
+    .required-missing {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 3px hsl(340 55% 45% / .12) !important;
+    }
+    .success-screen {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 0 2px 12px hsl(220 30% 20% / .05);
+    }
+    .success-screen.show { display: block; }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      margin: 0 auto 22px;
+      display: flex; align-items: center; justify-content: center;
+      background: hsl(340 55% 45% / .12);
+      color: var(--accent);
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+    .success-screen h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .success-screen p {
+      max-width: 560px;
+      margin: 0 auto 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .submit-btn:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
@@ -442,7 +504,9 @@
 </div>
 </div>
 <div class="form-wrap">
-<form accept-charset="UTF-8" action="https://formbold.com/s/3Omwk" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate="">
+<form accept-charset="UTF-8" action="https://formbold.com/s/3Omwk" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate>
+<div class="form-error-summary" id="form-error-summary" role="alert">Please complete all required fields and tick all consent boxes before submitting.</div>
+<input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1271,114 +1335,279 @@
 </button>
 </div>
 </div></div></div></form>
+
+<div class="success-screen" id="success-screen" aria-live="polite">
+  <div class="success-icon">✓</div>
+  <h2>Your profile has been submitted</h2>
+  <p>Thank you — your matchmaking questionnaire has been received.</p>
+  <p>Anna will review your profile personally and be in touch within 3–5 working days.</p>
+  <p>Please also check your Junk or Spam folder, and add <strong>hello@sparkedconnection.com</strong> to your safe senders list.</p>
+</div>
 </div>
 <script>
+  const https://script.google.com/macros/s/AKfycbwIOnuyIBmf_69_b3Npgp5zXshWUIftaQfo71LMcCYlDSsSel1rF3no3F5mVgZ0suT5Eg/exec = ""; // Optional: paste your Apps Script Web App URL here when ready.
+
+  const form = document.getElementById('questionnaire');
+  const errorSummary = document.getElementById('form-error-summary');
+  const submitBtn = form ? form.querySelector('.submit-btn') : null;
+
+  function showErrorSummary(message) {
+    if (!errorSummary) return;
+    errorSummary.textContent = message;
+    errorSummary.classList.add('visible');
+    errorSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function hideErrorSummary() { if (errorSummary) errorSummary.classList.remove('visible'); }
+
+  function clearValidationMarks() {
+    form.querySelectorAll('.required-missing').forEach(el => el.classList.remove('required-missing'));
+    form.querySelectorAll('.field-error-message').forEach(el => el.remove());
+  }
+
+  function addFieldMessage(container, message) {
+    if (!container || container.querySelector('.field-error-message')) return;
+    const msg = document.createElement('div');
+    msg.className = 'field-error-message';
+    msg.textContent = message;
+    container.appendChild(msg);
+  }
+
+  function markRequiredGroup(input, message) {
+    const container = input.closest('.field') || input.closest('.consent-item') || input.parentElement;
+    if (container) {
+      container.classList.add('required-missing');
+      addFieldMessage(container, message);
+    }
+  }
+
+  function validateRequiredFields() {
+    clearValidationMarks();
+    let valid = true;
+    const handledRadioGroups = new Set();
+
+    form.querySelectorAll('[required]').forEach(input => {
+      if (input.disabled) return;
+
+      if (input.type === 'checkbox') {
+        if (!input.checked) {
+          valid = false;
+          markRequiredGroup(input, 'This box must be ticked before you can submit.');
+        }
+        return;
+      }
+
+      if (input.type === 'radio') {
+        if (handledRadioGroups.has(input.name)) return;
+        handledRadioGroups.add(input.name);
+        const checked = form.querySelector(`input[type="radio"][name="${CSS.escape(input.name)}"]:checked`);
+        if (!checked) {
+          valid = false;
+          markRequiredGroup(input, 'Please select an option.');
+        }
+        return;
+      }
+
+      if (!input.value || !input.value.trim()) {
+        valid = false;
+        input.classList.add('required-missing');
+        addFieldMessage(input.closest('.field') || input.parentElement, 'This field is required.');
+        return;
+      }
+
+      if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+        valid = false;
+        input.classList.add('required-missing');
+        addFieldMessage(input.closest('.field') || input.parentElement, 'Please enter a valid email address.');
+      }
+    });
+
+    return valid;
+  }
+
+  function formDataToObject(fd) {
+    const out = {};
+    fd.forEach((value, key) => {
+      if (out[key]) {
+        if (!Array.isArray(out[key])) out[key] = [out[key]];
+        out[key].push(value);
+      } else {
+        out[key] = value;
+      }
+    });
+    return out;
+  }
+
+  async function submitToFormbold(fd) {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    });
+    return response.ok;
+  }
+
+  async function submitBackupToFormSubmit(data) {
+    const response = await fetch('https://formsubmit.co/ajax/hello@sparkedconnection.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Backup: New Sparked Connection Questionnaire',
+        name: `${data.first_name || ''} ${data.last_name || ''}`.trim(),
+        email: data['fi-sender-email'] || data.email || '',
+        message: JSON.stringify(data, null, 2)
+      })
+    });
+    return response.ok;
+  }
+
+  async function submitBackupToGoogleSheets(data) {
+    if (!GOOGLE_SHEETS_WEB_APP_URL) return false;
+    await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, pageUrl: window.location.href, timestamp: new Date().toISOString() })
+    });
+    return true;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideErrorSummary();
+
+    if (!validateRequiredFields()) {
+      showErrorSummary('Please complete all required fields and tick all consent boxes before submitting.');
+      return;
+    }
+
+    const fd = new FormData(form);
+    const data = formDataToObject(fd);
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+    }
+
+    let savedSomewhere = false;
+
+    try { if (await submitToFormbold(fd)) savedSomewhere = true; }
+    catch (err) { console.error('Formbold submission failed:', err); }
+
+    try { if (await submitBackupToFormSubmit(data)) savedSomewhere = true; }
+    catch (err) { console.error('FormSubmit backup failed:', err); }
+
+    try { if (await submitBackupToGoogleSheets(data)) savedSomewhere = true; }
+    catch (err) { console.error('Google Sheets backup failed:', err); }
+
+    if (!savedSomewhere) {
+      showErrorSummary('Sorry, the form could not be submitted. Please try again, or email hello@sparkedconnection.com directly.');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit My Profile <svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="18"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
+      }
+      return;
+    }
+
+    form.style.display = 'none';
+    document.querySelector('.progress-bar')?.style.setProperty('display', 'none');
+    document.getElementById('success-screen')?.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   // Values: max 3 selections
   const valuesList = document.getElementById('values-list');
   const valuesMsg = document.getElementById('values-limit-msg');
-  valuesList.addEventListener('change', function(e) {
-    const checked = valuesList.querySelectorAll('input[type="checkbox"]:checked');
-    if (checked.length >= 3) {
-      valuesMsg.style.display = 'block';
-      valuesList.querySelectorAll('input[type="checkbox"]:not(:checked)').forEach(cb => {
-        cb.disabled = true;
-        cb.closest('.check-item').style.opacity = '0.4';
-      });
-    } else {
-      valuesMsg.style.display = 'none';
-      valuesList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        cb.disabled = false;
-        cb.closest('.check-item').style.opacity = '';
-      });
-    }
-  });
+  if (valuesList && valuesMsg) {
+    valuesList.addEventListener('change', function() {
+      const checked = valuesList.querySelectorAll('input[type="checkbox"]:checked');
+      if (checked.length >= 3) {
+        valuesMsg.style.display = 'block';
+        valuesList.querySelectorAll('input[type="checkbox"]:not(:checked)').forEach(cb => {
+          cb.disabled = true;
+          cb.closest('.check-item').style.opacity = '0.4';
+        });
+      } else {
+        valuesMsg.style.display = 'none';
+        valuesList.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.disabled = false;
+          cb.closest('.check-item').style.opacity = '';
+        });
+      }
+    });
+  }
 
-  // Radio pill toggle
   document.querySelectorAll('.radio-pill').forEach(pill => {
     const input = pill.querySelector('input[type="radio"]');
     if (!input) return;
     pill.addEventListener('click', () => {
       const name = input.name;
-      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-        r.closest('.radio-pill')?.classList.remove('selected');
-      });
+      document.querySelectorAll(`input[name="${CSS.escape(name)}"]`).forEach(r => r.closest('.radio-pill')?.classList.remove('selected'));
       pill.classList.add('selected');
     });
   });
 
-  // Checkbox item highlight
   document.querySelectorAll('.check-item').forEach(item => {
     const input = item.querySelector('input');
     if (!input) return;
     input.addEventListener('change', () => {
       if (input.type === 'radio') {
         const name = input.name;
-        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-          r.closest('.check-item')?.classList.remove('selected');
-        });
+        document.querySelectorAll(`input[name="${CSS.escape(name)}"]`).forEach(r => r.closest('.check-item')?.classList.remove('selected'));
       }
       item.classList.toggle('selected', input.checked || input.type === 'radio');
     });
   });
 
-  // Conditional: children count
   document.querySelectorAll('input[name="has_children"]').forEach(r => {
     r.addEventListener('change', () => {
-      const show = r.value === 'Yes';
-      document.getElementById('children-count').classList.toggle('visible', show);
+      const checked = document.querySelector('input[name="has_children"]:checked');
+      document.getElementById('children-count')?.classList.toggle('visible', checked && checked.value === 'Yes');
     });
   });
 
-  // Other: language free text
-  document.getElementById('lang-other-cb').addEventListener('change', function() {
-    document.getElementById('lang-other-field').classList.toggle('visible', this.checked);
+  document.getElementById('lang-other-cb')?.addEventListener('change', function() {
+    document.getElementById('lang-other-field')?.classList.toggle('visible', this.checked);
+  });
+  document.getElementById('dealbreaker-other-cb')?.addEventListener('change', function() {
+    document.getElementById('dealbreaker-other-field')?.classList.toggle('visible', this.checked);
   });
 
-  // Other: dealbreaker free text
-  document.getElementById('dealbreaker-other-cb').addEventListener('change', function() {
-    document.getElementById('dealbreaker-other-field').classList.toggle('visible', this.checked);
-  });
-
-  // Other: living situation free text
   const livingSituationSelect = document.getElementById('living-situation');
   const livingOtherField = document.getElementById('living-other-field');
   const livingOtherInput = livingOtherField ? livingOtherField.querySelector('input') : null;
-
   if (livingSituationSelect && livingOtherField) {
     livingSituationSelect.addEventListener('change', function() {
       const show = this.value === 'Other';
       livingOtherField.classList.toggle('visible', show);
-      if (livingOtherInput) {
-        livingOtherInput.required = show;
-      }
+      if (livingOtherInput) livingOtherInput.required = show;
     });
   }
 
-  // Photo preview (optional upload)
-  document.getElementById('photo-upload').addEventListener('change', function() {
-    const preview = document.getElementById('photo-preview');
-    if (this.files.length === 0) {
-      preview.innerHTML = "<span style='color:#8896b3;'>No photos uploaded (optional)</span>";
-    } else {
-      preview.textContent = `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
-    }
-  });
+  const photoUpload = document.getElementById('photo-upload');
+  if (photoUpload) {
+    photoUpload.addEventListener('change', function() {
+      const preview = document.getElementById('photo-preview');
+      if (!preview) return;
+      preview.textContent = this.files.length === 0 ? 'No photos uploaded (optional)' : `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
+    });
+  }
 
-  // Progress bar
   function updateProgress() {
-    const fields = document.querySelectorAll('input[required], select[required], textarea[required]');
+    if (!form) return;
+    const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
     let filled = 0;
     fields.forEach(f => {
-      if (f.type === 'checkbox' || f.type === 'radio') {
-        const group = document.querySelectorAll(`input[name="${f.name}"]:checked`);
-        if (group.length > 0) filled++;
-      } else if (f.value.trim()) filled++;
+      if (f.type === 'checkbox') { if (f.checked) filled++; }
+      else if (f.type === 'radio') { if (form.querySelectorAll(`input[name="${CSS.escape(f.name)}"]:checked`).length) filled++; }
+      else if (f.value && f.value.trim()) filled++;
     });
-    const pct = Math.min(100, Math.round((filled / fields.length) * 100));
+    const pct = fields.length ? Math.min(100, Math.round((filled / fields.length) * 100)) : 0;
     document.getElementById('progress').style.width = pct + '%';
   }
-  document.getElementById('questionnaire').addEventListener('input', updateProgress);
-  document.getElementById('questionnaire').addEventListener('change', updateProgress);
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', updateProgress);
+  updateProgress();
 </script>
 </body>
 </html>
