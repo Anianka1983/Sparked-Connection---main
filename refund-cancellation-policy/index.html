@@ -528,24 +528,25 @@
     <p>If you purchase a membership online or at a distance, you may have the right to cancel within 14 days under UK consumer law.</p>
     <div class="callout">
       <strong>Important</strong>
-      By requesting that matchmaking services begin within the 14-day cooling-off period, you expressly acknowledge and agree that your right to cancel may be lost once the service has commenced.
+      By requesting that matchmaking services begin within the 14-day cooling-off period, you expressly acknowledge and agree that your right to cancel will be lost once the service has commenced.
     </div>
     <p>This does not affect your statutory rights where applicable.</p>
   </div>
  
   <div class="section-divider"></div>
  
-  <div class="policy-section" id="s4">
-    <h2><span class="section-num">4.</span> When the Service Begins</h2>
-    <p>For the purposes of cancellations and refunds, the service is deemed to commence when Sparked Connection begins reviewing your application, questionnaire, or profile for matchmaking purposes.</p>
-    <p>This may include:</p>
-    <ul class="policy-list">
-      <li>Reviewing your submitted information</li>
-      <li>Assessing compatibility or preferences</li>
-      <li>Preparing or considering potential matches</li>
-      <li>Conducting consultation or personalised review</li>
-    </ul>
+ <div class="policy-section" id="s4">
+  <h2><span class="section-num">4.</span> When the Service Begins</h2>
+
+  <p>For the purposes of cancellations and refunds, the service is deemed to commence only once the scheduled 1:1 consultation has taken place following contract signature.</p>
+
+  <p>Prior to this consultation, Sparked Connection may carry out administrative onboarding activities, including reviewing submitted information or preparing for the consultation. These activities do not constitute commencement of the matchmaking service.</p>
+
+  <div class="callout">
+    <strong>Important</strong>
+    Once the 1:1 consultation has taken place, the service is considered to have formally commenced, and the provisions relating to cancellation and refunds after commencement will apply.
   </div>
+</div>
  
   <div class="section-divider"></div>
  
@@ -586,19 +587,20 @@
  
   <div class="policy-section" id="s8">
     <h2><span class="section-num">8.</span> Client Participation &amp; Responsibility</h2>
-    <p>The effectiveness of the service depends on your engagement. Where a Client does not actively participate, respond, or engage with the matchmaking process, this may affect the ability to provide introductions and does not entitle the Client to a refund or extension.</p>
-    <p>Any period of non-responsiveness by the Client may not count toward the 12-month Membership Period for the purposes of the introduction guarantee.</p>
+    <p>The effectiveness of the service depends on your active engagement, availability, and responsiveness. Where a Client becomes unresponsive or unavailable for over 90 calendar days, the matchmaking process may be paused.</p>
+    <p>Any period of non-responsiveness, non-engagement, or unavailability by the Client may not count toward the 12-month Membership Period for the purposes of the introduction guarantee and does not entitle the Client to a refund or extension.</p>
   </div>
  
   <div class="section-divider"></div>
  
   <div class="policy-section" id="s9">
     <h2><span class="section-num">9.</span> Suspension or Termination by Sparked Connection</h2>
-    <p>We reserve the right to suspend or terminate membership where information provided is misleading or inaccurate, behaviour is inappropriate, unsafe, or inconsistent with the service, or there is repeated non-responsiveness without reasonable explanation.</p>
+    <p>We reserve the right to suspend or terminate membership immediately where a Client provides false, inaccurate, incomplete, or misleading information; breaches any eligibility representation, warranty, or undertaking given to Sparked Connection; behaves in a manner that is inappropriate, unsafe, disrespectful, threatening, abusive, or inconsistent with the values of the service; misuses introductions; or becomes repeatedly non-responsive without reasonable explanation.</p>
     <div class="callout">
       <strong>Please note</strong>
-      In such cases, refunds are not guaranteed and unused introductions may, at our discretion, be deemed fulfilled.
+      In such circumstances, membership fees are non-refundable, and any outstanding service obligations, including unused Agreed Introductions, may at our discretion be treated as fulfilled.
     </div>
+    <p>You acknowledge that Sparked Connection relies on the accuracy of the information, representations, and warranties you provide when accepting you into membership and delivering a personalised matchmaking service.</p>
   </div>
  
   <div class="section-divider"></div>
@@ -727,4 +729,15 @@
   }
 
   // Smooth scroll for TOC links
-  document.querySelectorAl
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
