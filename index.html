@@ -319,39 +319,54 @@ html, body {
   }
 }
 /* ABIA HERO BADGE */
+<style>
 .abia-badge-hero{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  margin-top:20px;
-
-  opacity:0;
-  transform:translateY(10px);
-  animation:abiaFadeIn 1.1s ease-out 0.7s forwards;
-
-  position:relative;
-  z-index:5;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin-top:16px !important;
+  position:relative !important;
+  z-index:20 !important;
+  text-align:center !important;
+  width:100% !important;
 }
 
 .abia-logo{
-  width:85px;
-  height:auto;
-  margin-bottom:6px;
-
+  width:95px !important;
+  height:auto !important;
+  margin:0 auto 6px auto !important;
+  display:block !important;
   filter:drop-shadow(0 0 6px rgba(230,169,97,.35))
-         drop-shadow(0 0 12px rgba(230,169,97,.18));
-
-  animation:abiaGlow 4.5s ease-in-out infinite;
+         drop-shadow(0 0 12px rgba(230,169,97,.18)) !important;
+  animation:abiaGlow 4.5s ease-in-out infinite !important;
 }
 
 .abia-text{
-  font-size:0.75rem;
-  color:rgba(255,255,255,0.92);
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  font-weight:500;
+  color:rgba(255,255,255,0.94) !important;
+  font-size:0.72rem !important;
+  letter-spacing:0.08em !important;
+  text-transform:uppercase !important;
+  font-weight:500 !important;
+  text-shadow:none !important;
 }
+
+@keyframes abiaGlow{
+  0%,100%{
+    filter:drop-shadow(0 0 4px rgba(230,169,97,.25))
+           drop-shadow(0 0 8px rgba(230,169,97,.12));
+  }
+  50%{
+    filter:drop-shadow(0 0 10px rgba(230,169,97,.45))
+           drop-shadow(0 0 18px rgba(230,169,97,.22));
+  }
+}
+
+@media (max-width:768px){
+  .abia-logo{ width:70px !important; }
+  .abia-text{ font-size:0.62rem !important; }
+}
+</style>
 
 /* Animations */
 @keyframes abiaFadeIn{
