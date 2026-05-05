@@ -509,7 +509,8 @@
 </div>
 </div>
 <div class="form-wrap">
-<form accept-charset="UTF-8" action="https://formspree.io/f/xojynjke" enctype="multipart/form-data" id="questionnaire" method="POST" novalidate>
+<iframe name="formbold-hidden-frame" id="formbold-hidden-frame" style="display:none;width:0;height:0;border:0;" title="Hidden FormBold submission frame"></iframe>
+<form accept-charset="UTF-8" action="https://formbold.com/s/3Omwk" enctype="multipart/form-data" id="questionnaire" method="POST" target="formbold-hidden-frame" novalidate>
 <div class="form-error-summary" id="form-error-summary" role="alert">Almost there — please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1464,33 +1465,34 @@
     };
   }
 
-  async function submitToFormBold(payload) {
-    const body = new URLSearchParams();
-    Object.entries(payload).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        body.append(key, value.join(', '));
-      } else if (value !== undefined && value !== null) {
-        body.append(key, String(value));
-      }
-    });
-    body.append('full_raw_submission', JSON.stringify(payload));
-
-    const response = await fetch(FORMBOLD_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json'
-      },
-      body: body.toString()
-    });
-
-    if (!response.ok) {
-      let details = '';
-      try { details = await response.text(); } catch (_) {}
-      throw new Error(`FormBold failed: ${response.status} ${details}`);
+  function setHiddenField(name, value) {
+    let field = form.querySelector(`input[type="hidden"][name="${CSS.escape(name)}"]`);
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = name;
+      form.appendChild(field);
     }
+    field.value = value == null ? '' : String(value);
+  }
 
-    return true;
+  function prepareNativeFormBoldSubmission(payload) {
+    // FormBold is now the real form action. These extra hidden fields make the
+    // FormBold email/submission easier to read while preserving every named input.
+    form.action = FORMBOLD_ENDPOINT;
+    form.method = 'POST';
+    form.enctype = 'multipart/form-data';
+    form.target = 'formbold-hidden-frame';
+
+    setHiddenField('_subject', 'New Sparked Connection Matchmaking Questionnaire');
+    setHiddenField('_replyto', payload.email || '');
+    setHiddenField('name', payload.name || '');
+    setHiddenField('email', payload.email || '');
+    setHiddenField('phone', payload.phone || '');
+    setHiddenField('form_source', 'Sparked Connection Full Questionnaire');
+    setHiddenField('pageUrl', window.location.href);
+    setHiddenField('submittedAt', new Date().toISOString());
+    setHiddenField('full_raw_submission', JSON.stringify(payload));
   }
 
   async function submitToFormspree(payload) {
@@ -1586,23 +1588,25 @@
     };
 
     // PRIMARY: FormBold
+    // Important: FormBold's own integration is a normal HTML form POST. We send
+    // that POST into a hidden iframe so Cloudflare/browser CORS cannot block it.
     try {
-      results.formbold = await submitToFormBold(payload);
+      prepareNativeFormBoldSubmission(payload);
+      HTMLFormElement.prototype.submit.call(form);
+      results.formbold = true;
+    } catch (err) {
+      console.error('Native FormBold submission failed', err);
+    }
+
+    // BACKUP 1: Formspree — sent silently as a backup copy.
+    try {
+      results.formspree = await submitToFormspree(payload);
     } catch (err) {
       console.error(err);
     }
 
-    // BACKUP 1: Formspree — only used if FormBold fails
-    if (!results.formbold) {
-      try {
-        results.formspree = await submitToFormspree(payload);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    // BACKUP 2: FormSubmit — only used if FormBold and Formspree fail
-    if (!results.formbold && !results.formspree) {
+    // BACKUP 2: FormSubmit — only used if Formspree fails.
+    if (!results.formspree) {
       try {
         results.formsubmit = await submitBackupToFormSubmit(payload);
       } catch (err) {
@@ -1610,13 +1614,11 @@
       }
     }
 
-    // BACKUP 3: Google Sheets logging — final safety net
-    if (!results.formbold && !results.formspree && !results.formsubmit) {
-      try {
-        results.googleSheets = await submitBackupToGoogleSheets(payload);
-      } catch (err) {
-        console.error(err);
-      }
+    // BACKUP 3: Google Sheets logging — silent final safety net.
+    try {
+      results.googleSheets = await submitBackupToGoogleSheets(payload);
+    } catch (err) {
+      console.error(err);
     }
 
     if (!results.formbold && !results.formspree && !results.formsubmit && !results.googleSheets) {
