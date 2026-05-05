@@ -1351,6 +1351,7 @@
 </div>
 <script>
 
+  const FORMBOLD_ENDPOINT = 'https://formbold.com/s/3Omwk';
   const FORM_ENDPOINT = 'https://formspree.io/f/xojynjke';
   const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/hello@sparkedconnection.com';
   const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyKrKHx4wZKvW-Xu7QLcH7Wc9H1WrOEVKdMR4iF_NrBJ7vJQjmqAieNV9JWISVxorhq/exec';
@@ -1463,6 +1464,35 @@
     };
   }
 
+  async function submitToFormBold(payload) {
+    const body = new URLSearchParams();
+    Object.entries(payload).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        body.append(key, value.join(', '));
+      } else if (value !== undefined && value !== null) {
+        body.append(key, String(value));
+      }
+    });
+    body.append('full_raw_submission', JSON.stringify(payload));
+
+    const response = await fetch(FORMBOLD_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept': 'application/json'
+      },
+      body: body.toString()
+    });
+
+    if (!response.ok) {
+      let details = '';
+      try { details = await response.text(); } catch (_) {}
+      throw new Error(`FormBold failed: ${response.status} ${details}`);
+    }
+
+    return true;
+  }
+
   async function submitToFormspree(payload) {
     const body = new URLSearchParams();
     Object.entries(payload).forEach(([key, value]) => {
@@ -1545,34 +1575,51 @@
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
+      submitBtn.innerHTML = 'Securely submitting…';
     }
 
     const results = {
+      formbold: false,
       formspree: false,
       formsubmit: false,
       googleSheets: false
     };
 
+    // PRIMARY: FormBold
     try {
-      results.formspree = await submitToFormspree(payload);
+      results.formbold = await submitToFormBold(payload);
     } catch (err) {
       console.error(err);
     }
 
-    try {
-      results.formsubmit = await submitBackupToFormSubmit(payload);
-    } catch (err) {
-      console.error(err);
+    // BACKUP 1: Formspree — only used if FormBold fails
+    if (!results.formbold) {
+      try {
+        results.formspree = await submitToFormspree(payload);
+      } catch (err) {
+        console.error(err);
+      }
     }
 
-    try {
-      results.googleSheets = await submitBackupToGoogleSheets(payload);
-    } catch (err) {
-      console.error(err);
+    // BACKUP 2: FormSubmit — only used if FormBold and Formspree fail
+    if (!results.formbold && !results.formspree) {
+      try {
+        results.formsubmit = await submitBackupToFormSubmit(payload);
+      } catch (err) {
+        console.error(err);
+      }
     }
 
-    if (!results.formspree && !results.formsubmit && !results.googleSheets) {
+    // BACKUP 3: Google Sheets logging — final safety net
+    if (!results.formbold && !results.formspree && !results.formsubmit) {
+      try {
+        results.googleSheets = await submitBackupToGoogleSheets(payload);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    if (!results.formbold && !results.formspree && !results.formsubmit && !results.googleSheets) {
       showErrorSummary('Sorry, the form could not be submitted. Please try again, or email hello@sparkedconnection.com directly.');
       if (submitBtn) {
         submitBtn.disabled = false;
