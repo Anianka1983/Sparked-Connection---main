@@ -262,6 +262,19 @@
       transition: all .3s;
     }
 
+
+    .plan-consult-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: hsl(var(--muted-foreground));
+      margin: -12px auto 18px;
+      line-height: 1.45;
+      max-width: 230px;
+    }
+    .plan-select-btn {
+      margin-top: auto;
+    }
+
     /* ── Footnotes ────────────────────────────────────────────── */
     .plans-footnotes {
       max-width: 680px;
@@ -460,7 +473,7 @@
         <a class="refer-link" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a>
       </div>
       <div class="desktop-cta">
-        <a href="/enquiry" rel="noopener noreferrer" target="_blank">
+        <a href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank">
           <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;">Create Free Profile</button>
         </a>
       </div>
@@ -482,7 +495,7 @@
   <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
   <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">Journal</a>
   <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
-  <a class="mobile-menu-cta" href="/enquiry" rel="noopener noreferrer" target="_blank">
+  <a class="mobile-menu-cta" href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank">
     <button class="cta-spark-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:8px 16px;background:hsl(var(--accent));color:hsl(var(--accent-foreground));border:none;border-radius:999px;font-size:.875rem;font-weight:500;width:100%;">Create Free Profile</button>
   </a>
 </div>
@@ -500,13 +513,14 @@
 <section class="plans-section">
   <div class="container">
     <p class="plans-intro">
-      We are a modern alternative to traditional luxury matchmaking - by combining smart technology with a lean, modern structure, we deliver high-quality matchmaking without the inflated overheads of traditional agencies.
+      Choose the level of support that feels right for you. Every paid membership begins with a private consultation, so we can understand your goals, confirm the right plan, and make sure the service feels aligned before you commit.
     </p>
+    <p class="plans-intro" style="margin-top:-32px;margin-bottom:44px;font-size:0.98rem;">No pressure. No instant checkout. Just a considered first step towards more intentional introductions.</p>
 
     <div class="plans-grid">
 
   <!-- BRONZE -->
-      <a class="plan-card" href="/enquiry" rel="noopener noreferrer" target="_blank" style="border-color: rgb(139,94,60);">
+      <a class="plan-card" href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank" style="border-color: rgb(139,94,60);">
         <h3 class="plan-title" style="color:rgb(139,94,60);">BRONZE</h3>
         <div class="plan-icon">
           <svg width="32" height="32" fill="none" stroke="rgb(230,200,74)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -514,6 +528,7 @@
           </svg>
         </div>
         <div class="plan-price"><span>Free</span></div>
+        <p class="plan-consult-note">Create a profile first — no payment required.</p>
         <ul class="plan-features">
           <li>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
@@ -528,11 +543,11 @@
             <span>Access to exclusive events <sup style="font-size:10px;color:hsl(var(--muted-foreground));">2</sup></span>
           </li>
         </ul>
-        <button class="plan-select-btn cta-spark-btn">Select</button>
+        <button class="plan-select-btn cta-spark-btn">Enquire Now</button>
       </a>
 
       <!-- GOLD -->
-      <a class="plan-card" href="https://www.paypal.com/ncp/payment/WYCFL8X3F9K9S" rel="noopener noreferrer" target="_blank" style="border-color: rgb(230,169,97);">
+      <a class="plan-card" href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank" style="border-color: rgb(230,169,97);">
         <div class="plan-badge">Most Popular</div>
         <h3 class="plan-title" style="color:rgb(230,169,97);">GOLD</h3>
         <div class="plan-icon">
@@ -541,6 +556,7 @@
           </svg>
         </div>
         <div class="plan-price"><span>£800</span></div>
+        <p class="plan-consult-note">All paid memberships begin with a private consultation.</p>
         <ul class="plan-features">
           <li>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
@@ -563,11 +579,11 @@
             <span>VIP Access to exclusive events <sup style="font-size:10px;color:hsl(var(--muted-foreground));">4</sup></span>
           </li>
         </ul>
-        <button class="plan-select-btn cta-spark-btn">Select</button>
+        <button class="plan-select-btn cta-spark-btn">Enquire Now</button>
       </a>
 
       <!-- PLATINUM -->
-      <a class="plan-card platinum-card" href="https://www.paypal.com/ncp/payment/APFJGPDUZX9SW" rel="noopener noreferrer" target="_blank" style="border-color: rgb(176,190,197);">
+      <a class="plan-card platinum-card" href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank" style="border-color: rgb(176,190,197);">
         <div class="platinum-badge-dual">✦ Dual Membership</div>
         <h3 class="plan-title" style="color:rgb(110,127,138);">PLATINUM</h3>
         <div class="plan-icon">
@@ -579,6 +595,7 @@
           </svg>
         </div>
         <div class="plan-price"><span>£1,500</span></div>
+        <p class="plan-consult-note">Perfect for two friends joining together — enquire first.</p>
         <ul class="plan-features">
           <li>
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
@@ -601,7 +618,7 @@
             <span>VIP Access to exclusive events for both <sup style="font-size:10px;color:hsl(var(--muted-foreground));">4</sup></span>
           </li>
         </ul>
-        <button class="plan-select-btn cta-spark-btn">Select</button>
+        <button class="plan-select-btn cta-spark-btn">Enquire Now</button>
       </a>
 
 
@@ -627,7 +644,7 @@
     <p class="section-eyebrow">Need Guidance?</p>
     <h2>Not sure which plan is right for you?</h2>
     <p>A private consultation is the best place to start - a relaxed conversation to understand what you're looking for and which approach feels right for you.</p>
-    <a href="/enquiry" rel="noopener noreferrer" target="_blank">
+    <a href="https://sparkedconnection.com/enquiry" rel="noopener noreferrer" target="_blank">
       <button class="not-sure-btn cta-spark-btn">
         Book a Private Consultation
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
