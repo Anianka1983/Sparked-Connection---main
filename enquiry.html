@@ -1191,7 +1191,39 @@
     console.error("Backup failed", e);
   }
 try {
-  const res3 = await fetch("https://script.google.com/macros/s/AKfycbz5LYL2UaXjU7iIubLzeEvjLANL650lt0p64K8TyGXHspJWa-XAyN7fyLOGhu3O3_-u/exec", {
+  // ADDITIONAL BACKUP: FormBold
+  const formBoldData = new FormData();
+  formBoldData.append("name", `${data.firstName} ${data.lastName}`);
+  formBoldData.append("email", data.email);
+  formBoldData.append("phone", data.phone || "Not provided");
+  formBoldData.append("age", data.age);
+  formBoldData.append("location", data.location);
+  formBoldData.append("gender", data.gender);
+  formBoldData.append("profession", data.profession);
+  formBoldData.append("industry", data.industry);
+  formBoldData.append("linkedin", data.linkedin || "Not provided");
+  formBoldData.append("looking_for", data.goal);
+  formBoldData.append("status", data.status);
+  formBoldData.append("children", data.children);
+  formBoldData.append("partner_age", `${data.partnerAgeMin} – ${data.partnerAgeMax}`);
+  formBoldData.append("service", data.service || "Not specified");
+  formBoldData.append("heard_via", data.referral || "Not specified");
+  formBoldData.append("page_url", window.location.href);
+  formBoldData.append("_subject", "New Sparked Connection Enquiry");
+
+  const res3 = await fetch("https://formbold.com/s/94dje", {
+    method: "POST",
+    body: formBoldData
+  });
+
+  if (res3.ok) success = true;
+
+} catch (e) {
+  console.error("FormBold failed", e);
+}
+
+try {
+  const res4 = await fetch("https://script.google.com/macros/s/AKfycbz5LYL2UaXjU7iIubLzeEvjLANL650lt0p64K8TyGXHspJWa-XAyN7fyLOGhu3O3_-u/exec", {
     method: "POST",
     mode: "no-cors",
     headers: {
