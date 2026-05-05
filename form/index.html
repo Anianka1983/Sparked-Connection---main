@@ -25,6 +25,7 @@
       --input-bg:  hsl(36 30% 98%);
       --label:     hsl(220 45% 20%);
       --section-num: hsl(340 55% 45%);
+     --success: 145 45% 42%;
     }
 
     body {
@@ -98,14 +99,34 @@
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .time-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: hsl(340 55% 45% / .15);
-      border: 1px solid hsl(340 55% 45% / .3);
-      color: hsl(340 55% 70%);
-      padding: 6px 16px; border-radius: 999px;
-      font-size: .78rem; font-weight: 500;
-    }
+.time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: hsl(145 45% 42% / .12);
+  border: 1px solid hsl(145 45% 42% / .35);
+
+  color: hsl(145 45% 42%);
+
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 500;
+
+  box-shadow: 0 4px 14px hsl(145 45% 42% / .15);
+
+  animation: timeBadgeGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes timeBadgeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 14px hsl(145 45% 42% / .12);
+  }
+  50% {
+    box-shadow: 0 4px 20px hsl(145 45% 42% / .28);
+  }
+}
 
     /* ── FORM CONTAINER ───────────────────────────────────────── */
     .form-wrap {
