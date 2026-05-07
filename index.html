@@ -310,6 +310,26 @@ html, body {
     opacity: 0.3;
     transform: translateY(-50%);
   }
+  .journal-grid-fixed {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+  max-width: 980px !important;
+  margin: 48px auto 0 !important;
+  align-items: stretch !important;
+}
+
+.journal-grid-fixed > a {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .journal-grid-fixed {
+    grid-template-columns: 1fr !important;
+    max-width: 520px !important;
+  }
 }
 
 /* Mobile only */
@@ -1118,8 +1138,7 @@ No swiping. No guesswork. No wasted time.
           Expert advice, dating tips, and the science behind meaningful connections.
          </p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto items-stretch">
-
+<div class="journal-grid-fixed">
   <a class="group bg-card rounded-2xl p-6 border border-border hover:border-accent/20 hover:shadow-card hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
      href="https://articles.sparkedconnection.com/online-dating-effects/" target="_blank" rel="noopener noreferrer">
     <div class="flex items-center gap-3 mb-4">
