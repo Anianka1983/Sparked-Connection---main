@@ -253,6 +253,7 @@ html, body {
   font-weight: 600;
   margin-bottom: 10px;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
 
 
 .hiw-card-title {
@@ -312,24 +313,25 @@ html, body {
 /* FINAL JOURNAL GRID FIX */
 .journal-two-column-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: 1fr 1fr !important;
   gap: 28px !important;
-  max-width: 980px !important;
-  margin: 48px auto 0 !important;
-  padding: 0 20px !important;
+
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-.journal-two-column-grid > a {
-  display: block !important;
+/* THIS IS THE KEY FIX */
+.journal-two-column-grid > * {
   width: auto !important;
   max-width: none !important;
   margin: 0 !important;
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .journal-two-column-grid {
     grid-template-columns: 1fr !important;
-    max-width: 540px !important;
   }
 }
 
