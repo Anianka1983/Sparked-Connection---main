@@ -309,26 +309,27 @@ html, body {
     background: #ce7e98;
     opacity: 0.3;
     transform: translateY(-50%);
-  }
-  .journal-grid-fixed {
+/* FINAL JOURNAL GRID FIX */
+.journal-two-column-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: 28px !important;
   max-width: 980px !important;
   margin: 48px auto 0 !important;
-  align-items: stretch !important;
+  padding: 0 20px !important;
 }
 
-.journal-grid-fixed > a {
-  width: 100% !important;
-  height: 100% !important;
+.journal-two-column-grid > a {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
   margin: 0 !important;
 }
 
 @media (max-width: 768px) {
-  .journal-grid-fixed {
+  .journal-two-column-grid {
     grid-template-columns: 1fr !important;
-    max-width: 520px !important;
+    max-width: 540px !important;
   }
 }
 
@@ -1138,7 +1139,7 @@ No swiping. No guesswork. No wasted time.
           Expert advice, dating tips, and the science behind meaningful connections.
          </p>
 </div>
-<div class="journal-grid-fixed">
+<div class="journal-two-column-grid">
   <a class="group bg-card rounded-2xl p-6 border border-border hover:border-accent/20 hover:shadow-card hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
      href="https://articles.sparkedconnection.com/online-dating-effects/" target="_blank" rel="noopener noreferrer">
     <div class="flex items-center gap-3 mb-4">
@@ -1191,13 +1192,14 @@ No swiping. No guesswork. No wasted time.
       <span class="text-xs text-muted-foreground">12 min read</span>
     </div>
     <h3 class="font-heading text-lg font-semibold text-primary mb-3 group-hover:text-accent transition-colors duration-200">
-      Matchmaking Services London: Prices, Entry-Level Packages & What You Really Get
+      Matchmaking Services in London and the UK: Prices, Packages & What You Really Get
     </h3>
     <p class="text-sm text-muted-foreground leading-relaxed mb-4">
       A clear comparison of UK and London matchmaking services, including pricing, introductions and what really determines value.
     </p>
     <span class="text-accent font-medium text-sm">Read More →</span>
   </a>
+  </div>
 
 </div>
 </section>
