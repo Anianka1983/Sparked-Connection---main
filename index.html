@@ -505,9 +505,14 @@ document.addEventListener('DOMContentLoaded', function () {
   
 <style id="premium-referral-bar-styles">
 /* ===== PREMIUM REFERRAL BAR ===== */
+.referral-section-clearance{
+  background:#fdf9f5;
+  padding:40px 0 16px;
+}
+
 .referral-invite-bar{
   max-width:980px;
-  margin:36px auto 64px;
+  margin:36px auto 0;
   padding:22px 26px;
   background:linear-gradient(135deg,#1e3151,#263f69);
   border-radius:16px;
@@ -585,24 +590,6 @@ document.addEventListener('DOMContentLoaded', function () {
   box-shadow:0 12px 28px rgba(206,126,152,.42);
 }
 
-.referral-arrow-left,
-.referral-arrow-right{
-  display:inline-flex;
-  align-items:center;
-  font-size:1.35rem;
-  line-height:1;
-  font-weight:800;
-  color:#fff;
-}
-
-.referral-arrow-left{
-  animation:referralArrowRight 1.15s ease-in-out infinite;
-}
-
-.referral-arrow-right{
-  animation:referralArrowLeft 1.15s ease-in-out infinite;
-}
-
 .referral-invite-btn::before{
   content:"";
   position:absolute;
@@ -617,16 +604,37 @@ document.addEventListener('DOMContentLoaded', function () {
 .referral-invite-btn:hover::before{
   animation:referralButtonShine .75s ease-out;
 }
-/* ===== FIX THE ACTUAL GAP (the grey strip) ===== */
 
-/* remove bottom margin from the referral bar */
-.referral-invite-bar{
-  margin-bottom:0 !important;
+.referral-arrow-left,
+.referral-arrow-right{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:800;
+  color:#fff;
+  opacity:.55;
 }
 
-/* control spacing INSIDE the beige wrapper instead */
-.referral-section-clearance{
-  padding-bottom:16px !important; /* adjust this number to taste */
+.referral-arrow-left{
+  animation:referralArrowFadeRight 2.8s ease-in-out infinite;
+}
+
+.referral-arrow-right{
+  animation:referralArrowFadeLeft 2.8s ease-in-out infinite;
+}
+
+.referral-cta-text{
+  position:relative;
+  z-index:1;
+}
+
+.referral-invite-btn:hover .referral-arrow-left,
+.referral-invite-btn:hover .referral-arrow-right{
+  opacity:1;
 }
 
 @keyframes referralFadeUp{
@@ -644,22 +652,28 @@ document.addEventListener('DOMContentLoaded', function () {
   to{left:130%;}
 }
 
-@keyframes referralArrowRight{
-  0%,100%{transform:translateX(0);}
-  50%{transform:translateX(4px);}
+/* Left-side chevrons point right and softly move inward towards the button text */
+@keyframes referralArrowFadeRight{
+  0%,100%{opacity:.35; transform:translateX(0);}
+  50%{opacity:1; transform:translateX(3px);}
 }
 
-@keyframes referralArrowLeft{
-  0%,100%{transform:translateX(0);}
-  50%{transform:translateX(-4px);}
+/* Right-side chevrons point left and softly move inward towards the button text */
+@keyframes referralArrowFadeLeft{
+  0%,100%{opacity:.35; transform:translateX(0);}
+  50%{opacity:1; transform:translateX(-3px);}
 }
 
 @media(max-width:768px){
+  .referral-section-clearance{
+    padding:32px 16px 14px;
+  }
+
   .referral-invite-bar{
     flex-direction:column;
     text-align:center;
     padding:24px 20px;
-    margin:34px 16px 0;
+    margin:0 auto;
   }
 
   .referral-invite-btn{
@@ -674,56 +688,6 @@ document.addEventListener('DOMContentLoaded', function () {
   .referral-arrow-right{
     animation:none;
   }
-/* ===== BEIGE GAP FIX ===== */
-/* FINAL FIX: make only the referral clearance match the section above */
-.referral-section-clearance{
-  padding-bottom:2px !important;
-
-}
-
-/* keep About Anna unchanged */
-#about{
-  background:#ffffff !important;
-}
-
-
-/* ===== BAR HOVER EFFECT ===== */
-.referral-invite-bar{
-  transition:all .3s ease;
-}
-
-.referral-invite-bar:hover{
-  transform:translateY(-4px);
-  box-shadow:0 20px 50px rgba(30,49,81,.22);
-}
-
-/* ===== ARROW ANIMATION ===== */
-.arrow-left,
-.arrow-right{
-  display:inline-block;
-  font-size:14px;
-  opacity:.9;
-}
-
-.arrow-left{
-  margin-right:6px;
-  animation:arrowLeftMove 1.4s ease-in-out infinite;
-}
-
-.arrow-right{
-  margin-left:6px;
-  animation:arrowRightMove 1.4s ease-in-out infinite;
-}
-
-@keyframes arrowRightMove{
-  0%,100%{transform:translateX(0)}
-  50%{transform:translateX(4px)}
-}
-
-@keyframes arrowLeftMove{
-  0%,100%{transform:translateX(0)}
-  50%{transform:translateX(-4px)}
-}
 }
 </style>
 <body>
@@ -874,30 +838,20 @@ No swiping. No guesswork. No wasted time.
       </div>
 <div class="referral-section-clearance">
   <div class="referral-invite-bar">
-    
     <div class="referral-copy">
       <span class="referral-eyebrow">Private Referral Invitation</span>
       <h3>Know a great single? ❤️</h3>
       <p>
         We’d love to meet them! They can join our Singles Network
-        <strong>for free</strong> - we personally review every referral.
+        <strong>for free</strong> — we personally review every referral.
       </p>
     </div>
 
     <a href="https://www.sparkedconnection.com/refer-a-friend" class="referral-invite-btn">
-<svg class="lucide lucide-chevrons-right w-10 h-10 animate-bounce-right text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path d="m6 17 5-5-5-5"></path>
-        <path d="m13 17 5-5-5-5"></path>
-      </svg>
-
-      Refer a Friend
-      <svg class="lucide lucide-chevrons-left w-10 h-10 animate-bounce-left text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path d="m11 17-5-5 5-5"></path>
-        <path d="m18 17-5-5 5-5"></path>
-      </svg>
-   </div>
+      <span class="referral-arrow-left" aria-hidden="true">»</span>
+      <span class="referral-cta-text">Refer a Friend</span>
+      <span class="referral-arrow-right" aria-hidden="true">«</span>
     </a>
-
   </div>
 </div>
 </section>
