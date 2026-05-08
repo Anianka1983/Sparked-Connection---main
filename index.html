@@ -502,7 +502,132 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
   
   
-  <body>
+  
+<style id="premium-referral-bar-styles">
+/* ===== PREMIUM REFERRAL BAR ===== */
+.referral-invite-bar{
+  max-width:980px;
+  margin:36px auto 0;
+  padding:22px 26px;
+  background:linear-gradient(135deg,#1e3151,#263f69);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  box-shadow:0 16px 40px rgba(30,49,81,.16);
+  animation:referralFadeUp .7s ease-out both, referralSoftGlow 4.5s ease-in-out infinite;
+}
+
+.referral-copy{color:#fff;}
+
+.referral-eyebrow{
+  display:block;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#e6a961;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+.referral-copy h3{
+  font-size:1.35rem;
+  margin:0 0 4px;
+  color:#fff;
+  font-family:"Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.referral-copy p{
+  margin:0;
+  font-size:.95rem;
+  color:rgba(255,255,255,.86);
+  line-height:1.6;
+}
+
+.referral-copy strong{
+  color:#fff;
+  font-weight:700;
+}
+
+.referral-invite-btn{
+  flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 24px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#e6a961,#ce7e98);
+  color:#fff;
+  font-weight:700;
+  font-size:.88rem;
+  box-shadow:0 8px 22px rgba(206,126,152,.32);
+  transition:all .25s ease;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.referral-invite-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(206,126,152,.42);
+}
+
+.referral-invite-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-70%;
+  width:45%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  transform:skewX(-18deg);
+}
+
+.referral-invite-btn:hover::before{
+  animation:referralButtonShine .75s ease-out;
+}
+
+@keyframes referralFadeUp{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes referralSoftGlow{
+  0%,100%{box-shadow:0 16px 40px rgba(30,49,81,.16);}
+  50%{box-shadow:0 18px 46px rgba(206,126,152,.22);}
+}
+
+@keyframes referralButtonShine{
+  from{left:-70%;}
+  to{left:130%;}
+}
+
+@media(max-width:768px){
+  .referral-invite-bar{
+    flex-direction:column;
+    text-align:center;
+    padding:24px 20px;
+    margin:34px 16px 0;
+  }
+
+  .referral-invite-btn{
+    width:100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .referral-invite-bar,
+  .referral-invite-btn:hover::before{
+    animation:none;
+  }
+}
+</style>
+<body>
 <div id="root">
 <div aria-label="Notifications (F8)" role="region" style="pointer-events:none" tabindex="-1">
 <ol class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]" tabindex="-1">
@@ -648,43 +773,18 @@ Our singles network grows through trusted referrals and private events - giving 
 
 No swiping. No guesswork. No wasted time.
       </div>
-<div class="max-w-4xl mx-auto mt-12 mb-8">
-  <a
-    class="flex items-center justify-between bg-primary rounded-2xl px-8 py-5 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group"
-    href="https://sparkedconnection.com/refer-a-friend"
-    rel="noopener noreferrer"
-    target="_blank"
-  >
-    <div>
-      <h3 class="font-heading text-xl md:text-2xl font-bold text-primary-foreground mb-1">
-        Know a great single?
-      </h3>
-      <div class="text-primary-foreground/70 font-heading text-base inline-flex items-center gap-2">
-        <span>We'd love to meet them!</span>
-        <svg class="lucide lucide-heart w-5 h-5 text-accent fill-accent" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5S20.5 3 18 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 3 8.5c0 2.8 2.3 5.1 5.4 8 1.5 1.4 4.05 3.5 5.5 5"></path>
-        </svg>
-      </div>
-    </div>
+<div class="referral-invite-bar">
+  <div class="referral-copy">
+    <span class="referral-eyebrow">Private Referral Invitation</span>
+    <h3>Know a great single?</h3>
+    <p>
+      We’d love to meet them. They can join our Singles Network
+      <strong>for free</strong> — we personally review every referral.
+    </p>
+  </div>
 
-    <div
-      class="flex items-center justify-center gap-1 rounded-full px-5 py-3 font-semibold transition-all duration-300"
-      style="background:linear-gradient(135deg,rgb(203,77,119),rgb(242,171,90),rgb(206,126,152));"
-    >
-      <svg class="lucide lucide-chevrons-right w-10 h-10 animate-bounce-right text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path d="m6 17 5-5-5-5"></path>
-        <path d="m13 17 5-5-5-5"></path>
-      </svg>
-
-      <span class="text-white leading-none text-sm font-semibold font-heading">
-        Refer a Friend
-      </span>
-
-      <svg class="lucide lucide-chevrons-left w-10 h-10 animate-bounce-left text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path d="m11 17-5-5 5-5"></path>
-        <path d="m18 17-5-5 5-5"></path>
-      </svg>
-    </div>
+  <a href="https://www.sparkedconnection.com/refer-a-friend" class="referral-invite-btn" rel="noopener noreferrer" target="_blank">
+    Refer a Friend →
   </a>
 </div>
 </section>
