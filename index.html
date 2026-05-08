@@ -287,7 +287,12 @@ html, body {
 
   min-width: 320px;   /* ⬅️ THIS is the key fix */
   text-align: center;
+
+.referral-section-clearance{
+  background:#fdf9f5;
+  padding:40px 0 20px;
 }
+
 /* Desktop only */
 @media (min-width: 768px) {
   .hiw-grid {
@@ -506,13 +511,14 @@ document.addEventListener('DOMContentLoaded', function () {
 <style id="premium-referral-bar-styles">
 /* ===== PREMIUM REFERRAL BAR ===== */
 .referral-section-clearance{
-  background:#fdf9f5;
-  padding:40px 0 16px;
+  background:transparent;
+  padding:32px 0 0;
+  margin:0;
 }
 
 .referral-invite-bar{
   max-width:980px;
-  margin:36px auto 0;
+  margin:0 auto;
   padding:22px 26px;
   background:linear-gradient(135deg,#1e3151,#263f69);
   border-radius:16px;
@@ -577,6 +583,7 @@ document.addEventListener('DOMContentLoaded', function () {
   color:#fff;
   font-weight:700;
   font-size:.88rem;
+  line-height:1;
   box-shadow:0 8px 22px rgba(206,126,152,.32);
   transition:all .25s ease;
   position:relative;
@@ -617,6 +624,7 @@ document.addEventListener('DOMContentLoaded', function () {
   font-weight:800;
   color:#fff;
   opacity:.55;
+  transform-origin:center;
 }
 
 .referral-arrow-left{
@@ -630,6 +638,11 @@ document.addEventListener('DOMContentLoaded', function () {
 .referral-cta-text{
   position:relative;
   z-index:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  transform:translateY(1px);
 }
 
 .referral-invite-btn:hover .referral-arrow-left,
@@ -666,7 +679,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @media(max-width:768px){
   .referral-section-clearance{
-    padding:32px 16px 14px;
+    padding:28px 16px 0;
   }
 
   .referral-invite-bar{
@@ -818,7 +831,7 @@ Endless swiping. Countless surface-level conversations.
 Dating apps aren't built for depth or for busy, intentional people. 
 </div>
 </section>
-<section class="pt-8 md:pt-14 pb-32 section-soft"
+<section class="pt-8 md:pt-14 pb-10 section-soft">
   <div class="container mx-auto px-8">
     <div class="text-center max-w-5xl mx-auto">
       <p class="section-eyebrow">A CALMER, MORE INTENTIONAL ROUTE</p>
