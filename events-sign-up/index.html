@@ -1,612 +1,431 @@
-
-<style>
-  :root {
-    --navy: hsl(220, 50%, 25%);
-    --navy-dark: hsl(220, 55%, 18%);
-    --plum: hsl(340, 55%, 45%);
-    --plum-light: hsl(340, 45%, 75%);
-    --gold: hsl(32, 85%, 55%);
-    --cream: hsl(22, 38%, 95%);
-    --cream-dark: hsl(22, 25%, 90%);
-    --warm-white: hsl(36, 40%, 99%);
-    --shadow-card: 0 4px 24px -4px hsl(220 30% 20% / 0.10);
-  }
-
-  * { box-sizing: border-box; }
-
-  .sc-page {
-    font-family: Inter, system-ui, sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .sc-nav {
-    background: var(--navy);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .sc-nav-logo {
-    font-family: 'Playfair Display', Georgia, serif;
-    color: hsl(22, 38%, 95%);
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-
-  .sc-nav-back {
-    color: hsl(22, 38%, 90%);
-    font-size: 0.85rem;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    opacity: 0.8;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
-  }
-
-  .sc-hero {
-    background: var(--navy-dark);
-    text-align: center;
-    padding: 3.5rem 1.5rem 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sc-hero::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: var(--plum);
-    opacity: 0.12;
-  }
-
-  .sc-hero::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; left: -30px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.10;
-  }
-
-  .sc-badge {
-    display: inline-block;
-    background: hsl(340, 55%, 45%, 0.18);
-    border: 1px solid hsl(340, 55%, 60%, 0.35);
-    color: hsl(340, 55%, 78%);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 99px;
-    margin-bottom: 1.25rem;
-    font-weight: 500;
-  }
-
-  .sc-hero h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    color: hsl(36, 40%, 99%);
-    font-size: clamp(1.75rem, 5vw, 2.75rem);
-    font-weight: 600;
-    line-height: 1.2;
-    margin: 0 0 1rem;
-  }
-
-  .sc-hero h1 span {
-    background: linear-gradient(135deg, #cb4d77, #f2ab5a, #ce7e98);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .sc-hero p {
-    color: hsl(220, 30%, 75%);
-    font-size: 1rem;
-    line-height: 1.65;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .sc-main {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem 4rem;
-  }
-
-  .sc-card {
-    background: var(--warm-white);
-    border-radius: 1rem;
-    border: 1px solid hsl(36, 20%, 88%);
-    box-shadow: var(--shadow-card);
-    padding: 2rem 2rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .sc-section-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--plum);
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .sc-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: hsl(340, 35%, 88%);
-  }
-
-  .sc-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 520px) {
-    .sc-row { grid-template-columns: 1fr; }
-    .sc-card { padding: 1.5rem 1.25rem; }
-  }
-
-  .sc-field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .sc-field.full { grid-column: 1 / -1; }
-
-  label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: hsl(220, 45%, 28%);
-  }
-
-  label span.req {
-    color: var(--plum);
-    margin-left: 2px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  select {
-    border: 1px solid hsl(36, 20%, 84%);
-    border-radius: 0.5rem;
-    padding: 0.6rem 0.9rem;
-    font-size: 0.9rem;
-    font-family: inherit;
-    color: hsl(220, 45%, 20%);
-    background: hsl(36, 30%, 98%);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    width: 100%;
-    outline: none;
-    -webkit-appearance: none;
-  }
-
-  input:focus, select:focus {
-    border-color: var(--plum);
-    box-shadow: 0 0 0 3px hsl(340, 55%, 45%, 0.12);
-  }
-
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 2.5rem;
-    cursor: pointer;
-  }
-
-  .events-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
-    margin-top: 0.25rem;
-  }
-
-  @media (max-width: 420px) {
-    .events-grid { grid-template-columns: 1fr; }
-  }
-
-  .event-checkbox {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    cursor: pointer;
-    padding: 0.65rem 0.85rem;
-    border-radius: 0.65rem;
-    border: 1px solid hsl(36, 20%, 86%);
-    background: hsl(36, 30%, 98%);
-    transition: border-color 0.18s, background 0.18s;
-    user-select: none;
-  }
-
-  .event-checkbox:hover {
-    border-color: var(--plum-light);
-    background: hsl(340, 55%, 45%, 0.04);
-  }
-
-  .event-checkbox input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    accent-color: var(--plum);
-    margin-top: 1px;
-    cursor: pointer;
-  }
-
-  .event-checkbox.checked {
-    border-color: var(--plum);
-    background: hsl(340, 55%, 45%, 0.07);
-  }
-
-  .event-label-text {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: hsl(220, 45%, 22%);
-    line-height: 1.3;
-    margin-bottom: 1px;
-  }
-
-  .event-label-sub {
-    font-size: 0.73rem;
-    color: hsl(215, 25%, 52%);
-    line-height: 1.3;
-  }
-
-  .event-icon {
-    font-size: 16px;
-    line-height: 1;
-    margin-right: 2px;
-  }
-
-  .sc-submit {
-    width: 100%;
-    padding: 0.85rem 2rem;
-    background: var(--plum);
-    color: white;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 0.75rem;
-    cursor: pointer;
-    margin-top: 0.5rem;
-    letter-spacing: 0.01em;
-    transition: background 0.2s, transform 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sc-submit:hover { background: hsl(340, 55%, 40%); transform: translateY(-1px); }
-  .sc-submit:active { transform: translateY(0); }
-
-  .sc-privacy {
-    text-align: center;
-    font-size: 0.75rem;
-    color: hsl(215, 25%, 55%);
-    margin-top: 1rem;
-    line-height: 1.6;
-  }
-
-  .sc-privacy a { color: var(--plum); text-decoration: none; }
-
-  .sc-thank-you {
-    display: none;
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-
-  .sc-thank-you.visible { display: block; }
-
-  .sc-thank-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: hsl(340, 55%, 45%, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 28px;
-  }
-
-  .sc-thank-you h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.75rem;
-    color: var(--navy);
-    margin-bottom: 0.75rem;
-  }
-
-  .sc-thank-you p {
-    font-size: 0.95rem;
-    color: hsl(215, 25%, 45%);
-    max-width: 380px;
-    margin: 0 auto 2rem;
-    line-height: 1.65;
-  }
-
-  .sc-back-btn {
-    display: inline-block;
-    padding: 0.7rem 2rem;
-    border: 1.5px solid var(--navy);
-    border-radius: 0.65rem;
-    color: var(--navy);
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .sc-back-btn:hover { background: var(--navy); color: white; }
-
-  .error-msg {
-    font-size: 0.75rem;
-    color: hsl(340, 65%, 42%);
-    margin-top: 3px;
-    display: none;
-  }
-
-  .field-error input, .field-error select {
-    border-color: hsl(340, 65%, 55%);
-  }
-
-  .field-error .error-msg { display: block; }
-</style>
-
-<div class="sc-page">
-  <nav class="sc-nav">
-    <span class="sc-nav-logo">Sparked Connection</span>
-    <button class="sc-nav-back" onclick="window.history.back()">&#8592; Back to main page</button>
-  </nav>
-
-  <div class="sc-hero">
-    <div class="sc-badge">Events sign-up</div>
-    <h1>Find your <span>spark</span> at<br>our upcoming events</h1>
-    <p>Tell us a little about yourself and which events excite you — we'll keep you in the loop with tailored invitations.</p>
-  </div>
-
-  <div class="sc-main">
-
-    <form id="form-wrapper">
-
-      <div class="sc-card">
-        <div class="sc-section-label">Your details</div>
-
-        <div class="sc-row">
-          <div class="sc-field" id="field-first">
-            <label for="first-name">First name <span class="req">*</span></label>
-            <input type="text" id="first-name" placeholder="e.g. Sophie" autocomplete="given-name">
-            <span class="error-msg">Please enter your first name</span>
-          </div>
-          <div class="sc-field" id="field-last">
-            <label for="last-name">Last name <span class="req">*</span></label>
-            <input type="text" id="last-name" placeholder="e.g. Mitchell" autocomplete="family-name">
-            <span class="error-msg">Please enter your last name</span>
-          </div>
-        </div>
-
-        <div class="sc-row">
-          <div class="sc-field" id="field-email">
-            <label for="email">Email address <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
-            <span class="error-msg">Please enter a valid email</span>
-          </div>
-          <div class="sc-field" id="field-phone">
-            <label for="phone">Phone number</label>
-            <input type="tel" id="phone" placeholder="+44 7700 900123" autocomplete="tel">
-          </div>
-        </div>
-
-        <div class="sc-row">
-          <div class="sc-field" id="field-city">
-            <label for="city">City / location <span class="req">*</span></label>
-            <input type="text" id="city" placeholder="e.g. London" autocomplete="address-level2">
-            <span class="error-msg">Please enter your city</span>
-          </div>
-          <div class="sc-field" id="field-age">
-            <label for="age">Age <span class="req">*</span></label>
-            <input type="number" id="age" placeholder="e.g. 32" min="18" max="99">
-            <span class="error-msg">Please enter your age (18+)</span>
-          </div>
-        </div>
-     </form>
-
-      <div class="sc-card">
-        <div class="sc-section-label">Events I'm interested in</div>
-        <p style="font-size:0.83rem; color:hsl(215,25%,50%); margin: -0.5rem 0 1rem; line-height:1.5;">Select all the types of events you'd like to hear about. You can always update your preferences later.</p>
-
-        <div class="events-grid" id="events-grid">
-
-          <label class="event-checkbox" id="ev-pubquiz">
-            <input type="checkbox" value="pub_quiz">
-            <div>
-              <div class="event-label-text">Pub quizzes</div>
-              <div class="event-label-sub">Fun team-based quiz nights</div>
-            </div>
-          </label>
-
-          <label class="event-checkbox" id="ev-workshops">
-            <input type="checkbox" value="workshops">
-            <div>
-              <div class="event-label-text">Workshops</div>
-              <div class="event-label-sub">Skill-building &amp; social sessions</div>
-            </div>
-          </label>
-
-          <label class="event-checkbox" id="ev-trips">
-            <input type="checkbox" value="trips_abroad">
-            <div>
-              <div class="event-label-text">Trips abroad</div>
-              <div class="event-label-sub">Group travel &amp; adventures</div>
-            </div>
-          </label>
-
-          <label class="event-checkbox" id="ev-hiking">
-            <input type="checkbox" value="hiking">
-            <div>
-              <div class="event-label-text">Hiking adventures</div>
-              <div class="event-label-sub">Scenic walks &amp; nature days</div>
-            </div>
-          </label>
-
-          <label class="event-checkbox" id="ev-online">
-            <input type="checkbox" value="online_social">
-            <div>
-              <div class="event-label-text">Online social events</div>
-              <div class="event-label-sub">Virtual meet-ups &amp; games</div>
-            </div>
-          </label>
-
-          <label class="event-checkbox" id="ev-any">
-            <input type="checkbox" value="all_events">
-            <div>
-              <div class="event-label-text">Surprise me!</div>
-              <div class="event-label-sub">Send me everything</div>
-            </div>
-          </label>
-
-        </div>
-        <span class="error-msg" id="events-error" style="display:none; margin-top:0.75rem; font-size:0.78rem;">Please select at least one event type</span>
-      </div>
-<input type="hidden" name="_subject" value="New Events Signup - Sparked Connection">
-
-<button type="button" class="sc-submit" onclick="handleSubmit(event)">Sign me up &#8594;</button>
-      <p class="sc-privacy">
-        By signing up you agree to our <a href="#">privacy policy</a>. We'll only use your details to send event invitations and never share them with third parties.
-      </p>
-
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events Sign-Up | Sparked Connection</title>
+  <meta name="description" content="Register your interest in Sparked Connection events and receive tailored invitations to upcoming singles events." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:        #1e2d4a;
+      --navy-light:  #2c3a52;
+      --rose:        #ce7e98;
+      --rose-light:  #e8a8be;
+      --cream:       #f8f5f2;
+      --cream-dark:  #f0ebe4;
+      --sand:        #d6cfc7;
+      --text:        #2c3a52;
+      --muted:       #6b7a91;
+      --white:       #ffffff;
+      --border:      rgba(206,126,152,0.22);
+      --shadow-md:   0 8px 32px rgba(30,45,74,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(248,245,242,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(214,207,199,0.55);
+    }
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo-wrap { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-img { height: 80px; width: auto; display: block; transform: translateX(100px); }
+    .nav-links { display: none; align-items: center; gap: 2rem; margin: 0 auto; list-style: none; padding: 0; }
+    .nav-link { font-size: 0.875rem; font-weight: 500; color: #6b7a91; text-decoration: none; white-space: nowrap; transition: color .2s ease; }
+    .nav-link:hover { color: #1e3151; }
+    .nav-link-referral { color: hsl(340 55% 45%); }
+    .nav-cta-wrap { display: none; position: relative; left: -102px; }
+    .nav-cta {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      white-space: nowrap; font-size: 0.875rem; font-weight: 600;
+      background: hsl(340 55% 45%); color: #fff;
+      border-radius: 9999px; padding: 0.5rem 1.25rem; min-height: 2.75rem;
+      text-decoration: none; border: none;
+      box-shadow: 0 4px 6px rgba(178,52,94,0.25), 0 2px 3px rgba(178,52,94,0.15), inset 0 1px rgba(255,255,255,0.15);
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 20px rgba(178,52,94,0.35), 0 4px 8px rgba(178,52,94,0.2), inset 0 1px rgba(255,255,255,0.2); }
+    .mobile-menu-toggle { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 0; padding: 0.5rem; color: #1e3151; cursor: pointer; position: relative; z-index: 90; }
+    .mobile-menu-panel { display: none; position: fixed; top: 4rem; left: 0; right: 0; z-index: 80; background: hsl(22 38% 95%); border-bottom: 1px solid rgba(214,207,199,0.55); box-shadow: 0 4px 6px -1px rgba(30,45,74,0.06), 0 2px 4px -2px rgba(30,45,74,0.04); padding: 1rem; }
+    .mobile-menu-panel.open { display: block; }
+    .mobile-menu-link { display: block; padding: .875rem 0; color: #2c3a52; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(214,207,199,0.55); }
+    .mobile-menu-link:last-child { border-bottom: 0; }
+    .mobile-menu-cta { display: inline-flex; align-items: center; justify-content: center; width: 100%; margin-top: 1rem; }
+
+    @media (min-width: 768px) {
+      .nav-inner { height: 80px; }
+      .nav-logo-img { height: 100px; }
+      .nav-links { display: flex; }
+      .nav-cta-wrap { display: block; }
+      .mobile-menu-toggle { display: none; }
+      .mobile-menu-panel { top: 5rem; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a3f5e 55%, #3b2a3d 100%);
+      padding: 160px 2rem 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 40%, rgba(206,126,152,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 80% 60%, rgba(255,154,213,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-light); font-weight: 600; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s; }
+    .hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 600; color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s; }
+    .hero h1 em { font-style: italic; background: linear-gradient(90deg, #ff9ad5, #ffb86b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 560px; margin: 0 auto; font-weight: 400; opacity: 0; animation: fadeUp 0.7s ease forwards 0.35s; }
+    .hero-dots { display: flex; justify-content: center; gap: 28px; margin-top: 36px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.5s; flex-wrap: wrap; }
+    .hero-dot { font-size: 0.78rem; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 7px; letter-spacing: 0.02em; }
+    .hero-dot::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--rose-light); flex-shrink: 0; }
+
+    /* ── FORM ── */
+    .form-section { max-width: 720px; margin: 0 auto; padding: 56px 1.5rem 80px; }
+    .progress-wrap { margin-bottom: 40px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.6s; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 500; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.03em; }
+    .progress-track { height: 3px; background: var(--sand); border-radius: 99px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--rose), var(--rose-light)); border-radius: 99px; width: 100%; }
+
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 48px 44px; box-shadow: var(--shadow-md); opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s; }
+    @media (max-width: 600px) { .form-card { padding: 32px 22px; } }
+    .step-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--cream-dark); }
+    .step-tag { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); font-weight: 600; margin-bottom: 10px; }
+    .step-title { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 600; color: var(--navy); line-height: 1.15; letter-spacing: -0.015em; }
+    .step-sub { font-size: 0.88rem; color: var(--muted); margin-top: 8px; }
+
+    .field-group { margin-bottom: 22px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 7px; }
+    label .req { color: var(--rose); margin-left: 2px; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select {
+      width: 100%; padding: 13px 16px; background: var(--cream); border: 1.5px solid var(--sand); border-radius: 10px;
+      font-size: 0.93rem; font-family: "Inter", sans-serif; color: var(--text); transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; outline: none; appearance: none;
+    }
+    input:focus, select:focus { border-color: var(--rose); background: var(--white); box-shadow: 0 0 0 3px rgba(206,126,152,0.14); }
+    input.error, select.error { border-color: #e05c7a; box-shadow: 0 0 0 3px rgba(224,92,122,0.12); }
+    .field-error { font-size: 0.76rem; color: #c0445f; margin-top: 5px; display: none; }
+    .field-error.visible { display: block; }
+
+    .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 520px) { .events-grid { grid-template-columns: 1fr; } }
+    .event-checkbox { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 14px 15px; border-radius: 12px; border: 1.5px solid var(--sand); background: var(--cream); cursor: pointer; transition: all 0.2s; user-select: none; }
+    .event-checkbox input[type="checkbox"] { width: 17px; height: 17px; min-width: 17px; accent-color: var(--rose); margin-top: 3px; cursor: pointer; }
+    .event-checkbox:hover { border-color: var(--rose-light); background: rgba(206,126,152,0.05); }
+    .event-checkbox.checked { border-color: var(--rose); background: rgba(206,126,152,0.10); }
+    .event-label-text { font-size: 0.86rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .event-label-sub { font-size: 0.75rem; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+
+    .privacy-note { display: flex; align-items: flex-start; gap: 12px; background: rgba(206,126,152,0.07); border: 1px solid rgba(206,126,152,0.2); border-radius: 12px; padding: 16px 18px; margin: 28px 0; }
+    .privacy-note svg { width: 18px; flex-shrink: 0; margin-top: 2px; color: var(--rose); }
+    .privacy-note p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+    .privacy-note a { color: var(--rose); text-decoration: underline; }
+
+    .btn-row { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--cream-dark); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 99px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.25s; border: none; font-family: "Inter", sans-serif; letter-spacing: 0.01em; }
+    .btn-primary { background: linear-gradient(135deg, var(--rose), #bf6a88); color: var(--white); box-shadow: 0 4px 16px rgba(206,126,152,0.35); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(206,126,152,0.45); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .success-screen { display: none; text-align: center; padding: 16px 0; }
+    .success-screen.show { display: block; }
+    .success-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(206,126,152,0.12); border: 2px solid rgba(206,126,152,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+    .success-icon svg { width: 32px; height: 32px; color: var(--rose); }
+    .success-screen h2 { font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 600; color: var(--navy); margin-bottom: 14px; }
+    .success-screen p { font-size: 0.93rem; color: var(--muted); max-width: 440px; margin: 0 auto; }
+    .success-screen a { color: var(--rose); text-decoration: underline; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer { text-align: center; padding: 24px; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); }
+    footer a { color: var(--rose); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo-wrap" href="https://sparkedconnection.com/">
+      <img class="nav-logo-img" src="/logo.svg" alt="Sparked Connection">
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/plans/">Plans</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/#events">Events</a></li>
+      <li><a class="nav-link" href="https://sparkedconnection.com/the-science/">The Science</a></li>
+      <li><a class="nav-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
+      <li><a class="nav-link nav-link-referral" href="https://www.sparkedconnection.com/refer-a-friend">Refer a Friend</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a class="nav-cta" href="/enquiry" target="_blank" rel="noopener noreferrer">Create Free Profile</a>
     </div>
-
-    <div class="sc-card sc-thank-you" id="thank-you">
-      <div class="sc-thank-icon">&#10084;</div>
-      <h2>You're on the list!</h2>
-      <p id="ty-msg">Thanks for signing up. We'll be in touch soon with invitations to the events you've chosen.</p>
-      <button class="sc-back-btn" onclick="window.history.back()">Back to Sparked Connection</button>
-    </div>
-
+    <button aria-label="Toggle menu" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu-panel" type="button">
+      <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+    </button>
   </div>
+</nav>
+
+<div class="mobile-menu-panel" id="mobile-menu-panel">
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
+  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
+  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
+  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%); font-weight:600;">Refer a Friend</a>
+  <a class="mobile-menu-cta nav-cta" href="/enquiry" target="_blank" rel="noopener noreferrer">Create Free Profile</a>
 </div>
 
+<section class="hero">
+  <p class="hero-eyebrow">Events Sign-Up</p>
+  <h1>Find Your <em>Spark</em> at Our Events</h1>
+  <p>Tell us a little about yourself and which events excite you — we’ll keep you in the loop with tailored invitations.</p>
+  <div class="hero-dots">
+    <span class="hero-dot">Curated singles events</span>
+    <span class="hero-dot">Warm introductions</span>
+    <span class="hero-dot">No obligation</span>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label">
+      <span>Event preferences — Your details</span>
+      <span>100%</span>
+    </div>
+    <div class="progress-track"><div class="progress-bar"></div></div>
+  </div>
+
+  <div class="form-card" id="form-card">
+    <form id="form-wrapper">
+      <div id="form-content">
+        <div class="step-header">
+          <span class="step-tag">Events sign-up</span>
+          <h2 class="step-title">Join the events list</h2>
+          <p class="step-sub">Share your details and the event types you would like to hear about.</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group" id="field-first">
+            <label for="first-name">First name <span class="req">*</span></label>
+            <input type="text" id="first-name" name="first_name" placeholder="e.g. Sophie" autocomplete="given-name" />
+            <div class="field-error">Please enter your first name.</div>
+          </div>
+          <div class="field-group" id="field-last">
+            <label for="last-name">Last name <span class="req">*</span></label>
+            <input type="text" id="last-name" name="last_name" placeholder="e.g. Mitchell" autocomplete="family-name" />
+            <div class="field-error">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group" id="field-email">
+            <label for="email">Email address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+            <div class="field-error">Please enter a valid email address.</div>
+          </div>
+          <div class="field-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7700 900123" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group" id="field-city">
+            <label for="city">City / location <span class="req">*</span></label>
+            <input type="text" id="city" name="city" placeholder="e.g. London" autocomplete="address-level2" />
+            <div class="field-error">Please enter your city or location.</div>
+          </div>
+          <div class="field-group" id="field-age">
+            <label for="age">Age <span class="req">*</span></label>
+            <input type="number" id="age" name="age" placeholder="e.g. 32" min="18" max="99" />
+            <div class="field-error">Please enter your age (18–99).</div>
+          </div>
+        </div>
+
+        <div class="field-group" id="field-events">
+          <label>Events I’m interested in <span class="req">*</span></label>
+          <p class="step-sub" style="margin:0 0 14px;">Select all the types of events you’d like to hear about. You can always update your preferences later.</p>
+          <div class="events-grid" id="events-grid">
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Pub quizzes"><div><div class="event-label-text">Pub quizzes</div><div class="event-label-sub">Fun team-based quiz nights</div></div></label>
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Workshops"><div><div class="event-label-text">Workshops</div><div class="event-label-sub">Skill-building & social sessions</div></div></label>
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Trips abroad"><div><div class="event-label-text">Trips abroad</div><div class="event-label-sub">Group travel & adventures</div></div></label>
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Hiking adventures"><div><div class="event-label-text">Hiking adventures</div><div class="event-label-sub">Scenic walks & nature days</div></div></label>
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Online social events"><div><div class="event-label-text">Online social events</div><div class="event-label-sub">Virtual meet-ups & games</div></div></label>
+            <label class="event-checkbox"><input type="checkbox" name="events" value="Surprise me"><div><div class="event-label-text">Surprise me!</div><div class="event-label-sub">Send me everything</div></div></label>
+          </div>
+          <div class="field-error" id="events-error">Please select at least one event type.</div>
+        </div>
+
+        <div class="privacy-note">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="14" height="10" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg>
+          <p>By signing up, you agree to our <a href="https://sparkedconnection.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. We’ll only use your details to send relevant event invitations and never share them with third parties without your explicit consent.</p>
+        </div>
+
+        <input type="hidden" name="_subject" value="New Events Signup - Sparked Connection">
+
+        <div class="btn-row">
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            Sign me up
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l7 7 13-13"/></svg>
+      </div>
+      <h2>You’re on the list</h2>
+      <p id="ty-msg" style="margin-bottom:16px;">Thank you for signing up. We’ll be in touch soon with invitations to the events you’ve chosen.</p>
+      <p>Please note our emails can sometimes land in your Junk or Spam folder — add <strong style="color:var(--navy)">hello@sparkedconnection.com</strong> to your safe senders list so you never miss an invite.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Sparked Connection · <a href="https://sparkedconnection.com/privacy">Privacy Policy</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a>
+</footer>
+
 <script>
-  document.querySelectorAll('.event-checkbox').forEach(function(label) {
-    var cb = label.querySelector('input[type="checkbox"]');
-    cb.addEventListener('change', function() {
-      if (this.checked) {
-        label.classList.add('checked');
-      } else {
-        label.classList.remove('checked');
-      }
-      document.getElementById('events-error').style.display = 'none';
-    });
+document.querySelectorAll('.event-checkbox').forEach(function(label) {
+  var cb = label.querySelector('input[type="checkbox"]');
+  cb.addEventListener('change', function() {
+    label.classList.toggle('checked', this.checked);
+    document.getElementById('events-error').classList.remove('visible');
   });
+});
 
-  function setError(fieldId, show) {
-    var el = document.getElementById(fieldId);
-    if (!el) return;
-    if (show) el.classList.add('field-error');
-    else el.classList.remove('field-error');
+function setError(fieldId, show) {
+  var group = document.getElementById(fieldId);
+  if (!group) return;
+  var input = group.querySelector('input, select');
+  var err = group.querySelector('.field-error');
+  if (input) input.classList.toggle('error', show);
+  if (err) err.classList.toggle('visible', show);
+}
+
+async function handleSubmit(event) {
+  event.preventDefault();
+
+  var form = document.getElementById('form-wrapper');
+  var submitBtn = document.getElementById('submit-btn');
+
+  var firstName = document.getElementById('first-name').value.trim();
+  var lastName = document.getElementById('last-name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var phone = document.getElementById('phone').value.trim();
+  var city = document.getElementById('city').value.trim();
+  var age = document.getElementById('age').value.trim();
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var checked = document.querySelectorAll('.events-grid input[type="checkbox"]:checked');
+  var ageNum = parseInt(age, 10);
+
+  setError('field-first', !firstName);
+  setError('field-last', !lastName);
+  setError('field-email', !email || !emailRe.test(email));
+  setError('field-city', !city);
+  setError('field-age', !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99);
+
+  var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !city || !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99;
+
+  if (checked.length === 0) {
+    document.getElementById('events-error').classList.add('visible');
+    hasError = true;
   }
+  if (hasError) return false;
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  var eventNames = Array.from(checked).map(function(cb) { return cb.value; });
 
-    var form = document.getElementById('form-wrapper');
-    var submitBtn = form.querySelector('.sc-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting…';
 
-    var firstName = document.getElementById('first-name').value.trim();
-    var lastName = document.getElementById('last-name').value.trim();
-    var email = document.getElementById('email').value.trim();
-    var city = document.getElementById('city').value.trim();
-    var age = document.getElementById('age').value.trim();
-    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  try {
+    var formData = new FormData();
+    formData.append('name', firstName + ' ' + lastName);
+    formData.append('first_name', firstName);
+    formData.append('last_name', lastName);
+    formData.append('email', email);
+    formData.append('phone', phone || 'Not provided');
+    formData.append('city', city);
+    formData.append('age', age);
+    formData.append('events_interested_in', eventNames.join(', '));
+    formData.append('_subject', 'New Events Signup - Sparked Connection');
 
-    var checked = document.querySelectorAll('.events-grid input[type="checkbox"]:checked');
-
-    var hasError = false;
-
-    setError('field-first', !firstName);
-    setError('field-last', !lastName);
-    setError('field-email', !email || !emailRe.test(email));
-    setError('field-city', !city);
-
-    var ageNum = parseInt(age, 10);
-    setError('field-age', !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99);
-
-    if (!firstName || !lastName || !email || !emailRe.test(email) || !city || !age || isNaN(ageNum) || ageNum < 18 || ageNum > 99) {
-      hasError = true;
-    }
-
-    if (checked.length === 0) {
-      document.getElementById('events-error').style.display = 'block';
-      hasError = true;
-    }
-
-    if (hasError) {
-      return false;
-    }
-
-    var eventNames = Array.from(checked).map(function(cb) {
-      return cb.closest('.event-checkbox').querySelector('.event-label-text').textContent;
+    var response = await fetch('https://formspree.io/f/mbdqoaao', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
     });
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-
-    try {
-      var formData = new FormData(form);
-
-      var response = await fetch('https://formspree.io/f/mbdqoaao', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        var msg = 'Thanks ' + firstName + '! We’ll send you invitations for: ' + eventNames.join(', ') + '. Please note our emails can sometimes land in your Junk or Spam folder - be sure to keep an eye on it, or add hello@sparkedconnection.com to your safe senders list so you never miss an invite.';
-
-        document.getElementById('ty-msg').textContent = msg;
-        form.style.display = 'none';
-        document.getElementById('thank-you').classList.add('visible');
-        form.reset();
-
-        document.querySelectorAll('.event-checkbox').forEach(function(label) {
-          label.classList.remove('checked');
-        });
-      } else {
-        alert('Sorry — there was a problem submitting your form. Please try again.');
-      }
-    } catch (error) {
-      alert('Sorry — there was a network problem. Please try again.');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Sign me up &#8594;';
+    if (response.ok) {
+      document.getElementById('ty-msg').textContent = 'Thanks ' + firstName + '! We’ll send you invitations for: ' + eventNames.join(', ') + '.';
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('success-screen').classList.add('show');
+      document.getElementById('progress-wrap').style.display = 'none';
+      form.reset();
+      document.querySelectorAll('.event-checkbox').forEach(function(label) { label.classList.remove('checked'); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert('Sorry — there was a problem submitting your form. Please try again.');
     }
-
-    return false;
+  } catch (error) {
+    alert('Sorry — there was a network problem. Please try again.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Sign me up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 8h12M9 3l5 5-5 5"/></svg>';
   }
+
+  return false;
+}
+
+document.getElementById('form-wrapper').addEventListener('submit', handleSubmit);
+
+document.addEventListener('DOMContentLoaded', function () {
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var panel = document.getElementById('mobile-menu-panel');
+  if (!toggle || !panel) return;
+  function closeMenu() { panel.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  function openMenu() { panel.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); }
+  toggle.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); panel.classList.contains('open') ? closeMenu() : openMenu(); });
+  panel.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+  document.addEventListener('click', function (e) { if (!panel.contains(e.target) && !toggle.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+});
 </script>
+</body>
+</html>
