@@ -544,6 +544,46 @@
     .privacy-note svg { width: 18px; flex-shrink: 0; margin-top: 2px; color: var(--rose); }
     .privacy-note p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
 
+
+    /* ── AI NOTE ── */
+    .ai-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(125, 156, 214, 0.06);
+      border: 1px solid rgba(125, 156, 214, 0.22);
+      border-radius: 12px;
+      padding: 18px 18px;
+      margin-bottom: 28px;
+    }
+
+    .ai-note svg {
+      width: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #5f7fc8;
+    }
+
+    .ai-note-content strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .ai-note-content p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .ai-note-content a {
+      color: var(--rose);
+      text-decoration: underline;
+    }
+
     /* ── CONSENT ── */
     .consent-row {
       display: flex;
@@ -917,6 +957,25 @@
           <p>Your information is treated with the utmost care and discretion. It will only ever be used by the Sparked Connection team and will never be shared with third parties without your explicit consent. We are GDPR conscious.</p>
         </div>
 
+
+        <div class="ai-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v8"/>
+            <path d="M8 6a4 4 0 118 0v6a4 4 0 11-8 0V6z"/>
+            <path d="M5 11v1a7 7 0 0014 0v-1"/>
+            <path d="M12 19v3"/>
+            <path d="M8 22h8"/>
+          </svg>
+
+          <div class="ai-note-content">
+            <strong>AI-assisted tools</strong>
+            <p>
+              For accuracy and internal note-taking purposes, Sparked Connection may use secure AI-assisted tools, including transcription and summarisation software, during consultations. These notes are kept confidential and used solely to support your personalised matchmaking experience. You can read more in our <a href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a>.
+            </p>
+          </div>
+        </div>
+
+
         <div class="consent-row">
           <input type="checkbox" id="consent" />
           <label for="consent">I confirm I am over 21 and agree to Sparked Connection storing my enquiry details in order to respond to my request. I have read the <a href="https://sparkedconnection.com/privacy">Privacy Policy</a>. <span class="req" style="color:var(--rose)">*</span></label>
@@ -933,7 +992,7 @@
           </svg>
         </div>
         <h2>Your enquiry is on its way</h2>
-        <p style="margin-bottom:16px;">Thank you for taking the first step! Anna will personally review everything you've shared and will be in touch within <strong style="color:var(--navy)">2 working days</strong> to introduce herself and talk through your journey together.</p>
+        <p style="margin-bottom:16px;">Thank you for taking the first step — it means a great deal. Anna will personally review everything you've shared and will be in touch within <strong style="color:var(--navy)">2 working days</strong> to introduce herself and talk through your journey together.</p>
        <p style="margin-bottom:16px;">Please note our emails can sometimes land in your Junk or Spam folder - be sure to keep an eye on it, or add <strong style="color:var(--navy)">hello@sparkedconnection.com to your safe senders list</strong> so you never miss an invite.</p>
         <p>In the meantime, feel free to explore <a href="https://sparkedconnection.com/" style="color:var(--rose);text-decoration:underline;">sparkedconnection.com</a> - and know that something wonderful may already be just around the corner.</p>
       </div>
@@ -1138,49 +1197,58 @@
   let success = false;
 
   try {
-  const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify({
-      name: `${data.firstName} ${data.lastName}`,
-      email: data.email,
-      phone: data.phone || "Not provided",
-      age: data.age,
-      location: data.location,
-      gender: data.gender,
-      profession: data.profession,
-      industry: data.industry,
-      linkedin: data.linkedin || "Not provided",
-      looking_for: data.goal,
-      relationship_status: data.status,
-      children: data.children,
-      partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
-      service: data.service || "Not specified",
-      heard_via: data.referral || "Not specified",
-      page_url: window.location.href,
-      _subject: "New Sparked Connection Enquiry"
-    })
-  });
+    // PRIMARY: Formspree
+    const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone || "Not provided",
+        age: data.age,
+        location: data.location,
+        gender: data.gender,
+        profession: data.profession,
+        industry: data.industry,
+        linkedin: data.linkedin || "Not provided",
+        looking_for: data.goal,
+        status: data.status,
+        children: data.children,
+        partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+        service: data.service || "Not specified",
+        heard_via: data.referral || "Not specified",
+        _subject: "🔥 New Sparked Connection Enquiry",
+        _replyto: data.email
+      })
+    });
 
-  const formspreeResult = await res1.json().catch(() => null);
+    if (res1.ok) success = true;
 
-  console.log("Formspree status:", res1.status);
-  console.log("Formspree response:", formspreeResult);
-
-  if (res1.ok) {
-    success = true;
-  } else {
-    console.error("Formspree failed:", formspreeResult);
+  } catch (e) {
+    console.error("Formspree failed", e);
   }
 
-} catch (e) {
-  console.error("Formspree request failed completely", e);
-}
+  try {
+    // BACKUP: FormSubmit (VERY reliable)
+    const res2 = await fetch("https://formsubmit.co/ajax/hello@sparkedconnection.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        message: JSON.stringify(data, null, 2),
+        _subject: "Backup Enquiry Submission"
+      })
+    });
 
+    if (res2.ok) success = true;
 
+  } catch (e) {
+    console.error("Backup failed", e);
+  }
 try {
   // ADDITIONAL BACKUP: FormBold
   const formBoldData = new FormData();
