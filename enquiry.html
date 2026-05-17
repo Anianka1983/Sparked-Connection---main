@@ -1138,58 +1138,49 @@
   let success = false;
 
   try {
-    // PRIMARY: Formspree
-    const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        name: `${data.firstName} ${data.lastName}`,
-        email: data.email,
-        phone: data.phone || "Not provided",
-        age: data.age,
-        location: data.location,
-        gender: data.gender,
-        profession: data.profession,
-        industry: data.industry,
-        linkedin: data.linkedin || "Not provided",
-        looking_for: data.goal,
-        status: data.status,
-        children: data.children,
-        partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
-        service: data.service || "Not specified",
-        heard_via: data.referral || "Not specified",
-        _subject: "🔥 New Sparked Connection Enquiry",
-        _replyto: data.email
-      })
-    });
+  const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      name: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      phone: data.phone || "Not provided",
+      age: data.age,
+      location: data.location,
+      gender: data.gender,
+      profession: data.profession,
+      industry: data.industry,
+      linkedin: data.linkedin || "Not provided",
+      looking_for: data.goal,
+      relationship_status: data.status,
+      children: data.children,
+      partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+      service: data.service || "Not specified",
+      heard_via: data.referral || "Not specified",
+      page_url: window.location.href,
+      _subject: "New Sparked Connection Enquiry"
+    })
+  });
 
-    if (res1.ok) success = true;
+  const formspreeResult = await res1.json().catch(() => null);
 
-  } catch (e) {
-    console.error("Formspree failed", e);
+  console.log("Formspree status:", res1.status);
+  console.log("Formspree response:", formspreeResult);
+
+  if (res1.ok) {
+    success = true;
+  } else {
+    console.error("Formspree failed:", formspreeResult);
   }
 
-  try {
-    // BACKUP: FormSubmit (VERY reliable)
-    const res2 = await fetch("https://formsubmit.co/ajax/hello@sparkedconnection.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: `${data.firstName} ${data.lastName}`,
-        email: data.email,
-        message: JSON.stringify(data, null, 2),
-        _subject: "Backup Enquiry Submission"
-      })
-    });
+} catch (e) {
+  console.error("Formspree request failed completely", e);
+}
 
-    if (res2.ok) success = true;
 
-  } catch (e) {
-    console.error("Backup failed", e);
-  }
 try {
   // ADDITIONAL BACKUP: FormBold
   const formBoldData = new FormData();
