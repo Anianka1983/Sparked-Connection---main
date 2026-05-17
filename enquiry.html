@@ -1306,6 +1306,26 @@ try {
     return;
   }
 
+try {
+  // ADDITIONAL AUTOMATION: Make.com confirmation email
+  const res5 = await fetch("https://hook.eu1.make.com/w8lp0yhx2gpu4sgdbynp2dipd6ionv6i", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      ...data,
+      name: `${data.firstName} ${data.lastName}`,
+      pageUrl: window.location.href
+    })
+  });
+
+  if (res5.ok) success = true;
+
+} catch (e) {
+  console.error("Make webhook failed", e);
+}
+
   // ✅ ONLY show success if actually sent
   document.getElementById(`step-${currentStep}`).classList.remove("active");
   document.getElementById("success-screen").classList.add("show");
