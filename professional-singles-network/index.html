@@ -2007,16 +2007,46 @@
       box-shadow: 0 8px 28px rgba(0,0,0,0.32);
     }
 
+    /* Mobile partnership — hidden inside h1, shown as standalone block */
+    .hero-partnership-mobile {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .hero-h1-line1 { white-space: normal; }
+
+      /* Hide the absolute bubble on mobile */
       .hero-partnership-wrap {
-        position: static;
-        transform: none;
-        margin: 1.2rem auto 0;
-        flex-direction: row;
-        gap: 0.6rem;
+        display: none;
       }
-      .hero-partnership-badge { width: 3.2rem; height: 3.2rem; }
+
+      /* Show the standalone mobile badge between pill and h1 */
+      .hero-partnership-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        margin: 0.9rem 0 1.1rem;
+        text-decoration: none;
+      }
+
+      .hero-partnership-mobile-label {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 0.6rem;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.45);
+        white-space: nowrap;
+      }
+
+      .hero-partnership-mobile img {
+        height: 2.8rem;
+        width: 2.8rem;
+        border-radius: 50%;
+        display: block;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      }
     }
 
   </style>
@@ -2396,7 +2426,13 @@
             Private · Members Only · UK-Wide
           </div>
 
-          <h1 class="animate-fade-in-up" style="animation-delay:0.08s">
+          <!-- Mobile-only partnership badge (between pill and h1) -->
+          <a href="https://www.sparkedconnection.com/" class="hero-partnership-mobile animate-fade-in-up" target="_blank" rel="noopener noreferrer" aria-label="In Partnership with Sparked Connection" style="animation-delay:0.05s">
+            <span class="hero-partnership-mobile-label">In Partnership with</span>
+            <img src="/professional-singles-network/sparked-connection-badge.png" alt="Sparked Connection" />
+          </a>
+
+                    <h1 class="animate-fade-in-up" style="animation-delay:0.08s">
             <span class="hero-h1-line1">The Professional
               <a href="https://www.sparkedconnection.com/" class="hero-partnership-wrap" target="_blank" rel="noopener noreferrer" aria-label="In Partnership with Sparked Connection">
                 <span class="hero-partnership-tag">In Partnership with</span>
