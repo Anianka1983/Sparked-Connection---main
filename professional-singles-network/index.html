@@ -214,7 +214,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.2rem;
+      gap: 2.05rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -276,6 +276,24 @@
 
     .btn-nav-cta:hover::before { animation: spark-sweep .6s ease-out forwards; }
     .btn-nav-cta svg, .btn-nav-cta span { position: relative; z-index: 2; }
+
+    .nav-actions {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+    }
+
+    .nav-refer-link {
+      color: #b2345e !important;
+      font-weight: 700 !important;
+    }
+
+    .nav-refer-link:hover {
+      color: #ce7e98 !important;
+    }
 
     /* Mobile nav */
     .nav-mobile-toggle {
@@ -704,9 +722,11 @@
         font-size: 0.82rem;
       }
 
+      .nav-actions { gap: 0.5rem; }
+
       .btn-nav-cta {
-        padding: 0.55rem 1rem;
-        font-size: 0.8rem;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.78rem;
       }
     }
 
@@ -1433,6 +1453,147 @@
     }
 
     /* =============================================
+       REFERRAL INVITATION SECTION
+    ============================================= */
+    .section-referral {
+      padding: 6rem 0;
+      background: hsl(var(--background));
+    }
+
+    .referral-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 2.5rem;
+      border-radius: 30px;
+      padding: clamp(2.2rem, 4vw, 3.4rem);
+      background:
+        radial-gradient(circle at 92% 18%, rgba(230,169,97,0.18), transparent 26%),
+        radial-gradient(circle at 8% 90%, rgba(206,126,152,0.16), transparent 30%),
+        linear-gradient(135deg, #f9e8e4 0%, #fff3df 100%);
+      border: 1px solid rgba(206,126,152,0.18);
+      box-shadow: 0 22px 60px rgba(30,49,81,0.10);
+      isolation: isolate;
+    }
+
+    .referral-card::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.55);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .referral-eyebrow {
+      display: block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #ce7e98;
+      margin-bottom: 1rem;
+    }
+
+    .referral-card h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      font-weight: 700;
+      color: hsl(var(--primary));
+      margin-bottom: 0.9rem;
+    }
+
+    .referral-heart {
+      display: inline-block;
+      background: linear-gradient(135deg,#ce7e98,#e6a961);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      animation: referralPulse 2.6s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .referral-card p {
+      max-width: 680px;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 1.25rem;
+    }
+
+    .referral-proof-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      list-style: none;
+      margin: 1.4rem 0 0;
+      padding: 0;
+    }
+
+    .referral-proof-list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(206,126,152,0.16);
+      color: hsl(var(--primary));
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .referral-proof-list li::before {
+      content: "✓";
+      color: #ce7e98;
+      font-weight: 800;
+    }
+
+    .btn-referral {
+      min-width: 210px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1rem 1.75rem;
+      border-radius: 999px;
+      background: #b2345e;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.98rem;
+      box-shadow: 0 10px 24px rgba(178,52,94,0.22);
+      transition: all .35s cubic-bezier(.4,0,.2,1);
+      white-space: nowrap;
+    }
+
+    .btn-referral:hover {
+      transform: translateY(-3px) scale(1.03);
+      background:#c13c68;
+      box-shadow: 0 16px 34px rgba(178,52,94,0.28);
+    }
+
+    .btn-referral svg {
+      transition: transform .3s ease;
+    }
+
+    .btn-referral:hover svg {
+      transform: translateX(3px);
+    }
+
+    @keyframes referralPulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.12); opacity: 0.82; }
+    }
+
+    /* =============================================
        CTA SECTION
     ============================================= */
     .section-cta {
@@ -1594,7 +1755,7 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links, .btn-nav-cta { display: none; }
+      .nav-links, .nav-actions { display: none; }
       .nav-mobile-toggle { display: flex; }
 
       .intro-grid,
@@ -1617,10 +1778,20 @@
       .section-hubs,
       .section-trust,
       .section-quote,
+      .section-referral,
       .section-faq,
       .section-cta {
         padding: 4.5rem 0;
       }
+
+      .referral-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+        gap: 1.8rem;
+        border-radius: 24px;
+      }
+
+      .btn-referral { width: 100%; }
 
       .footer-bottom {
         flex-direction: column;
@@ -2389,12 +2560,15 @@
         <li><a href="#pillars-network">Our Approach</a></li>
         <li><a href="#privacy">Privacy</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://sparkedconnection.com/refer-a-friend" class="nav-refer-link" rel="noopener noreferrer">Refer a Friend</a></li>
       </ul>
 
-      <a href="/enquiry" class="btn-nav-cta" rel="noopener noreferrer" target="_blank">
-        Join the Network
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+      <div class="nav-actions">
+        <a href="/enquiry" class="btn-nav-cta" rel="noopener noreferrer" target="_blank">
+          Join the Network
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
 
       <button class="nav-mobile-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -2409,6 +2583,7 @@
     <a class="mobile-menu-link" href="#pillars-network">Our Approach</a>
     <a class="mobile-menu-link" href="#privacy">Privacy</a>
     <a class="mobile-menu-link" href="#faq">FAQ</a>
+    <a class="mobile-menu-link" href="/refer-a-friend">Refer a Friend</a>
     <a href="/enquiry" class="btn-primary mobile-menu-cta" rel="noopener noreferrer" target="_blank">Join the Network</a>
   </div>
 
@@ -2489,7 +2664,7 @@
             The Professional Singles Network is designed for busy professionals who are open to meeting someone meaningful, but want a more private, intelligent and human-led alternative to dating apps.
           </p>
           <p>
-Join, complete your profile, and be considered when a genuinely aligned connection becomes available -without ever putting your dating life on public display. 
+Join, complete your profile, and be considered when a genuinely aligned connection becomes available - without ever putting your dating life on public display. 
           </p>
           <p>
             We work with local hubs &amp; curated communities, so there's a good chance you may be matched with someone nearby.
@@ -2584,7 +2759,7 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
           </div>
           <div class="step-content">
             <h3>Your In-Depth Profile</h3>
-            <p>Complete a detailed personality and values questionnaire -exploring your relationship goals, communication style, lifestyle and what you're genuinely looking for in a partner.</p>
+            <p>Complete a detailed personality and values questionnaire - exploring your relationship goals, communication style, lifestyle and what you're genuinely looking for in a partner.</p>
             <span class="step-tag">Personality · Values · Lifestyle</span>
           </div>
         </div>
@@ -2641,7 +2816,30 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
   </section>
 
   <!-- AI + HUMAN BLOCK -->
-  <section class="section-aihuman">
+  <section class="section-referral" id="refer-a-friend">
+    <div class="container">
+      <div class="referral-card">
+        <div class="referral-copy">
+          <span class="referral-eyebrow">Private Referral Invitation</span>
+          <h2>Know a great single? <span class="referral-heart">♥</span></h2>
+          <p>Invite a friend, colleague, or family member to join the Professional Singles Network free of charge. Every referral is personally reviewed by an ABIA-approved Matchmaker before being welcomed into the network.</p>
+          <ul class="referral-proof-list" aria-label="Referral benefits">
+            <li>Free to join</li>
+            <li>Personally reviewed</li>
+            <li>Values-based matching</li>
+            <li>No swiping</li>
+          </ul>
+        </div>
+
+        <a href="https://sparkedconnection.com/refer-a-friend" class="btn-referral" rel="noopener noreferrer">
+          Refer a Friend
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<section class="section-aihuman">
     <div class="container">
       <div class="aihuman-grid">
 
@@ -2690,19 +2888,19 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
         <div class="pillar-card">
           <div class="pillar-icon">🧭</div>
           <h3>Values-Led Matching</h3>
-          <p>Compatibility starts with alignment on what matters -core values, life outlook, relationship intentions. We go deeper than surface-level.</p>
+          <p>Compatibility starts with alignment on what matters - core values, life outlook, relationship intentions. We go deeper than surface-level.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon">🧠</div>
           <h3>Personality Profiling</h3>
-          <p>Your in-depth profile informs every match -communication styles, emotional intelligence, attachment patterns, long-term compatibility.</p>
+          <p>Your in-depth profile informs every match - communication styles, emotional intelligence, attachment patterns, long-term compatibility.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon">🤝</div>
           <h3>Human Matchmaker</h3>
-          <p>Every introduction is personally reviewed by Anna, our ABIA-registered matchmaker -technology guided by human wisdom.</p>
+          <p>Every introduction is personally reviewed by Anna, our ABIA-registered matchmaker - technology guided by human wisdom.</p>
         </div>
 
         <div class="pillar-card">
@@ -2733,7 +2931,7 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
       <div class="section-header">
         <span class="section-eyebrow">Trust &amp; Discretion</span>
         <h2>Privacy You Can Rely On</h2>
-        <p>Built for people who value discretion. Every element -from data handling to introductions -is designed with privacy at its core.</p>
+        <p>Built for people who value discretion. Every element - from data handling to introductions - is designed with privacy at its core.</p>
       </div>
 
       <div class="trust-grid">
@@ -2886,6 +3084,9 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
     </div>
   </section>
 
+  <!-- REFERRAL INVITATION -->
+  
+
   <!-- CTA -->
   <section class="section-cta">
     <div class="container">
@@ -2921,6 +3122,7 @@ Join, complete your profile, and be considered when a genuinely aligned connecti
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="/enquiry">Apply to Join</a></li>
+            <li><a href="/refer-a-friend">Refer a Friend</a></li>
           </ul>
         </div>
 
