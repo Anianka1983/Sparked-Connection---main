@@ -526,13 +526,14 @@
 <div class="hero-step"><div class="hero-step-num">5</div> Values</div>
 <div class="hero-step"><div class="hero-step-num">6</div> Photos</div>
 <div class="hero-step"><div class="hero-step-num">7</div> Psychology</div>
-<div class="hero-step"><div class="hero-step-num">8</div> Consent</div>
+<div class="hero-step"><div class="hero-step-num">8</div> Your Service</div>
+<div class="hero-step"><div class="hero-step-num">9</div> Consent</div>
 </div>
 </div>
 <div class="form-wrap">
 <iframe name="formbold-hidden-frame" id="formbold-hidden-frame" style="display:none;width:0;height:0;border:0;" title="Hidden FormBold submission frame"></iframe>
 <form accept-charset="UTF-8" action="https://formbold.com/s/3Omwk" enctype="multipart/form-data" id="questionnaire" method="POST" target="formbold-hidden-frame" novalidate>
-<div class="form-error-summary" id="form-error-summary" role="alert">Almost there — please complete the highlighted details before submitting.</div>
+<div class="form-error-summary" id="form-error-summary" role="alert">Almost there - please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: ABOUT YOU -->
@@ -1321,10 +1322,55 @@
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8: SERVICE INTEREST -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+<div class="section-header">
+<div class="section-num">8</div>
+<div class="section-title-block">
+<h2>How Can We Help?</h2>
+<p>Tell us which service feels right for you - there's no wrong answer, and you can always upgrade later.</p>
+</div>
+</div>
+<div class="fields-stack">
+<div class="field">
+<label>Which service are you most interested in? <span class="req">*</span></label>
+<p class="hint">Select the option that best describes what you're looking for right now.</p>
+<div class="check-list" style="gap: 14px;">
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="service_interest" required type="radio" value="Matchmaking Membership" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">💎 Personal Matchmaking</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">A fully managed, one-to-one matchmaking experience. We handle the search, screening, and introductions on your behalf - so you can focus on the connection, not the process. Ideal if you're serious about finding a life partner and want expert guidance along the way.</div>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="service_interest" required type="radio" value="Singles Network (Free)" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🌐 Join the Singles Network <span style="font-size: .72rem; font-weight: 500; background: hsl(145 45% 42% / .12); color: hsl(145 45% 42%); border: 1px solid hsl(145 45% 42% / .3); padding: 2px 9px; border-radius: 999px; margin-left: 6px;">Free</span></div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Join our curated community of quality singles. Your profile is held on file and we'll reach out when we identify a potential match - no commitment required. A great way to stay open to the right connection without the pressure of an active search.</div>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="service_interest" required type="radio" value="Not sure yet - tell me more" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤔 I'm not sure yet - tell me more</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Not sure which option is right for you? No problem. Submit your profile and one of our matchmakers will be in touch to walk you through both options and help you find the best fit.</div>
+</div>
+</label>
+
+</div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 9: CONSENT & CONTACT -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-header">
-<div class="section-num">8</div>
+<div class="section-num">9</div>
 <div class="section-title-block">
 <h2>Consent &amp; Contact Details</h2>
 <p>Please review and confirm before submitting your profile.</p>
@@ -1632,7 +1678,7 @@
     hideErrorSummary();
 
     if (!validateRequiredFields()) {
-      showErrorSummary('Almost there — a few highlighted details are still needed before we can safely submit your profile.');
+      showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
 
@@ -1662,14 +1708,14 @@
       console.error('Native FormBold submission failed', err);
     }
 
-    // BACKUP 1: Formspree — sent silently as a backup copy.
+    // BACKUP 1: Formspree - sent silently as a backup copy.
     try {
       results.formspree = await submitToFormspree(payload);
     } catch (err) {
       console.error(err);
     }
 
-    // BACKUP 2: FormSubmit — only used if Formspree fails.
+    // BACKUP 2: FormSubmit - only used if Formspree fails.
     if (!results.formspree) {
       try {
         results.formsubmit = await submitBackupToFormSubmit(payload);
@@ -1678,7 +1724,7 @@
       }
     }
 
-    // BACKUP 3: Google Sheets logging — silent final safety net.
+    // BACKUP 3: Google Sheets logging - silent final safety net.
     try {
       results.googleSheets = await submitBackupToGoogleSheets(payload);
     } catch (err) {
