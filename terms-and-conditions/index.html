@@ -1,929 +1,164 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms &amp; Conditions | Sparked Connection</title>
-  <meta name="description" content="Terms and Conditions for Sparked Connection Ltd — the rules governing your membership and use of our matchmaking service.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | Sparked Connection</title>
+  <meta name="description" content="Terms and Conditions for Sparked Connection Ltd, a professional matchmaking and introduction service." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.sparkedconnection.com/terms-and-conditions" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --background: 22 38% 95%;
-      --foreground: 220 45% 20%;
-      --primary: 220 50% 25%;
-      --primary-foreground: 36 33% 96%;
-      --secondary: 22 30% 92%;
-      --muted: 36 20% 90%;
-      --muted-foreground: 220 20% 45%;
-      --accent: 340 55% 45%;
-      --accent-foreground: 0 0% 100%;
-      --border: 36 20% 88%;
-      --shadow-md: 0 4px 6px -1px hsl(220 30% 20% / .06), 0 2px 4px -2px hsl(220 30% 20% / .04);
+    :root{
+      --cream:#f8f1ec;
+      --navy:#1e3151;
+      --rose:#ce7e98;
+      --soft-rose:#f6e8ea;
+      --line:rgba(30,49,81,.10);
+      --text:#2d3548;
+      --muted:#6d7587;
+      --footer:#1f3b66;
     }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      background-color: hsl(var(--background));
-      color: hsl(var(--foreground));
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 50;
-      background-color: hsl(var(--background) / .95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid hsl(var(--border));
-      box-shadow: var(--shadow-md);
-    }
-
-    .nav-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 5rem;
-    }
-
-    .site-logo {
-      height: 80px;
-      width: auto;
-      display: block;
-      transform: translateX(100px);
-    }
-    @media (min-width: 768px) { .site-logo { height: 100px; } }
-
-    .nav-links { display: none; }
-    @media (min-width: 768px) {
-      .nav-links { display: flex; align-items: center; gap: 2rem; }
-    }
-
-    .nav-links a {
-      font-size: .875rem;
-      font-weight: 500;
-      color: hsl(var(--muted-foreground));
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: hsl(var(--accent)); }
-    .nav-links a.refer { color: hsl(340 55% 45%); }
-
-    .nav-cta { display: none; position: relative; left: -102px; }
-    @media (min-width: 768px) { .nav-cta { display: block; } }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: .5rem 1.25rem;
-      border-radius: 9999px;
-      font-size: .875rem;
-      font-weight: 500;
-      color: hsl(var(--accent-foreground));
-      background-color: hsl(var(--accent));
-      border: none;
-      cursor: pointer;
-      overflow: hidden;
-      transition: all .4s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 4px 6px hsl(340 55% 45% / .25);
-    }
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px hsl(340 55% 45% / .35);
-      background-color: hsl(340 55% 40%);
-    }
-
-    .mobile-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: .5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: hsl(var(--foreground));
-    }
-    @media (min-width: 768px) { .mobile-toggle { display: none; } }
-
-    .mobile-menu-panel {
-      display: none;
-      position: fixed;
-      top: 5rem; left: 0; right: 0;
-      z-index: 80;
-      background: hsl(var(--background));
-      border-bottom: 1px solid hsl(var(--border));
-      box-shadow: var(--shadow-md);
-      padding: 1rem;
-    }
-    .mobile-menu-panel.open { display: block; }
-
-    .mobile-menu-link {
-      display: block;
-      padding: .875rem 0;
-      color: hsl(var(--foreground));
-      font-weight: 500;
-      border-bottom: 1px solid hsl(var(--border));
-    }
-    .mobile-menu-link:last-of-type { border-bottom: 0; }
-    .mobile-cta-wrap { display: flex; justify-content: center; margin-top: 1rem; }
-    .mobile-cta-wrap .cta-btn { width: 100%; }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      padding: 8rem 1rem 4rem;
-      text-align: center;
-      background: hsl(var(--background));
-      border-bottom: 1px solid hsl(var(--border));
-    }
-
-    .eyebrow {
-      font-size: .7rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: hsl(var(--accent));
-      font-weight: 600;
-      margin-bottom: .75rem;
-    }
-
-    .page-hero h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 600;
-      color: hsl(var(--primary));
-      letter-spacing: -.02em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .page-hero p {
-      font-size: .9rem;
-      color: hsl(var(--muted-foreground));
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    /* ── TOC ── */
-    .toc-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.45rem;
-      font-weight: 600;
-      color: hsl(var(--primary));
-      margin-bottom: 1rem;
-      letter-spacing: -.01em;
-    }
-
-    .toc-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: .3rem;
-      margin-bottom: .5rem;
-    }
-    @media (min-width: 560px) {
-      .toc-grid { grid-template-columns: 1fr 1fr; gap: .3rem .5rem; }
-    }
-
-    .toc-grid a {
-      font-size: .88rem;
-      color: hsl(var(--muted-foreground));
-      display: flex;
-      align-items: baseline;
-      gap: .4rem;
-      padding: .2rem 0;
-      transition: color .2s;
-    }
-    .toc-grid a:hover { color: hsl(var(--accent)); }
-
-    .toc-grid a span.num {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: .82rem;
-      color: hsl(var(--accent));
-      font-weight: 600;
-      flex-shrink: 0;
-      min-width: 1.4rem;
-    }
-
-    /* ── CONTENT ── */
-    .content-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem 6rem;
-    }
-
-    .policy-section { margin-bottom: 3rem; }
-
-    .policy-section h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.45rem;
-      font-weight: 600;
-      color: hsl(var(--primary));
-      letter-spacing: -.01em;
-      margin-bottom: .75rem;
-      display: flex;
-      align-items: baseline;
-      gap: .6rem;
-    }
-
-    .section-num {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1rem;
-      color: hsl(var(--accent));
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .policy-section p {
-      font-size: .925rem;
-      color: hsl(220 25% 32%);
-      margin-bottom: .75rem;
-      line-height: 1.75;
-    }
-    .policy-section p:last-child { margin-bottom: 0; }
-
-    .policy-list {
-      list-style: none;
-      margin: .5rem 0 .75rem;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: .35rem;
-    }
-
-    .policy-list li {
-      font-size: .9rem;
-      color: hsl(220 25% 32%);
-      padding-left: 1.1rem;
-      position: relative;
-      line-height: 1.65;
-    }
-
-    .policy-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: hsl(var(--accent));
-      font-size: .75rem;
-      top: .15em;
-    }
-
-    /* Definition box */
-    .definition-box {
-      background: hsl(220 50% 25% / .05);
-      border: 1px solid hsl(220 50% 25% / .12);
-      border-radius: .625rem;
-      padding: 1rem 1.25rem;
-      margin: .75rem 0;
-      font-size: .9rem;
-      color: hsl(220 25% 30%);
-      line-height: 1.7;
-    }
-
-    .definition-box strong {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1rem;
-      color: hsl(var(--primary));
-      display: block;
-      margin-bottom: .25rem;
-    }
-
-    /* Callout */
-    .callout {
-      background: hsl(340 55% 45% / .06);
-      border-left: 3px solid hsl(var(--accent));
-      border-radius: 0 .5rem .5rem 0;
-      padding: .9rem 1.1rem;
-      margin: 1rem 0;
-      font-size: .88rem;
-      color: hsl(220 25% 30%);
-      line-height: 1.65;
-    }
-
-    .callout strong {
-      display: block;
-      margin-bottom: .35rem;
-      color: hsl(var(--accent));
-      font-size: .72rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    /* Section divider */
-    .section-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, hsl(var(--accent) / .4), transparent);
-      margin: 2.5rem 0;
-    }
-
-    a.email-link {
-      color: hsl(var(--accent));
-      font-weight: 500;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    a.email-link:hover { color: hsl(340 55% 35%); }
-
-    /* Final note */
-    .final-note {
-      text-align: center;
-      padding: 2.5rem 2rem;
-      background: hsl(var(--secondary));
-      border-radius: 1rem;
-      margin-top: 1rem;
-    }
-
-    .final-note p {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: hsl(var(--primary));
-      line-height: 1.6;
-      letter-spacing: -.01em;
-      margin: 0;
-    }
-
-    .final-note .accent-mark { color: hsl(var(--accent)); }
-
-    /* ── FOOTER ── */
-    footer {
-      background-color: hsl(var(--primary));
-      color: hsl(var(--primary-foreground));
-      padding-bottom: 60px;
-    }
-
-    .footer-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 4rem 1rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      justify-items: center;
-      text-align: center;
-    }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 2rem; } }
-
-    footer h4 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 600;
-      color: hsl(var(--primary-foreground));
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    footer ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
-
-    footer ul a {
-      font-size: .875rem;
-      color: hsl(var(--primary-foreground) / .7);
-      transition: color .2s;
-    }
-    footer ul a:hover { color: hsl(var(--accent)); }
-
-    .footer-social { display: flex; align-items: center; justify-content: center; gap: 1rem; }
-
-    .social-icon {
-      width: 2.5rem; height: 2.5rem;
-      border-radius: 9999px;
-      background: hsl(var(--primary-foreground) / .1);
-      display: flex; align-items: center; justify-content: center;
-      color: hsl(var(--primary-foreground) / .7);
-      transition: all .3s;
-      flex-shrink: 0;
-    }
-    .social-icon:hover { background: hsl(var(--accent)); color: #fff; }
-
-    .footer-bottom {
-      border-top: 1px solid hsl(var(--primary-foreground) / .1);
-      margin-top: 3rem;
-      padding-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-      align-items: center;
-      justify-content: center;
-    }
-    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
-
-    .footer-bottom p { font-size: .875rem; color: hsl(var(--primary-foreground) / .5); }
-    .footer-bottom .heart { color: hsl(var(--accent)); }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--cream);color:var(--text);font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:var(--rose);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .site-header{position:sticky;top:0;z-index:20;background:rgba(248,241,236,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+    .nav-wrap{max-width:980px;margin:0 auto;height:42px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-family:'Playfair Display',serif;color:var(--navy);font-size:14px;line-height:.82;text-align:center;text-decoration:none;min-width:74px}
+    .nav{display:flex;align-items:center;gap:24px;font-family:'Josefin Sans',sans-serif;font-size:8px;letter-spacing:.06em;white-space:nowrap}
+    .nav a{color:var(--navy);text-decoration:none}
+    .nav a.refer{color:var(--rose);font-weight:700}
+    .nav a.cta{background:linear-gradient(135deg,#ce7e98,#b84e79);color:white;border-radius:999px;padding:7px 14px;box-shadow:0 5px 12px rgba(206,126,152,.22)}
+    .hero{text-align:center;padding:48px 24px 44px;border-bottom:1px solid var(--line)}
+    .eyebrow{font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.34em;font-size:9px;color:var(--rose);font-weight:600;margin-bottom:8px}
+    h1{font-family:'Playfair Display',serif;font-size:34px;line-height:1.1;color:var(--navy);font-weight:500;margin:0 0 8px}
+    .subtitle{font-size:13px;color:var(--muted);margin:0}
+    .legal-wrap{max-width:620px;margin:0 auto;padding:38px 22px 70px}
+    .contents{max-width:520px;margin:0 auto 36px;color:var(--muted);font-size:12px}
+    .contents-title{font-family:'Josefin Sans',sans-serif;letter-spacing:.10em;color:var(--navy);font-size:10px;margin:0 0 8px;text-transform:none}
+    .contents ol{margin:0;padding-left:18px;columns:2;column-gap:62px}
+    .contents li{break-inside:avoid;margin:0 0 5px;padding-left:3px}
+    .contents a{color:var(--muted)}
+    .divider{width:28px;height:1px;background:var(--rose);opacity:.65;margin:26px 0 20px}
+    section.legal-section{padding:0 0 21px;margin:0 0 16px;border:0}
+    h2{font-family:'Playfair Display',serif;font-size:20px;line-height:1.25;color:var(--navy);font-weight:500;margin:0 0 12px}
+    h3{font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:10px;color:var(--rose);font-weight:700;margin:18px 0 8px}
+    p{margin:0 0 10px}
+    ul{list-style:none;margin:0 0 11px;padding:0}
+    li{position:relative;margin:0 0 4px;padding-left:15px}
+    li:before{content:'—';position:absolute;left:0;top:0;color:var(--rose)}
+    .note{background:var(--soft-rose);border-left:3px solid var(--rose);border-radius:0 3px 3px 0;padding:12px 14px;margin:13px 0 12px;font-size:13px}
+    .note-title{display:block;font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:9px;color:var(--rose);font-weight:700;margin-bottom:5px}
+    .note p:last-child{margin-bottom:0}
+    .definitions{display:grid;gap:8px;margin:12px 0}
+    .def-card{background:rgba(255,255,255,.55);border:1px solid rgba(30,49,81,.08);border-radius:4px;padding:12px 14px;font-size:13px}
+    .def-card strong{display:block;color:var(--navy);font-weight:700;margin-bottom:4px}
+    .tiers{margin:12px 0 12px}
+    .tier-label{font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:9px;color:var(--rose);font-weight:700;margin:14px 0 4px}
+    .tier-name{font-family:'Playfair Display',serif;font-size:18px;line-height:1.25;color:var(--navy);font-weight:500;margin:0 0 4px}
+    .tier-price{font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:10px;color:var(--muted);margin:0 0 6px}
+    .closing{background:rgba(255,255,255,.55);border-radius:4px;text-align:center;color:var(--navy);font-size:18px;line-height:1.4;padding:24px;margin:22px 0 0}
+    .footer{background:var(--footer);color:white;margin-top:0;padding:44px 24px 34px;font-size:13px}
+    .footer-inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1.4fr;gap:34px}
+    .footer h4{font-family:'Josefin Sans',sans-serif;text-transform:none;letter-spacing:.05em;font-size:11px;color:white;font-weight:600;margin:0 0 10px;opacity:.9}
+    .footer p,.footer a{font-size:12px;line-height:1.7;color:rgba(255,255,255,.72);margin:0;text-decoration:none}
+    .social{letter-spacing:.28em;color:rgba(255,255,255,.78);font-family:'Josefin Sans',sans-serif;font-size:12px}
+    .footer-bottom{max-width:980px;margin:30px auto 0;border-top:1px solid rgba(255,255,255,.13);padding-top:18px;display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.58);font-size:11px}
+    @media(max-width:760px){.nav{display:none}.nav-wrap{justify-content:center}.legal-wrap{padding-top:30px}.contents ol{columns:1}.footer-inner{grid-template-columns:1fr;gap:22px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:8px}}
   </style>
 </head>
 <body>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="/">Sparked<br>Connection</a><nav class="nav"><a href="/#how-it-works">How It Works</a><a href="/plans">Plans</a><a href="/events">Events</a><a href="/the-science">The Science</a><a href="/journal">Journal</a><a class="refer" href="/refer-a-friend">Refer a Friend</a><a class="cta" href="/form">Create Free Profile</a></nav></div></header>
+<main>
+  <div class="hero"><div class="eyebrow">Legal &amp; Trust</div><h1>Terms &amp; Conditions</h1><p class="subtitle">Sparked Connection Ltd · Last updated May 2026</p></div>
+  <div class="legal-wrap">
+    <nav class="contents" aria-label="Contents"><p class="contents-title">Contents</p><ol>
+      <li><a href="#about">About Us</a></li><li><a href="#nature">Nature of the Service</a></li><li><a href="#eligibility">Eligibility &amp; Acceptance</a></li><li><a href="#definitions">Definitions</a></li><li><a href="#tiers">Membership Tiers &amp; Duration</a></li><li><a href="#introductions">Number of Introductions</a></li><li><a href="#second-match">Second Match Promise</a></li><li><a href="#outcomes">No Guaranteed Outcomes</a></li><li><a href="#client-responsibilities">Client Responsibilities</a></li><li><a href="#member-responsibilities">Your Responsibilities as a Member</a></li><li><a href="#conduct">Behaviour &amp; Conduct</a></li><li><a href="#fees">Fees, Payments &amp; Refunds</a></li><li><a href="#cancel">Right to Cancel</a></li><li><a href="#privacy">Privacy &amp; Confidentiality</a></li><li><a href="#profile-sharing">Profile Information Sharing</a></li><li><a href="#ai">Use of AI-Assisted Tools</a></li><li><a href="#liability">Limitation of Liability</a></li><li><a href="#availability">Service Availability</a></li><li><a href="#exclusivity">No Exclusivity</a></li><li><a href="#events">Member Events</a></li><li><a href="#security">Security</a></li><li><a href="#disclaimer">Disclaimer</a></li><li><a href="#notices">Notices</a></li><li><a href="#changes">Changes to These Terms</a></li><li><a href="#law">Governing Law</a></li><li><a href="#contact">Contact</a></li>
+    </ol></nav>
 
-<!-- ── NAV ── -->
-<nav>
-  <div class="nav-inner">
-    <a href="https://sparkedconnection.com/" aria-label="Sparked Connection home">
-      <img src="/logo.svg" alt="Sparked Connection" class="site-logo">
-    </a>
+    <div class="divider"></div>
+    <section id="about" class="legal-section"><h2>1. About Us</h2><p><strong>Sparked Connection Ltd</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) provides a professional matchmaking and introduction service for individuals seeking meaningful relationships.</p><p>By submitting an application, purchasing a membership, or using our services, you agree to be bound by these Terms.</p></section>
 
-    <div class="nav-links">
-      <a href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-      <a href="https://sparkedconnection.com/plans/">Plans</a>
-      <a href="https://sparkedconnection.com/#events">Events</a>
-      <a href="https://sparkedconnection.com/the-science/">The Science</a>
-      <a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
-      <a href="https://www.sparkedconnection.com/refer-a-friend" class="refer">Refer a Friend</a>
-    </div>
+    <div class="divider"></div>
+    <section id="nature" class="legal-section"><h2>2. Nature of the Service</h2><p>Sparked Connection offers a personalised, compatibility-led matchmaking service, supported by structured questionnaires, compatibility assessment, human matchmaker review, and curated introductions.</p><div class="note"><span class="note-title">Important</span><p>We do not operate as a dating app, and we do not provide open browsing, swiping, or public profiles.</p></div></section>
 
-    <div class="nav-cta">
-      <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer">
-        <button class="cta-btn">Create Free Profile</button>
-      </a>
-    </div>
+    <div class="divider"></div>
+    <section id="eligibility" class="legal-section"><h2>3. Eligibility &amp; Acceptance</h2><ul><li>All applications are subject to review</li><li>Submission of a questionnaire or payment does not guarantee acceptance</li><li>We reserve the right to decline, suspend, or discontinue membership where we reasonably consider it appropriate to do so</li></ul><p>By submitting an application for membership, you represent, warrant, and undertake (on an ongoing basis throughout your membership) that:</p><ul><li>You are at least 27 years of age and are not currently married, in a civil partnership, or in any ongoing romantic or intimate relationship at the date of application and throughout your membership</li><li>You have the full right, authority, and legal capacity to enter into and be bound by these Terms</li><li>All information provided by you is true, accurate, complete, and not misleading, and you agree to promptly notify us of any material changes</li><li>To the best of your knowledge and belief, you are not currently subject to any court order, restriction, or ongoing circumstance that would reasonably make your participation in the service unsafe for other members or staff</li></ul><div class="note"><span class="note-title">Please Note</span><p>Sparked Connection reserves the right to refuse, suspend, or terminate membership where it reasonably believes participation may present a safety, legal, operational, or reputational risk to the service, its members, or its staff.</p></div></section>
 
-    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>
-      </svg>
-    </button>
+    <div class="divider"></div>
+    <section id="definitions" class="legal-section"><h2>4. Definitions</h2><div class="definitions"><div class="def-card"><strong>&quot;Agreed Introduction&quot;</strong><p>An introduction where both parties have confirmed willingness to be introduced and to receive each other's profile or contact details.</p></div><div class="def-card"><strong>&quot;Membership Period&quot;</strong><p>The 12-month period beginning on the date of acceptance or purchase of a Gold or Platinum membership.</p></div><div class="def-card"><strong>&quot;Singles Network&quot;</strong><p>The pool of Bronze members whose profiles are held on file and made available to our matchmakers for consideration in future introductions.</p></div><div class="def-card"><strong>&quot;Member Event&quot;</strong><p>Any social event, networking event, workshop, matchmaking event, gathering, online event, or other activity organised by Sparked Connection from time to time.</p></div><div class="def-card"><strong>&quot;Second Match Promise&quot;</strong><p>A flexible membership option (£150) available when two Bronze members are identified as a match. Only one person needs to join and is guaranteed a second introduction if the first match is not the right fit. No fixed time limit applies.</p></div></div></section>
+
+    <div class="divider"></div>
+    <section id="tiers" class="legal-section"><h2>5. Membership Tiers &amp; Duration</h2><p>Sparked Connection offers three membership tiers:</p><div class="tiers"><p class="tier-label">✦ Part of the Singles Network</p><p class="tier-name">Bronze</p><p class="tier-price">Free</p><ul><li>No membership fee</li><li>Profile held in Singles Network for future introductions</li><li>Priority invitations to Member Events (availability not guaranteed)</li><li>No guaranteed minimum introductions</li><li>Second Match Promise (£150) available when matched with another Bronze member</li></ul><p class="tier-label">Most Popular</p><p class="tier-name">Gold</p><p class="tier-price">£800 / 12 months</p><ul><li>12-month active Membership Period</li><li>1:1 consultation with a matchmaker</li><li>Bespoke Search (beyond our network)</li><li>Dating coaching</li><li>VIP access to exclusive events</li><li>Minimum 5 Agreed Introductions</li></ul><p class="tier-label">✦ Dual Membership</p><p class="tier-name">Platinum</p><p class="tier-price">£1,500 / 2 × 12 months</p><ul><li>Two full Gold memberships simultaneously</li><li>Both members matched independently</li><li>All Gold features for both members</li><li>Priority matching &amp; dedicated matchmaker</li><li>VIP access for both members</li><li>Minimum 5 introductions per member</li></ul></div><p>For the purposes of these Terms, the service is deemed to commence once the scheduled 1:1 consultation (in-person or on-line) has taken place following contract signature.</p><p>Prior to this consultation, Sparked Connection may carry out administrative onboarding activities, including reviewing submitted information and preparing for the consultation. Such activities do not constitute commencement of the matchmaking service.</p><div class="note"><span class="note-title">Important</span><p>Once the 1:1 consultation has taken place, the service is considered to have formally commenced, and the provisions relating to cancellation and refunds after commencement will apply.</p></div><h3>Attendance of Consultation</h3><p>Where a Client repeatedly delays, fails to attend, or cancels a scheduled consultation without reasonable notice, Sparked Connection reserves the right to: (a) place the membership on hold; (b) charge a reasonable administrative rescheduling fee; or (c) treat the service as commenced where substantial preparatory matchmaking work has already been undertaken and the Client has been clearly notified in advance.</p></section>
+
+    <div class="divider"></div>
+    <section id="introductions" class="legal-section"><h2>6. Number of Introductions</h2><p>Sparked Connection will use reasonable endeavours to provide a minimum of 5 Agreed Introductions during the Membership Period for Gold members and for each Platinum member, subject to the Client remaining eligible, responsive, and actively engaged in the service. Introductions are subject to:</p><ul><li>Reasonable availability of suitable matches</li><li>Mutual interest and willingness to be introduced</li><li>The Client's active participation and responsiveness</li></ul><p>Introductions are not time-bound and may occur at any point during the Membership Period. They reflect the quality and care of our curation process rather than a fixed schedule.</p><div class="note"><span class="note-title">Membership Extension Guarantee</span><p>Where the minimum of 5 Agreed Introductions has not been fulfilled by the end of the Membership Period through no fault of the Client, Sparked Connection will extend the membership at no additional cost until the minimum is met.</p></div></section>
+
+    <div class="divider"></div>
+    <section id="second-match" class="legal-section"><h2>7. Second Match Promise (Bronze Members)</h2><p>Where two Bronze (free) members are identified as a compatible match, either party may opt for the Second Match Promise membership (£150). Under this arrangement:</p><ul><li>Only one person needs to join at the £150 fee</li><li>The joining member is guaranteed a second introduction if the first match is not the right fit</li><li>There is no fixed time limit on the second introduction</li><li>The Second Match Promise is a separate, flexible membership and does not carry all features of a Gold membership</li></ul><div class="note"><span class="note-title">Please Note</span><p>Bronze members are part of our Singles Network but are not entitled to a guaranteed minimum number of introductions unless they have purchased the Second Match Promise.</p></div></section>
+
+    <div class="divider"></div>
+    <section id="outcomes" class="legal-section"><h2>8. No Guaranteed Outcomes</h2><p>Sparked Connection does not guarantee the timing or frequency of introductions, compatibility or mutual attraction, any specific relationship outcome, or the availability, scheduling, attendance, organisation, or continuation of any Member Event.</p><p>Introductions are based on available information, compatibility insights, and professional judgement.</p></section>
+
+    <div class="divider"></div>
+    <section id="client-responsibilities" class="legal-section"><h2>9. Client Responsibilities</h2><p>Clients agree to:</p><ul><li>Provide accurate, truthful, and up-to-date information</li><li>Engage respectfully with introductions</li><li>Remain reasonably responsive to communications</li><li>Notify us promptly in writing if they enter a relationship during their membership</li></ul><p>Where a Client becomes unresponsive or unavailable for over 90 calendar days, the matchmaking process may be paused. Any period of non-engagement by the Client may not count toward the Membership Period for the purposes of the introduction guarantee in Section 6. Repeated non-engagement without reasonable explanation may result in suspension or conclusion of the service.</p><p>Once you notify us that you are in a relationship, your membership will continue until the end of the current period, after which you will no longer be eligible to use the service. Any prepaid event bookings will be subject to the terms of each individual event at the time of booking.</p></section>
+
+    <div class="divider"></div>
+    <section id="member-responsibilities" class="legal-section"><h2>10. Your Responsibilities as a Member</h2><p>To keep Sparked Connection a safe, respectful, and high-quality environment for all members, you agree not to:</p><ul><li>Use the platform or its content for any purpose beyond what is outlined in this agreement</li><li>Share, transfer, or give access to your membership to any other individual</li><li>Pretend to be someone you are not, or misrepresent your identity or your relationship with any person or organisation</li><li>Harass, threaten, abuse, or otherwise infringe on the rights or wellbeing of other members or third parties</li><li>Carry out any commercial activity on the platform — including advertising, promotions, competitions, or business ventures — without our prior written consent</li><li>Act in a manner that is deliberately hurtful, disrespectful, or demeaning towards any other member</li><li>Be knowingly defamatory, disparaging, or derogatory towards any other member</li></ul></section>
+
+    <div class="divider"></div>
+    <section id="conduct" class="legal-section"><h2>11. Behaviour &amp; Conduct</h2><p>We reserve the right to suspend or terminate membership where a Client behaves in a manner that is inappropriate, misleading, unsafe, disrespectful, or inconsistent with the values of the service.</p><p>This includes, but is not limited to, harassment, dishonesty, and misuse of introductions.</p><div class="note"><span class="note-title">Please Note</span><p>In such cases, membership fees are non-refundable and Sparked Connection shall have no obligation to continue providing introductions or extend the membership period. We also reserve the right to submit serious complaints to the appropriate authorities.</p></div><p>You must notify us in writing immediately if you become aware of any inappropriate behaviour in connection with the service.</p><p>If you arrange any meetings with any person through your use of the service, you do so at your own risk. Please take reasonable precautions to ensure your personal safety and approach contact with introduced individuals with the same caution you would exercise when meeting anyone you do not know.</p></section>
+
+    <div class="divider"></div>
+    <section id="fees" class="legal-section"><h2>12. Fees, Payments &amp; Refunds</h2><p>Membership fees are payable in advance. Current pricing is:</p><ul><li>Bronze: Free</li><li>Second Match Promise: £150</li><li>Gold: £800 for a 12-month membership</li><li>Platinum: £1,500 for two simultaneous 12-month memberships</li></ul><p>Once the service has commenced, fees are non-refundable except where required by UK consumer law.</p><p>Memberships are also available as gift vouchers — please request via email.</p><h3>Cooling-Off Period</h3><p>By requesting that matchmaking services begin within the 14-day cooling-off period, the Client expressly acknowledges and agrees that their right to cancel will be lost once the service has commenced. Nothing in these Terms affects your statutory rights.</p></section>
+
+    <div class="divider"></div>
+    <section id="cancel" class="legal-section"><h2>13. Right to Cancel (Consumer Rights)</h2><p>Where applicable under UK law, Clients may have a 14-day cooling-off period.</p><p>If the Client requests that services begin during this period, and the service commences, the right to cancel will be lost.</p><p>Further details are set out in our <a href="/refund-cancellation">Refund &amp; Cancellation Policy</a>.</p></section>
+
+    <div class="divider"></div>
+    <section id="privacy" class="legal-section"><h2>14. Privacy &amp; Confidentiality</h2><p>We handle all personal data in accordance with our <a href="/privacy-policy">Privacy Policy</a>.</p><p>Client information is treated with discretion and confidentiality. Personal contact details are only shared following an Agreed Introduction.</p></section>
+
+    <div class="divider"></div>
+    <section id="profile-sharing" class="legal-section"><h2>15. Profile Information Sharing</h2><p>By joining the service, Clients agree that Sparked Connection may share limited profile information with potential matches, including:</p><ul><li>First name or initial</li><li>General location</li><li>Profession or lifestyle overview</li><li>Selected photographs</li><li>High-level preferences</li></ul><div class="note"><p>This information is shared solely for the purpose of assessing compatibility and mutual interest. Personal contact details are only shared following mutual agreement to proceed.</p></div></section>
+
+    <div class="divider"></div>
+    <section id="ai" class="legal-section"><h2>16. Use of AI-Assisted Tools</h2><p>We may use secure, GDPR-compliant AI-assisted tools to support compatibility analysis, questionnaire review, meeting transcription, internal notes, summaries, and follow-up actions.</p><p>Where consultations, meetings, or calls are transcribed, AI-assisted transcription or dictation tools may be used to help create accurate summaries, notes, and agreed next steps. These tools are used solely for internal service delivery purposes and are treated confidentially.</p><p>No matchmaking decision is made solely by automated means. All matchmaking decisions are reviewed and made by a human matchmaker. AI supports, but does not replace, human professional judgement.</p></section>
+
+    <div class="divider"></div>
+    <section id="liability" class="legal-section"><h2>17. Limitation of Liability</h2><p>To the fullest extent permitted by law, Sparked Connection shall not be liable for:</p><ul><li>Actions or behaviour of third parties</li><li>Dissatisfaction with introductions where the service has been delivered as described</li><li>Indirect or consequential losses</li><li>Any delay in performance due to events outside our reasonable control, including acts of God, technical failures, illness, or availability of suitable matches</li></ul><p>Nothing in these Terms excludes or limits liability where it cannot be excluded by law.</p><div class="note"><p>Unless expressly stated otherwise in writing, Sparked Connection does not conduct formal DBS checks, criminal background screening, financial checks, employment verification, or independent verification of all information supplied by members. Clients remain responsible for exercising their own judgement when interacting with introduced individuals.</p></div></section>
+
+    <div class="divider"></div>
+    <section id="availability" class="legal-section"><h2>18. Service Availability</h2><p>The services are provided in their current form. We do not guarantee that the services, or any element thereof, will meet your requirements, purpose, or expectations.</p><p>We are not liable for delays or interruptions caused by events outside our reasonable control, including technical issues, illness, or availability of suitable matches.</p><p>We reserve the right to suspend the services without notice for repair, maintenance, or other technical reasons.</p></section>
+
+    <div class="divider"></div>
+    <section id="exclusivity" class="legal-section"><h2>19. No Exclusivity</h2><p>Sparked Connection does not guarantee that any introduced individual is exclusively matched with a single Client. Where appropriate, an individual may be considered for or introduced to more than one compatible member, provided such introductions are made in good faith and in accordance with our professional matchmaking process.</p></section>
+
+    <div class="divider"></div>
+    <section id="events" class="legal-section"><h2>20. Member Events</h2><p>Sparked Connection may, but is under no obligation to, organise Member Events from time to time.</p><p>Participation in any Member Event is entirely optional and may be subject to separate booking requirements, capacity limits, suitability assessments, venue restrictions, health and safety requirements, and additional event-specific terms and conditions.</p><p>The cancellation, postponement, modification, unavailability, or absence of any Member Event shall not entitle a Client to any refund, compensation, credit, or membership extension.</p><p>Where Sparked Connection organises Member Events, separate event-specific terms and conditions may apply and will be provided in advance. We reserve the right to invite media to attend events and to publish photographs.</p></section>
+
+    <div class="divider"></div>
+    <section id="security" class="legal-section"><h2>21. Security</h2><p>Any membership promotional code, if allocated, is personal to you and is not transferable. You are responsible for keeping it secure and for any use made under your code.</p><p>If you are no longer a paying member but continue to interact with Sparked Connection services, you must refrain from using any promotional code and pay the relevant fee as stated.</p><p>You must notify us immediately of any apparent breach of security such as loss, theft, or unauthorised disclosure or use of your code or account details.</p></section>
+
+    <div class="divider"></div>
+    <section id="disclaimer" class="legal-section"><h2>22. Disclaimer</h2><p>The content shared through our services may include facts, views, opinions, advice, and recommendations. To the maximum extent permitted by law, we shall not be liable on account of the accuracy, defamatory nature, completeness, timeliness, or otherwise of any content provided through the service.</p><p>Our website may contain errors and, from time to time, may not be accessible. Any content provided is intended as information only and does not constitute professional advice.</p><p>We are not responsible for any injuries or losses arising out of the use of alcohol or drugs at any event we organise or attend.</p><p>Intellectual property rights in connection with the services shall be owned by us absolutely. You are expressly prohibited from reproducing, copying, editing, or transmitting any of our materials, or removing, modifying, or using any of our intellectual property, without first obtaining written permission.</p></section>
+
+    <div class="divider"></div>
+    <section id="notices" class="legal-section"><h2>23. Notices</h2><p>All notices given by you to us must be sent to <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p><p>We may give notice to you at the email address you provide when registering. It will be sufficient to prove, in the case of an email, that such email was sent to the specified address of the addressee.</p></section>
+
+    <div class="divider"></div>
+    <section id="changes" class="legal-section"><h2>24. Changes to These Terms</h2><p>We may update or amend these Terms from time to time by giving reasonable notice. The version in force at the time of purchase will apply to that membership.</p><p>By continuing to use the services after the expiry of the notice period, you will be deemed to have accepted any amendment to these Terms.</p><p>If, on receipt of such notice, you wish to terminate your agreement with us, you may do so by giving us not less than seven (7) days' notice, such termination to take effect on the date upon which the amended agreement would otherwise have come into effect.</p></section>
+
+    <div class="divider"></div>
+    <section id="law" class="legal-section"><h2>25. Governing Law</h2><p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of its courts.</p></section>
+
+    <div class="divider"></div>
+    <section id="contact" class="legal-section"><h2>26. Contact</h2><p>If you have any questions about these Terms, please contact us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p><div class="closing">We're committed to running a service built on trust, transparency, and genuine care —<br>for every person we introduce.</div></section>
   </div>
-</nav>
-
-<div class="mobile-menu-panel" id="mobile-menu">
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/#how-it-works">How It Works</a>
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/plans/">Plans</a>
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/#events">Events</a>
-  <a class="mobile-menu-link" href="https://sparkedconnection.com/the-science/">The Science</a>
-  <a class="mobile-menu-link" href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a>
-  <a class="mobile-menu-link" href="https://www.sparkedconnection.com/refer-a-friend" style="color:hsl(340 55% 45%);font-weight:600;">Refer a Friend</a>
-  <div class="mobile-cta-wrap">
-    <a href="https://sparkedconnection.com/enquiry" target="_blank" rel="noopener noreferrer" style="width:100%;">
-      <button class="cta-btn" style="width:100%;">Create Free Profile</button>
-    </a>
-  </div>
-</div>
-
-<!-- ── PAGE HERO ── -->
-<header class="page-hero">
-  <p class="eyebrow">Legal &amp; Trust</p>
-  <h1>Terms &amp; Conditions</h1>
-  <p>Sparked Connection Ltd - Last updated May 2026</p>
-</header>
-
-<!-- ── CONTENT ── -->
-<main class="content-wrap">
-
-  <div class="policy-section">
-    <p class="toc-title">Contents</p>
-    <div class="toc-grid">
-      <a href="#s1"><span class="num">1.</span> About Us</a>
-      <a href="#s2"><span class="num">2.</span> Nature of the Service</a>
-      <a href="#s3"><span class="num">3.</span> Eligibility &amp; Acceptance</a>
-      <a href="#s4"><span class="num">4.</span> Definitions</a>
-      <a href="#s5"><span class="num">5.</span> Membership Tiers &amp; Duration</a>
-      <a href="#s6"><span class="num">6.</span> Number of Introductions</a>
-      <a href="#s7"><span class="num">7.</span> No Guaranteed Outcomes</a>
-      <a href="#s8"><span class="num">8.</span> Client Responsibilities</a>
-      <a href="#s9"><span class="num">9.</span> Your Responsibilities as a Member</a>
-      <a href="#s10"><span class="num">10.</span> Behaviour &amp; Conduct</a>
-      <a href="#s11"><span class="num">11.</span> Fees, Payments &amp; Refunds</a>
-      <a href="#s12"><span class="num">12.</span> Right to Cancel</a>
-      <a href="#s13"><span class="num">13.</span> Privacy &amp; Confidentiality</a>
-      <a href="#s14"><span class="num">14.</span> Profile Information Sharing</a>
-      <a href="#s15"><span class="num">15.</span> Use of AI-Assisted Tools</a>
-      <a href="#s16"><span class="num">16.</span> Limitation of Liability</a>
-      <a href="#s17"><span class="num">17.</span> Service Availability</a>
-      <a href="#s18"><span class="num">18.</span> No Exclusivity</a>
-      <a href="#s19"><span class="num">19.</span> Member Events</a>
-      <a href="#s20"><span class="num">20.</span> Changes to These Terms</a>
-      <a href="#s21"><span class="num">21.</span> Governing Law</a>
-      <a href="#s22"><span class="num">22.</span> Contact</a>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s1">
-    <h2><span class="section-num">1.</span> About Us</h2>
-    <p><strong>Sparked Connection Ltd</strong> ("we", "us", "our") provides a professional matchmaking and introduction service for individuals seeking meaningful relationships.</p>
-    <p>By submitting an application, purchasing a membership, or using our services, you agree to be bound by these Terms.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s2">
-    <h2><span class="section-num">2.</span> Nature of the Service</h2>
-    <p>Sparked Connection offers a personalised, compatibility-led matchmaking service, supported by structured questionnaires, compatibility assessment, human matchmaker review, and curated introductions.</p>
-    <div class="callout">
-      We do not operate as a dating app, and we do not provide open browsing, swiping, or public profiles.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s3">
-    <h2><span class="section-num">3.</span> Eligibility &amp; Acceptance</h2>
-    <ul class="policy-list">
-      <li>All applications are subject to review</li>
-      <li>Submission of a questionnaire or payment does not guarantee acceptance</li>
-      <li>We reserve the right to decline, suspend, or discontinue membership where we reasonably consider it appropriate to do so</li>
-    </ul>
-
-    <p>By submitting an application for membership, you represent, warrant, and undertake (on an ongoing basis throughout your membership) that:</p>
-    <ul class="policy-list">
-      <li>You are at least 27 years of age and are not currently married, in a civil partnership, or in any ongoing romantic or intimate relationship at the date of application and throughout your membership</li>
-      <li>You have the full right, authority, and legal capacity to enter into and be bound by these Terms</li>
-      <li>All information provided by you is true, accurate, complete, and not misleading, and you agree to promptly notify us of any material changes</li>
-      <li>To the best of your knowledge and belief, you are not currently subject to any court order, restriction, or ongoing circumstance that would reasonably make your participation in the service unsafe for other members or staff</li>
-    </ul>
-    <div class="callout">
-      Sparked Connection reserves the right to refuse, suspend, or terminate membership where it reasonably believes participation may present a safety, legal, operational, or reputational risk to the service, its members, or its staff.
-    </div>
-  </div>
-
-   
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s4">
-    <h2><span class="section-num">4.</span> Definitions</h2>
-    <div class="definition-box">
-      <strong>"Agreed Introduction"</strong>
-      An introduction where both parties have confirmed willingness to be introduced and to receive each other's profile or contact details.
-    </div>
-    <div class="definition-box">
-      <strong>"Membership Period"</strong>
-      The 12-month period beginning on the date of acceptance or purchase of a Gold or Platinum membership.
-    </div>
-    <div class="definition-box">
-      <strong>"Singles Network"</strong>
-      The pool of Bronze members whose profiles are held on file and made available to our matchmakers for consideration in future introductions.
-    </div>
-    <div class="definition-box">
-      <strong>"Member Event"</strong>
-      Any social event, networking event, workshop, matchmaking event, gathering, online event, or other activity organised by Sparked Connection from time to time.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s5">
-    <h2><span class="section-num">5.</span> Membership Tiers &amp; Duration</h2>
-    <p>Sparked Connection offers three membership tiers:</p>
-
-    <p><strong>Bronze (Free)</strong></p>
-    <ul class="policy-list">
-      <li>No membership fee</li>
-      <li>Upon registration, your profile is added to our curated Singles Network and made available to our matchmakers for consideration in future introductions</li>
-      <li>Priority invitations to Member Events where available; event availability is not guaranteed</li>
-      <li>Bronze members are not entitled to a guaranteed minimum number of introductions</li>
-    </ul>
-
-    <p><strong>Gold (£800)</strong></p>
-    <ul class="policy-list">
-      <li>12-month active Membership Period</li>
-      <li>1:1 consultation with a matchmaker</li>
-      <li>Bespoke Search — real-world search beyond our existing network</li>
-      <li>Priority invitations, advance notification, or preferential access to Member Events where available; event availability is not guaranteed and does not form part of the core contracted services</li>
-      <li>A minimum of 5 Agreed Introductions over the 12-month Membership Period (see Section 6)</li>
-    </ul>
-
-    <p><strong>Platinum (£1,500 — Dual Membership)</strong></p>
-    <ul class="policy-list">
-      <li>Two full Gold memberships enrolled simultaneously</li>
-      <li>Both members are matched independently by our team — ideal for friends joining together</li>
-      <li>All Gold features for both members</li>
-      <li>Priority matching and a dedicated matchmaker</li>
-      <li>Priority invitations, advance notification, or preferential access to Member Events for both members where available</li>
-      <li>A minimum of 5 Agreed Introductions per member over the 12-month Membership Period (see Section 6)</li>
-    </ul>
-
-<p>For the purposes of these Terms, the service is deemed to commence once the scheduled 1:1 consultation (in-person or on-line) has taken place following contract signature.</p>
-
-<p>Prior to this consultation, Sparked Connection may carry out administrative onboarding activities, including reviewing submitted information and preparing for the consultation. Such activities do not constitute commencement of the matchmaking service.</p>
-
-<div class="callout">
-  <strong>Important</strong>
-  Once the 1:1 consultation has taken place, the service is considered to have formally commenced, and the provisions relating to cancellation and refunds after commencement will apply.
-</div>
-
-<div class="callout">
-  <strong>Attendance of Consultation</strong>
-  Where a Client repeatedly delays, fails to attend, or cancels a scheduled consultation without reasonable notice, Sparked Connection reserves the right to: (a) place the membership on hold; (b) charge a reasonable administrative rescheduling fee; or (c) treat the service as commenced where substantial preparatory matchmaking work has already been undertaken and the Client has been clearly notified in advance.
-</div>  
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s6">
-    <h2><span class="section-num">6.</span> Number of Introductions</h2>
-    <p>Sparked Connection will use reasonable endeavours to provide a minimum of <strong>5 Agreed Introductions</strong> during the Membership Period for Gold members and for each Platinum member, subject to the Client remaining eligible, responsive, and actively engaged in the service. Introductions are subject to:</p>
-    <ul class="policy-list">
-      <li>Reasonable availability of suitable matches</li>
-      <li>Mutual interest and willingness to be introduced</li>
-      <li>The Client's active participation and responsiveness</li>
-    </ul>
-    <p>Introductions are not time-bound and may occur at any point during the Membership Period. They reflect the quality and care of our curation process rather than a fixed schedule.</p>
-    <div class="callout">
-      <strong>Membership extension guarantee</strong>
-      Where the minimum of 5 Agreed Introductions has not been fulfilled by the end of the Membership Period through no fault of the Client, Sparked Connection will extend the membership at no additional cost until the minimum is met.
-    </div>
-    <div class="callout">
-      <strong>Please note</strong>
-      Bronze members are part of our Singles Network but are not entitled to a guaranteed minimum number of introductions.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s7">
-    <h2><span class="section-num">7.</span> No Guaranteed Outcomes</h2>
-    <p>Sparked Connection does not guarantee the timing or frequency of introductions, compatibility or mutual attraction, any specific relationship outcome, or the availability, scheduling, attendance, organisation, or continuation of any Member Event.</p>
-    <p>Introductions are based on available information, compatibility insights, and professional judgement.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s8">
-    <h2><span class="section-num">8.</span> Client Responsibilities</h2>
-    <p>Clients agree to:</p>
-    <ul class="policy-list">
-      <li>Provide accurate, truthful, and up-to-date information</li>
-      <li>Engage respectfully with introductions</li>
-      <li>Remain reasonably responsive to communications</li>
-    </ul>
-    <p>Where a Client becomes unresponsive or unavailable for over 90 calendar days, the matchmaking process may be paused. Any period of non-engagement by the Client may not count toward the Membership Period for the purposes of the introduction guarantee in Section 6. Repeated non-engagement without reasonable explanation may result in suspension or conclusion of the service.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s9">
-    <h2><span class="section-num">9.</span> Your Responsibilities as a Member</h2>
-    <p>To keep Sparked Connection a safe, respectful, and high-quality environment for all members, you agree not to:</p>
-    <ul class="policy-list">
-      <li>Use the platform or its content for any purpose beyond what is outlined in this agreement</li>
-      <li>Share, transfer, or give access to your membership to any other individual</li>
-      <li>Pretend to be someone you are not, or misrepresent your identity or your relationship with any person or organisation</li>
-      <li>Harass, threaten, abuse, or otherwise infringe on the rights or wellbeing of other members or third parties</li>
-      <li>Carry out any commercial activity on the platform — including advertising, promotions, competitions, or business ventures — without our prior written consent</li>
-      <li>Act in a manner that is deliberately hurtful, disrespectful, or demeaning towards any other member</li>
-    </ul>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s10">
-    <h2><span class="section-num">10.</span> Behaviour &amp; Conduct</h2>
-    <p>We reserve the right to suspend or terminate membership where a Client behaves in a manner that is inappropriate, misleading, unsafe, disrespectful, or inconsistent with the values of the service.</p>
-    <p>This includes, but is not limited to, harassment, dishonesty, and misuse of introductions.</p>
-    <div class="callout">
-      <strong>Please note</strong>
-      In such cases, membership fees are non-refundable and Sparked Connection shall have no obligation to continue providing introductions or extend the membership period.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s11">
-    <h2><span class="section-num">11.</span> Fees, Payments &amp; Refunds</h2>
-    <p>Membership fees are payable in advance. Current pricing is:</p>
-    <ul class="policy-list">
-      <li>Bronze: Free</li>
-      <li>Gold: £800 for a 12-month membership</li>
-      <li>Platinum: £1,500 for two simultaneous 12-month memberships</li>
-    </ul>
-    <p>Once the service has commenced, fees are non-refundable except where required by UK consumer law.</p>
-    <div class="callout">
-      <strong>Cooling-off period</strong>
-      By requesting that matchmaking services begin within the 14-day cooling-off period, the Client expressly acknowledges and agrees that their right to cancel will be lost once the service has commenced.
-    </div>
-    <p>Nothing in these Terms affects your statutory rights.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s12">
-    <h2><span class="section-num">12.</span> Right to Cancel (Consumer Rights)</h2>
-    <p>Where applicable under UK law, Clients may have a 14-day cooling-off period.</p>
-    <p>If the Client requests that services begin during this period, and the service commences, the right to cancel will be lost.</p>
-    <p>Further details are set out in our <a class="email-link" href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation Policy</a>.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s13">
-    <h2><span class="section-num">13.</span> Privacy &amp; Confidentiality</h2>
-    <p>We handle all personal data in accordance with our <a class="email-link" href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a>.</p>
-    <p>Client information is treated with discretion and confidentiality. Personal contact details are only shared following an Agreed Introduction.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s14">
-    <h2><span class="section-num">14.</span> Profile Information Sharing</h2>
-    <p>By joining the service, Clients agree that Sparked Connection may share limited profile information with potential matches, including:</p>
-    <ul class="policy-list">
-      <li>First name or initial</li>
-      <li>General location</li>
-      <li>Profession or lifestyle overview</li>
-      <li>Selected photographs</li>
-      <li>High-level preferences</li>
-    </ul>
-    <div class="callout">
-      This information is shared solely for the purpose of assessing compatibility and mutual interest. Personal contact details are only shared following mutual agreement to proceed.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s15">
-    <h2><span class="section-num">15.</span> Use of AI-Assisted Tools</h2>
-    <p>We may use secure, GDPR-compliant AI-assisted tools to support compatibility analysis, questionnaire review, meeting transcription, internal notes, summaries, and follow-up actions.</p>
-    <p>Where consultations, meetings, or calls are transcribed, AI-assisted transcription or dictation tools may be used to help create accurate summaries, notes, and agreed next steps. These tools are used solely for internal service delivery purposes and are treated confidentially.</p>
-    <p>No matchmaking decision is made solely by automated means. All matchmaking decisions are reviewed and made by a human matchmaker. AI supports, but does not replace, human professional judgement.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s16">
-    <h2><span class="section-num">16.</span> Limitation of Liability</h2>
-    <p>To the fullest extent permitted by law, Sparked Connection shall not be liable for:</p>
-    <ul class="policy-list">
-      <li>Actions or behaviour of third parties</li>
-      <li>Dissatisfaction with introductions where the service has been delivered as described</li>
-      <li>Indirect or consequential losses</li>
-    </ul>
-    <p>Nothing in these Terms excludes or limits liability where it cannot be excluded by law.</p>
-    <div class="callout">
-      Unless expressly stated otherwise in writing, Sparked Connection does not conduct formal DBS checks, criminal background screening, financial checks, employment verification, or independent verification of all information supplied by members. Clients remain responsible for exercising their own judgement when interacting with introduced individuals.
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s17">
-    <h2><span class="section-num">17.</span> Service Availability</h2>
-    <p>We are not liable for delays or interruptions caused by events outside our reasonable control, including technical issues, illness, or availability of suitable matches.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s18">
-    <h2><span class="section-num">18.</span> No Exclusivity</h2>
-    <p>Sparked Connection does not guarantee that any introduced individual is exclusively matched with a single Client. Where appropriate, an individual may be considered for or introduced to more than one compatible member, provided such introductions are made in good faith and in accordance with our professional matchmaking process.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s19">
-    <h2><span class="section-num">19.</span> Member Events</h2>
-    <p>Sparked Connection may, but is under no obligation to, organise Member Events from time to time.</p>
-    <p>Participation in any Member Event is entirely optional and may be subject to separate booking requirements, capacity limits, suitability assessments, venue restrictions, health and safety requirements, and additional event-specific terms and conditions.</p>
-    <p>The cancellation, postponement, modification, unavailability, or absence of any Member Event shall not entitle a Client to any refund, compensation, credit, or membership extension.</p>
-    <p>Where Sparked Connection organises Member Events, separate event-specific terms and conditions may apply and will be provided in advance.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s20">
-    <h2><span class="section-num">20.</span> Changes to These Terms</h2>
-    <p>We may update these Terms from time to time. The version in force at the time of purchase will apply to that membership.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s21">
-    <h2><span class="section-num">21.</span> Governing Law</h2>
-    <p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of its courts.</p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="policy-section" id="s22">
-    <h2><span class="section-num">22.</span> Contact</h2>
-    <p>If you have any questions about these Terms, please contact us at <a class="email-link" href="/cdn-cgi/l/email-protection#2d45484141426d5e5d4c5f4648494e424343484e59444243034e4240"><span class="__cf_email__" data-cfemail="9ef6fbf2f2f1deedeeffecf5fbfafdf1f0f0fbfdeaf7f1f0b0fdf1f3">[email&#160;protected]</span></a></p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <div class="final-note">
-    <p>We're committed to running a service built on <span class="accent-mark">trust, transparency, and genuine care</span> — for every person we introduce.</p>
-  </div>
-
 </main>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-
-      <div>
-        <h4>Follow Us</h4>
-        <div class="footer-social">
-          <a class="social-icon" href="https://www.instagram.com/sparked_connection/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
-          </a>
-          <a class="social-icon" href="https://www.facebook.com/people/Sparked-Connection/61584598310374/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-            </svg>
-          </a>
-          <a class="social-icon" href="https://www.linkedin.com/company/sparked-connection" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="https://sparkedconnection.com/about-matchmaking/">About Matchmaking</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Services</h4>
-        <ul>
-          <li><a href="https://sparkedconnection.com/#how-it-works">Matchmaking</a></li>
-          <li><a href="https://sparkedconnection.com/#events">Events</a></li>
-          <li><a href="https://sparkedconnection.com/plans/">Plans</a></li>
-          <li><a href="https://articles.sparkedconnection.com/" target="_blank" rel="noopener noreferrer">Journal</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Support</h4>
-        <ul>
-          <li><a href="https://sparkedconnection.com/privacy-notice">Privacy Policy</a></li>
-          <li><a href="https://sparkedconnection.com/terms-and-conditions">Terms &amp; Conditions</a></li>
-          <li><a href="https://sparkedconnection.com/refund-cancellation-policy">Refund &amp; Cancellation</a></li>
-          <li><a href="https://sparkedconnection.com/accessibility-statement">Accessibility</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Contact</h4>
-        <a href="/cdn-cgi/l/email-protection#7f171a1313103f0c0f1e0d141a1b1c1011111a1c0b161011511c1012" style="font-size:.875rem;color:hsl(var(--primary-foreground)/.7);transition:color .2s;" onmouseover="this.style.color='hsl(340 55% 60%)'" onmouseout="this.style.color='hsl(var(--primary-foreground)/.7)'">
-          <span class="__cf_email__" data-cfemail="9ef6fbf2f2f1deedeeffecf5fbfafdf1f0f0fbfdeaf7f1f0b0fdf1f3">[email&#160;protected]</span>
-        </a>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2026 Sparked Connection. All rights reserved.</p>
-      <p>Made with <span class="heart">❤️</span> for singles everywhere.</p>
-    </div>
-  </div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const toggle = document.getElementById('mobile-toggle');
-  const panel  = document.getElementById('mobile-menu');
-  if (toggle && panel) {
-    toggle.addEventListener('click', e => {
-      e.stopPropagation();
-      const open = panel.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      panel.classList.remove('open');
-      toggle.setAttribute('aria-expanded', false);
-    }));
-    document.addEventListener('click', e => {
-      if (!panel.contains(e.target) && !toggle.contains(e.target)) {
-        panel.classList.remove('open');
-        toggle.setAttribute('aria-expanded', false);
-      }
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        panel.classList.remove('open');
-        toggle.setAttribute('aria-expanded', false);
-      }
-    });
-  }
-
-  // Smooth scroll for TOC links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
+<footer class="footer"><div class="footer-inner"><div><h4>Follow Us</h4><p class="social">◎  f  in</p></div><div><h4>Company</h4><p><a href="/about">About Matchmaking</a></p></div><div><h4>Services</h4><p><a href="/matchmaking">Matchmaking</a></p><p><a href="/events">Events</a></p><p><a href="/plans">Plans</a></p><p><a href="/journal">Journal</a></p></div><div><h4>Support</h4><p><a href="/privacy-policy">Privacy Policy</a></p><p><a href="/terms-and-conditions">Terms &amp; Conditions</a></p><p><a href="/refund-cancellation">Refund &amp; Cancellation</a></p><p><a href="/accessibility">Accessibility</a></p></div><div><h4>Contact</h4><p><a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a></p></div></div><div class="footer-bottom"><span>© 2026 Sparked Connection. All rights reserved.</span><span>Made with ❤️ for singles everywhere.</span></div></footer>
 </body>
 </html>
