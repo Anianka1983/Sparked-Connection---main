@@ -773,12 +773,12 @@
 </div>
 <div class="grid-2">
 <div class="field">
-<label>Current occupation or field <span class="req">*</span></label>
+<label>Current occupation <span class="req">*</span></label>
 <input name="occupation" placeholder="e.g. Marketing Manager, Doctor…" type="text"/>
 </div>
 <div class="field">
 <label>Profession level <span class="req">*</span></label>
-<select name="profession_level">
+<select id="profession-level" name="profession_level">
 <option value="">Select profession level</option>
 <option>Early career</option>
 <option>Mid-Level professional</option>
@@ -788,8 +788,32 @@
 <option>C-suite / Executive</option>
 <option>Entrepreneur / Business owner</option>
 <option>Medical doctor</option>
-<option>Other (please specify)</option>
+<option value="Other">Other (please specify)</option>
 </select>
+</div>
+</div>
+<div class="other-field" id="profession-level-other-field">
+<input name="profession_level_other" placeholder="Please describe your profession level" type="text"/>
+</div>
+<div class="grid-2" style="margin-top:20px;">
+<div class="field">
+<label>Professional industry <span class="req">*</span></label>
+<input name="professional_industry" placeholder="e.g. Technology, Finance, Healthcare, Legal…" type="text"/>
+</div>
+<div class="field">
+<label>Annual salary <span class="opt">(Totally optional)</span></label>
+<select name="salary_range">
+<option value="">Select salary range, or leave blank</option>
+<option>Under £30,000</option>
+<option>£30,000–£49,999</option>
+<option>£50,000–£74,999</option>
+<option>£75,000–£99,999</option>
+<option>£100,000–£149,999</option>
+<option>£150,000–£199,999</option>
+<option>£200,000+</option>
+<option>Prefer not to say</option>
+</select>
+<p class="hint">This is totally optional and can be left blank.</p>
 </div>
 </div>
 </div>
@@ -1825,6 +1849,17 @@
       const show = this.value === 'Other';
       livingOtherField.classList.toggle('visible', show);
       if (livingOtherInput) livingOtherInput.required = show;
+    });
+  }
+
+  const professionLevelSelect = document.getElementById('profession-level');
+  const professionLevelOtherField = document.getElementById('profession-level-other-field');
+  const professionLevelOtherInput = professionLevelOtherField ? professionLevelOtherField.querySelector('input') : null;
+  if (professionLevelSelect && professionLevelOtherField) {
+    professionLevelSelect.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      professionLevelOtherField.classList.toggle('visible', show);
+      if (professionLevelOtherInput) professionLevelOtherInput.required = show;
     });
   }
 
