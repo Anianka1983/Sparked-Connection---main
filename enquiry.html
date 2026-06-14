@@ -1187,153 +1187,145 @@
     }
 
     // ── SUBMIT ────────────────────────────────────────
-   async function submitForm() {
-  const btn = document.getElementById("btn-next");
-  btn.disabled = true;
-  btn.textContent = "Sending…";
+  async function submitForm() {
+    const btn = document.getElementById("btn-next");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
 
-  const data = collectFormData();
+    const data = collectFormData();
+    const results = { formspree: false, formsubmit: false, formbold: false, sheets: false, make: false };
 
-  let success = false;
+    // ── 1. PRIMARY: Formspree ─────────────────────────────────────────────────
+    try {
+      const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name:         `${data.firstName} ${data.lastName}`,
+          email:        data.email,
+          phone:        data.phone || "Not provided",
+          age:          data.age,
+          location:     data.location,
+          gender:       data.gender,
+          profession:   data.profession,
+          industry:     data.industry,
+          linkedin:     data.linkedin || "Not provided",
+          looking_for:  data.goal,
+          status:       data.status,
+          children:     data.children,
+          partner_age:  `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+          service:      data.service || "Not specified",
+          heard_via:    data.referral || "Not specified",
+          _subject:     "🔥 New Sparked Connection Enquiry",
+          _replyto:     data.email
+        })
+      });
+      results.formspree = res1.ok;
+      console.log(`[SC] Formspree: ${res1.ok ? "✅ OK" : "❌ " + res1.status}`);
+    } catch (e) {
+      console.error("[SC] Formspree failed:", e);
+    }
 
-  try {
-    // PRIMARY: Formspree
-    const res1 = await fetch("https://formspree.io/f/xvzvvppr", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        name: `${data.firstName} ${data.lastName}`,
-        email: data.email,
-        phone: data.phone || "Not provided",
-        age: data.age,
-        location: data.location,
-        gender: data.gender,
-        profession: data.profession,
-        industry: data.industry,
-        linkedin: data.linkedin || "Not provided",
-        looking_for: data.goal,
-        status: data.status,
-        children: data.children,
-        partner_age: `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
-        service: data.service || "Not specified",
-        heard_via: data.referral || "Not specified",
-        _subject: "🔥 New Sparked Connection Enquiry",
-        _replyto: data.email
-      })
-    });
+    // ── 2. BACKUP: FormSubmit ─────────────────────────────────────────────────
+    try {
+      const res2 = await fetch("https://formsubmit.co/ajax/hello@sparkedconnection.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:     `${data.firstName} ${data.lastName}`,
+          email:    data.email,
+          message:  JSON.stringify(data, null, 2),
+          _subject: "Backup Enquiry Submission"
+        })
+      });
+      results.formsubmit = res2.ok;
+      console.log(`[SC] FormSubmit: ${res2.ok ? "✅ OK" : "❌ " + res2.status}`);
+    } catch (e) {
+      console.error("[SC] FormSubmit failed:", e);
+    }
 
-    if (res1.ok) success = true;
+    // ── 3. BACKUP: FormBold ───────────────────────────────────────────────────
+    try {
+      const formBoldData = new FormData();
+      formBoldData.append("name",         `${data.firstName} ${data.lastName}`);
+      formBoldData.append("email",        data.email);
+      formBoldData.append("phone",        data.phone || "Not provided");
+      formBoldData.append("age",          data.age);
+      formBoldData.append("location",     data.location);
+      formBoldData.append("gender",       data.gender);
+      formBoldData.append("profession",   data.profession);
+      formBoldData.append("industry",     data.industry);
+      formBoldData.append("linkedin",     data.linkedin || "Not provided");
+      formBoldData.append("looking_for",  data.goal);
+      formBoldData.append("status",       data.status);
+      formBoldData.append("children",     data.children);
+      formBoldData.append("partner_age",  `${data.partnerAgeMin} – ${data.partnerAgeMax}`);
+      formBoldData.append("service",      data.service || "Not specified");
+      formBoldData.append("heard_via",    data.referral || "Not specified");
+      formBoldData.append("page_url",     window.location.href);
+      formBoldData.append("_subject",     "New Sparked Connection Enquiry");
 
-  } catch (e) {
-    console.error("Formspree failed", e);
+      const res3 = await fetch("https://formbold.com/s/94dje", {
+        method: "POST",
+        body: formBoldData
+      });
+      results.formbold = res3.ok;
+      console.log(`[SC] FormBold: ${res3.ok ? "✅ OK" : "❌ " + res3.status}`);
+    } catch (e) {
+      console.error("[SC] FormBold failed:", e);
+    }
+
+    // ── 4. LOGGING: Google Sheets (no-cors — can't read response status) ──────
+    // Note: no-cors requests always return an opaque response; we cannot verify
+    // success, so this does NOT count toward the success check.
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbz5LYL2UaXjU7iIubLzeEvjLANL650lt0p64K8TyGXHspJWa-XAyN7fyLOGhu3O3_-u/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, pageUrl: window.location.href })
+      });
+      results.sheets = true; // request dispatched — we can't verify delivery
+      console.log("[SC] Google Sheets: 📤 dispatched (no-cors, status unverifiable)");
+    } catch (e) {
+      console.error("[SC] Google Sheets failed:", e);
+    }
+
+    // ── Gate: at least one email service must have confirmed ──────────────────
+    const emailSuccess = results.formspree || results.formsubmit || results.formbold;
+    console.log("[SC] Submission results:", results);
+
+    if (!emailSuccess) {
+      alert("Something went wrong sending your enquiry. Please try again or email hello@sparkedconnection.com directly.");
+      btn.disabled = false;
+      btn.textContent = "Send my enquiry";
+      return;
+    }
+
+    // ── 5. AUTOMATION: Make.com webhook (confirmation email to client) ────────
+    try {
+      const res5 = await fetch("https://hook.eu1.make.com/w8lp0yhx2gpu4sgdbynp2dipd6ionv6i", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          name:    `${data.firstName} ${data.lastName}`,
+          pageUrl: window.location.href
+        })
+      });
+      results.make = res5.ok;
+      console.log(`[SC] Make.com: ${res5.ok ? "✅ OK" : "❌ " + res5.status}`);
+    } catch (e) {
+      console.error("[SC] Make.com webhook failed:", e);
+    }
+
+    // ── Show success screen ───────────────────────────────────────────────────
+    document.getElementById(`step-${currentStep}`).classList.remove("active");
+    document.getElementById("success-screen").classList.add("show");
+    document.getElementById("btn-row").style.display = "none";
+    document.querySelector(".progress-wrap").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  try {
-    // BACKUP: FormSubmit (VERY reliable)
-    const res2 = await fetch("https://formsubmit.co/ajax/hello@sparkedconnection.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: `${data.firstName} ${data.lastName}`,
-        email: data.email,
-        message: JSON.stringify(data, null, 2),
-        _subject: "Backup Enquiry Submission"
-      })
-    });
-
-    if (res2.ok) success = true;
-
-  } catch (e) {
-    console.error("Backup failed", e);
-  }
-try {
-  // ADDITIONAL BACKUP: FormBold
-  const formBoldData = new FormData();
-  formBoldData.append("name", `${data.firstName} ${data.lastName}`);
-  formBoldData.append("email", data.email);
-  formBoldData.append("phone", data.phone || "Not provided");
-  formBoldData.append("age", data.age);
-  formBoldData.append("location", data.location);
-  formBoldData.append("gender", data.gender);
-  formBoldData.append("profession", data.profession);
-  formBoldData.append("industry", data.industry);
-  formBoldData.append("linkedin", data.linkedin || "Not provided");
-  formBoldData.append("looking_for", data.goal);
-  formBoldData.append("status", data.status);
-  formBoldData.append("children", data.children);
-  formBoldData.append("partner_age", `${data.partnerAgeMin} – ${data.partnerAgeMax}`);
-  formBoldData.append("service", data.service || "Not specified");
-  formBoldData.append("heard_via", data.referral || "Not specified");
-  formBoldData.append("page_url", window.location.href);
-  formBoldData.append("_subject", "New Sparked Connection Enquiry");
-
-  const res3 = await fetch("https://formbold.com/s/94dje", {
-    method: "POST",
-    body: formBoldData
-  });
-
-  if (res3.ok) success = true;
-
-} catch (e) {
-  console.error("FormBold failed", e);
-}
-
-try {
-  const res4 = await fetch("https://script.google.com/macros/s/AKfycbz5LYL2UaXjU7iIubLzeEvjLANL650lt0p64K8TyGXHspJWa-XAyN7fyLOGhu3O3_-u/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      ...data,
-      pageUrl: window.location.href
-    })
-  });
-
-  success = true;
-
-} catch (e) {
-  console.error("Google Sheets logging failed", e);
-}
-  if (!success) {
-    alert("Something went wrong. Please try again or email hello@sparkedconnection.com directly.");
-    btn.disabled = false;
-    btn.textContent = "Send my enquiry";
-    return;
-  }
-
-try {
-  // ADDITIONAL AUTOMATION: Make.com confirmation email
-  const res5 = await fetch("https://hook.eu1.make.com/w8lp0yhx2gpu4sgdbynp2dipd6ionv6i", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      ...data,
-      name: `${data.firstName} ${data.lastName}`,
-      pageUrl: window.location.href
-    })
-  });
-
-  if (res5.ok) success = true;
-
-} catch (e) {
-  console.error("Make webhook failed", e);
-}
-
-  // ✅ ONLY show success if actually sent
-  document.getElementById(`step-${currentStep}`).classList.remove("active");
-  document.getElementById("success-screen").classList.add("show");
-  document.getElementById("btn-row").style.display = "none";
-  document.querySelector(".progress-wrap").style.display = "none";
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
     // ── INIT ──────────────────────────────────────────
     updateBtns();
     updateProgress();
