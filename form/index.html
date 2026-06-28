@@ -371,6 +371,33 @@
     }
     .upload-btn:hover { opacity: .88; }
     .upload-input { display: none; }
+    .photo-meta { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: center; }
+    .photo-meta strong { color: var(--primary); }
+    .photo-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin-top: 18px;
+    }
+    @media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, 1fr); } }
+    .photo-thumb {
+      position: relative; aspect-ratio: 1; border-radius: 10px;
+      overflow: hidden; background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-thumb-remove {
+      position: absolute; top: 6px; right: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,0,0,.55); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; line-height: 1; cursor: pointer; border: none;
+      transition: background .2s;
+    }
+    .photo-thumb-remove:hover { background: var(--accent); }
+    .photo-thumb-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.55));
+      color: #fff; font-size: .68rem; padding: 14px 8px 5px; text-align: center;
+    }
 
     /* ── SUBMIT ───────────────────────────────────────────────── */
     .submit-wrap {
@@ -581,8 +608,8 @@
 </div>
 </div>
 <div class="field">
-<label>Where are you based? <span class="req">*</span></label>
-<input name="based_location" placeholder="e.g. London, UK" type="text"/>
+<label>What city or town are you based in? <span class="req">*</span></label>
+<input name="based_location" placeholder="e.g. London" type="text"/>
 </div>
 <div class="field">
 <label>Ethnicity <span class="req">*</span></label>
@@ -823,13 +850,30 @@
 <option>4</option><option>5+</option>
 </select>
 </div>
+<div class="field">
+<label>What age range(s) are your children? <span class="opt">(Optional)</span></label>
+<p class="hint">Select all that apply</p>
+<div class="check-list col-2">
+<label class="check-item"><input name="children_ages" type="checkbox" value="Under 5"/> Under 5</label>
+<label class="check-item"><input name="children_ages" type="checkbox" value="5–12"/> 5–12</label>
+<label class="check-item"><input name="children_ages" type="checkbox" value="13–17"/> 13–17</label>
+<label class="check-item"><input name="children_ages" type="checkbox" value="18+ (living at home)"/> 18+ (living at home)</label>
+<label class="check-item"><input name="children_ages" type="checkbox" value="18+ (independent)"/> 18+ (independent)</label>
+</div>
+</div>
 </div>
 <div class="field">
 <label>Are you open to dating people with children? <span class="opt">(Optional)</span></label>
-<div class="radio-pills">
+<div class="radio-pills" id="open-to-children-group">
 <label class="radio-pill"><input name="open_to_children" type="radio" value="Yes"/> Yes</label>
 <label class="radio-pill"><input name="open_to_children" type="radio" value="No"/> No</label>
 <label class="radio-pill"><input name="open_to_children" type="radio" value="It depends"/> It depends</label>
+</div>
+</div>
+<div class="conditional" id="open-to-children-explain">
+<div class="field">
+<label>What does it depend on? <span class="opt">(Optional)</span></label>
+<textarea name="open_to_children_explain" placeholder="e.g. their age, how involved I'd be, custody arrangement…"></textarea>
 </div>
 </div>
 </div>
@@ -1167,7 +1211,7 @@
 </div>
 <div class="field">
 <label>Tell us more about your ideal match <span class="opt">(Optional)</span></label>
-<p class="hint">Use this space to describe your ideal partner in your own words — their personality, how they spend their time, what they value in life, or the kind of relationship dynamic you're hoping for. The more you share, the better we can match you.</p>
+<p class="hint">Use this space to describe your ideal partner in your own words - their personality, how they spend their time, what they value in life, or the kind of relationship dynamic you're hoping for. The more you share, the better we can match you.</p>
 <textarea name="ideal_match_freetext" placeholder="e.g. I'm looking for someone who is warm and emotionally available, has a good sense of humour, and enjoys both quiet evenings at home and occasional travel. Ambition matters to me, but so does work-life balance…" style="min-height:140px;"></textarea>
 </div>
 </div>
@@ -1232,8 +1276,19 @@
 <div class="section-num">6</div>
 <div class="section-title-block">
 <h2>Photos</h2>
-<p>Please email your photos to hello@sparkedconnection.com. We recommend 1 recent face photo and 1 recent full-length photo. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
+<p>Please upload a <strong>minimum of 2 photos</strong> (ideally 4) - we recommend 1 recent face photo and 1 recent full-length photo, plus a couple of lifestyle shots. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
 </div>
+</div>
+<div class="field">
+<div class="upload-box" id="upload-box" onclick="document.getElementById('photo-upload').click();">
+<div class="upload-icon">📷</div>
+<div class="upload-title">Upload your photos</div>
+<div class="upload-sub">Minimum 2 photos required · Up to 4 photos · JPEG or PNG, 10MB max each</div>
+<div class="upload-btn">Choose Photos</div>
+</div>
+<input accept="image/*" class="upload-input" id="photo-upload" multiple="" name="photos" type="file"/>
+<div class="photo-meta" id="photo-meta">No photos uploaded yet - minimum 2 required.</div>
+<div class="photo-grid" id="photo-grid"></div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
@@ -1474,7 +1529,7 @@
 <!-- SUBMIT -->
 <div class="submit-wrap">
 <div class="submit-title">Ready to find your match?</div>
-<p class="submit-sub">Once submitted, our team will review your profile and be in touch within 3–5 working days.</p>
+<p class="submit-sub" id="submit-timing-msg">Once submitted, our team will review your profile and be in touch.</p>
 <button class="submit-btn" type="submit">
     Submit My Profile
     <svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="18"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
@@ -1486,6 +1541,7 @@
   <div class="success-icon">✓</div>
   <h2>Your profile has been submitted</h2>
   <p>Thank you - your matchmaking questionnaire has been received.</p>
+  <p id="success-timing-msg"></p>
   <p>Please add <strong>hello@sparkedconnection.com</strong> to your safe senders list to receive future communication.</p>
 </div>
 </div>
@@ -1604,21 +1660,20 @@
     };
   }
 
-  async function submitToFormBold(payload) {
-    // FormBold via fetch — confirmed success/failure, no hidden iframe needed.
-    const body = new URLSearchParams();
+  async function submitToFormBold(payload, photoFiles) {
+    // FormBold via fetch, sent as multipart/form-data so real photo attachments are included
+    // on the paid FormBold plan. Do NOT set Content-Type - the browser sets the multipart boundary.
+    const body = new FormData();
     Object.entries(payload).forEach(([key, value]) => {
       if (Array.isArray(value)) body.append(key, value.join(', '));
       else if (value !== undefined && value !== null) body.append(key, String(value));
     });
+    (photoFiles || []).forEach(file => body.append('photos', file, file.name));
 
     const response = await fetch(FORMBOLD_ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json'
-      },
-      body: body.toString()
+      headers: { 'Accept': 'application/json' },
+      body
     });
 
     if (!response.ok) {
@@ -1702,12 +1757,19 @@
     e.preventDefault();
     hideErrorSummary();
 
-    if (!validateRequiredFields()) {
+    const requiredOk = validateRequiredFields();
+    const photosOk = validatePhotos();
+    if (!requiredOk || !photosOk) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
 
-    const rawData = formDataToObject(new FormData(form));
+    const fullFormData = new FormData(form);
+    fullFormData.delete('photos');
+    const rawData = formDataToObject(fullFormData);
+    rawData.photos_uploaded = selectedPhotos.length
+      ? `${selectedPhotos.length} photo(s): ${selectedPhotos.map(f => f.name).join(', ')}`
+      : 'No photos uploaded';
     const payload = normaliseSubmission(rawData);
 
     if (submitBtn) {
@@ -1722,21 +1784,21 @@
       googleSheets: false
     };
 
-    // PRIMARY: FormBold via fetch — confirmed delivery, no hidden iframe.
+    // PRIMARY: FormBold via fetch - confirmed delivery, no hidden iframe. Includes real photo attachments.
     try {
-      results.formbold = await submitToFormBold(payload);
+      results.formbold = await submitToFormBold(payload, selectedPhotos);
     } catch (err) {
       console.error('FormBold submission failed:', err);
     }
 
-    // BACKUP 1: Formspree — always sent as a parallel backup copy.
+    // BACKUP 1: Formspree - always sent as a parallel backup copy.
     try {
       results.formspree = await submitToFormspree(payload);
     } catch (err) {
       console.error('Formspree submission failed:', err);
     }
 
-    // BACKUP 2: FormSubmit — only used if both FormBold and Formspree fail.
+    // BACKUP 2: FormSubmit - only used if both FormBold and Formspree fail.
     if (!results.formbold && !results.formspree) {
       try {
         results.formsubmit = await submitBackupToFormSubmit(payload);
@@ -1745,7 +1807,7 @@
       }
     }
 
-    // BACKUP 3: Google Sheets — silent safety net, always attempted.
+    // BACKUP 3: Google Sheets - silent safety net, always attempted.
     try {
       results.googleSheets = await submitBackupToGoogleSheets(payload);
     } catch (err) {
@@ -1763,6 +1825,8 @@
 
     form.style.display = 'none';
     document.querySelector('.progress-bar')?.style.setProperty('display', 'none');
+    const successTimingMsg = document.getElementById('success-timing-msg');
+    if (successTimingMsg) successTimingMsg.textContent = timingMessageFor(payload.service_interest);
     document.getElementById('success-screen')?.classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -1818,6 +1882,13 @@
     });
   });
 
+  document.querySelectorAll('input[name="open_to_children"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const checked = document.querySelector('input[name="open_to_children"]:checked');
+      document.getElementById('open-to-children-explain')?.classList.toggle('visible', checked && checked.value === 'It depends');
+    });
+  });
+
   document.getElementById('lang-other-cb')?.addEventListener('change', function() {
     document.getElementById('lang-other-field')?.classList.toggle('visible', this.checked);
   });
@@ -1847,13 +1918,115 @@
     });
   }
 
-  const photoUpload = document.getElementById('photo-upload');
-  if (photoUpload) {
-    photoUpload.addEventListener('change', function() {
-      const preview = document.getElementById('photo-preview');
-      if (!preview) return;
-      preview.textContent = this.files.length === 0 ? 'No photos uploaded (optional)' : `${this.files.length} photo(s) selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
+  // Photo upload: accumulate across multiple picker opens, cap at 4, show thumbnails
+  const MAX_PHOTOS = 4;
+  const MIN_PHOTOS = 2;
+  let selectedPhotos = [];
+
+  // Service-specific contact timing messaging
+  function timingMessageFor(serviceValue) {
+    if (serviceValue === 'Matchmaking Membership') {
+      return "As you've chosen Personal Matchmaking, our team will review your profile and be in touch within 2-4 business days to arrange your next steps.";
+    }
+    if (serviceValue === 'Singles Network (Free)') {
+      return "As you've joined our Singles Network, there's nothing more to do for now - we'll only be in touch once we've identified a potential match for you, or if we need a little more information to do so.";
+    }
+    if (serviceValue === 'Not sure yet - tell me more') {
+      return "Our team will review your profile and be in touch within 2-4 business days to talk through the best option for you.";
+    }
+    return 'Once submitted, our team will review your profile and be in touch.';
+  }
+
+  const submitTimingMsg = document.getElementById('submit-timing-msg');
+  document.querySelectorAll('input[name="service_interest"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const checked = document.querySelector('input[name="service_interest"]:checked');
+      if (submitTimingMsg && checked) submitTimingMsg.textContent = timingMessageFor(checked.value);
     });
+  });
+
+  const photoInput = document.getElementById('photo-upload');
+  const photoGrid = document.getElementById('photo-grid');
+  const photoMeta = document.getElementById('photo-meta');
+  const uploadBox = document.getElementById('upload-box');
+
+  function syncPhotoInput() {
+    const dt = new DataTransfer();
+    selectedPhotos.forEach(f => dt.items.add(f));
+    photoInput.files = dt.files;
+  }
+
+  function renderPhotoGrid() {
+    photoGrid.innerHTML = '';
+    selectedPhotos.forEach((file, i) => {
+      const url = URL.createObjectURL(file);
+      const thumb = document.createElement('div');
+      thumb.className = 'photo-thumb';
+      thumb.innerHTML = `
+        <img src="${url}" alt="${file.name}">
+        <button type="button" class="photo-thumb-remove" data-index="${i}" aria-label="Remove photo">&times;</button>
+        <div class="photo-thumb-label">${i === 0 ? 'Face photo' : i === 1 ? 'Full-length' : 'Lifestyle'}</div>
+      `;
+      photoGrid.appendChild(thumb);
+    });
+
+    photoGrid.querySelectorAll('.photo-thumb-remove').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const idx = parseInt(this.dataset.index, 10);
+        selectedPhotos.splice(idx, 1);
+        syncPhotoInput();
+        renderPhotoGrid();
+        updatePhotoMeta();
+      });
+    });
+
+    if (uploadBox) {
+      uploadBox.style.display = selectedPhotos.length >= MAX_PHOTOS ? 'none' : '';
+    }
+  }
+
+  function updatePhotoMeta() {
+    if (!photoMeta) return;
+    const n = selectedPhotos.length;
+    if (n === 0) {
+      photoMeta.innerHTML = 'No photos uploaded yet - <strong>minimum 2 required</strong>.';
+    } else if (n < MIN_PHOTOS) {
+      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added - add at least ${MIN_PHOTOS - n} more to continue.`;
+    } else {
+      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added${n >= MAX_PHOTOS ? ' - maximum reached' : '. Looking great!'}`;
+    }
+    const field = photoInput.closest('.field');
+    if (field) {
+      field.classList.toggle('required-missing', n < MIN_PHOTOS && n > 0);
+    }
+  }
+
+  if (photoInput) {
+    photoInput.addEventListener('change', function() {
+      const incoming = Array.from(this.files || []);
+      incoming.forEach(file => {
+        const exists = selectedPhotos.some(f => f.name === file.name && f.size === file.size);
+        if (!exists && selectedPhotos.length < MAX_PHOTOS) {
+          selectedPhotos.push(file);
+        }
+      });
+      syncPhotoInput();
+      renderPhotoGrid();
+      updatePhotoMeta();
+    });
+  }
+
+  function validatePhotos() {
+    if (selectedPhotos.length < MIN_PHOTOS) {
+      const field = photoInput.closest('.field');
+      if (field) {
+        field.classList.add('required-missing');
+        addFieldMessage(field, `Please upload at least ${MIN_PHOTOS} photos before submitting.`);
+      }
+      return false;
+    }
+    return true;
   }
 
   function updateProgress() {
