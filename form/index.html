@@ -352,53 +352,6 @@
     }
     .consent-legal a { color: var(--accent); text-decoration: underline; }
 
-    /* ── UPLOAD ───────────────────────────────────────────────── */
-    .upload-box {
-      border: 2px dashed var(--border); border-radius: 12px;
-      padding: 40px 24px; text-align: center;
-      background: var(--bg); cursor: pointer; transition: border-color .2s;
-    }
-    .upload-box:hover { border-color: var(--accent); }
-    .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .upload-title { font-size: .9rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-    .upload-sub { font-size: .78rem; color: var(--muted); line-height: 1.6; }
-    .upload-btn {
-      display: inline-block; margin-top: 16px;
-      padding: 9px 22px; border-radius: 999px;
-      background: var(--accent); color: #fff;
-      font-size: .82rem; font-weight: 600; cursor: pointer;
-      transition: opacity .2s;
-    }
-    .upload-btn:hover { opacity: .88; }
-    .upload-input { display: none; }
-    .photo-meta { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: center; }
-    .photo-meta strong { color: var(--primary); }
-    .photo-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-      margin-top: 18px;
-    }
-    @media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, 1fr); } }
-    .photo-thumb {
-      position: relative; aspect-ratio: 1; border-radius: 10px;
-      overflow: hidden; background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .photo-thumb-remove {
-      position: absolute; top: 6px; right: 6px;
-      width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(0,0,0,.55); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; line-height: 1; cursor: pointer; border: none;
-      transition: background .2s;
-    }
-    .photo-thumb-remove:hover { background: var(--accent); }
-    .photo-thumb-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,.55));
-      color: #fff; font-size: .68rem; padding: 14px 8px 5px; text-align: center;
-    }
-
     /* ── SUBMIT ───────────────────────────────────────────────── */
     .submit-wrap {
       background: var(--card); border: 1px solid var(--border);
@@ -830,6 +783,10 @@
 <p class="hint">This question is optional and can be left blank.</p>
 </div>
 </div>
+<div class="field">
+<label>LinkedIn profile <span class="opt">(Optional)</span></label>
+<input name="linkedin_profile" placeholder="e.g. linkedin.com/in/yourname" type="text"/>
+</div>
 </div>
 <div class="field-group-label">Children</div>
 <div class="fields-stack">
@@ -1211,7 +1168,7 @@
 </div>
 <div class="field">
 <label>Tell us more about your ideal match <span class="opt">(Optional)</span></label>
-<p class="hint">Use this space to describe your ideal partner in your own words - their personality, how they spend their time, what they value in life, or the kind of relationship dynamic you're hoping for. The more you share, the better we can match you.</p>
+<p class="hint">Use this space to describe your ideal partner in your own words – their personality, how they spend their time, what they value in life, or the kind of relationship dynamic you're hoping for. The more you share, the better we can match you.</p>
 <textarea name="ideal_match_freetext" placeholder="e.g. I'm looking for someone who is warm and emotionally available, has a good sense of humour, and enjoys both quiet evenings at home and occasional travel. Ambition matters to me, but so does work-life balance…" style="min-height:140px;"></textarea>
 </div>
 </div>
@@ -1276,19 +1233,8 @@
 <div class="section-num">6</div>
 <div class="section-title-block">
 <h2>Photos</h2>
-<p>Please upload a <strong>minimum of 2 photos</strong> (ideally 4) - we recommend 1 recent face photo and 1 recent full-length photo, plus a couple of lifestyle shots. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
+<p>Please email your photos to hello@sparkedconnection.com. We recommend 1 recent face photo and 1 recent full-length photo. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
 </div>
-</div>
-<div class="field">
-<div class="upload-box" id="upload-box" onclick="document.getElementById('photo-upload').click();">
-<div class="upload-icon">📷</div>
-<div class="upload-title">Upload your photos</div>
-<div class="upload-sub">Minimum 2 photos required · Up to 4 photos · JPEG or PNG, 5MB max per photo</div>
-<div class="upload-btn">Choose Photos</div>
-</div>
-<input accept="image/*" class="upload-input" id="photo-upload" multiple="" name="photos" type="file"/>
-<div class="photo-meta" id="photo-meta">No photos uploaded yet - minimum 2 required.</div>
-<div class="photo-grid" id="photo-grid"></div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
@@ -1660,20 +1606,21 @@
     };
   }
 
-  async function submitToFormBold(payload, photoFiles) {
-    // FormBold via fetch, sent as multipart/form-data so real photo attachments are included
-    // on the paid FormBold plan. Do NOT set Content-Type - the browser sets the multipart boundary.
-    const body = new FormData();
+  async function submitToFormBold(payload) {
+    // FormBold via fetch – confirmed success/failure, no hidden iframe needed.
+    const body = new URLSearchParams();
     Object.entries(payload).forEach(([key, value]) => {
       if (Array.isArray(value)) body.append(key, value.join(', '));
       else if (value !== undefined && value !== null) body.append(key, String(value));
     });
-    (photoFiles || []).forEach(file => body.append('photos', file, file.name));
 
     const response = await fetch(FORMBOLD_ENDPOINT, {
       method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept': 'application/json'
+      },
+      body: body.toString()
     });
 
     if (!response.ok) {
@@ -1757,19 +1704,12 @@
     e.preventDefault();
     hideErrorSummary();
 
-    const requiredOk = validateRequiredFields();
-    const photosOk = validatePhotos();
-    if (!requiredOk || !photosOk) {
+    if (!validateRequiredFields()) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
 
-    const fullFormData = new FormData(form);
-    fullFormData.delete('photos');
-    const rawData = formDataToObject(fullFormData);
-    rawData.photos_uploaded = selectedPhotos.length
-      ? `${selectedPhotos.length} photo(s): ${selectedPhotos.map(f => f.name).join(', ')}`
-      : 'No photos uploaded';
+    const rawData = formDataToObject(new FormData(form));
     const payload = normaliseSubmission(rawData);
 
     if (submitBtn) {
@@ -1784,21 +1724,21 @@
       googleSheets: false
     };
 
-    // PRIMARY: FormBold via fetch - confirmed delivery, no hidden iframe. Includes real photo attachments.
+    // PRIMARY: FormBold via fetch – confirmed delivery, no hidden iframe.
     try {
-      results.formbold = await submitToFormBold(payload, selectedPhotos);
+      results.formbold = await submitToFormBold(payload);
     } catch (err) {
       console.error('FormBold submission failed:', err);
     }
 
-    // BACKUP 1: Formspree - always sent as a parallel backup copy.
+    // BACKUP 1: Formspree – always sent as a parallel backup copy.
     try {
       results.formspree = await submitToFormspree(payload);
     } catch (err) {
       console.error('Formspree submission failed:', err);
     }
 
-    // BACKUP 2: FormSubmit - only used if both FormBold and Formspree fail.
+    // BACKUP 2: FormSubmit – only used if both FormBold and Formspree fail.
     if (!results.formbold && !results.formspree) {
       try {
         results.formsubmit = await submitBackupToFormSubmit(payload);
@@ -1807,7 +1747,7 @@
       }
     }
 
-    // BACKUP 3: Google Sheets - silent safety net, always attempted.
+    // BACKUP 3: Google Sheets – silent safety net, always attempted.
     try {
       results.googleSheets = await submitBackupToGoogleSheets(payload);
     } catch (err) {
@@ -1918,12 +1858,6 @@
     });
   }
 
-  // Photo upload: accumulate across multiple picker opens, cap at 4, show thumbnails
-  const MAX_PHOTOS = 4;
-  const MIN_PHOTOS = 2;
-  const MAX_FILE_SIZE_MB = 5; // FormBold's documented per-file cap on the Pro plan
-  let selectedPhotos = [];
-
   // Service-specific contact timing messaging
   function timingMessageFor(serviceValue) {
     if (serviceValue === 'Matchmaking Membership') {
@@ -1945,103 +1879,6 @@
       if (submitTimingMsg && checked) submitTimingMsg.textContent = timingMessageFor(checked.value);
     });
   });
-
-  const photoInput = document.getElementById('photo-upload');
-  const photoGrid = document.getElementById('photo-grid');
-  const photoMeta = document.getElementById('photo-meta');
-  const uploadBox = document.getElementById('upload-box');
-
-  function syncPhotoInput() {
-    const dt = new DataTransfer();
-    selectedPhotos.forEach(f => dt.items.add(f));
-    photoInput.files = dt.files;
-  }
-
-  function renderPhotoGrid() {
-    photoGrid.innerHTML = '';
-    selectedPhotos.forEach((file, i) => {
-      const url = URL.createObjectURL(file);
-      const thumb = document.createElement('div');
-      thumb.className = 'photo-thumb';
-      thumb.innerHTML = `
-        <img src="${url}" alt="${file.name}">
-        <button type="button" class="photo-thumb-remove" data-index="${i}" aria-label="Remove photo">&times;</button>
-        <div class="photo-thumb-label">${i === 0 ? 'Face photo' : i === 1 ? 'Full-length' : 'Lifestyle'}</div>
-      `;
-      photoGrid.appendChild(thumb);
-    });
-
-    photoGrid.querySelectorAll('.photo-thumb-remove').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const idx = parseInt(this.dataset.index, 10);
-        selectedPhotos.splice(idx, 1);
-        syncPhotoInput();
-        renderPhotoGrid();
-        updatePhotoMeta();
-      });
-    });
-
-    if (uploadBox) {
-      uploadBox.style.display = selectedPhotos.length >= MAX_PHOTOS ? 'none' : '';
-    }
-  }
-
-  function updatePhotoMeta() {
-    if (!photoMeta) return;
-    const n = selectedPhotos.length;
-    if (n === 0) {
-      photoMeta.innerHTML = 'No photos uploaded yet - <strong>minimum 2 required</strong>.';
-    } else if (n < MIN_PHOTOS) {
-      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added - add at least ${MIN_PHOTOS - n} more to continue.`;
-    } else {
-      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added${n >= MAX_PHOTOS ? ' - maximum reached' : '. Looking great!'}`;
-    }
-    const field = photoInput.closest('.field');
-    if (field) {
-      field.classList.toggle('required-missing', n < MIN_PHOTOS && n > 0);
-    }
-  }
-
-  if (photoInput) {
-    photoInput.addEventListener('change', function() {
-      const incoming = Array.from(this.files || []);
-      const oversized = [];
-      incoming.forEach(file => {
-        if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
-          oversized.push(file.name);
-          return;
-        }
-        const exists = selectedPhotos.some(f => f.name === file.name && f.size === file.size);
-        if (!exists && selectedPhotos.length < MAX_PHOTOS) {
-          selectedPhotos.push(file);
-        }
-      });
-      syncPhotoInput();
-      renderPhotoGrid();
-      updatePhotoMeta();
-      const field = photoInput.closest('.field');
-      if (field) {
-        const old = field.querySelector('.field-error-message');
-        if (old) old.remove();
-      }
-      if (oversized.length && field) {
-        addFieldMessage(field, `${oversized.length === 1 ? 'This photo is' : 'These photos are'} over ${MAX_FILE_SIZE_MB}MB and couldn't be added: ${oversized.join(', ')}. Please compress or choose a smaller file.`);
-      }
-    });
-  }
-
-  function validatePhotos() {
-    if (selectedPhotos.length < MIN_PHOTOS) {
-      const field = photoInput.closest('.field');
-      if (field) {
-        field.classList.add('required-missing');
-        addFieldMessage(field, `Please upload at least ${MIN_PHOTOS} photos before submitting.`);
-      }
-      return false;
-    }
-    return true;
-  }
 
   function updateProgress() {
     if (!form) return;
