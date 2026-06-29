@@ -352,6 +352,53 @@
     }
     .consent-legal a { color: var(--accent); text-decoration: underline; }
 
+    /* ── UPLOAD ───────────────────────────────────────────────── */
+    .upload-box {
+      border: 2px dashed var(--border); border-radius: 12px;
+      padding: 40px 24px; text-align: center;
+      background: var(--bg); cursor: pointer; transition: border-color .2s;
+    }
+    .upload-box:hover { border-color: var(--accent); }
+    .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .upload-title { font-size: .9rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+    .upload-sub { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+    .upload-btn {
+      display: inline-block; margin-top: 16px;
+      padding: 9px 22px; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .upload-btn:hover { opacity: .88; }
+    .upload-input { display: none; }
+    .photo-meta { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: center; }
+    .photo-meta strong { color: var(--primary); }
+    .photo-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin-top: 18px;
+    }
+    @media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, 1fr); } }
+    .photo-thumb {
+      position: relative; aspect-ratio: 1; border-radius: 10px;
+      overflow: hidden; background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-thumb-remove {
+      position: absolute; top: 6px; right: 6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,0,0,.55); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; line-height: 1; cursor: pointer; border: none;
+      transition: background .2s;
+    }
+    .photo-thumb-remove:hover { background: var(--accent); }
+    .photo-thumb-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.55));
+      color: #fff; font-size: .68rem; padding: 14px 8px 5px; text-align: center;
+    }
+
     /* ── SUBMIT ───────────────────────────────────────────────── */
     .submit-wrap {
       background: var(--card); border: 1px solid var(--border);
@@ -525,7 +572,11 @@
 </div>
 <div class="field">
 <label>Date of Birth <span class="req">*</span></label>
-<input name="dob" required="" type="date"/>
+<input id="dob-input" name="dob" required="" type="date"/>
+</div>
+<div class="field">
+<label>Age</label>
+<input id="age-display" name="age" placeholder="Calculated automatically from date of birth" readonly="" style="background: var(--bg); color: var(--muted); cursor: not-allowed;" type="text"/>
 </div>
 <div class="field">
 <label>Gender <span class="req">*</span></label>
@@ -782,6 +833,32 @@
 </select>
 <p class="hint">This question is optional and can be left blank.</p>
 </div>
+</div>
+<div class="field">
+<label>Where do you work from? <span class="req">*</span></label>
+<select id="work-location-select" name="work_location">
+<option value="">Select work location</option>
+<option>Fully remote</option>
+<option>Hybrid (mix of office and home)</option>
+<option>Fully office-based</option>
+</select>
+</div>
+<div class="other-field" id="office-location-field">
+<input name="office_location" placeholder="What city or town is your office in?" type="text"/>
+</div>
+<div class="field">
+<label>What does your working life look like? <span class="req">*</span></label>
+<select id="working-life-select" name="work_arrangement">
+<option value="">Select an option</option>
+<option>Standard 9-5, predictable hours</option>
+<option>Frequent travel for work</option>
+<option>Shift work / irregular hours</option>
+<option>Self-employed / flexible schedule</option>
+<option value="Other">Other (please specify)</option>
+</select>
+</div>
+<div class="other-field" id="working-life-other-field">
+<input name="work_arrangement_other" placeholder="Please describe your working life" type="text"/>
 </div>
 <div class="field">
 <label>LinkedIn profile <span class="opt">(Optional)</span></label>
@@ -1233,8 +1310,19 @@
 <div class="section-num">6</div>
 <div class="section-title-block">
 <h2>Photos</h2>
-<p>Please email your photos to hello@sparkedconnection.com. We recommend 1 recent face photo and 1 recent full-length photo. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
+<p>Please upload a <strong>minimum of 2 photos</strong> (ideally 4) – we recommend 1 recent face photo and 1 recent full-length photo, plus a couple of lifestyle shots. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
 </div>
+</div>
+<div class="field">
+<div class="upload-box" id="upload-box" onclick="document.getElementById('photo-upload').click();">
+<div class="upload-icon">📷</div>
+<div class="upload-title">Upload your photos</div>
+<div class="upload-sub">Minimum 2 photos required · Up to 4 photos · JPEG or PNG, 5MB max per photo</div>
+<div class="upload-btn">Choose Photos</div>
+</div>
+<input accept="image/*" class="upload-input" id="photo-upload" multiple="" name="photos" type="file"/>
+<div class="photo-meta" id="photo-meta">No photos uploaded yet – minimum 2 required.</div>
+<div class="photo-grid" id="photo-grid"></div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
@@ -1606,30 +1694,68 @@
     };
   }
 
-  async function submitToFormBold(payload) {
-    // FormBold via fetch – confirmed success/failure, no hidden iframe needed.
-    const body = new URLSearchParams();
-    Object.entries(payload).forEach(([key, value]) => {
-      if (Array.isArray(value)) body.append(key, value.join(', '));
-      else if (value !== undefined && value !== null) body.append(key, String(value));
+  function submitToFormBold(payload, photoFiles) {
+    // FormBold support confirmed (after live testing) that file attachments require a
+    // genuine native browser form submission with enctype="multipart/form-data" on the
+    // <form> tag, with each photo in its OWN separate, uniquely-named single-file field
+    // (upload_1, upload_2, ...). A single field with the "multiple" attribute is NOT
+    // supported and causes a server-side processing error on their end.
+    // This posts a real, temporary <form> into a hidden iframe so the person stays on
+    // the page (no navigation) while the browser performs a true native multipart post.
+    return new Promise((resolve) => {
+      let iframe = document.getElementById('formbold-native-frame');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'formbold-native-frame';
+        iframe.id = 'formbold-native-frame';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      const tempForm = document.createElement('form');
+      tempForm.action = FORMBOLD_ENDPOINT;
+      tempForm.method = 'POST';
+      tempForm.enctype = 'multipart/form-data';
+      tempForm.target = iframe.name;
+      tempForm.style.display = 'none';
+
+      Object.entries(payload).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = Array.isArray(value) ? value.join(', ') : (value ?? '');
+        tempForm.appendChild(input);
+      });
+
+      // Separate, uniquely-named single-file inputs – one per photo – per FormBold's
+      // confirmed-working method.
+      (photoFiles || []).forEach((file, i) => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.name = `upload_${i + 1}`;
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        fileInput.files = dt.files;
+        tempForm.appendChild(fileInput);
+      });
+
+      document.body.appendChild(tempForm);
+
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        setTimeout(() => tempForm.remove(), 1000);
+        resolve(true);
+      };
+
+      // We can't read the iframe's (cross-origin) response, so this is fire-and-forget:
+      // the load event firing (or the fallback timeout) just marks the post as sent.
+      iframe.addEventListener('load', finish, { once: true });
+      setTimeout(finish, 6000);
+
+      tempForm.submit();
     });
-
-    const response = await fetch(FORMBOLD_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json'
-      },
-      body: body.toString()
-    });
-
-    if (!response.ok) {
-      let details = '';
-      try { details = await response.text(); } catch (_) {}
-      throw new Error(`FormBold failed: ${response.status} ${details}`);
-    }
-
-    return true;
   }
 
   async function submitToFormspree(payload) {
@@ -1704,12 +1830,19 @@
     e.preventDefault();
     hideErrorSummary();
 
-    if (!validateRequiredFields()) {
+    const requiredOk = validateRequiredFields();
+    const photosOk = validatePhotos();
+    if (!requiredOk || !photosOk) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
 
-    const rawData = formDataToObject(new FormData(form));
+    const fullFormData = new FormData(form);
+    fullFormData.delete('photos');
+    const rawData = formDataToObject(fullFormData);
+    rawData.photos_uploaded = selectedPhotos.length
+      ? `${selectedPhotos.length} photo(s): ${selectedPhotos.map(f => f.name).join(', ')}`
+      : 'No photos uploaded';
     const payload = normaliseSubmission(rawData);
 
     if (submitBtn) {
@@ -1724,9 +1857,9 @@
       googleSheets: false
     };
 
-    // PRIMARY: FormBold via fetch – confirmed delivery, no hidden iframe.
+    // PRIMARY: FormBold native multipart post (hidden iframe) – includes real photo attachments.
     try {
-      results.formbold = await submitToFormBold(payload);
+      results.formbold = await submitToFormBold(payload, selectedPhotos);
     } catch (err) {
       console.error('FormBold submission failed:', err);
     }
@@ -1858,6 +1991,62 @@
     });
   }
 
+  const workLocationSelect = document.getElementById('work-location-select');
+  const officeLocationField = document.getElementById('office-location-field');
+  const officeLocationInput = officeLocationField ? officeLocationField.querySelector('input') : null;
+  if (workLocationSelect && officeLocationField) {
+    workLocationSelect.addEventListener('change', function() {
+      const show = this.value === 'Hybrid (mix of office and home)' || this.value === 'Fully office-based';
+      officeLocationField.classList.toggle('visible', show);
+      if (officeLocationInput) officeLocationInput.required = show;
+    });
+  }
+
+  const workingLifeSelect = document.getElementById('working-life-select');
+  const workingLifeOtherField = document.getElementById('working-life-other-field');
+  const workingLifeOtherInput = workingLifeOtherField ? workingLifeOtherField.querySelector('input') : null;
+  if (workingLifeSelect && workingLifeOtherField) {
+    workingLifeSelect.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      workingLifeOtherField.classList.toggle('visible', show);
+      if (workingLifeOtherInput) workingLifeOtherInput.required = show;
+    });
+  }
+
+  // Age auto-calculation from Date of Birth
+  const dobInput = document.getElementById('dob-input');
+  const ageDisplay = document.getElementById('age-display');
+  function calculateAge() {
+    if (!dobInput || !ageDisplay) return;
+    if (!dobInput.value) {
+      ageDisplay.value = '';
+      return;
+    }
+    const dob = new Date(dobInput.value);
+    if (isNaN(dob.getTime())) {
+      ageDisplay.value = '';
+      return;
+    }
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const hasNotHadBirthdayYet =
+      today.getMonth() < dob.getMonth() ||
+      (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate());
+    if (hasNotHadBirthdayYet) age--;
+    ageDisplay.value = age >= 0 ? `${age} years old` : '';
+  }
+  if (dobInput) {
+    dobInput.addEventListener('change', calculateAge);
+    dobInput.addEventListener('input', calculateAge);
+    calculateAge();
+  }
+
+  // Photo upload: accumulate across multiple picker opens, cap at 4, show thumbnails
+  const MAX_PHOTOS = 4;
+  const MIN_PHOTOS = 2;
+  const MAX_FILE_SIZE_MB = 5; // FormBold's documented per-file cap on the Pro plan
+  let selectedPhotos = [];
+
   // Service-specific contact timing messaging
   function timingMessageFor(serviceValue) {
     if (serviceValue === 'Matchmaking Membership') {
@@ -1879,6 +2068,103 @@
       if (submitTimingMsg && checked) submitTimingMsg.textContent = timingMessageFor(checked.value);
     });
   });
+
+  const photoInput = document.getElementById('photo-upload');
+  const photoGrid = document.getElementById('photo-grid');
+  const photoMeta = document.getElementById('photo-meta');
+  const uploadBox = document.getElementById('upload-box');
+
+  function syncPhotoInput() {
+    const dt = new DataTransfer();
+    selectedPhotos.forEach(f => dt.items.add(f));
+    photoInput.files = dt.files;
+  }
+
+  function renderPhotoGrid() {
+    photoGrid.innerHTML = '';
+    selectedPhotos.forEach((file, i) => {
+      const url = URL.createObjectURL(file);
+      const thumb = document.createElement('div');
+      thumb.className = 'photo-thumb';
+      thumb.innerHTML = `
+        <img src="${url}" alt="${file.name}">
+        <button type="button" class="photo-thumb-remove" data-index="${i}" aria-label="Remove photo">&times;</button>
+        <div class="photo-thumb-label">${i === 0 ? 'Face photo' : i === 1 ? 'Full-length' : 'Lifestyle'}</div>
+      `;
+      photoGrid.appendChild(thumb);
+    });
+
+    photoGrid.querySelectorAll('.photo-thumb-remove').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const idx = parseInt(this.dataset.index, 10);
+        selectedPhotos.splice(idx, 1);
+        syncPhotoInput();
+        renderPhotoGrid();
+        updatePhotoMeta();
+      });
+    });
+
+    if (uploadBox) {
+      uploadBox.style.display = selectedPhotos.length >= MAX_PHOTOS ? 'none' : '';
+    }
+  }
+
+  function updatePhotoMeta() {
+    if (!photoMeta) return;
+    const n = selectedPhotos.length;
+    if (n === 0) {
+      photoMeta.innerHTML = 'No photos uploaded yet – <strong>minimum 2 required</strong>.';
+    } else if (n < MIN_PHOTOS) {
+      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added – add at least ${MIN_PHOTOS - n} more to continue.`;
+    } else {
+      photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added${n >= MAX_PHOTOS ? ' – maximum reached' : '. Looking great!'}`;
+    }
+    const field = photoInput.closest('.field');
+    if (field) {
+      field.classList.toggle('required-missing', n < MIN_PHOTOS && n > 0);
+    }
+  }
+
+  if (photoInput) {
+    photoInput.addEventListener('change', function() {
+      const incoming = Array.from(this.files || []);
+      const oversized = [];
+      incoming.forEach(file => {
+        if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+          oversized.push(file.name);
+          return;
+        }
+        const exists = selectedPhotos.some(f => f.name === file.name && f.size === file.size);
+        if (!exists && selectedPhotos.length < MAX_PHOTOS) {
+          selectedPhotos.push(file);
+        }
+      });
+      syncPhotoInput();
+      renderPhotoGrid();
+      updatePhotoMeta();
+      const field = photoInput.closest('.field');
+      if (field) {
+        const old = field.querySelector('.field-error-message');
+        if (old) old.remove();
+      }
+      if (oversized.length && field) {
+        addFieldMessage(field, `${oversized.length === 1 ? 'This photo is' : 'These photos are'} over ${MAX_FILE_SIZE_MB}MB and couldn't be added: ${oversized.join(', ')}. Please compress or choose a smaller file.`);
+      }
+    });
+  }
+
+  function validatePhotos() {
+    if (selectedPhotos.length < MIN_PHOTOS) {
+      const field = photoInput.closest('.field');
+      if (field) {
+        field.classList.add('required-missing');
+        addFieldMessage(field, `Please upload at least ${MIN_PHOTOS} photos before submitting.`);
+      }
+      return false;
+    }
+    return true;
+  }
 
   function updateProgress() {
     if (!form) return;
