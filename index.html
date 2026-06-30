@@ -486,9 +486,9 @@ html, body {
 /* ===== SINGLES NETWORK PARTNERSHIP MARK =====
    Separate wording + cream Singles Network bubble, positioned closer to the hero headline. */
 .singles-network-badge {
-  position: absolute;
-  top: clamp(5px, 1.5vw, 25px);
-  right: clamp(56px, 14vw, 190px);
+  position: relative;
+  top: auto;
+  right: auto;
   z-index: 35;
   display: inline-flex;
   flex-direction: column;
@@ -496,7 +496,7 @@ html, body {
   justify-content: center;
   gap: 8px;
   width: auto;
-  margin: 0;
+  margin: 0 auto 18px;
   padding: 0;
   background: transparent;
   border: 0;
@@ -589,11 +589,6 @@ html, body {
 }
 
 @media (max-width: 900px) {
-  .singles-network-badge {
-    top: 92px;
-    right: 32px;
-  }
-
   .sn-badge-icon {
     width: 78px;
     height: 78px;
@@ -1168,17 +1163,24 @@ section,
 
 <h1 class="font-heading font-semibold mb-4 leading-[1.08] animate-fade-in-up">
 
+<style id="hero-title-equal-size-fix">
+.hero-gradient-text.gradient-text,
+h1.font-heading .gradient-text{
+  font-size: clamp(4.32rem, 7.2vw, 6.48rem) !important;
+  letter-spacing: 0.07em !important;
+}
+</style>
 <span class="gradient-text text-5xl md:text-6xl lg:text-7xl block">
-Modern Matchmaking
+Modern Dating
 </span>
 
-<span class="text-white text-5xl md:text-6xl lg:text-7xl block mt-1 pb-1">
+<span class="text-white text-5xl md:text-6xl lg:text-7xl block mt-1 pb-1" style="white-space:nowrap; font-size:clamp(1.8rem, 6.5vw, 4.5rem);">
 For Busy Professionals
 </span>
 
 </h1>
 <p class="text-lg md:text-xl text-white leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-in-up hero-description" style="animation-delay:0.1s">          
-  A modern matchmaking service for professionals in the UK, combining personality compatibility with curated introductions and events.
+  A modern dating service for professionals in the UK, combining personality compatibility with curated introductions and events.
           <div class="animate-fade-in-up hero-cta-buttons" style="animation-delay:0.15s; display:flex; justify-content:center; align-items:center; gap:16px; flex-wrap:wrap;">
 <a href="https://www.sparkedconnection.com/form" rel="noopener noreferrer" target="_blank">
 <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 cta-spark-btn bg-accent hover:bg-accent/80 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-14 py-8 text-xl rounded-full font-semibold">
