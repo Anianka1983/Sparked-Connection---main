@@ -579,6 +579,24 @@
 <input id="age-display" name="age" placeholder="Calculated automatically from date of birth" readonly="" style="background: var(--bg); color: var(--muted); cursor: not-allowed;" type="text"/>
 </div>
 <div class="field">
+<label>Star Sign <span class="req">*</span></label>
+<select name="star_sign">
+<option value="">Select star sign</option>
+<option>♈ Aries (21 Mar – 19 Apr)</option>
+<option>♉ Taurus (20 Apr – 20 May)</option>
+<option>♊ Gemini (21 May – 20 Jun)</option>
+<option>♋ Cancer (21 Jun – 22 Jul)</option>
+<option>♌ Leo (23 Jul – 22 Aug)</option>
+<option>♍ Virgo (23 Aug – 22 Sep)</option>
+<option>♎ Libra (23 Sep – 22 Oct)</option>
+<option>♏ Scorpio (23 Oct – 21 Nov)</option>
+<option>♐ Sagittarius (22 Nov – 21 Dec)</option>
+<option>♑ Capricorn (22 Dec – 19 Jan)</option>
+<option>♒ Aquarius (20 Jan – 18 Feb)</option>
+<option>♓ Pisces (19 Feb – 20 Mar)</option>
+</select>
+</div>
+<div class="field">
 <label>Gender <span class="req">*</span></label>
 <select name="gender" required="">
 <option value="">Select gender</option>
@@ -2016,6 +2034,7 @@
   // Age auto-calculation from Date of Birth
   const dobInput = document.getElementById('dob-input');
   const ageDisplay = document.getElementById('age-display');
+
   function calculateAge() {
     if (!dobInput || !ageDisplay) return;
     if (!dobInput.value) {
