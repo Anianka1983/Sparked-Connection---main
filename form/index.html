@@ -532,30 +532,163 @@
 <div class="hero">
 <p class="hero-eyebrow">New Member Profile</p>
 <h1>Your Profile Questionnaire</h1>
-<p>This questionnaire helps us understand who you are and what you're truly looking for - so we can make meaningful, well-matched introductions.</p>
-<div class="time-badge"> Joining our Singles Network is free. Most questions are optional - simply share what feels right and we'll be in touch when a suitable match is identified.</p> </div>
-<div class="hero-steps">
-<div class="hero-step"><div class="hero-step-num">1</div> About You</div>
-<div class="hero-step"><div class="hero-step-num">2</div> Lifestyle</div>
-<div class="hero-step"><div class="hero-step-num">3</div> Relationship Goals</div>
-<div class="hero-step"><div class="hero-step-num">4</div> Match Preferences</div>
-<div class="hero-step"><div class="hero-step-num">5</div> Values</div>
-<div class="hero-step"><div class="hero-step-num">6</div> Photos</div>
-<div class="hero-step"><div class="hero-step-num">7</div> Psychology</div>
-<div class="hero-step"><div class="hero-step-num">8</div> Your Service</div>
-<div class="hero-step"><div class="hero-step-num">9</div> Consent</div>
-</div>
+<p>This questionnaire helps us understand who you are and what you're truly looking for.</p>
+<div class="time-badge">Joining our Singles Network is free. Most questions are optional - simply share what feels right and we'll be in touch.</div>
 </div>
 <div class="form-wrap">
 <form accept-charset="UTF-8" id="questionnaire" novalidate>
 <div class="form-error-summary" id="form-error-summary" role="alert">Almost there - please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 1: ABOUT YOU -->
+<!-- SECTION 1: WHAT BRINGS YOU HERE -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-card">
 <div class="section-header">
-<div class="section-num">1</div>
+<div class="section-title-block">
+<h2>What Brings You Here?</h2>
+<p>Sparked Connection is part community, part matchmaking. Tell us what you're after, and we'll shape the rest of this profile around it.</p>
+</div>
+</div>
+<div class="fields-stack">
+<div class="field" id="looking-for-group">
+<label>What are you looking for? <span class="req">*</span></label>
+<p class="hint">Select everything that applies - most members choose more than one.</p>
+<div class="check-list" style="gap: 14px;">
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="looking_for" type="checkbox" value="Friendship & Community" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤝 New friendships &amp; community</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">A social circle of like-minded professionals - people to actually do things with, not just message.</div>
+  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="looking_for" type="checkbox" value="Mentorship" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🎓 Mentorship</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Real conversations with people a few steps ahead - as a mentee, a mentor, or both.</div>
+  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="looking_for" type="checkbox" value="Events & Workshops" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">📅 Events, workshops &amp; socials</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Practical workshops, co-working days, quiz nights, retreats - low-key ways to actually meet people.</div>
+  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="looking_for" type="checkbox" value="Considered Introductions" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">💛 A relationship</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Private, considered introductions reviewed personally by an ABIA-registered matchmaker. Never a public profile, never a swipe.</div>
+</div>
+</label>
+
+<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
+<input name="looking_for" type="checkbox" value="Not sure yet" style="margin-top: 3px;"/>
+<div>
+  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤷 Not sure yet - open to it all</div>
+  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">No pressure to decide now. We'll keep every option open for you.</div>
+</div>
+</label>
+
+</div>
+</div>
+</div>
+
+<!-- Mentorship follow-up, shown only if Mentorship is selected above -->
+<div class="conditional" id="mentorship-details">
+<div class="field-group-label">A Little More About Mentorship</div>
+<div class="fields-stack">
+<div class="field">
+<label>Are you looking for a mentor, to mentor others, or both? <span class="opt">(Optional)</span></label>
+<div class="radio-pills">
+<label class="radio-pill"><input name="mentorship_role" type="radio" value="A mentor for me"/> A mentor for me</label>
+<label class="radio-pill"><input name="mentorship_role" type="radio" value="To mentor others"/> To mentor others</label>
+<label class="radio-pill"><input name="mentorship_role" type="radio" value="Both"/> Both</label>
+<label class="radio-pill"><input name="mentorship_role" type="radio" value="Not sure yet"/> Not sure yet</label>
+</div>
+</div>
+<div class="field">
+<label>Which areas interest you - to learn from, or to share your own experience in? <span class="opt">(Optional)</span></label>
+<p class="hint">Select all that apply</p>
+<div class="check-list col-2">
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Career progression & promotion"/> Career progression &amp; promotion</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Starting or growing a business"/> Starting or growing a business</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Leadership & management"/> Leadership &amp; management</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="AI & new technology skills"/> AI &amp; new technology skills</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Personal branding & visibility"/> Personal branding &amp; visibility</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Public speaking & communication"/> Public speaking &amp; communication</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Negotiation"/> Negotiation</label>
+<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Career pivots & reinvention"/> Career pivots &amp; reinvention</label>
+<label class="check-item" id="mentorship-other-check"><input id="mentorship-other-cb" name="mentorship_topics" type="checkbox" value="Other"/> Other</label>
+</div>
+<div class="other-field" id="mentorship-other-field">
+<input name="mentorship_topics_other" placeholder="Please specify" type="text"/>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Events & Workshops follow-up, shown only if Events & Workshops is selected above -->
+<div class="conditional" id="events-details">
+<div class="field-group-label">A Little More About Events &amp; Workshops</div>
+<div class="fields-stack">
+<div class="field">
+<label>Which workshop topics interest you most? <span class="opt">(Optional)</span></label>
+<p class="hint">Select all that apply</p>
+<div class="check-list col-2">
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="AI tools for your industry"/> AI tools for your industry</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Career development"/> Career development</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Personal branding"/> Personal branding</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Negotiation skills"/> Negotiation skills</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Public speaking"/> Public speaking</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Career pivots & reinvention"/> Career pivots &amp; reinvention</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Wellbeing & work-life balance"/> Wellbeing &amp; work-life balance</label>
+<label class="check-item"><input name="workshop_topics" type="checkbox" value="Financial & investment literacy"/> Financial &amp; investment literacy</label>
+<label class="check-item" id="workshop-other-check"><input id="workshop-other-cb" name="workshop_topics" type="checkbox" value="Other"/> Other</label>
+</div>
+<div class="other-field" id="workshop-other-field">
+<input name="workshop_topics_other" placeholder="Please specify" type="text"/>
+</div>
+</div>
+<div class="field">
+<label>What kind of social events appeal to you? <span class="opt">(Optional)</span></label>
+<p class="hint">Select all that apply</p>
+<div class="check-list col-2">
+<label class="check-item"><input name="event_types" type="checkbox" value="Pub quizzes & socials"/> Pub quizzes &amp; socials</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Padel / sport"/> Padel / sport</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Co-working days"/> Co-working days</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Dinners & supper clubs"/> Dinners &amp; supper clubs</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Retreats & getaways"/> Retreats &amp; getaways</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Golf events"/> Golf events</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Online workshops"/> Online workshops</label>
+<label class="check-item"><input name="event_types" type="checkbox" value="Online Dial-In Games (via Zoom/Google Meet etc.)"/> Online Dial-In Games (via Zoom/Google Meet etc.)</label>
+</div>
+</div>
+<div class="field">
+<label>How often would you like to attend events? <span class="opt">(Optional)</span></label>
+<div class="radio-pills">
+<label class="radio-pill"><input name="event_frequency" type="radio" value="Weekly"/> Weekly</label>
+<label class="radio-pill"><input name="event_frequency" type="radio" value="A few times a month"/> A few times a month</label>
+<label class="radio-pill"><input name="event_frequency" type="radio" value="Monthly"/> Monthly</label>
+<label class="radio-pill"><input name="event_frequency" type="radio" value="Just let me know what's on"/> Just let me know what's on</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: ABOUT YOU -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-card">
+<div class="section-header">
 <div class="section-title-block">
 <h2>About You</h2>
 <p>Tell us the basics - your background, appearance, and lifestyle.</p>
@@ -915,6 +1048,8 @@
 </div>
 </div>
 </div>
+<!-- Only relevant if introductions are in play -->
+<div class="conditional" id="relationship-only-children-pref">
 <div class="field">
 <label>Are you open to dating people with children? <span class="opt">(Optional)</span></label>
 <div class="radio-pills" id="open-to-children-group">
@@ -931,12 +1066,12 @@
 </div>
 </div>
 </div>
+</div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 2: LIFESTYLE & PERSONALITY -->
+<!-- SECTION 3: LIFESTYLE & PERSONALITY -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-card">
 <div class="section-header">
-<div class="section-num">2</div>
 <div class="section-title-block">
 <h2>Lifestyle &amp; Personality</h2>
 <p>Help us understand how you live and what matters to you day-to-day.</p>
@@ -1093,11 +1228,11 @@
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 3: RELATIONSHIP GOALS -->
+<!-- SECTION 4: RELATIONSHIP GOALS -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<div class="section-card">
+<!-- Only shown if "A relationship" or "Not sure yet" was selected in Section 1 -->
+<div class="section-card conditional" id="section-relationship-goals">
 <div class="section-header">
-<div class="section-num">3</div>
 <div class="section-title-block">
 <h2>Relationship Goals</h2>
 <p>Tell us what you're looking for and how you approach relationships.</p>
@@ -1130,11 +1265,12 @@
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 4: YOUR MATCH PREFERENCES -->
+<!-- SECTION 5: YOUR MATCH PREFERENCES -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-card">
+<!-- Only shown if "A relationship" or "Not sure yet" was selected in Section 1 -->
+<div class="conditional" id="section-match-preferences">
 <div class="section-header">
-<div class="section-num">4</div>
 <div class="section-title-block">
 <h2>Your Match Preferences</h2>
 <p>Help us understand the qualities you're looking for in a partner.</p>
@@ -1164,6 +1300,7 @@
 <label class="check-item"><input name="pref_ethnicity" type="checkbox" value="Arab / Middle Eastern"/> Arab / Middle Eastern</label>
 <label class="check-item"><input name="pref_ethnicity" type="checkbox" value="Latin American"/> Latin American</label>
 <label class="check-item"><input name="pref_ethnicity" type="checkbox" value="Jewish"/> Jewish</label>
+</div>
 </div>
 <div class="field">
 <label>Partner's preferred height (cm) <span class="opt">(Optional)</span></label>
@@ -1270,10 +1407,11 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 5: VALUES & COMPATIBILITY -->
+</div>
+<!-- end #section-match-preferences conditional wrapper -->
+<!-- SECTION 6: VALUES & COMPATIBILITY -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-header">
-<div class="section-num">5</div>
 <div class="section-title-block">
 <h2>Values &amp; Compatibility</h2>
 <p>Understanding your values helps us find someone truly aligned with who you are.</p>
@@ -1291,6 +1429,8 @@
 <div class="scale-labels"><span>Very liberal</span><span>Very conservative</span></div>
 </div>
 </div>
+<!-- Only relevant if introductions are in play -->
+<div class="conditional" id="relationship-only-politics-importance">
 <div class="field">
 <label>How important is it for your partner to share similar political views? <span class="opt">(Optional)</span></label>
 <p class="hint">1 = Not important, 10 = Very important</p>
@@ -1300,6 +1440,7 @@
 <div class="scale-value" id="ppol-val">5</div>
 </div>
 <div class="scale-labels"><span>Not important</span><span>Very important</span></div>
+</div>
 </div>
 </div>
 <div class="field">
@@ -1313,6 +1454,8 @@
 <label class="check-item"><input name="money_approach" type="radio" value="spontaneous"/> I'm more spontaneous with money and prefer living in the moment</label>
 </div>
 </div>
+<!-- Only relevant if introductions are in play -->
+<div class="conditional" id="relationship-only-money-compatibility">
 <div class="field">
 <label>In a relationship, how important is it that your partner's approach to money is similar to yours? <span class="opt">(Optional)</span></label>
 <div class="check-list">
@@ -1322,42 +1465,82 @@
 <label class="check-item"><input name="money_compatibility" type="radio" value="Not important"/> Not important</label>
 </div>
 </div>
+</div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 6: PHOTOS -->
+<!-- SECTION 7: PHOTOS -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-header">
-<div class="section-num">6</div>
 <div class="section-title-block">
 <h2>Photos</h2>
-<p>Please upload a <strong>minimum of 2 photos</strong> (ideally 4) – we recommend 1 recent face photo and 1 recent full-length photo, plus a couple of lifestyle shots. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
+<p>Please upload at least <strong>1 photo</strong> (ideally more) – if you're open to introductions, we ask for a minimum of 2, ideally a recent face photo and a full-length photo. Photos are reviewed discreetly and shared only where appropriate as part of an introduction. We encourage natural, unfiltered images that reflect you as you are.</p>
 </div>
 </div>
 <div class="field">
 <div class="upload-box" id="upload-box" onclick="document.getElementById('photo-upload').click();">
 <div class="upload-icon">📷</div>
 <div class="upload-title">Upload your photos</div>
-<div class="upload-sub">Minimum 2 photos required · Up to 4 photos · JPEG or PNG, 5MB max per photo</div>
+<div class="upload-sub">Minimum 1 photo required · Up to 4 photos · JPEG or PNG, 5MB max per photo</div>
 <div class="upload-btn">Choose Photos</div>
 </div>
 <input accept="image/*" class="upload-input" id="photo-upload" multiple="" name="photos" type="file"/>
-<div class="photo-meta" id="photo-meta">No photos uploaded yet – minimum 2 required.</div>
+<div class="photo-meta" id="photo-meta">No photos uploaded yet – minimum 1 required.</div>
 <div class="photo-grid" id="photo-grid"></div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 7: PERSONALITY & PSYCHOLOGY -->
+<!-- SECTION 8: PERSONALITY & PSYCHOLOGY -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-header">
-<div class="section-num">7</div>
 <div class="section-title-block">
 <h2>Personality &amp; Psychology</h2>
 <p><strong>Optional section – we recommend completing at least one test; you may be surprised what you discover about yourself.</strong><br><br></p></div>
-<div class="section-time">⏱ ~35–40 min total</div>
+<div class="section-time">⏱ ~15 min for everyone · up to ~35–40 min if introductions apply</div>
 </div>
+<!-- MBTI - always shown, useful for friendship, mentorship and romantic compatibility -->
+<div class="psych-card">
+<div class="psych-header">
+<div>
+<div class="psych-title">1. The Myers-Briggs Personality Test (MBTI)</div>
+<div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world - useful for finding friends and mentors whose working style complements yours, as well as for romantic compatibility. Once completed, select your personality type below.</div>
+</div>
+<div class="psych-time">⏱ Takes 10–12 minutes</div>
+</div>
+<a class="psych-link" href="https://www.16personalities.com/free-personality-test" rel="noopener noreferrer" target="_blank">
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="m10 14 11-11"></path></svg>
+      Take the MBTI test
+    </a>
+<div class="psych-fields">
+<div class="field">
+<label>MBTI Personality <span class="opt">(Optional)</span></label>
+<select name="mbti">
+<option value="">MBTI Personality</option>
+<option>INTJ – Architect / Strategist</option>
+<option>INTP – Logician / Thinker</option>
+<option>ENTJ – Commander / Executive Leader</option>
+<option>ENTP – Debater / Innovator</option>
+<option>INFJ – Advocate / Visionary</option>
+<option>INFP – Mediator / Idealist</option>
+<option>ENFJ – Protagonist / Mentor</option>
+<option>ENFP – Campaigner / Inspirer</option>
+<option>ISTJ – Logistician / Inspector</option>
+<option>ISFJ – Defender / Nurturer</option>
+<option>ESTJ – Executive / Supervisor</option>
+<option>ESFJ – Consul / Caregiver</option>
+<option>ISTP – Virtuoso / Trouble-shooter</option>
+<option>ISFP – Adventurer / Artist</option>
+<option>ESTP – Entrepreneur / Dynamo</option>
+<option>ESFP – Entertainer / Performer</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Love Language & Attachment Style - only relevant if introductions are in play -->
+<div class="conditional" id="psych-romantic-cards">
+<p class="hint" style="margin-bottom:16px;">The two tests below appear because you told us you're open to a relationship - they help us make better romantic introductions.</p>
 <!-- LOVE LANGUAGE -->
 <div class="psych-card">
 <div class="psych-header">
 <div>
-<div class="psych-title">1. The 'Love Language' Test</div>
+<div class="psych-title">2. The 'Love Language' Test</div>
 <div class="psych-desc">
 <strong></strong> Please take the free test in the link below. This test reveals how you feel most appreciated in a relationship - essentially, how you like to <em>receive</em> love. 
         </div>
@@ -1397,7 +1580,7 @@
 <div class="psych-card">
 <div class="psych-header">
 <div>
-<div class="psych-title">2. Attachment Style Test</div>
+<div class="psych-title">3. Attachment Style Test</div>
 <div class="psych-desc">This test measures how you bond, connect, and relate to others in close relationships. Understanding your attachment style helps us find someone whose relational patterns complement yours. It identifies whether you are predominantly Secure, Anxious, Avoidant, or Disorganised in how you attach to a partner. </div>
 </div>
 <div class="psych-time">⏱ Takes 5–7 minutes</div>
@@ -1420,51 +1603,14 @@
 </div>
 </div>
 </div>
-<!-- MBTI -->
-<div class="psych-card">
-<div class="psych-header">
-<div>
-<div class="psych-title">3. The Myers-Briggs Personality Test (MBTI)</div>
-<div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world. Once completed, select your personality type below.</div>
-</div>
-<div class="psych-time">⏱ Takes 10–12 minutes</div>
-</div>
-<a class="psych-link" href="https://www.16personalities.com/free-personality-test" rel="noopener noreferrer" target="_blank">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="m10 14 11-11"></path></svg>
-      Take the MBTI test
-    </a>
-<div class="psych-fields">
-<div class="field">
-<label>MBTI Personality <span class="opt">(Optional)</span></label>
-<select name="mbti">
-<option value="">MBTI Personality</option>
-<option>INTJ – Architect / Strategist</option>
-<option>INTP – Logician / Thinker</option>
-<option>ENTJ – Commander / Executive Leader</option>
-<option>ENTP – Debater / Innovator</option>
-<option>INFJ – Advocate / Visionary</option>
-<option>INFP – Mediator / Idealist</option>
-<option>ENFJ – Protagonist / Mentor</option>
-<option>ENFP – Campaigner / Inspirer</option>
-<option>ISTJ – Logistician / Inspector</option>
-<option>ISFJ – Defender / Nurturer</option>
-<option>ESTJ – Executive / Supervisor</option>
-<option>ESFJ – Consul / Caregiver</option>
-<option>ISTP – Virtuoso / Trouble-shooter</option>
-<option>ISFP – Adventurer / Artist</option>
-<option>ESTP – Entrepreneur / Dynamo</option>
-<option>ESFP – Entertainer / Performer</option>
-</select>
-</div>
-</div>
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 8: SERVICE INTEREST -->
+<!-- SECTION 9: SERVICE INTEREST -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<div class="section-card">
+<!-- Only shown if "A relationship" or "Not sure yet" was selected in Section 1 -->
+<div class="section-card conditional" id="section-service-interest">
 <div class="section-header">
-<div class="section-num">8</div>
 <div class="section-title-block">
 <h2>How Can We Help?</h2>
 <p>Tell us which service feels right for you - there's no wrong answer, and you can always upgrade later.</p>
@@ -1505,16 +1651,37 @@
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 9: CONSENT & CONTACT -->
+<div class="field-group-label">Before We Wrap Up</div>
+<div class="fields-stack">
+<div class="field">
+<label>How did you hear about us? <span class="req">*</span></label>
+<select id="hear-about-us-select" name="hear_about_us" required>
+<option value="">Select an option</option>
+<option>Instagram</option>
+<option>LinkedIn</option>
+<option>Facebook</option>
+<option>Google search</option>
+<option>Referral from a friend</option>
+<option>Referral from a member</option>
+<option>Press / article</option>
+<option>An event we hosted</option>
+<option value="Other">Other (please specify)</option>
+</select>
+</div>
+<div class="other-field" id="hear-about-us-other-field">
+<input name="hear_about_us_other" placeholder="Please specify" type="text"/>
+</div>
+</div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<div class="section-header">
-<div class="section-num">9</div>
+<!-- SECTION 10: CONSENT & CONTACT -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section-header" style="margin-top: 48px;">
 <div class="section-title-block">
 <h2>Consent &amp; Contact Details</h2>
 <p>Please review and confirm before submitting your profile.</p>
 </div>
 </div>
-<p class="consent-intro">The information you've shared helps us create meaningful, well-matched introductions. Your information is treated with discretion and used solely for the purpose of matchmaking.</p>
+<p class="consent-intro">The information you've shared helps us build a well-matched community around you - whether that's friendships, mentorship, events, or considered introductions. Your information is treated with discretion and used only for the purposes you've told us matter to you.</p>
 <div class="consent-list">
 <label class="consent-item">
 <input name="consent_accurate" required="" type="checkbox"/>
@@ -1522,15 +1689,64 @@
 </label>
 <label class="consent-item">
 <input name="consent_use" required="" type="checkbox"/>
-<span>I understand that my responses will be used for compatibility-based matchmaking, including review by AI-assisted tools and a human matchmaker. <span style="color:var(--accent)">*</span></span>
+<span>I understand that my responses will be used to help facilitate the connections I've expressed interest in, including review by AI-assisted tools and our team. <span style="color:var(--accent)">*</span></span>
 </label>
 <label class="consent-item">
 <input name="consent_sensitive" required="" type="checkbox"/>
-<span>I understand that some of the information I provide may be sensitive and I consent to its use for matchmaking purposes. <span style="color:var(--accent)">*</span></span>
+<span>I understand that some of the information I provide (e.g. relating to ethnicity, religion, or sexual orientation) may be considered special category data under UK GDPR, and I explicitly consent to its use for the purposes described in this form. <span style="color:var(--accent)">*</span></span>
 </label>
 <label class="consent-item">
 <input name="consent_privacy_terms" required="" type="checkbox"/>
-<span>I have read the Privacy Notice and Terms &amp; Conditions, and I understand that a brief profile may be shared with a suitable match where appropriate. <span style="color:var(--accent)">*</span></span>
+<span>I have read the Privacy Notice and Terms &amp; Conditions. <span style="color:var(--accent)">*</span></span>
+</label>
+<label class="consent-item">
+<input name="consent_code_of_conduct" required="" type="checkbox"/>
+<span>I agree to treat other Sparked Connection members with respect, and to follow our Community Code of Conduct in all interactions - online, at events, and in any mentorship or introductions. <span style="color:var(--accent)">*</span></span>
+</label>
+<!-- Shown if Friendship & Community, Mentorship, or Events & Workshops was selected -->
+<div class="conditional" id="consent-directory-item">
+<label class="consent-item">
+<input name="consent_directory_visibility" required type="checkbox"/>
+<span>I understand that as a Community member, limited profile details (e.g. first name, profession, and photo) may be visible to other vetted members within the private network for the purposes of friendship, mentorship, and events. <span style="color:var(--accent)">*</span></span>
+</label>
+</div>
+<!-- Shown if Mentorship was selected -->
+<div class="conditional" id="consent-mentorship-item">
+<label class="consent-item">
+<input name="consent_mentorship_sharing" required type="checkbox"/>
+<span>If I'm matched as a mentor or mentee, I consent to relevant professional background being shared with my mentorship match, and I agree to keep mentorship conversations confidential. <span style="color:var(--accent)">*</span></span>
+</label>
+</div>
+<!-- Shown if Events & Workshops was selected -->
+<div class="conditional" id="consent-events-liability-item">
+<label class="consent-item">
+<input name="consent_events_liability" required type="checkbox"/>
+<span>I understand that I attend any in-person events, workshops, or socials at my own risk, and that Sparked Connection is not liable for loss, injury, or damage arising from my attendance, except where caused by our negligence. <span style="color:var(--accent)">*</span></span>
+</label>
+</div>
+<!-- Shown if Events & Workshops was selected - optional, opt-in marketing use of photos -->
+<div class="conditional" id="consent-event-photos-item">
+<label class="consent-item">
+<input name="consent_event_photos" type="checkbox"/>
+<span>I'm happy for Sparked Connection to take photos or video at events I attend and use them for marketing purposes (e.g. social media, website, newsletters). <span class="opt" style="font-weight:400;">(Optional - you can withdraw this at any time)</span></span>
+</label>
+</div>
+<!-- Shown if 'A relationship' or 'Not sure yet' was selected - matchmaking-specific, kept distinct from the general community consents above -->
+<div class="conditional" id="consent-matchmaking-item">
+<label class="consent-item">
+<input name="consent_matchmaking_use" required type="checkbox"/>
+<span>For matchmaking purposes: I understand my preferences, values, and any psychometric test results I've provided (e.g. MBTI, love language, attachment style) will be used specifically for compatibility-based matchmaking, including review by AI-assisted tools and a human, ABIA-registered matchmaker. <span style="color:var(--accent)">*</span></span>
+</label>
+</div>
+<div class="conditional" id="consent-matchmaking-sharing-item">
+<label class="consent-item">
+<input name="consent_matchmaking_sharing" required type="checkbox"/>
+<span>For matchmaking purposes: I understand that if I'm matched, a brief profile - which may include my photo, first name, profession, and relevant preferences - will be shared with my prospective introduction, and theirs with me, before any contact is made. <span style="color:var(--accent)">*</span></span>
+</label>
+</div>
+<label class="consent-item">
+<input name="consent_marketing_comms" type="checkbox"/>
+<span>I'd like to receive occasional emails about new events, workshops, and community updates from Sparked Connection. <span class="opt" style="font-weight:400;">(Optional - you can unsubscribe at any time)</span></span>
 </label>
 </div>
 <div class="consent-withdraw">You may withdraw your consent at any time by contacting us at <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</div>
@@ -1573,7 +1789,8 @@
     Enter your number without the leading 0. For example: 7784939929
   </p>
 </div>
-  <div class="consent-legal" style="margin-top:20px;">
+</div>
+<div class="consent-legal" style="margin-top:20px;">
     <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
     <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
   </div>
@@ -1851,7 +2068,8 @@
 
     const requiredOk = validateRequiredFields();
     const photosOk = validatePhotos();
-    if (!requiredOk || !photosOk) {
+    const lookingForOk = validateLookingFor();
+    if (!requiredOk || !photosOk || !lookingForOk) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
@@ -1987,6 +2205,94 @@
   document.getElementById('dealbreaker-other-cb')?.addEventListener('change', function() {
     document.getElementById('dealbreaker-other-field')?.classList.toggle('visible', this.checked);
   });
+  document.getElementById('mentorship-other-cb')?.addEventListener('change', function() {
+    document.getElementById('mentorship-other-field')?.classList.toggle('visible', this.checked);
+  });
+  document.getElementById('workshop-other-cb')?.addEventListener('change', function() {
+    document.getElementById('workshop-other-field')?.classList.toggle('visible', this.checked);
+  });
+
+  const hearAboutUsSelect = document.getElementById('hear-about-us-select');
+  const hearAboutUsOtherField = document.getElementById('hear-about-us-other-field');
+  const hearAboutUsOtherInput = hearAboutUsOtherField ? hearAboutUsOtherField.querySelector('input') : null;
+  if (hearAboutUsSelect && hearAboutUsOtherField) {
+    hearAboutUsSelect.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      hearAboutUsOtherField.classList.toggle('visible', show);
+      if (hearAboutUsOtherInput) hearAboutUsOtherInput.required = show;
+    });
+  }
+
+  // ── SECTION 1: "What are you looking for?" drives which later sections appear ──
+  function getLookingForValues() {
+    return Array.from(document.querySelectorAll('input[name="looking_for"]:checked')).map(i => i.value);
+  }
+
+  function updateLookingForVisibility() {
+    const values = getLookingForValues();
+    const wantsFriendship = values.includes('Friendship & Community');
+    const wantsMentorship = values.includes('Mentorship');
+    const wantsEvents = values.includes('Events & Workshops');
+    const wantsIntroductions = values.includes('Considered Introductions') || values.includes('Not sure yet');
+    const wantsCommunity = wantsFriendship || wantsMentorship || wantsEvents;
+
+    document.getElementById('mentorship-details')?.classList.toggle('visible', wantsMentorship);
+    document.getElementById('events-details')?.classList.toggle('visible', wantsEvents);
+    document.getElementById('section-relationship-goals')?.classList.toggle('visible', wantsIntroductions);
+    document.getElementById('section-match-preferences')?.classList.toggle('visible', wantsIntroductions);
+    document.getElementById('psych-romantic-cards')?.classList.toggle('visible', wantsIntroductions);
+    document.getElementById('relationship-only-children-pref')?.classList.toggle('visible', wantsIntroductions);
+    document.getElementById('relationship-only-politics-importance')?.classList.toggle('visible', wantsIntroductions);
+    document.getElementById('relationship-only-money-compatibility')?.classList.toggle('visible', wantsIntroductions);
+
+    const serviceSection = document.getElementById('section-service-interest');
+    serviceSection?.classList.toggle('visible', wantsIntroductions);
+    // Required radios inside the service-interest section shouldn't block submission when that section is hidden.
+    document.querySelectorAll('#section-service-interest input[name="service_interest"]').forEach(input => {
+      input.disabled = !wantsIntroductions;
+    });
+
+    // Consent items that only apply to certain pillars - hidden AND disabled together,
+    // so a hidden required checkbox never blocks submission.
+    const consentGating = [
+      ['consent-directory-item', wantsCommunity],
+      ['consent-mentorship-item', wantsMentorship],
+      ['consent-events-liability-item', wantsEvents],
+      ['consent-event-photos-item', wantsEvents],
+      ['consent-matchmaking-item', wantsIntroductions],
+      ['consent-matchmaking-sharing-item', wantsIntroductions]
+    ];
+    consentGating.forEach(([id, show]) => {
+      const wrapper = document.getElementById(id);
+      wrapper?.classList.toggle('visible', show);
+      wrapper?.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.disabled = !show;
+        if (!show) cb.checked = false;
+      });
+    });
+
+    // Friendship/mentorship/events-only members only need 1 photo; introductions need 2.
+    if (typeof updatePhotoRequirement === 'function') {
+      updatePhotoRequirement(wantsIntroductions);
+    }
+  }
+
+  document.querySelectorAll('input[name="looking_for"]').forEach(cb => {
+    cb.addEventListener('change', updateLookingForVisibility);
+  });
+
+  function validateLookingFor() {
+    const checked = document.querySelector('input[name="looking_for"]:checked');
+    if (!checked) {
+      const container = document.getElementById('looking-for-group');
+      if (container) {
+        container.classList.add('required-missing');
+        addFieldMessage(container, 'Please select at least one option so we know how to help.');
+      }
+      return false;
+    }
+    return true;
+  }
 
   const livingSituationSelect = document.getElementById('living-situation');
   const livingOtherField = document.getElementById('living-other-field');
@@ -2063,7 +2369,7 @@
 
   // Photo upload: accumulate across multiple picker opens, cap at 4, show thumbnails
   const MAX_PHOTOS = 4;
-  const MIN_PHOTOS = 2;
+  let MIN_PHOTOS = 2;
   const MAX_FILE_SIZE_MB = 5; // FormBold's documented per-file cap on the Pro plan
   let selectedPhotos = [];
 
@@ -2130,11 +2436,21 @@
     }
   }
 
+  const uploadSubEl = document.querySelector('#upload-box .upload-sub');
+
+  function updatePhotoRequirement(wantsIntroductions) {
+    MIN_PHOTOS = wantsIntroductions ? 2 : 1;
+    if (uploadSubEl) {
+      uploadSubEl.textContent = `Minimum ${MIN_PHOTOS} photo${MIN_PHOTOS > 1 ? 's' : ''} required · Up to ${MAX_PHOTOS} photos · JPEG or PNG, 5MB max per photo`;
+    }
+    updatePhotoMeta();
+  }
+
   function updatePhotoMeta() {
     if (!photoMeta) return;
     const n = selectedPhotos.length;
     if (n === 0) {
-      photoMeta.innerHTML = 'No photos uploaded yet – <strong>minimum 2 required</strong>.';
+      photoMeta.innerHTML = `No photos uploaded yet – <strong>minimum ${MIN_PHOTOS} required</strong>.`;
     } else if (n < MIN_PHOTOS) {
       photoMeta.innerHTML = `<strong>${n} of ${MAX_PHOTOS}</strong> photos added – add at least ${MIN_PHOTOS - n} more to continue.`;
     } else {
@@ -2201,6 +2517,7 @@
   form.addEventListener('input', updateProgress);
   form.addEventListener('change', updateProgress);
   updateProgress();
+  updateLookingForVisibility();
 </script>
 </body>
 </html>
