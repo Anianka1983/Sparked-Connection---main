@@ -483,10 +483,10 @@
     }
     .form-error-summary.visible { display: block; }
     .required-missing {
-      border-color: hsl(340 55% 45% / .65) !important;
-      box-shadow: 0 0 0 4px hsl(340 55% 45% / .09) !important;
-      background: hsl(340 55% 45% / .025) !important;
+      border: 3px solid hsl(45 100% 50%) !important;
     }
+    #looking-for-group { border-radius: 10px; padding: 8px 10px; margin: -8px -10px 0; border: 3px solid transparent; }
+    #service-interest-group { border-radius: 10px; padding: 8px 10px; margin: -8px -10px 0; border: 3px solid transparent; }
     .success-screen {
       display: none;
       background: var(--card);
@@ -540,66 +540,70 @@
 <div class="form-error-summary" id="form-error-summary" role="alert">Almost there - please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 1: WHAT BRINGS YOU HERE -->
+<!-- SECTION 1: HOW CAN WE HELP (service selection + embedded interests) -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="section-card">
 <div class="section-header">
 <div class="section-title-block">
-<h2>What Brings You Here?</h2>
-<p>Sparked Connection is part community, part matchmaking. Tell us what you're after, and we'll shape the rest of this profile around it.</p>
+<h2>How Can We Help?</h2>
+<p>Tell us which service feels right for you - there's no wrong answer, and you can always upgrade later.</p>
 </div>
 </div>
 <div class="fields-stack">
-<div class="field" id="looking-for-group">
+<div class="field">
+<div id="service-interest-group">
+<label>Which service are you most interested in? <span class="req">*</span></label>
+<p class="hint">Select all that apply - you can choose more than one.</p>
+</div>
+<div class="check-list" style="gap: 8px;">
+
+<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
+<input name="service_interest" type="checkbox" value="Matchmaking Membership"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">💎 Personal Matchmaking</span>
+<span style="font-size: .78rem; color: var(--muted);">— fully managed, one-to-one matchmaking &amp; introductions</span>
+</label>
+
+<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
+<input id="service-singles-network" name="service_interest" type="checkbox" value="Singles Network (Free)"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">🌐 Join the Singles Network</span>
+<span style="font-size: .72rem; font-weight: 500; background: hsl(145 45% 42% / .12); color: hsl(145 45% 42%); border: 1px solid hsl(145 45% 42% / .3); padding: 2px 9px; border-radius: 999px;">Free</span>
+<span style="font-size: .78rem; color: var(--muted);">— community, mentorship, events &amp; optional introductions</span>
+</label>
+
+<!-- Shown only when 'Join the Singles Network' is selected above -->
+<div class="conditional" id="looking-for-embed">
+<div style="margin: 2px 0 4px 30px; padding-left: 16px; border-left: 3px solid var(--border);">
+<div id="looking-for-group">
 <label>What are you looking for? <span class="req">*</span></label>
 <p class="hint">Select everything that applies - most members choose more than one.</p>
-<div class="check-list" style="gap: 14px;">
-
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="looking_for" type="checkbox" value="Friendship & Community" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤝 New friendships &amp; community</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">A social circle of like-minded professionals - people to actually do things with, not just message.</div>
-  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
 </div>
+<div class="check-list" style="gap: 8px; margin-top: 8px;">
+
+<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
+<input name="looking_for" type="checkbox" value="Friendship & Community"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🤝 New friendships &amp; community</span>
 </label>
 
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="looking_for" type="checkbox" value="Mentorship" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🎓 Mentorship</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Real conversations with people a few steps ahead - as a mentee, a mentor, or both.</div>
-  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
-</div>
+<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
+<input name="looking_for" type="checkbox" value="Mentorship"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🎓 Mentorship</span>
 </label>
 
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="looking_for" type="checkbox" value="Events & Workshops" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">📅 Events, workshops &amp; socials</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Practical workshops, co-working days, quiz nights, retreats - low-key ways to actually meet people.</div>
-  <a href="https://singles-network.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="display:inline-block; margin-top:6px; font-size:.78rem; color:var(--accent); font-weight:600; text-decoration:underline;">Learn more at singles-network.com →</a>
-</div>
+<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
+<input name="looking_for" type="checkbox" value="Events & Workshops"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">📅 Events, workshops &amp; socials</span>
 </label>
 
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="looking_for" type="checkbox" value="Considered Introductions" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">💛 A relationship</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Private, considered introductions reviewed personally by an ABIA-registered matchmaker. Never a public profile, never a swipe.</div>
-</div>
+<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
+<input name="looking_for" type="checkbox" value="Considered Introductions"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">💛 A relationship</span>
 </label>
 
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="looking_for" type="checkbox" value="Not sure yet" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤷 Not sure yet - open to it all</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">No pressure to decide now. We'll keep every option open for you.</div>
-</div>
+<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
+<input name="looking_for" type="checkbox" value="Not sure yet"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🤷 Not sure yet - open to it all</span>
 </label>
 
-</div>
-</div>
 </div>
 
 <!-- Mentorship follow-up, shown only if Mentorship is selected above -->
@@ -608,29 +612,53 @@
 <div class="fields-stack">
 <div class="field">
 <label>Are you looking for a mentor, to mentor others, or both? <span class="opt">(Optional)</span></label>
-<div class="radio-pills">
+<div class="radio-pills" id="mentorship-role-group">
 <label class="radio-pill"><input name="mentorship_role" type="radio" value="A mentor for me"/> A mentor for me</label>
 <label class="radio-pill"><input name="mentorship_role" type="radio" value="To mentor others"/> To mentor others</label>
 <label class="radio-pill"><input name="mentorship_role" type="radio" value="Both"/> Both</label>
 <label class="radio-pill"><input name="mentorship_role" type="radio" value="Not sure yet"/> Not sure yet</label>
 </div>
 </div>
+<!-- Shown when looking for a mentor (or open to it) -->
+<div class="conditional" id="mentorship-receiving-field">
 <div class="field">
-<label>Which areas interest you - to learn from, or to share your own experience in? <span class="opt">(Optional)</span></label>
-<p class="hint">Select all that apply</p>
-<div class="check-list col-2">
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Career progression & promotion"/> Career progression &amp; promotion</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Starting or growing a business"/> Starting or growing a business</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Leadership & management"/> Leadership &amp; management</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="AI & new technology skills"/> AI &amp; new technology skills</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Personal branding & visibility"/> Personal branding &amp; visibility</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Public speaking & communication"/> Public speaking &amp; communication</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Negotiation"/> Negotiation</label>
-<label class="check-item"><input name="mentorship_topics" type="checkbox" value="Career pivots & reinvention"/> Career pivots &amp; reinvention</label>
-<label class="check-item" id="mentorship-other-check"><input id="mentorship-other-cb" name="mentorship_topics" type="checkbox" value="Other"/> Other</label>
+<label>What sort of mentorship would you be interested in receiving? <span class="opt">(Optional)</span></label>
+<select id="mentorship-receiving-select" name="mentorship_topics_receiving">
+<option value="">Select an area</option>
+<option>Career progression &amp; promotion</option>
+<option>Starting or growing a business</option>
+<option>Leadership &amp; management</option>
+<option>AI &amp; new technology skills</option>
+<option>Personal branding &amp; visibility</option>
+<option>Public speaking &amp; communication</option>
+<option>Negotiation</option>
+<option>Career pivots &amp; reinvention</option>
+<option value="Other">Other (please specify)</option>
+</select>
 </div>
-<div class="other-field" id="mentorship-other-field">
-<input name="mentorship_topics_other" placeholder="Please specify" type="text"/>
+<div class="other-field" id="mentorship-receiving-other-field">
+<input name="mentorship_topics_receiving_other" placeholder="Please specify" type="text"/>
+</div>
+</div>
+<!-- Shown when open to mentoring others -->
+<div class="conditional" id="mentorship-giving-field">
+<div class="field">
+<label>What areas would you feel comfortable being a mentor in? <span class="opt">(Optional)</span></label>
+<select id="mentorship-giving-select" name="mentorship_topics_giving">
+<option value="">Select an area</option>
+<option>Career progression &amp; promotion</option>
+<option>Starting or growing a business</option>
+<option>Leadership &amp; management</option>
+<option>AI &amp; new technology skills</option>
+<option>Personal branding &amp; visibility</option>
+<option>Public speaking &amp; communication</option>
+<option>Negotiation</option>
+<option>Career pivots &amp; reinvention</option>
+<option value="Other">Other (please specify)</option>
+</select>
+</div>
+<div class="other-field" id="mentorship-giving-other-field">
+<input name="mentorship_topics_giving_other" placeholder="Please specify" type="text"/>
 </div>
 </div>
 </div>
@@ -680,6 +708,19 @@
 <label class="radio-pill"><input name="event_frequency" type="radio" value="Monthly"/> Monthly</label>
 <label class="radio-pill"><input name="event_frequency" type="radio" value="Just let me know what's on"/> Just let me know what's on</label>
 </div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
+<input name="service_interest" type="checkbox" value="Not sure yet - tell me more"/>
+<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">🤔 Not sure yet</span>
+<span style="font-size: .78rem; color: var(--muted);">— tell me more, a matchmaker will walk you through it</span>
+</label>
+
 </div>
 </div>
 </div>
@@ -1606,51 +1647,6 @@
 </div>
 </div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- SECTION 9: SERVICE INTEREST -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- Only shown if "A relationship" or "Not sure yet" was selected in Section 1 -->
-<div class="section-card conditional" id="section-service-interest">
-<div class="section-header">
-<div class="section-title-block">
-<h2>How Can We Help?</h2>
-<p>Tell us which service feels right for you - there's no wrong answer, and you can always upgrade later.</p>
-</div>
-</div>
-<div class="fields-stack">
-<div class="field">
-<label>Which service are you most interested in? <span class="req">*</span></label>
-<p class="hint">Select the option that best describes what you're looking for right now.</p>
-<div class="check-list" style="gap: 14px;">
-
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="service_interest" required type="radio" value="Matchmaking Membership" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">💎 Personal Matchmaking</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">A fully managed, one-to-one matchmaking experience. We handle the search, screening, and introductions on your behalf - so you can focus on the connection, not the process. Ideal if you're serious about finding a life partner and want expert guidance along the way.</div>
-</div>
-</label>
-
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="service_interest" required type="radio" value="Singles Network (Free)" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🌐 Join the Singles Network <span style="font-size: .72rem; font-weight: 500; background: hsl(145 45% 42% / .12); color: hsl(145 45% 42%); border: 1px solid hsl(145 45% 42% / .3); padding: 2px 9px; border-radius: 999px; margin-left: 6px;">Free</span></div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Join our curated community of quality singles. Your profile is held on file and we'll reach out when we identify a potential match - no commitment required. A great way to stay open to the right connection without the pressure of an active search.</div>
-</div>
-</label>
-
-<label class="check-item" style="align-items: flex-start; padding: 18px 16px;">
-<input name="service_interest" required type="radio" value="Not sure yet - tell me more" style="margin-top: 3px;"/>
-<div>
-  <div style="font-weight: 600; color: var(--primary); margin-bottom: 4px;">🤔 I'm not sure yet - tell me more</div>
-  <div style="font-size: .8rem; color: var(--muted); line-height: 1.6;">Not sure which option is right for you? No problem. Submit your profile and one of our matchmakers will be in touch to walk you through both options and help you find the best fit.</div>
-</div>
-</label>
-
-</div>
-</div>
-</div>
-</div>
-<!-- ═══════════════════════════════════════════════════════════════ -->
 <div class="field-group-label">Before We Wrap Up</div>
 <div class="fields-stack">
 <div class="field">
@@ -2069,7 +2065,8 @@
     const requiredOk = validateRequiredFields();
     const photosOk = validatePhotos();
     const lookingForOk = validateLookingFor();
-    if (!requiredOk || !photosOk || !lookingForOk) {
+    const serviceInterestOk = validateServiceInterest();
+    if (!requiredOk || !photosOk || !lookingForOk || !serviceInterestOk) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
       return;
     }
@@ -2205,11 +2202,35 @@
   document.getElementById('dealbreaker-other-cb')?.addEventListener('change', function() {
     document.getElementById('dealbreaker-other-field')?.classList.toggle('visible', this.checked);
   });
-  document.getElementById('mentorship-other-cb')?.addEventListener('change', function() {
-    document.getElementById('mentorship-other-field')?.classList.toggle('visible', this.checked);
-  });
   document.getElementById('workshop-other-cb')?.addEventListener('change', function() {
     document.getElementById('workshop-other-field')?.classList.toggle('visible', this.checked);
+  });
+
+  function wireSelectOther(selectId, fieldId) {
+    const select = document.getElementById(selectId);
+    const field = document.getElementById(fieldId);
+    const input = field ? field.querySelector('input') : null;
+    if (!select || !field) return;
+    select.addEventListener('change', function() {
+      const show = this.value === 'Other';
+      field.classList.toggle('visible', show);
+      if (input) input.required = show;
+    });
+  }
+  wireSelectOther('mentorship-receiving-select', 'mentorship-receiving-other-field');
+  wireSelectOther('mentorship-giving-select', 'mentorship-giving-other-field');
+
+  // Show "what would you like to receive" vs "what could you mentor others in"
+  // depending on whether the person wants a mentor, to mentor others, or both.
+  function updateMentorshipRoleVisibility() {
+    const role = document.querySelector('input[name="mentorship_role"]:checked')?.value;
+    const wantsReceiving = role === 'A mentor for me' || role === 'Both' || role === 'Not sure yet';
+    const wantsGiving = role === 'To mentor others' || role === 'Both';
+    document.getElementById('mentorship-receiving-field')?.classList.toggle('visible', wantsReceiving);
+    document.getElementById('mentorship-giving-field')?.classList.toggle('visible', wantsGiving);
+  }
+  document.querySelectorAll('input[name="mentorship_role"]').forEach(r => {
+    r.addEventListener('change', updateMentorshipRoleVisibility);
   });
 
   const hearAboutUsSelect = document.getElementById('hear-about-us-select');
@@ -2228,15 +2249,29 @@
     return Array.from(document.querySelectorAll('input[name="looking_for"]:checked')).map(i => i.value);
   }
 
+  function getServiceInterestValues() {
+    return Array.from(document.querySelectorAll('input[name="service_interest"]:checked')).map(i => i.value);
+  }
+
   function updateLookingForVisibility() {
-    const values = getLookingForValues();
+    const serviceValues = getServiceInterestValues();
+    const isMatchmaking = serviceValues.includes('Matchmaking Membership');
+    const isSinglesNetwork = serviceValues.includes('Singles Network (Free)');
+
+    // The "What are you looking for?" block only appears under the Singles Network option.
+    document.getElementById('looking-for-embed')?.classList.toggle('visible', isSinglesNetwork);
+
+    const values = isSinglesNetwork ? getLookingForValues() : [];
+    const notSure = values.includes('Not sure yet');
     const wantsFriendship = values.includes('Friendship & Community');
-    const wantsMentorship = values.includes('Mentorship');
-    const wantsEvents = values.includes('Events & Workshops');
-    const wantsIntroductions = values.includes('Considered Introductions') || values.includes('Not sure yet');
+    const wantsMentorship = values.includes('Mentorship') || notSure;
+    const wantsEvents = values.includes('Events & Workshops') || notSure;
+    // Personal Matchmaking always implies introductions; on the Singles Network path it depends on what's ticked.
+    const wantsIntroductions = isMatchmaking || values.includes('Considered Introductions') || notSure;
     const wantsCommunity = wantsFriendship || wantsMentorship || wantsEvents;
 
     document.getElementById('mentorship-details')?.classList.toggle('visible', wantsMentorship);
+    updateMentorshipRoleVisibility();
     document.getElementById('events-details')?.classList.toggle('visible', wantsEvents);
     document.getElementById('section-relationship-goals')?.classList.toggle('visible', wantsIntroductions);
     document.getElementById('section-match-preferences')?.classList.toggle('visible', wantsIntroductions);
@@ -2244,13 +2279,6 @@
     document.getElementById('relationship-only-children-pref')?.classList.toggle('visible', wantsIntroductions);
     document.getElementById('relationship-only-politics-importance')?.classList.toggle('visible', wantsIntroductions);
     document.getElementById('relationship-only-money-compatibility')?.classList.toggle('visible', wantsIntroductions);
-
-    const serviceSection = document.getElementById('section-service-interest');
-    serviceSection?.classList.toggle('visible', wantsIntroductions);
-    // Required radios inside the service-interest section shouldn't block submission when that section is hidden.
-    document.querySelectorAll('#section-service-interest input[name="service_interest"]').forEach(input => {
-      input.disabled = !wantsIntroductions;
-    });
 
     // Consent items that only apply to certain pillars - hidden AND disabled together,
     // so a hidden required checkbox never blocks submission.
@@ -2277,11 +2305,30 @@
     }
   }
 
+  document.querySelectorAll('input[name="service_interest"]').forEach(r => {
+    r.addEventListener('change', updateLookingForVisibility);
+  });
   document.querySelectorAll('input[name="looking_for"]').forEach(cb => {
     cb.addEventListener('change', updateLookingForVisibility);
   });
 
+  function validateServiceInterest() {
+    const checked = document.querySelector('input[name="service_interest"]:checked');
+    if (!checked) {
+      const container = document.getElementById('service-interest-group');
+      if (container) {
+        container.classList.add('required-missing');
+        addFieldMessage(container, 'Please select at least one option so we know how to help.');
+      }
+      return false;
+    }
+    return true;
+  }
+
   function validateLookingFor() {
+    const embed = document.getElementById('looking-for-embed');
+    const isRequired = embed && embed.classList.contains('visible');
+    if (!isRequired) return true;
     const checked = document.querySelector('input[name="looking_for"]:checked');
     if (!checked) {
       const container = document.getElementById('looking-for-group');
@@ -2375,13 +2422,14 @@
 
   // Service-specific contact timing messaging
   function timingMessageFor(serviceValue) {
-    if (serviceValue === 'Matchmaking Membership') {
+    const values = Array.isArray(serviceValue) ? serviceValue : (serviceValue ? [serviceValue] : []);
+    if (values.includes('Matchmaking Membership')) {
       return "As you've chosen Personal Matchmaking, our team will review your profile and be in touch within 2-4 business days to arrange your next steps.";
     }
-    if (serviceValue === 'Singles Network (Free)') {
+    if (values.includes('Singles Network (Free)')) {
       return "As you've joined our Singles Network, there's nothing more to do for now - we'll only be in touch once we've identified a potential match for you, or if we need a little more information to do so.";
     }
-    if (serviceValue === 'Not sure yet - tell me more') {
+    if (values.includes('Not sure yet - tell me more')) {
       return "As you're still deciding between our services, our team will review your profile and be in touch within 2-4 business days to talk through the best option for you.";
     }
     return 'Once submitted, our team will review your profile and be in touch.';
@@ -2390,8 +2438,7 @@
   const submitTimingMsg = document.getElementById('submit-timing-msg');
   document.querySelectorAll('input[name="service_interest"]').forEach(r => {
     r.addEventListener('change', () => {
-      const checked = document.querySelector('input[name="service_interest"]:checked');
-      if (submitTimingMsg && checked) submitTimingMsg.textContent = timingMessageFor(checked.value);
+      if (submitTimingMsg) submitTimingMsg.textContent = timingMessageFor(getServiceInterestValues());
     });
   });
 
