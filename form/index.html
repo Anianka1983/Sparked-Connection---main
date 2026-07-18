@@ -501,8 +501,8 @@
       width: 72px; height: 72px; border-radius: 50%;
       margin: 0 auto 22px;
       display: flex; align-items: center; justify-content: center;
-      background: hsl(340 55% 45% / .12);
-      color: var(--accent);
+      background: hsl(145 45% 42% / .12);
+      color: hsl(145 45% 38%);
       font-size: 2.4rem;
       font-weight: 700;
     }
@@ -1005,6 +1005,19 @@
 </div>
 <div class="other-field" id="profession-level-other-field">
 <input name="profession_level_other" placeholder="Please describe your profession level" type="text"/>
+</div>
+<!-- Shown only if "Join the Singles Network" is selected AND profession level is Entrepreneur / Business owner -->
+<div class="conditional" id="business-details-field">
+<div class="grid-2">
+<div class="field">
+<label>What's your business name? <span class="req">*</span></label>
+<input name="business_name" placeholder="e.g. Acme Consulting Ltd" type="text"/>
+</div>
+<div class="field">
+<label>What's your website? <span class="opt">(Optional, but very helpful)</span></label>
+<input name="business_website" placeholder="e.g. www.yourbusiness.com" type="text"/>
+</div>
+</div>
 </div>
 <div class="grid-2" style="margin-top:20px;">
 <div class="field">
@@ -1790,12 +1803,11 @@
     <a href="https://sparkedconnection.com/terms-and-conditions" target="_blank">Terms and Conditions</a>
     <a href="https://sparkedconnection.com/privacy-notice" target="_blank">Privacy Notice</a>
   </div>
-</div>
 
 <!-- SUBMIT -->
 <div class="submit-wrap">
 <div class="submit-title">Ready to find your match?</div>
-<p class="submit-sub" id="submit-timing-msg">Once submitted, our team will review your profile and be in touch.</p>
+<p class="submit-sub" id="submit-timing-msg">Thank you for submitting your profile - we'll be in touch within 1-3 business days.</p>
 <button class="submit-btn" type="submit">
     Submit My Profile
     <svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="18"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
@@ -2261,6 +2273,13 @@
     // The "What are you looking for?" block only appears under the Singles Network option.
     document.getElementById('looking-for-embed')?.classList.toggle('visible', isSinglesNetwork);
 
+    // Business name/website only relevant for Singles Network members who are entrepreneurs/business owners.
+    const isEntrepreneur = document.getElementById('profession-level')?.value === 'Entrepreneur / Business owner';
+    const showBusinessDetails = isSinglesNetwork && isEntrepreneur;
+    document.getElementById('business-details-field')?.classList.toggle('visible', showBusinessDetails);
+    const businessNameInput = document.querySelector('input[name="business_name"]');
+    if (businessNameInput) businessNameInput.required = showBusinessDetails;
+
     const values = isSinglesNetwork ? getLookingForValues() : [];
     const notSure = values.includes('Not sure yet');
     const wantsFriendship = values.includes('Friendship & Community');
@@ -2362,6 +2381,7 @@
       if (professionLevelOtherInput) professionLevelOtherInput.required = show;
     });
   }
+  professionLevelSelect?.addEventListener('change', updateLookingForVisibility);
 
   const workLocationSelect = document.getElementById('work-location-select');
   const officeLocationField = document.getElementById('office-location-field');
@@ -2422,17 +2442,7 @@
 
   // Service-specific contact timing messaging
   function timingMessageFor(serviceValue) {
-    const values = Array.isArray(serviceValue) ? serviceValue : (serviceValue ? [serviceValue] : []);
-    if (values.includes('Matchmaking Membership')) {
-      return "As you've chosen Personal Matchmaking, our team will review your profile and be in touch within 2-4 business days to arrange your next steps.";
-    }
-    if (values.includes('Singles Network (Free)')) {
-      return "As you've joined our Singles Network, there's nothing more to do for now - we'll only be in touch once we've identified a potential match for you, or if we need a little more information to do so.";
-    }
-    if (values.includes('Not sure yet - tell me more')) {
-      return "As you're still deciding between our services, our team will review your profile and be in touch within 2-4 business days to talk through the best option for you.";
-    }
-    return 'Once submitted, our team will review your profile and be in touch.';
+    return "Thank you for submitting your profile - we'll be in touch within 1-3 business days.";
   }
 
   const submitTimingMsg = document.getElementById('submit-timing-msg');
