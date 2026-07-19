@@ -2100,6 +2100,7 @@
       formbold: false,
       formspree: false,
       formsubmit: false,
+      crm: false,
       googleSheets: false
     };
 
@@ -2125,7 +2126,52 @@
         console.error('FormSubmit submission failed:', err);
       }
     }
+    const CRM_ENDPOINT = 'https://sparked-connection-crm.vercel.app/api/intake';
+  const CRM_PHOTOS_ENDPOINT = 'https://sparked-connection-crm.vercel.app/api/intake/photos';
+  const CRM_INTAKE_SECRET = 'f84baf6a9ec790a9042614b84c88e28fc6ac4c10108f65c4bd0031c91c338afe';
 
+  async function submitToOurCRM(payload, photoFiles) {
+    const res = await fetch(CRM_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-intake-secret': CRM_INTAKE_SECRET
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      let details = '';
+      try { details = await res.text(); } catch (_) {}
+      throw new Error(`CRM submission failed: ${res.status} ${details}`);
+    }
+
+    const { id } = await res.json();
+
+    if (photoFiles && photoFiles.length > 0 && id) {
+      const photoForm = new FormData();
+      photoForm.append('client_id', id);
+      photoFiles.forEach(file => photoForm.append('file', file));
+
+      try {
+        await fetch(CRM_PHOTOS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'x-intake-secret': CRM_INTAKE_SECRET },
+          body: photoForm
+        });
+      } catch (err) {
+        console.error('CRM photo upload failed:', err);
+      }
+    }
+
+    return true;
+  }
+  // NEW: our own CRM — always attempted, alongside the others.
+  try {
+      results.crm = await submitToOurCRM(payload, selectedPhotos);
+    } catch (err) {
+      console.error('CRM submission failed:', err);
+    }
     // BACKUP 3: Google Sheets – silent safety net, always attempted.
     try {
       results.googleSheets = await submitBackupToGoogleSheets(payload);
@@ -2133,7 +2179,7 @@
       console.error('Google Sheets logging failed:', err);
     }
 
-    if (!results.formbold && !results.formspree && !results.formsubmit && !results.googleSheets) {
+    if (!results.formbold && !results.formspree && !results.formsubmit && !results.crm && !results.googleSheets) {
       showErrorSummary('Sorry, the form could not be submitted. Please try again, or email hello@sparkedconnection.com directly.');
       if (submitBtn) {
         submitBtn.disabled = false;
