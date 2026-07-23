@@ -252,7 +252,7 @@
   position: relative;
   overflow: hidden;
 }
-  
+
     .hero::before {
       content: "";
       position: absolute;
@@ -873,6 +873,19 @@
           <label for="linkedin">LinkedIn profile <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:0.78rem">(optional)</span></label>
           <input type="text" id="linkedin" placeholder="https://linkedin.com/in/yourname" />
         </div>
+
+        <div class="field-group">
+          <label>How did you hear about Sparked Connection?</label>
+          <select id="referral">
+            <option value="" disabled selected>Please select…</option>
+            <option>Google / online search</option>
+            <option>Instagram or social media</option>
+            <option>Recommendation from a friend</option>
+            <option>Press or media coverage</option>
+            <option>Attended a Sparked event</option>
+            <option>Other</option>
+          </select>
+        </div>
       </div>
 
       <!-- STEP 2: Relationship Goals -->
@@ -943,19 +956,6 @@
           <span class="step-tag">Step 03</span>
           <h2 class="step-title">How we can help</h2>
           <p class="step-sub">A couple of final details to complete your enquiry.</p>
-        </div>
-
-        <div class="field-group">
-          <label>How did you hear about Sparked Connection?</label>
-          <select id="referral">
-            <option value="" disabled selected>Please select…</option>
-            <option>Google / online search</option>
-            <option>Instagram or social media</option>
-            <option>Recommendation from a friend</option>
-            <option>Press or media coverage</option>
-            <option>Attended a Sparked event</option>
-            <option>Other</option>
-          </select>
         </div>
 
         <div class="field-group">
@@ -1216,7 +1216,7 @@
     btn.textContent = "Sending…";
 
     const data = collectFormData();
-    const results = { formspree: false, formsubmit: false, formbold: false, sheets: false, make: false };
+    const results = { formspree: false, formsubmit: false, formbold: false, sheets: false, make: false, crm: false };
 
     // ── 1. PRIMARY: Formspree ─────────────────────────────────────────────────
     try {
@@ -1340,6 +1340,28 @@
       console.log(`[SC] Make.com: ${res5.ok ? "✅ OK" : "❌ " + res5.status}`);
     } catch (e) {
       console.error("[SC] Make.com webhook failed:", e);
+    }
+
+    // ── 6. INTEGRATION: Sparked CRM (adds this as a lead in the Enquiries section) ──
+    // IMPORTANT: replace REPLACE_WITH_INTAKE_WEBHOOK_SECRET below with the
+    // real INTAKE_WEBHOOK_SECRET value from the CRM's Vercel project
+    // (Settings → Environment Variables) before this file goes live. It's
+    // the same secret already used by the full questionnaire's own CRM
+    // integration, so there's no new secret to create — just copy the
+    // existing value in.
+    try {
+      const res6 = await fetch("https://sparked-connection-crm.vercel.app/api/public/enquiries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-intake-secret": "REPLACE_WITH_INTAKE_WEBHOOK_SECRET"
+        },
+        body: JSON.stringify(data)
+      });
+      results.crm = res6.ok;
+      console.log(`[SC] Sparked CRM: ${res6.ok ? "✅ OK" : "❌ " + res6.status}`);
+    } catch (e) {
+      console.error("[SC] Sparked CRM failed:", e);
     }
 
     // ── Show success screen ───────────────────────────────────────────────────
