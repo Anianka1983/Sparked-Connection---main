@@ -1343,18 +1343,12 @@
     }
 
     // ── 6. INTEGRATION: Sparked CRM (adds this as a lead in the Enquiries section) ──
-    // IMPORTANT: replace REPLACE_WITH_INTAKE_WEBHOOK_SECRET below with the
-    // real INTAKE_WEBHOOK_SECRET value from the CRM's Vercel project
-    // (Settings → Environment Variables) before this file goes live. It's
-    // the same secret already used by the full questionnaire's own CRM
-    // integration, so there's no new secret to create — just copy the
-    // existing value in.
     try {
       const res6 = await fetch("https://sparked-connection-crm.vercel.app/api/public/enquiries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-intake-secret": "REPLACE_WITH_INTAKE_WEBHOOK_SECRET"
+          "x-intake-secret": "f84baf6a9ec790a9042614b84c88e28fc6ac4c10108f65c4bd0031c91c338afe"
         },
         body: JSON.stringify(data)
       });
