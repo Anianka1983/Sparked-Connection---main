@@ -1269,28 +1269,29 @@
 
     // ── 3. BACKUP: FormBold ───────────────────────────────────────────────────
     try {
-      const formBoldData = new FormData();
-      formBoldData.append("name",         `${data.firstName} ${data.lastName}`);
-      formBoldData.append("email",        data.email);
-      formBoldData.append("phone",        data.phone || "Not provided");
-      formBoldData.append("age",          data.age);
-      formBoldData.append("location",     data.location);
-      formBoldData.append("gender",       data.gender);
-      formBoldData.append("profession",   data.profession);
-      formBoldData.append("industry",     data.industry);
-      formBoldData.append("linkedin",     data.linkedin || "Not provided");
-      formBoldData.append("looking_for",  data.goal);
-      formBoldData.append("status",       data.status);
-      formBoldData.append("children",     data.children);
-      formBoldData.append("partner_age",  `${data.partnerAgeMin} – ${data.partnerAgeMax}`);
-      formBoldData.append("service",      data.service || "Not specified");
-      formBoldData.append("heard_via",    data.referral || "Not specified");
-      formBoldData.append("page_url",     window.location.href);
-      formBoldData.append("_subject",     "New Sparked Connection Enquiry");
-
       const res3 = await fetch("https://formbold.com/s/94dje", {
         method: "POST",
-        body: formBoldData
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name:         `${data.firstName} ${data.lastName}`,
+          email:        data.email,
+          phone:        data.phone || "Not provided",
+          age:          data.age,
+          location:     data.location,
+          gender:       data.gender,
+          profession:   data.profession,
+          industry:     data.industry,
+          linkedin:     data.linkedin || "Not provided",
+          looking_for:  data.goal,
+          status:       data.status,
+          children:     data.children,
+          partner_age:  `${data.partnerAgeMin} – ${data.partnerAgeMax}`,
+          service:      data.service || "Not specified",
+          heard_via:    data.referral || "Not specified",
+          page_url:     window.location.href,
+          _subject:     "New Sparked Connection Enquiry",
+          _replyto:     data.email
+        })
       });
       results.formbold = res3.ok;
       console.log(`[SC] FormBold: ${res3.ok ? "✅ OK" : "❌ " + res3.status}`);
