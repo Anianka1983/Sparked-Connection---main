@@ -321,6 +321,26 @@ html, body{
   overflow-x: hidden;
 }
 
+@media (max-width: 767px){
+  .site-logo-link{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 640px){
+  .events-signup-btn{
+    min-width: 0 !important;
+    width: calc(100% - 2rem) !important;
+    max-width: 340px !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    white-space: normal !important;
+  }
+}
+
   /* How It Works cards - base styles for all screen sizes */
 .hiw-grid {
   display: grid;
@@ -1169,7 +1189,7 @@ section,
     </div>
   </div>
 </div>
-<button type="button" id="sc-cookie-manage-link">Cookie preferences</button>
+<button type="button" id="sc-cookie-manage-link"><span aria-hidden="true" style="margin-right:6px;">🍪</span>Cookie preferences</button>
 
 <script>
 (function () {
@@ -1247,8 +1267,8 @@ section,
 <div class="min-h-screen">
 <nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
 <div class="container mx-auto px-4">
-<div class="flex items-center justify-between h-16 md:h-20">
-  <a class="flex items-center shrink-0" href="https://sparkedconnection.com/">
+<div class="flex items-center justify-between h-16 md:h-20 relative">
+  <a class="flex items-center shrink-0 site-logo-link" href="https://sparkedconnection.com/">
 <img src="/logo.svg" alt="Sparked Connection" class="site-logo site-logo-desktop-shift">
 </a>
 <div class="hidden md:flex items-center gap-8">
@@ -1340,13 +1360,16 @@ h1.font-heading .gradient-text{
 @media (max-width: 640px){
   .hero-gradient-text.gradient-text,
   h1.font-heading .gradient-text{
-    font-size: clamp(2.1rem, 9vw, 3.4rem) !important;
+    font-size: clamp(2.52rem, 10.8vw, 4.08rem) !important;
     letter-spacing: 0.02em !important;
+  }
+  .hero-title-line2{
+    display: block !important;
   }
 }
 </style>
 <span class="gradient-text text-5xl md:text-6xl lg:text-7xl block">
-Modern Matchmaking
+Modern <span class="hero-title-line2">Matchmaking</span>
 </span>
 
 <span class="text-white text-5xl md:text-6xl lg:text-7xl block mt-1 pb-1" style="white-space:nowrap; font-size:clamp(1.8rem, 6.5vw, 4.5rem);">
@@ -1874,7 +1897,7 @@ Sparked Connection exists to change that. I organise events where you actually m
 </div>
 <div class="text-center mt-16">
 <a href="https://sparkedconnection.com/events-sign-up/">
-<button class="inline-flex items-center justify-center text-base font-semibold bg-accent text-accent-foreground rounded-full px-14 py-3 min-w-[380px] whitespace-nowrap shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cta-spark-btn">
+<button class="inline-flex items-center justify-center text-base font-semibold bg-accent text-accent-foreground rounded-full px-14 py-3 min-w-[380px] whitespace-nowrap shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cta-spark-btn events-signup-btn">
   Sign-Up For Upcoming Events
 </button>
 </div>
