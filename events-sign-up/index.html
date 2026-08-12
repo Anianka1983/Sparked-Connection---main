@@ -407,9 +407,33 @@ async function handleSubmit(event) {
       headers: { 'Accept': 'application/json' }
     });
 
-    var results = await Promise.allSettled([formBoldRequest, formspreeRequest]);
-    var succeeded = results.some(function(result) {
-      return result.status === 'fulfilled' && result.value.ok;
+    // Third, best-effort submission straight into the Sparked CRM (shows up
+    // immediately on the CRM's "Events Opt-ins" page, and on the combined
+    // "Opt-ins" page tagged as coming from this website list). Fires in
+    // parallel and is deliberately NOT part of the success/failure check
+    // below -- if the CRM happens to be briefly unreachable, the visitor
+    // still sees a normal confirmation and their sign-up is still safely
+    // recorded via FormBold/Formspree above.
+    var crmRequest = fetch('https://sparked-connection-crm.vercel.app/api/public/event-interest', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-intake-secret': 'f84baf6a9ec790a9042614b84c88e28fc6ac4c10108f65c4bd0031c91c338afe'
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone || null,
+        city: city,
+        age: age,
+        eventsInterestedIn: eventNames.join(', ')
+      })
+    }).catch(function(e) { console.error('[SC] Sparked CRM failed:', e); });
+
+    var results = await Promise.allSettled([formBoldRequest, formspreeRequest, crmRequest]);
+    var succeeded = results.slice(0, 2).some(function(result) {
+      return result.status === 'fulfilled' && result.value && result.value.ok;
     });
 
     if (succeeded) {
