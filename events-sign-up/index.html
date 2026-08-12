@@ -378,24 +378,41 @@ async function handleSubmit(event) {
   submitBtn.textContent = 'Submitting…';
 
   try {
-    var formData = new FormData();
-    formData.append('name', firstName + ' ' + lastName);
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
-    formData.append('email', email);
-    formData.append('phone', phone || 'Not provided');
-    formData.append('city', city);
-    formData.append('age', age);
-    formData.append('events_interested_in', eventNames.join(', '));
-    formData.append('_subject', 'New Events Signup - Sparked Connection');
+    var submission = {
+      name: firstName + ' ' + lastName,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phone || 'Not provided',
+      city: city,
+      age: age,
+      events_interested_in: eventNames.join(', '),
+      _subject: 'New Events Signup - Sparked Connection'
+    };
 
-    var response = await fetch('https://formspree.io/f/mbdqoaao', {
+    // Primary notification: FormBold
+    var formBoldRequest = fetch('https://formbold.com/s/oYAdw', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(submission)
+    });
+
+    // Back-up notification: Formspree (fires in parallel so a FormBold outage
+    // doesn't lose the sign-up, and vice versa)
+    var formData = new FormData();
+    Object.keys(submission).forEach(function(key) { formData.append(key, submission[key]); });
+    var formspreeRequest = fetch('https://formspree.io/f/mbdqoaao', {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
     });
 
-    if (response.ok) {
+    var results = await Promise.allSettled([formBoldRequest, formspreeRequest]);
+    var succeeded = results.some(function(result) {
+      return result.status === 'fulfilled' && result.value.ok;
+    });
+
+    if (succeeded) {
       document.getElementById('ty-msg').textContent = 'Thanks ' + firstName + '! We’ll send you invitations for: ' + eventNames.join(', ') + '.';
       document.getElementById('form-content').style.display = 'none';
       document.getElementById('success-screen').classList.add('show');
