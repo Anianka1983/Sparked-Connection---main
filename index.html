@@ -2017,6 +2017,7 @@ Sparked Connection exists to change that. I organise events where you actually m
 <button class="inline-flex items-center justify-center text-base font-semibold bg-accent text-accent-foreground rounded-full px-14 py-3 min-w-[380px] whitespace-nowrap shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cta-spark-btn events-signup-btn">
   Sign-Up For Upcoming Events
 </button>
+</a>
 </div>
 </div>
 </section>
@@ -2266,6 +2267,18 @@ Sparked Connection exists to change that. I organise events where you actually m
           </div>
           <span class="journal-read-more">Read More →</span>
         </a>
+
+        <a class="journal-carousel-card" href="https://articles.sparkedconnection.com/childfree-dating/" target="_blank" rel="noopener noreferrer">
+          <div>
+            <div class="journal-meta">
+              <span class="journal-pill">Modern Dating</span>
+              <span class="journal-read-time">12 min read</span>
+            </div>
+            <h3>Childfree Dating: How a Growing Choice Is Changing Modern Romance</h3>
+            <p>Dating apps now let daters filter by whether they want children. Here's what the data actually shows about childfree dating and modern relationships.</p>
+          </div>
+          <span class="journal-read-more">Read More →</span>
+        </a>
       </div>
 
       <button class="journal-arrow journal-arrow-right" type="button" aria-label="Scroll articles right" onclick="document.getElementById('journal-carousel-track').scrollBy({ left: 360, behavior: 'smooth' });">›</button>
@@ -2274,6 +2287,50 @@ Sparked Connection exists to change that. I organise events where you actually m
     <p class="journal-carousel-hint">Use the arrows to browse the latest articles</p>
   </div>
 </section>
+
+<script>
+(function () {
+  var track = document.getElementById('journal-carousel-track');
+  var shell = track ? track.closest('.journal-carousel-shell') : null;
+  if (!track || !shell) return;
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  var AUTO_SCROLL_DELAY = 4500; // ms between automatic moves
+  var SCROLL_STEP = 360; // matches the arrow buttons
+  var timer = null;
+
+  function advance() {
+    var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+    if (atEnd) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+    }
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(advance, AUTO_SCROLL_DELAY);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  start();
+
+  // Pause while someone is actually browsing the carousel, resume after they move away
+  shell.addEventListener('mouseenter', stop);
+  shell.addEventListener('mouseleave', start);
+  shell.addEventListener('touchstart', stop, { passive: true });
+  shell.addEventListener('touchend', start);
+  shell.addEventListener('focusin', stop);
+  shell.addEventListener('focusout', start);
+})();
+</script>
 
 <section class="pt-0 pb-8 md:pb-12 bg-primary relative overflow-hidden" style="width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);">
   <div class="container mx-auto px-4 relative z-10">
@@ -2440,39 +2497,7 @@ Sparked Connection exists to change that. I organise events where you actually m
 </template>
 </div>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function(){
-  var toggle = document.getElementById('mobile-menu-toggle');
-  var panel = document.getElementById('mobile-menu-panel');
-  if (!toggle || !panel) return;
-
-  function closeMenu() {
-    panel.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function openMenu() {
-    panel.classList.add('open');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-
-  toggle.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (panel.classList.contains('open')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  panel.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', closeMenu);
-  });
-
-  document.addEventListener('click',
-});
-</script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148838264.js"></script>
 <!-- End of HubSpot Embed Code -->
