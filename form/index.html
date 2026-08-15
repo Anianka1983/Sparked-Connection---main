@@ -468,6 +468,14 @@
       line-height: 1.45;
       letter-spacing: .01em;
     }
+    .field-info-message {
+      color: hsl(145 45% 32%);
+      font-size: .76rem;
+      font-weight: 500;
+      margin-top: 7px;
+      line-height: 1.45;
+      letter-spacing: .01em;
+    }
     .form-error-summary {
       display: none;
       margin: 0 0 24px;
@@ -1838,11 +1846,21 @@
     if (!errorSummary) return;
     errorSummary.textContent = message;
     errorSummary.classList.add('visible');
-    errorSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function hideErrorSummary() {
     if (errorSummary) errorSummary.classList.remove('visible');
+  }
+
+  // Jumps straight to the first invalid field so people don't have to hunt
+  // through a long form for whichever highlighted detail is still missing.
+  // Falls back to the top banner if, for some reason, nothing is marked.
+  function scrollToFirstError() {
+    const firstError = form ? form.querySelector('.required-missing') : null;
+    const target = firstError || errorSummary;
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
   function clearValidationMarks() {
@@ -1854,6 +1872,17 @@
     if (!container || container.querySelector('.field-error-message')) return;
     const msg = document.createElement('div');
     msg.className = 'field-error-message';
+    msg.textContent = message;
+    container.appendChild(msg);
+  }
+
+  // Same as addFieldMessage but styled as a neutral/positive note (e.g. "we
+  // resized your photo for you") rather than a red error - so it's clear no
+  // action is needed.
+  function addFieldInfoMessage(container, message) {
+    if (!container || container.querySelector('.field-info-message')) return;
+    const msg = document.createElement('div');
+    msg.className = 'field-info-message';
     msg.textContent = message;
     container.appendChild(msg);
   }
@@ -2080,6 +2109,7 @@
     const serviceInterestOk = validateServiceInterest();
     if (!requiredOk || !photosOk || !lookingForOk || !serviceInterestOk) {
       showErrorSummary('Almost there - a few highlighted details are still needed before we can safely submit your profile.');
+      scrollToFirstError();
       return;
     }
 
@@ -2486,6 +2516,55 @@
   const MAX_FILE_SIZE_MB = 5; // FormBold's documented per-file cap on the Pro plan
   let selectedPhotos = [];
 
+  // Modern phone cameras routinely produce 8-15MB photos, well over FormBold's
+  // 5MB cap - which used to mean the photo was silently rejected and the
+  // person had no idea why their upload count wasn't going up. Instead of
+  // just rejecting oversized photos, shrink them client-side until they fit.
+  async function compressImageFile(file, maxSizeBytes, maxDimension = 2000) {
+    if (!window.Image || !document.createElement('canvas').getContext) return null;
+    let objectUrl;
+    try {
+      const img = await new Promise((resolve, reject) => {
+        const el = new Image();
+        el.onload = () => resolve(el);
+        el.onerror = () => reject(new Error('Could not read image'));
+        objectUrl = URL.createObjectURL(file);
+        el.src = objectUrl;
+      });
+
+      let { width, height } = img;
+      if (!width || !height) return null;
+      if (width > maxDimension || height > maxDimension) {
+        const scale = maxDimension / Math.max(width, height);
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      let quality = 0.85;
+      let blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+      while (blob && blob.size > maxSizeBytes && quality > 0.35) {
+        quality -= 0.15;
+        blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+      }
+
+      if (!blob || blob.size > maxSizeBytes) return null;
+
+      const newName = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+      return new File([blob], newName, { type: 'image/jpeg', lastModified: Date.now() });
+    } catch (err) {
+      console.error('Photo compression failed:', err);
+      return null;
+    } finally {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    }
+  }
+
   // Service-specific contact timing messaging
   function timingMessageFor(serviceValue) {
     return "Thank you for submitting your profile - we'll be in touch within 1-3 business days.";
@@ -2544,7 +2623,7 @@
   function updatePhotoRequirement(wantsIntroductions) {
     MIN_PHOTOS = wantsIntroductions ? 2 : 1;
     if (uploadSubEl) {
-      uploadSubEl.textContent = `Minimum ${MIN_PHOTOS} photo${MIN_PHOTOS > 1 ? 's' : ''} required · Up to ${MAX_PHOTOS} photos · JPEG or PNG, 5MB max per photo`;
+      uploadSubEl.textContent = `Minimum ${MIN_PHOTOS} photo${MIN_PHOTOS > 1 ? 's' : ''} required · Up to ${MAX_PHOTOS} photos · JPEG or PNG · large photos are resized automatically`;
     }
     updatePhotoMeta();
   }
@@ -2566,29 +2645,47 @@
   }
 
   if (photoInput) {
-    photoInput.addEventListener('change', function() {
+    photoInput.addEventListener('change', async function() {
       const incoming = Array.from(this.files || []);
+      const maxBytes = MAX_FILE_SIZE_MB * 1024 * 1024;
       const oversized = [];
-      incoming.forEach(file => {
-        if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
-          oversized.push(file.name);
-          return;
+      const resized = [];
+
+      // Sequential (not Promise.all) so the photo grid fills in the order
+      // people picked their photos, and so we don't kick off several
+      // simultaneous canvas compressions on lower-end phones.
+      for (const file of incoming) {
+        let usableFile = file;
+        if (file.size > maxBytes) {
+          const shrunk = await compressImageFile(file, maxBytes);
+          if (shrunk) {
+            usableFile = shrunk;
+            resized.push(file.name);
+          } else {
+            oversized.push(file.name);
+            continue;
+          }
         }
-        const exists = selectedPhotos.some(f => f.name === file.name && f.size === file.size);
+        const exists = selectedPhotos.some(f => f.name === usableFile.name && f.size === usableFile.size);
         if (!exists && selectedPhotos.length < MAX_PHOTOS) {
-          selectedPhotos.push(file);
+          selectedPhotos.push(usableFile);
         }
-      });
+      }
+
       syncPhotoInput();
       renderPhotoGrid();
       updatePhotoMeta();
       const field = photoInput.closest('.field');
       if (field) {
-        const old = field.querySelector('.field-error-message');
-        if (old) old.remove();
+        const oldError = field.querySelector('.field-error-message');
+        if (oldError) oldError.remove();
+        const oldInfo = field.querySelector('.field-info-message');
+        if (oldInfo) oldInfo.remove();
       }
       if (oversized.length && field) {
-        addFieldMessage(field, `${oversized.length === 1 ? 'This photo is' : 'These photos are'} over ${MAX_FILE_SIZE_MB}MB and couldn't be added: ${oversized.join(', ')}. Please compress or choose a smaller file.`);
+        addFieldMessage(field, `${oversized.length === 1 ? 'This photo is' : 'These photos are'} too large to upload, even after resizing: ${oversized.join(', ')}. Please choose a smaller file.`);
+      } else if (resized.length && field) {
+        addFieldInfoMessage(field, `${resized.length === 1 ? 'One photo was' : `${resized.length} photos were`} automatically resized to fit the ${MAX_FILE_SIZE_MB}MB limit - no action needed.`);
       }
     });
   }
