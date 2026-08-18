@@ -763,7 +763,7 @@
 </div>
 <div class="field">
 <label>Star Sign <span class="req">*</span></label>
-<select name="star_sign">
+<select name="star_sign" required>
 <option value="">Select star sign</option>
 <option>♈ Aries (21 Mar – 19 Apr)</option>
 <option>♉ Taurus (20 Apr – 20 May)</option>
@@ -806,19 +806,19 @@
 <div class="field">
 <label>I am interested in dating… <span class="req">*</span></label>
 <div class="radio-pills">
-<label class="radio-pill"><input name="interested_in" type="radio" value="Men"/> Men</label>
-<label class="radio-pill"><input name="interested_in" type="radio" value="Women"/> Women</label>
-<label class="radio-pill"><input name="interested_in" type="radio" value="Both"/> Both</label>
-<label class="radio-pill"><input name="interested_in" type="radio" value="No preference"/> No preference</label>
+<label class="radio-pill"><input name="interested_in" required type="radio" value="Men"/> Men</label>
+<label class="radio-pill"><input name="interested_in" required type="radio" value="Women"/> Women</label>
+<label class="radio-pill"><input name="interested_in" required type="radio" value="Both"/> Both</label>
+<label class="radio-pill"><input name="interested_in" required type="radio" value="No preference"/> No preference</label>
 </div>
 </div>
 <div class="field">
 <label>What city or town are you based in? <span class="req">*</span></label>
-<input name="based_location" placeholder="e.g. London" type="text"/>
+<input name="based_location" placeholder="e.g. London" required type="text"/>
 </div>
 <div class="field">
 <label>Ethnicity <span class="req">*</span></label>
-<select name="ethnicity">
+<select name="ethnicity" required>
 <option value="">Select ethnicity</option>
 <option>White British</option>
 <option>White Irish</option>
@@ -845,7 +845,7 @@
 </div>
 <div class="field">
 <label>Country of Origin <span class="req">*</span></label>
-<input name="country_of_origin" placeholder="e.g. United Kingdom" type="text"/>
+<input name="country_of_origin" placeholder="e.g. United Kingdom" required type="text"/>
 </div>
 </div>
 <div class="field-group-label">Languages</div>
@@ -960,7 +960,7 @@
 <div class="fields-stack">
 <div class="field">
 <label>My living situation <span class="req">*</span></label>
-<select id="living-situation" name="living_situation">
+<select id="living-situation" name="living_situation" required>
 <option value="">Select living situation</option>
 <option>Home-owner &amp; live alone</option>
 <option>Home-owner &amp; living with flatmates</option>
@@ -977,7 +977,7 @@
 </div>
 <div class="field">
 <label>What is your highest level of education? <span class="req">*</span></label>
-<select name="education">
+<select name="education" required>
 <option value="">Select education level</option>
 <option>Secondary school (GCSEs / O-levels)</option>
 <option>A-levels / Sixth form</option>
@@ -993,11 +993,11 @@
 <div class="grid-2">
 <div class="field">
 <label>Current occupation <span class="req">*</span></label>
-<input name="occupation" placeholder="e.g. Marketing Manager, Doctor…" type="text"/>
+<input name="occupation" placeholder="e.g. Marketing Manager, Doctor…" required type="text"/>
 </div>
 <div class="field">
 <label>Profession level <span class="req">*</span></label>
-<select id="profession-level" name="profession_level">
+<select id="profession-level" name="profession_level" required>
 <option value="">Select profession level</option>
 <option>Early career</option>
 <option>Mid-Level professional</option>
@@ -1030,7 +1030,7 @@
 <div class="grid-2" style="margin-top:20px;">
 <div class="field">
 <label>Professional industry <span class="req">*</span></label>
-<input name="professional_industry" placeholder="e.g. Technology, Finance, Healthcare, Legal…" type="text"/>
+<input name="professional_industry" placeholder="e.g. Technology, Finance, Healthcare, Legal…" required type="text"/>
 </div>
 <div class="field">
 <label>Annual salary <span class="opt">(optional)</span></label>
@@ -1050,7 +1050,7 @@
 </div>
 <div class="field">
 <label>Where do you work from? <span class="req">*</span></label>
-<select id="work-location-select" name="work_location">
+<select id="work-location-select" name="work_location" required>
 <option value="">Select work location</option>
 <option>Fully remote</option>
 <option>Hybrid (mix of office and home)</option>
@@ -1062,7 +1062,7 @@
 </div>
 <div class="field">
 <label>What does your working life look like? <span class="req">*</span></label>
-<select id="working-life-select" name="work_arrangement">
+<select id="working-life-select" name="work_arrangement" required>
 <option value="">Select an option</option>
 <option>Standard 9-5, predictable hours</option>
 <option>Frequent travel for work</option>
@@ -1084,9 +1084,9 @@
 <div class="field">
 <label>Do you have children? <span class="req">*</span></label>
 <div class="radio-pills" id="has-children-group">
-<label class="radio-pill"><input name="has_children" type="radio" value="No"/> No</label>
-<label class="radio-pill"><input name="has_children" type="radio" value="Yes"/> Yes</label>
-<label class="radio-pill"><input name="has_children" type="radio" value="Prefer not to say"/> Prefer not to say</label>
+<label class="radio-pill"><input name="has_children" required type="radio" value="No"/> No</label>
+<label class="radio-pill"><input name="has_children" required type="radio" value="Yes"/> Yes</label>
+<label class="radio-pill"><input name="has_children" required type="radio" value="Prefer not to say"/> Prefer not to say</label>
 </div>
 </div>
 <div class="conditional" id="children-count">
