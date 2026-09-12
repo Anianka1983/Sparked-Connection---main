@@ -547,6 +547,16 @@
 <form accept-charset="UTF-8" id="questionnaire" novalidate>
 <div class="form-error-summary" id="form-error-summary" role="alert">Almost there - please complete the highlighted details before submitting.</div>
 <input type="hidden" name="_subject" value="New Sparked Connection Matchmaking Questionnaire">
+<!-- Honeypot: a field named to look worth filling in to a bot's autofill,
+     hidden off-screen (never display:none -- some bots skip those) so a
+     real visitor never sees or fills it. Any non-empty value here means
+     whatever submitted this isn't a person -- checked server-side in
+     lib/intake-security.ts. Deliberately a real field inside the <form> so
+     it flows through the existing FormData collection automatically. -->
+<div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+  <label for="website">Leave this field blank</label>
+  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+</div>
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <!-- SECTION 1: HOW CAN WE HELP (service selection + embedded interests) -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -1816,6 +1826,13 @@
 <div class="submit-wrap">
 <div class="submit-title">Ready to find your match?</div>
 <p class="submit-sub" id="submit-timing-msg">Thank you for submitting your profile - we'll be in touch within 1-3 business days.</p>
+<!-- Cloudflare Turnstile -- proves a human submitted this, checked
+     server-side against Cloudflare's own API before the CRM accepts
+     anything. Replace YOUR_TURNSTILE_SITE_KEY with the Site Key from
+     Cloudflare (Turnstile > your site) -- that key is meant to be public,
+     unlike the Secret Key which stays in Vercel's env vars only. -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<div class="cf-turnstile" data-sitekey="0x4AAAAAAExsZ2hUtz55GptX" style="margin-bottom:16px;"></div>
 <button class="submit-btn" type="submit">
     Submit My Profile
     <svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="18"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
@@ -1837,6 +1854,11 @@
   const FORM_ENDPOINT = 'https://formspree.io/f/xojynjke';
   const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/hello@sparkedconnection.com';
   const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyKrKHx4wZKvW-Xu7QLcH7Wc9H1WrOEVKdMR4iF_NrBJ7vJQjmqAieNV9JWISVxorhq/exec';
+
+  // Stamped once, when this script runs (i.e. when the page loads) -- sent
+  // to the CRM so it can reject a submission that arrives implausibly fast
+  // for a human filling in this long a form. See lib/intake-security.ts.
+  const FORM_RENDERED_AT = Date.now();
 
   const form = document.getElementById('questionnaire');
   const errorSummary = document.getElementById('form-error-summary');
@@ -2158,16 +2180,32 @@
     }
     const CRM_ENDPOINT = 'https://sparked-connection-crm.vercel.app/api/intake';
   const CRM_PHOTOS_ENDPOINT = 'https://sparked-connection-crm.vercel.app/api/intake/photos';
-  const CRM_INTAKE_SECRET = 'f84baf6a9ec790a9042614b84c88e28fc6ac4c10108f65c4bd0031c91c338afe';
+  // NOTE: the old CRM_INTAKE_SECRET constant that used to live here has been
+  // removed on purpose -- it was hardcoded in this public page's own JS,
+  // which means it was never actually secret (anyone could view-source this
+  // page and read it out, which is exactly what happened). The CRM no
+  // longer checks for it at all on these two endpoints; see
+  // lib/intake-security.ts in the sparked-crm repo for what replaced it
+  // (Turnstile + origin allowlist + rate limiting + a honeypot).
 
   async function submitToOurCRM(payload, photoFiles) {
+    // Turnstile's widget writes the solved token into a hidden input it
+    // creates itself once the visitor is verified -- read it fresh at
+    // submit time rather than caching it, since a token can expire if the
+    // form was left open a long time.
+    const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
+
+    const crmPayload = {
+      ...payload,
+      turnstile_token: turnstileToken,
+      form_rendered_at: FORM_RENDERED_AT,
+      brand: 'Sparked Connection'
+    };
+
     const res = await fetch(CRM_ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-intake-secret': CRM_INTAKE_SECRET
-      },
-      body: JSON.stringify(payload)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(crmPayload)
     });
 
     if (!res.ok) {
@@ -2176,17 +2214,17 @@
       throw new Error(`CRM submission failed: ${res.status} ${details}`);
     }
 
-    const { id } = await res.json();
+    const { id, upload_token } = await res.json();
 
     if (photoFiles && photoFiles.length > 0 && id) {
       const photoForm = new FormData();
       photoForm.append('client_id', id);
+      photoForm.append('upload_token', upload_token || '');
       photoFiles.forEach(file => photoForm.append('file', file));
 
       try {
         await fetch(CRM_PHOTOS_ENDPOINT, {
           method: 'POST',
-          headers: { 'x-intake-secret': CRM_INTAKE_SECRET },
           body: photoForm
         });
       } catch (err) {
