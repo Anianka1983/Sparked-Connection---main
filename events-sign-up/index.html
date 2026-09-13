@@ -300,6 +300,15 @@
 
         <input type="hidden" name="_subject" value="New Events Signup - Sparked Connection">
 
+      <!-- Anti-spam honeypot: real visitors never see or fill this in -->
+      <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+        <label for="website">Leave this field blank</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAExsZ2hUtz55GptX" style="margin-bottom:16px;"></div>
+
         <div class="btn-row">
           <button type="submit" class="btn btn-primary" id="submit-btn">
             Sign me up
@@ -325,6 +334,8 @@
 </footer>
 
 <script>
+const EVENTS_RENDERED_AT = Date.now();
+
 document.querySelectorAll('.event-checkbox').forEach(function(label) {
   var cb = label.querySelector('input[type="checkbox"]');
   cb.addEventListener('change', function() {
@@ -414,11 +425,12 @@ async function handleSubmit(event) {
     // below -- if the CRM happens to be briefly unreachable, the visitor
     // still sees a normal confirmation and their sign-up is still safely
     // recorded via FormBold/Formspree above.
+    var turnstileToken = (document.querySelector('[name="cf-turnstile-response"]') || {}).value || '';
+    var honeypotValue = (document.getElementById('website') || {}).value || '';
     var crmRequest = fetch('https://sparked-connection-crm.vercel.app/api/public/event-interest', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-intake-secret': 'f84baf6a9ec790a9042614b84c88e28fc6ac4c10108f65c4bd0031c91c338afe'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         firstName: firstName,
@@ -427,7 +439,10 @@ async function handleSubmit(event) {
         phone: phone || null,
         city: city,
         age: age,
-        eventsInterestedIn: eventNames.join(', ')
+        eventsInterestedIn: eventNames.join(', '),
+        turnstile_token: turnstileToken,
+        form_rendered_at: EVENTS_RENDERED_AT,
+        website: honeypotValue
       })
     }).catch(function(e) { console.error('[SC] Sparked CRM failed:', e); });
 
