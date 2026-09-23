@@ -150,7 +150,8 @@
     input.error, select.error { border-color: #e05c7a; box-shadow: 0 0 0 3px rgba(224,92,122,0.12); }
     .field-error { font-size: 0.76rem; color: #c0445f; margin-top: 5px; display: none; }
     .field-error.visible { display: block; }
-    .dob-age-display { font-size: 0.78rem; color: var(--muted); margin-top: 7px; min-height: 1.1em; }
+    .dob-age-display { font-size: 0.85rem; font-weight: 600; color: var(--rose); margin-top: 8px; min-height: 1.2em; }
+    .dob-age-display.invalid { color: #c0445f; }
 
     /* ── CONFIRM CARDS (Yes/No · Man/Woman style questions) ── */
     .confirm-card { background: var(--cream); border: 1.5px solid var(--sand); border-radius: 16px; padding: 24px 20px; margin-bottom: 20px; text-align: center; }
@@ -291,8 +292,8 @@
           <div class="field-group" id="field-dob">
             <label for="dob">Date of birth <span class="req">*</span></label>
             <input type="date" id="dob" name="dob" autocomplete="bday" />
-            <div class="dob-age-display" id="dob-age-display"></div>
-            <div class="field-error">Please enter your date of birth — you must be 18 or over to attend.</div>
+            <div class="dob-age-display" id="dob-age-display">Your age is calculated automatically once you enter your date of birth.</div>
+            <div class="field-error">Please enter your date of birth — you must be 26 or over to attend.</div>
           </div>
         </div>
 
@@ -390,19 +391,29 @@ var dobInput = document.getElementById('dob');
 var ageDisplay = document.getElementById('dob-age-display');
 if (dobInput) {
   var maxDob = new Date();
-  maxDob.setFullYear(maxDob.getFullYear() - 18);
+  maxDob.setFullYear(maxDob.getFullYear() - 26);
   dobInput.max = maxDob.toISOString().slice(0, 10);
   var minDob = new Date();
   minDob.setFullYear(minDob.getFullYear() - 100);
   dobInput.min = minDob.toISOString().slice(0, 10);
 
-  dobInput.addEventListener('change', function () {
-    var age = computeAge(this.value);
-    if (age === null) { ageDisplay.textContent = ''; return; }
-    ageDisplay.textContent = age >= 18
-      ? ('You will be ' + age + ' years old.')
-      : ('You must be 18 or over to attend — you are currently ' + age + '.');
-  });
+  function updateAgeDisplay() {
+    var age = computeAge(dobInput.value);
+    if (age === null) {
+      ageDisplay.textContent = 'Your age is calculated automatically once you enter your date of birth.';
+      ageDisplay.classList.remove('invalid');
+      return;
+    }
+    if (age >= 26) {
+      ageDisplay.textContent = 'You are ' + age + ' years old.';
+      ageDisplay.classList.remove('invalid');
+    } else {
+      ageDisplay.textContent = 'You must be 26 or over to attend — you are currently ' + age + '.';
+      ageDisplay.classList.add('invalid');
+    }
+  }
+  dobInput.addEventListener('change', updateAgeDisplay);
+  dobInput.addEventListener('input', updateAgeDisplay);
 }
 
 document.querySelectorAll('.toggle-option input[type="radio"]').forEach(function (radio) {
@@ -442,7 +453,7 @@ async function handleSubmit(event) {
   var dobVal = document.getElementById('dob').value;
   var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var ageNum = computeAge(dobVal);
-  var dobValid = !!dobVal && ageNum !== null && ageNum >= 18 && ageNum <= 99;
+  var dobValid = !!dobVal && ageNum !== null && ageNum >= 26 && ageNum <= 99;
   var futureChecked = document.querySelector('input[name="future_events"]:checked');
   var genderChecked = document.querySelector('input[name="gender"]:checked');
 
