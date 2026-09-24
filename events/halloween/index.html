@@ -277,9 +277,10 @@
             <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
             <div class="field-error">Please enter a valid email address.</div>
           </div>
-          <div class="field-group">
-            <label for="phone">Phone number</label>
+          <div class="field-group" id="field-phone">
+            <label for="phone">Phone number <span class="req">*</span></label>
             <input type="tel" id="phone" name="phone" placeholder="+44 7700 900123" autocomplete="tel" />
+            <div class="field-error">Please enter your phone number.</div>
           </div>
         </div>
 
@@ -460,12 +461,13 @@ async function handleSubmit(event) {
   setError('field-first', !firstName);
   setError('field-last', !lastName);
   setError('field-email', !email || !emailRe.test(email));
+  setError('field-phone', !phone);
   setError('field-city', !city);
   setError('field-dob', !dobValid);
   setError('field-future-events', !futureChecked);
   setError('field-gender', !genderChecked);
 
-  var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !city || !dobValid || !futureChecked || !genderChecked;
+  var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !phone || !city || !dobValid || !futureChecked || !genderChecked;
 
   if (hasError) return false;
 
@@ -478,7 +480,7 @@ async function handleSubmit(event) {
       first_name: firstName,
       last_name: lastName,
       email: email,
-      phone: phone || 'Not provided',
+      phone: phone,
       city: city,
       date_of_birth: dobVal,
       age: String(ageNum),
@@ -523,7 +525,7 @@ async function handleSubmit(event) {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        phone: phone || null,
+        phone: phone,
         city: city,
         dateOfBirth: dobVal,
         age: String(ageNum),
