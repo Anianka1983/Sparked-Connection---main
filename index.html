@@ -1217,6 +1217,26 @@ section,
     .sc-hw-scene{
       position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;
     }
+    .sc-hw-web{
+      position:absolute;top:-3px;left:-3px;opacity:.55;
+    }
+    .sc-hw-star{
+      position:absolute;width:2px;height:2px;border-radius:50%;
+      background:#fdf9f5;
+      box-shadow:0 0 3px 1px rgba(253,249,245,.65);
+      animation:sc-hw-twinkle 2.6s ease-in-out infinite;
+    }
+    @keyframes sc-hw-twinkle{
+      0%,100%{opacity:.2}
+      50%{opacity:1}
+    }
+    .sc-hw-star1{left:8%;top:22%;animation-delay:0s}
+    .sc-hw-star2{left:18%;top:58%;animation-delay:.5s}
+    .sc-hw-star3{left:32%;top:18%;animation-delay:1s}
+    .sc-hw-star4{left:50%;top:62%;animation-delay:.2s}
+    .sc-hw-star5{left:64%;top:28%;animation-delay:1.4s}
+    .sc-hw-star6{left:76%;top:50%;animation-delay:.8s}
+    .sc-hw-star7{left:90%;top:65%;animation-delay:1.7s}
     .sc-hw-moon{
       position:absolute;right:44px;top:50%;transform:translateY(-50%);
       width:16px;height:16px;border-radius:50%;
@@ -1229,21 +1249,34 @@ section,
       width:16px;height:16px;border-radius:50%;
       background:#1b1230;
     }
-    .sc-hw-bat{
+    .sc-hw-mask{
       position:absolute;left:-24px;top:60%;
-      animation:sc-hw-fly 6s linear infinite;
+      animation:sc-hw-fly 13s linear infinite;
+    }
+    .sc-hw-mask2{
+      position:absolute;left:-24px;top:28%;
+      animation:sc-hw-fly 16s linear infinite;
+      animation-delay:5s;
+      opacity:.8;
+    }
+    .sc-hw-mask3{
+      position:absolute;left:-24px;top:75%;
+      animation:sc-hw-fly 14.5s linear infinite;
+      animation-delay:8.2s;
+      opacity:.85;
+    }
+    .sc-hw-mask4{
+      position:absolute;left:-24px;top:15%;
+      animation:sc-hw-fly 17.5s linear infinite;
+      animation-delay:1.4s;
+      opacity:.75;
     }
     @keyframes sc-hw-fly{
-      0%   { left:-24px; top:65%; opacity:0; transform:translateY(0) scale(.85); }
+      0%   { left:-24px; opacity:0; transform:translateY(0) rotate(-6deg) scale(.85); }
       8%   { opacity:1; }
-      50%  { top:35%; transform:translateY(-4px) scale(1); }
+      50%  { transform:translateY(-4px) rotate(4deg) scale(1); }
       92%  { opacity:1; }
-      100% { left:calc(100% + 24px); top:55%; opacity:0; transform:translateY(0) scale(.85); }
-    }
-    .sc-hw-bat path{ animation:sc-hw-flap .35s ease-in-out infinite alternate; transform-origin:center; }
-    @keyframes sc-hw-flap{
-      0%{ transform:scaleY(1); }
-      100%{ transform:scaleY(.72); }
+      100% { left:calc(100% + 24px); opacity:0; transform:translateY(0) rotate(-6deg) scale(.85); }
     }
     .sc-event-banner-link{
       position:relative;z-index:1;
@@ -1254,15 +1287,14 @@ section,
     .sc-event-banner-link:hover .sc-event-banner-cta{
       background:#f2c88a;transform:translateY(-1px);
     }
-    .sc-event-banner-dot{
-      display:inline-flex;width:7px;height:7px;border-radius:999px;
-      background:#e0a961;flex-shrink:0;
-      animation:sc-banner-pulse 2.2s ease-in-out infinite;
+    .sc-event-banner-pumpkin{
+      flex-shrink:0;display:inline-flex;
+      animation:sc-pumpkin-glow 2.2s ease-in-out infinite;
     }
-    @keyframes sc-banner-pulse{
-      0%{box-shadow:0 0 0 0 rgba(224,169,97,.55)}
-      70%{box-shadow:0 0 0 7px rgba(224,169,97,0)}
-      100%{box-shadow:0 0 0 0 rgba(224,169,97,0)}
+    @keyframes sc-pumpkin-glow{
+      0%{ filter:drop-shadow(0 0 0px rgba(226,121,58,.85)); }
+      50%{ filter:drop-shadow(0 0 3px rgba(255,163,84,.95)) drop-shadow(0 0 7px rgba(226,121,58,.65)); }
+      100%{ filter:drop-shadow(0 0 0px rgba(226,121,58,.85)); }
     }
     .sc-event-banner-date{
       font-size:.68rem;font-weight:700;letter-spacing:.06em;
@@ -1302,13 +1334,59 @@ section,
 
 <div id="sc-event-banner">
   <div class="sc-hw-scene" aria-hidden="true">
+    <svg class="sc-hw-web" viewBox="0 0 100 100" width="34" height="34">
+      <g fill="none" stroke="rgba(253,249,245,.5)" stroke-width="2">
+        <line x1="0" y1="0" x2="100" y2="0"/>
+        <line x1="0" y1="0" x2="100" y2="40"/>
+        <line x1="0" y1="0" x2="100" y2="100"/>
+        <line x1="0" y1="0" x2="40" y2="100"/>
+        <line x1="0" y1="0" x2="0" y2="100"/>
+        <path d="M25 0 Q30 15 20 25 Q10 30 0 25"/>
+        <path d="M55 0 Q65 30 40 45 Q20 55 0 50"/>
+        <path d="M85 0 Q95 55 55 75 Q30 85 0 80"/>
+      </g>
+    </svg>
+    <span class="sc-hw-star sc-hw-star1" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star2" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star3" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star4" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star5" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star6" aria-hidden="true"></span>
+    <span class="sc-hw-star sc-hw-star7" aria-hidden="true"></span>
     <span class="sc-hw-moon"></span>
-    <svg class="sc-hw-bat" viewBox="0 0 24 12" width="22" height="11">
-      <path d="M12 6 C10 2 6 1 2 3 C5 4 7 5.5 9 6 C7 6.5 5 8 2 9 C6 11 10 10 12 6 C14 10 18 11 22 9 C19 8 17 6.5 15 6 C17 5.5 19 4 22 3 C18 1 14 2 12 6 Z" fill="#150c26"/>
+    <svg class="sc-hw-mask" viewBox="0 0 24 12" width="20" height="10">
+      <path d="M1 6 C3 2 7 1 12 3 C17 1 21 2 23 6 C19 9 15 5.5 12 6 C9 5.5 5 9 1 6 Z" fill="#a3283b"/>
+      <ellipse cx="7.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+      <ellipse cx="16.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+    </svg>
+    <svg class="sc-hw-mask2" viewBox="0 0 24 12" width="16" height="8">
+      <path d="M1 6 C3 2 7 1 12 3 C17 1 21 2 23 6 C19 9 15 5.5 12 6 C9 5.5 5 9 1 6 Z" fill="#d97b3f"/>
+      <ellipse cx="7.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+      <ellipse cx="16.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+    </svg>
+    <svg class="sc-hw-mask3" viewBox="0 0 24 12" width="18" height="9">
+      <path d="M1 6 C3 2 7 1 12 3 C17 1 21 2 23 6 C19 9 15 5.5 12 6 C9 5.5 5 9 1 6 Z" fill="#7a1f2b"/>
+      <ellipse cx="7.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+      <ellipse cx="16.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+    </svg>
+    <svg class="sc-hw-mask4" viewBox="0 0 24 12" width="22" height="11">
+      <path d="M1 6 C3 2 7 1 12 3 C17 1 21 2 23 6 C19 9 15 5.5 12 6 C9 5.5 5 9 1 6 Z" fill="#e2793a"/>
+      <ellipse cx="7.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
+      <ellipse cx="16.5" cy="4.8" rx="1.5" ry="1" fill="#150c26"/>
     </svg>
   </div>
   <a class="sc-event-banner-link" href="https://sparkedconnection.com/events/halloween" target="_blank" rel="noopener noreferrer">
-    <span class="sc-event-banner-dot" aria-hidden="true"></span>
+    <svg class="sc-event-banner-pumpkin" viewBox="0 0 14 14" width="21" height="21" aria-hidden="true">
+      <rect x="6.3" y="1.1" width="1.4" height="2.6" rx="0.6" fill="#4a7c3f"/>
+      <ellipse cx="7" cy="8.6" rx="5.4" ry="4.2" fill="#e2793a"/>
+      <path d="M7 4.5 C6.6 8.6 6.6 8.6 7 12.6" stroke="#b85a25" stroke-width=".55" fill="none" stroke-linecap="round"/>
+      <path d="M3.5 5.3 C4.3 8.6 4.3 8.6 3.5 11.7" stroke="#b85a25" stroke-width=".55" fill="none" stroke-linecap="round"/>
+      <path d="M10.5 5.3 C9.7 8.6 9.7 8.6 10.5 11.7" stroke="#b85a25" stroke-width=".55" fill="none" stroke-linecap="round"/>
+      <path d="M4.3 7.3 L6.1 7.3 L5.2 8.9 Z" fill="#150c26"/>
+      <path d="M7.9 7.3 L9.7 7.3 L8.8 8.9 Z" fill="#150c26"/>
+      <path d="M6.4 9.2 L7.6 9.2 L7 10.3 Z" fill="#150c26"/>
+      <path d="M3.7 10.6 L4.7 12 L5.6 10.9 L6.6 12.1 L7.4 10.9 L8.2 12.1 L9.2 10.9 L10.3 10.9 L10.3 9.9 L3.7 9.9 Z" fill="#150c26"/>
+    </svg>
     <span class="sc-event-banner-date" id="sc-event-countdown">NEW EVENT</span>
     <span class="sc-event-banner-text"><strong>A Masked Halloween Evening</strong><span class="sc-event-banner-sub"> — Central London, eye masks essential.</span></span>
     <span class="sc-event-banner-cta">Reserve my place <span aria-hidden="true">&rarr;</span></span>
