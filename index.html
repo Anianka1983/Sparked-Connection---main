@@ -1205,8 +1205,8 @@ section,
     #sc-event-banner{
       position:fixed;top:0;left:0;right:0;z-index:60;
       display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(90deg,hsl(220 55% 18%) 0%,hsl(220 50% 25%) 50%,hsl(220 55% 18%) 100%);
-      border-bottom:1px solid hsl(32 85% 55% / .35);
+      background:linear-gradient(90deg,#1b1230 0%,#3d2a5c 50%,#1b1230 100%);
+      border-bottom:1px solid rgba(224,169,97,.35);
       padding:9px 42px 9px 14px;
       font-family:'Inter',system-ui,sans-serif;
       box-shadow:0 2px 14px rgba(0,0,0,.18);
@@ -1214,39 +1214,36 @@ section,
       overflow:hidden;
     }
     #sc-event-banner.sc-hidden{display:none}
-    .sc-golf-hole-scene{
+    .sc-hw-scene{
       position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;
     }
-    .sc-golf-hole{
-      position:absolute;right:57px;bottom:9px;
-      width:13px;height:5px;border-radius:50%;
-      background:radial-gradient(ellipse at center, #05070a 0%, #0f1b2f 75%, transparent 100%);
+    .sc-hw-moon{
+      position:absolute;right:44px;top:50%;transform:translateY(-50%);
+      width:16px;height:16px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, #f2c88a 0%, #e0a961 60%, transparent 100%);
+      box-shadow:0 0 10px 2px rgba(224,169,97,.35);
+      opacity:.85;
     }
-    .sc-flagstick{ position:absolute;right:48px;bottom:6px; }
-    .sc-flag{ transform-origin:2px 4.5px; animation:sc-flag-flutter 1.8s ease-in-out infinite; }
-    @keyframes sc-flag-flutter{
-      0%,100%{ transform:skewX(0deg); }
-      50%{ transform:skewX(-10deg); }
+    .sc-hw-moon:before{
+      content:"";position:absolute;top:-2px;left:4px;
+      width:16px;height:16px;border-radius:50%;
+      background:#1b1230;
     }
-    .sc-golf-ball2{
-      position:absolute;left:-16px;bottom:8px;
-      width:10px;height:10px;border-radius:50%;
-      background:radial-gradient(circle at 35% 30%, #ffffff 0%, #f0f0f0 55%, #d4d4d4 100%);
-      box-shadow:inset -1px -1px 2px rgba(0,0,0,.28), inset 1px 1px 1px rgba(255,255,255,.9);
-      animation:sc-golf-roll 5s ease-in-out infinite;
+    .sc-hw-bat{
+      position:absolute;left:-24px;top:60%;
+      animation:sc-hw-fly 6s linear infinite;
     }
-    .sc-golf-ball2:before{
-      content:"";position:absolute;inset:0;border-radius:50%;
-      background-image:radial-gradient(circle, rgba(0,0,0,.18) .5px, transparent .5px);
-      background-size:3px 3px;background-position:.5px .5px;
+    @keyframes sc-hw-fly{
+      0%   { left:-24px; top:65%; opacity:0; transform:translateY(0) scale(.85); }
+      8%   { opacity:1; }
+      50%  { top:35%; transform:translateY(-4px) scale(1); }
+      92%  { opacity:1; }
+      100% { left:calc(100% + 24px); top:55%; opacity:0; transform:translateY(0) scale(.85); }
     }
-    @keyframes sc-golf-roll{
-      0%   { left:-16px; bottom:8px; opacity:1; transform:rotate(0deg) scale(1); }
-      62%  { left:calc(100% - 66px); bottom:8px; opacity:1; transform:rotate(620deg) scale(1); }
-      70%  { left:calc(100% - 63px); bottom:3px; opacity:1; transform:rotate(660deg) scale(.5); }
-      76%  { left:calc(100% - 61px); bottom:0px; opacity:0; transform:rotate(680deg) scale(.15); }
-      77%  { left:-16px; bottom:8px; opacity:0; transform:rotate(0deg) scale(1); }
-      100% { left:-16px; bottom:8px; opacity:0; transform:rotate(0deg) scale(1); }
+    .sc-hw-bat path{ animation:sc-hw-flap .35s ease-in-out infinite alternate; transform-origin:center; }
+    @keyframes sc-hw-flap{
+      0%{ transform:scaleY(1); }
+      100%{ transform:scaleY(.72); }
     }
     .sc-event-banner-link{
       position:relative;z-index:1;
@@ -1255,21 +1252,21 @@ section,
       max-width:100%;
     }
     .sc-event-banner-link:hover .sc-event-banner-cta{
-      background:hsl(35 80% 70%);transform:translateY(-1px);
+      background:#f2c88a;transform:translateY(-1px);
     }
     .sc-event-banner-dot{
       display:inline-flex;width:7px;height:7px;border-radius:999px;
-      background:hsl(32 85% 55%);flex-shrink:0;
+      background:#e0a961;flex-shrink:0;
       animation:sc-banner-pulse 2.2s ease-in-out infinite;
     }
     @keyframes sc-banner-pulse{
-      0%{box-shadow:0 0 0 0 rgba(230,169,97,.55)}
-      70%{box-shadow:0 0 0 7px rgba(230,169,97,0)}
-      100%{box-shadow:0 0 0 0 rgba(230,169,97,0)}
+      0%{box-shadow:0 0 0 0 rgba(224,169,97,.55)}
+      70%{box-shadow:0 0 0 7px rgba(224,169,97,0)}
+      100%{box-shadow:0 0 0 0 rgba(224,169,97,0)}
     }
     .sc-event-banner-date{
       font-size:.68rem;font-weight:700;letter-spacing:.06em;
-      color:#fdf9f5;background:hsl(340 55% 45%);
+      color:#fdf9f5;background:#6b5b95;
       padding:2px 8px;border-radius:6px;white-space:nowrap;
     }
     .sc-event-banner-text{
@@ -1279,7 +1276,7 @@ section,
     .sc-event-banner-cta{
       display:inline-flex;align-items:center;gap:4px;
       font-size:.76rem;font-weight:600;letter-spacing:.02em;
-      color:hsl(220 55% 18%);background:hsl(32 85% 55%);
+      color:#1b1230;background:#e0a961;
       padding:5px 13px;border-radius:999px;white-space:nowrap;
       transition:transform .25s ease,background .25s ease;
     }
@@ -1304,19 +1301,17 @@ section,
 <body>
 
 <div id="sc-event-banner">
-  <div class="sc-golf-hole-scene" aria-hidden="true">
-    <span class="sc-golf-hole"></span>
-    <svg class="sc-flagstick" viewBox="0 0 14 22" width="19" height="29">
-      <line x1="2" y1="1" x2="2" y2="21" stroke="#fdf9f5" stroke-width="1.8" stroke-linecap="round"/>
-      <path class="sc-flag" d="M2 2 L12 5 L2 8 Z" fill="#2E7D4F"/>
+  <div class="sc-hw-scene" aria-hidden="true">
+    <span class="sc-hw-moon"></span>
+    <svg class="sc-hw-bat" viewBox="0 0 24 12" width="22" height="11">
+      <path d="M12 6 C10 2 6 1 2 3 C5 4 7 5.5 9 6 C7 6.5 5 8 2 9 C6 11 10 10 12 6 C14 10 18 11 22 9 C19 8 17 6.5 15 6 C17 5.5 19 4 22 3 C18 1 14 2 12 6 Z" fill="#150c26"/>
     </svg>
-    <span class="sc-golf-ball2"></span>
   </div>
-  <a class="sc-event-banner-link" href="https://events.sparkedconnection.com/rsvp/1e47cde8-2914-4879-b6ba-35890c2410f5" target="_blank" rel="noopener noreferrer">
+  <a class="sc-event-banner-link" href="https://sparkedconnection.com/events/halloween" target="_blank" rel="noopener noreferrer">
     <span class="sc-event-banner-dot" aria-hidden="true"></span>
-    <span class="sc-event-banner-date" id="sc-event-countdown">14 AUG</span>
-    <span class="sc-event-banner-text"><strong>Join our &lsquo;Swing &amp; Mingle&rsquo; Singles Golf Event</strong><span class="sc-event-banner-sub"> — Friday 14th August.</span></span>
-    <span class="sc-event-banner-cta">RSVP now <span aria-hidden="true">&rarr;</span></span>
+    <span class="sc-event-banner-date" id="sc-event-countdown">NEW EVENT</span>
+    <span class="sc-event-banner-text"><strong>A Masked Halloween Evening</strong><span class="sc-event-banner-sub"> — Central London, eye masks essential.</span></span>
+    <span class="sc-event-banner-cta">Reserve my place <span aria-hidden="true">&rarr;</span></span>
   </a>
   <button type="button" id="sc-event-banner-close" aria-label="Dismiss event announcement">&times;</button>
 </div>
@@ -2538,11 +2533,9 @@ Sparked Connection exists to change that. I organise events where you actually m
 
 <script>
 (function () {
-  var EVENT_KEY = 'sc_event_banner_dismissed_1e47cde8';
-  var EVENT_DATE = new Date(2026, 7, 14); // 14 August 2026
+  var EVENT_KEY = 'sc_event_banner_dismissed_halloween2026';
   var banner = document.getElementById('sc-event-banner');
   var closeBtn = document.getElementById('sc-event-banner-close');
-  var countdownEl = document.getElementById('sc-event-countdown');
   var nav = document.querySelector('nav.fixed');
   var hero = document.getElementById('sc-hero');
 
@@ -2569,28 +2562,10 @@ Sparked Connection exists to change that. I organise events where you actually m
     try { localStorage.setItem(EVENT_KEY, '1'); } catch (e) {}
   }
 
-  function updateCountdown() {
-    if (!countdownEl) return true;
-    var now = new Date();
-    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var diffDays = Math.round((EVENT_DATE - today) / 86400000);
-    if (diffDays > 1) {
-      countdownEl.textContent = diffDays + ' DAYS TO GO';
-    } else if (diffDays === 1) {
-      countdownEl.textContent = 'TOMORROW';
-    } else if (diffDays === 0) {
-      countdownEl.textContent = 'TODAY';
-    } else {
-      return false; // event has passed
-    }
-    return true;
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     var dismissed = false;
     try { dismissed = localStorage.getItem(EVENT_KEY) === '1'; } catch (e) {}
-    var stillUpcoming = updateCountdown();
-    if ((dismissed || !stillUpcoming) && banner) {
+    if (dismissed && banner) {
       banner.classList.add('sc-hidden');
       applyOffset(0);
     } else {
