@@ -1328,6 +1328,56 @@ section,
       .sc-event-banner-sub{display:none}
     }
   </style>
+
+<style id="sc-faq-styles">
+  #faq .faq-item {
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  #faq .faq-item:first-child {
+    border-top: 1px solid hsl(var(--border));
+  }
+  #faq .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 22px 4px;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-heading, inherit);
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: hsl(var(--primary));
+  }
+  #faq .faq-question::-webkit-details-marker { display: none; }
+  #faq .faq-question .faq-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1.5px solid hsl(var(--primary) / 0.35);
+    color: hsl(var(--primary));
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  #faq details[open] .faq-icon {
+    transform: rotate(45deg);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  #faq .faq-answer {
+    padding: 0 4px 24px 4px;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 68ch;
+  }
+</style>
 </head>
 
 <body>
@@ -1500,6 +1550,9 @@ section,
           </a>
 <a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="https://sparkedconnection.com/the-science/">
            The Science
+          </a>
+<a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="#faq">
+           FAQ
           </a>
 <a class="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium text-sm" href="https://articles.sparkedconnection.com/" rel="noopener noreferrer" target="_blank">
            Journal
@@ -2481,6 +2534,136 @@ Sparked Connection exists to change that. I organise events where you actually m
   shell.addEventListener('focusout', start);
 })();
 </script>
+
+<section class="py-14 md:py-20 bg-background" id="faq">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto" style="margin-bottom: 40px;">
+      <p class="section-eyebrow">GOT QUESTIONS?</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p class="editorial-body" style="color: hsl(var(--muted-foreground)); font-size: 1.05rem; line-height: 1.75;">
+        Everything you need to know before you get started. Can't find your answer? Reach out and we'll help directly.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>How does the matching process work?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            It starts with a private, one-to-one consultation so we can understand your values, lifestyle, and what
+            a meaningful relationship looks like to you. From there, we draw on compatibility science and personal
+            insight from your matchmaker to introduce you to people we believe are genuinely right for you - not
+            just a list of profiles to swipe through.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>What membership tiers are available, and what do they cost?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            Bronze is free and includes access to our Singles Network. Gold (&pound;1,500, 12 months) includes
+            1:1 consultations, a bespoke search, dating coaching, VIP event access, and a professional photoshoot,
+            with a guaranteed minimum of 5 curated introductions. Platinum (&pound;2,800) gives two people - you and
+            a friend - the full Gold experience each, with priority matching and a dedicated matchmaker.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>Is there a guarantee on introductions?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            Gold and Platinum members receive a guaranteed minimum of 5 curated introductions over their 12-month
+            membership, subject to eligibility, responsiveness, and active participation. If the minimum isn't met
+            within the period, your membership is extended at no extra cost.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>What is the Second Match Promise?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            It's an optional &pound;150 add-on available when two Bronze members are matched with one another - only
+            one person needs to pay. It guarantees a second introduction if the first match isn't the right fit,
+            with no fixed time limit.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>Can I come to events without a paid membership?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            Yes - our events, like our upcoming Halloween evening, are open to members across all tiers, with some
+            events ticketed separately from membership fees. Keep an eye on the Events section on this page for
+            what's coming up next.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>Is my information kept private?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            Yes. Your details are handled discreetly and are never shared without your consent. Matchmaking is a
+            personal process, and confidentiality is core to how we work.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>What's your refund and cancellation policy?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            Bronze is free, so no refund applies. Gold, Platinum, and Second Match Promise fees are payable in
+            advance and follow our full Refund &amp; Cancellation Policy, which covers cooling-off periods,
+            exceptional circumstances, and your statutory rights. Get in touch and we'll talk you through it.
+          </p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span>How does Refer a Friend work?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="faq-answer">
+            If you know someone who'd be a great fit for Sparked Connection, send them our way. Visit the Refer a
+            Friend page for the details on how it works.
+          </p>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <section class="pt-0 pb-8 md:pb-12 bg-primary relative overflow-hidden" style="width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);">
   <div class="container mx-auto px-4 relative z-10">
