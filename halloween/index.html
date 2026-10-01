@@ -252,7 +252,7 @@
 <section class="hero">
   <p class="hero-eyebrow">Singles Evening</p>
   <h1>A Masked <em class="gold-em">Halloween</em> Evening</h1>
-  <p class="hero-lede">We're hosting a new event — an elegant masked evening for singles, set in Central London.</p>
+  <p class="hero-lede">We're hosting a new event — an elegant masked evening for singles, at The Arts Theatre Club in Soho.</p>
   <div class="hero-pills">
     <span class="pill">Singles Event</span>
     <span class="pill pill-accent">&#127917; Eye Mask Mandatory</span>
@@ -260,9 +260,9 @@
   </div>
   <p class="hero-tagline">Glamour encouraged. Mystery guaranteed.</p>
   <div class="hero-dots">
-    <span class="hero-dot">Central London</span>
+    <span class="hero-dot">The Arts Theatre Club, Soho</span>
+    <span class="hero-dot">Friday 30 October 2026, 6:30pm</span>
     <span class="hero-dot">Approx. &pound;20&ndash;25 (to be confirmed)</span>
-    <span class="hero-dot">Date &amp; venue to be confirmed soon</span>
   </div>
 </section>
 
@@ -273,7 +273,7 @@
         <div class="step-header">
           <span class="step-tag">Halloween Event</span>
           <h2 class="step-title">Reserve Your Place</h2>
-          <p class="step-sub">Share your details below — we'll confirm the exact date and venue once numbers are finalised.</p>
+          <p class="step-sub">Share your details below — we'll see you at The Arts Theatre Club (Soho) on Friday 30 October 2026, from 6:30pm.</p>
         </div>
 
         <div class="field-row">
@@ -381,7 +381,7 @@
         <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l7 7 13-13"/></svg>
       </div>
       <h2>You're on the list</h2>
-      <p id="ty-msg">Thank you — you're booked in for A Masked Halloween Evening. We'll confirm the exact date and venue shortly.</p>
+      <p id="ty-msg">Thank you — you're booked in for A Masked Halloween Evening at The Arts Theatre Club (Soho) on Friday 30 October 2026, 6:30pm start.</p>
       <p>Curious if you'll be matched with someone from the night? Complete the <a href="https://sparkedconnection.com/form/" target="_blank" rel="noopener noreferrer">Sparked Connection questionnaire</a> and we'll be in touch afterwards to let you know.</p>
       <p>Please note our emails can sometimes land in your Junk or Spam folder - add <strong style="color:var(--navy)">hello@sparkedconnection.com</strong> to your safe senders list so you never miss an invite.</p>
     </div>
@@ -562,7 +562,7 @@ async function handleSubmit(event) {
     });
 
     if (succeeded) {
-      document.getElementById('ty-msg').textContent = 'Thanks ' + firstName + '! You\'re booked in for A Masked Halloween Evening. We\'ll confirm the exact date and venue shortly.';
+      document.getElementById('ty-msg').textContent = 'Thanks ' + firstName + '! You\'re booked in for A Masked Halloween Evening at The Arts Theatre Club (Soho) on Friday 30 October 2026, 6:30pm start.';
       document.getElementById('form-content').style.display = 'none';
       document.getElementById('success-screen').classList.add('show');
       form.reset();
