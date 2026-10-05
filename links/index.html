@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sparked Connection | Links</title>
+<meta name="description" content="Events, consultations and membership from Sparked Connection, a professional matchmaking agency for busy, relationship-minded people across the UK.">
+<link rel="canonical" href="https://sparkedconnection.com/links">
+<meta property="og:title" content="Sparked Connection | Links">
+<meta property="og:description" content="Events, consultations and membership from Sparked Connection.">
+<meta property="og:image" content="https://sparkedconnection.com/og-image.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1e2d4a; --navy-light:#2c3a52;
+    --rose:#ce7e98; --rose-light:#e8a8be;
+    --gold:#e0a961; --gold-light:#f2c88a;
+    --cream:#f8f5f2; --sand:#d6cfc7; --muted:#6b7a91;
+
+    /* Optional: drop the Halloween photo here, e.g. url(halloween.jpg). Leave as "none" for gradient only. */
+    --hero-photo: none;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    min-height:100vh;
+    font-family:"Inter",system-ui,sans-serif;
+    color:#fff;
+    background:
+      linear-gradient(135deg, rgba(30,45,74,.90) 0%, rgba(42,63,94,.84) 55%, rgba(59,42,61,.92) 100%),
+      var(--hero-photo) center 38% / cover no-repeat,
+      var(--navy);
+    background-attachment:fixed;
+    display:flex;justify-content:center;
+    padding:48px 20px 40px;
+  }
+  .wrap{width:100%;max-width:440px;text-align:center}
+
+  .fade{opacity:0;animation:fadeUp .7s ease forwards}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .brand{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;letter-spacing:.02em;animation-delay:.05s}
+  .brand em{font-style:italic;background:linear-gradient(90deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .eyebrow{margin-top:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--rose-light);animation-delay:.15s}
+  .tagline{margin:14px auto 34px;max-width:320px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;line-height:1.35;color:var(--rose-light);animation-delay:.25s}
+
+  /* Featured event card */
+  .feature{
+    display:block;text-decoration:none;color:#fff;text-align:left;
+    border:1px solid rgba(224,169,97,.45);
+    background:rgba(255,255,255,.06);
+    border-radius:20px;padding:22px 22px 20px;margin-bottom:14px;
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    animation-delay:.35s;
+  }
+  .feature:hover,.feature:focus-visible{transform:translateY(-2px);border-color:var(--gold);background:rgba(255,255,255,.09)}
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .pill{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:6px 12px;white-space:nowrap}
+  .pill.neutral{border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
+  .pill.accent{background:linear-gradient(135deg,var(--rose),#b9657f);animation:glow 2.8s ease-in-out infinite}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(206,126,152,0)}50%{box-shadow:0 0 16px rgba(206,126,152,.65)}}
+  .feature h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:30px;line-height:1.12}
+  .feature h2 em{font-style:italic;background:linear-gradient(90deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .feature p{margin-top:8px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82)}
+  .feature .go{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:var(--gold-light);letter-spacing:.03em}
+
+  /* Buttons */
+  .btn{
+    display:block;text-decoration:none;color:#fff;
+    border-radius:999px;padding:16px 22px;margin-bottom:12px;
+    font-weight:600;font-size:15px;letter-spacing:.02em;
+    transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+  }
+  .btn.primary{background:linear-gradient(135deg,var(--rose),#b9657f);box-shadow:0 8px 22px rgba(206,126,152,.32)}
+  .btn.primary:hover,.btn.primary:focus-visible{transform:translateY(-2px);box-shadow:0 12px 28px rgba(206,126,152,.45)}
+  .btn.outline{border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.05)}
+  .btn.outline:hover,.btn.outline:focus-visible{transform:translateY(-2px);border-color:var(--gold);background:rgba(255,255,255,.1)}
+  .btn small{display:block;margin-top:3px;font-size:11.5px;font-weight:400;letter-spacing:.04em;color:rgba(255,255,255,.7)}
+  .b1{animation-delay:.48s}.b2{animation-delay:.58s}.b3{animation-delay:.68s}.b4{animation-delay:.78s}.b5{animation-delay:.88s}
+
+  .foot{margin-top:30px;font-size:12px;line-height:1.7;color:rgba(255,255,255,.6);animation-delay:1s}
+  .foot a{color:var(--rose-light);text-decoration:none}
+  .foot a:hover{text-decoration:underline}
+  .abia{margin-top:6px;letter-spacing:.08em}
+
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){.fade{animation:none;opacity:1}.pill.accent{animation:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="brand fade">Sparked <em>Connection</em></div>
+  <div class="eyebrow fade">Professional Matchmaking &middot; UK</div>
+  <p class="tagline fade">Personality-led introductions. No swiping, no guesswork.</p>
+
+  <a class="feature fade" href="https://sparkedconnection.com/halloween?utm_source=instagram&utm_medium=bio&utm_campaign=halloween">
+    <div class="pill-row">
+      <span class="pill neutral">Singles Event</span>
+      <span class="pill accent">Eye Mask Mandatory</span>
+    </div>
+    <h2>A Masked <em>Halloween</em> Evening</h2>
+    <p>Central London. Glamour encouraged, mystery guaranteed.</p>
+    <span class="go">Reserve my place &rarr;</span>
+  </a>
+
+  <a class="btn primary fade b1" href="https://sparkedconnection.com/enquiry/?utm_source=instagram&utm_medium=bio&utm_campaign=consultation">
+    Book a free consultation
+    <small>Private, confidential, no pressure</small>
+  </a>
+
+  <a class="btn outline fade b2" href="https://sparkedconnection.com/form/?utm_source=instagram&utm_medium=bio&utm_campaign=join">
+    Join the Singles Network free
+  </a>
+
+  <a class="btn outline fade b3" href="https://sparkedconnection.com/plans/?utm_source=instagram&utm_medium=bio&utm_campaign=plans">
+    Membership plans
+  </a>
+
+  <a class="btn outline fade b4" href="https://sparkedconnection.com/?utm_source=instagram&utm_medium=bio#how-it-works">
+    How it works
+  </a>
+
+  <a class="btn outline fade b5" href="mailto:hello@sparkedconnection.com">
+    Email us
+  </a>
+
+  <div class="foot fade">
+    <a href="https://sparkedconnection.com/?utm_source=instagram&utm_medium=bio">sparkedconnection.com</a>
+    <div class="abia">ABIA registered &amp; approved</div>
+  </div>
+
+</main>
+</body>
+</html>
