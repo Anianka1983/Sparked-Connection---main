@@ -136,7 +136,7 @@
       .hero p.hero-lede { font-size: 0.86rem; line-height: 1.4; }
       .hero-pills { margin-top: 16px; gap: 8px; }
       .pill { padding: 7px 14px; font-size: 0.62rem; }
-      .hero-tagline { font-size: 0.92rem; margin-top: 14px; }
+      .hero-tagline { font-size: 1.06rem; margin-top: 14px; }
       .hero-dots { margin-top: 14px; gap: 14px; }
       .hero-dot { font-size: 0.72rem; font-weight: 600; }
     }
@@ -160,7 +160,7 @@
     @keyframes pillGlow { 0%,100% { box-shadow: 0 4px 14px rgba(206,126,152,.45); } 50% { box-shadow: 0 4px 22px rgba(206,126,152,.8); } }
     .pill-outline { border-color: var(--gold); color: var(--gold-light); }
 
-    .hero-tagline { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.15rem; color: var(--rose-light); margin-top: 26px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s; }
+    .hero-tagline { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.32rem; color: var(--rose-light); margin-top: 26px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s; }
 
     .hero-dots { display: flex; justify-content: center; gap: 28px; margin-top: 26px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.65s; flex-wrap: wrap; }
     .hero-dot { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.92); display: flex; align-items: center; gap: 9px; letter-spacing: 0.03em; text-shadow: 0 1px 3px rgba(0,0,0,0.35); }
@@ -184,8 +184,8 @@
     .about-price strong { font-style: normal; color: var(--white); font-size: 1.5rem; }
     .about-note { border: 1px solid rgba(206,126,152,0.45); background: rgba(206,126,152,0.1); border-radius: 14px; padding: 18px 20px; margin-top: 12px; }
     .about-note + .about-note { margin-top: 12px; }
-    .about-note-title { display: block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose-light); font-weight: 700; margin-bottom: 6px; }
-    .about-note p { font-size: 0.86rem; line-height: 1.65; color: rgba(255,255,255,0.85); }
+    .about-note-title { display: block; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose-light); font-weight: 700; margin-bottom: 6px; }
+    .about-note p { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.85); }
     .about-note p strong { color: var(--white); }
     @media (max-width: 640px) {
       .about-card { padding: 38px 22px; }
@@ -418,6 +418,46 @@
       .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
         background: linear-gradient(135deg, rgba(30,45,74,.78) 0%, rgba(42,63,94,.72) 55%, rgba(59,42,61,.80) 100%); }
     }
+
+    /* Subtle sparkle on the Eye Mask pill */
+    .pill-accent { position: relative; overflow: visible; }
+    .pill-accent::before, .pill-accent::after { content: ""; position: absolute; width: 8px; height: 8px; pointer-events: none; opacity: 0; transform: scale(0.3) rotate(0deg);
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1.2px, transparent 2px),
+        linear-gradient(90deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%),
+        linear-gradient(0deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%);
+      filter: drop-shadow(0 0 2px rgba(242,200,138,0.5)); }
+    .pill-accent .pill-gem::before { content: ""; position: absolute; left: 46%; top: -3px; width: 6px; height: 6px; pointer-events: none; opacity: 0; transform: scale(0.3) rotate(0deg);
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1px, transparent 1.6px),
+        linear-gradient(90deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%),
+        linear-gradient(0deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%);
+      filter: drop-shadow(0 0 2px rgba(242,200,138,0.5)); animation: pillTwinkle 6s ease-in-out infinite 5.5s; }
+    .pill-accent .pill-gem::after { content: ""; position: absolute; right: 7%; bottom: -3px; width: 7px; height: 7px; pointer-events: none; opacity: 0; transform: scale(0.3) rotate(0deg);
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1.1px, transparent 1.8px),
+        linear-gradient(90deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%),
+        linear-gradient(0deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%);
+      filter: drop-shadow(0 0 2px rgba(242,200,138,0.5)); animation: pillTwinkle 6s ease-in-out infinite 2.5s; }
+    .pill-accent::before { top: -3px; right: 18%; animation: pillTwinkle 6s ease-in-out infinite 1s; }
+    .pill-accent::after { bottom: -3px; left: 14%; width: 6px; height: 6px; animation: pillTwinkle 6s ease-in-out infinite 4s; }
+    @keyframes pillTwinkle { 0%, 70%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); } 80% { opacity: 0.5; transform: scale(1) rotate(45deg); } 90% { opacity: 0; transform: scale(0.5) rotate(90deg); } }
+    @media (prefers-reduced-motion: reduce) { .pill-accent::before, .pill-accent::after, .pill-accent .pill-gem::after, .pill-accent .pill-gem::before { animation: none; opacity: 0; } }
+    /* Mobile only: move SINGLES EVENING down, away from the top bar */
+    @media (max-width: 640px) { .hero-eyebrow { top: -8px; } }
+    /* Mobile only: headline a touch lower */
+    @media (max-width: 640px) { .hero h1 { top: -0.05em; } }
+
+    /* Hosted by a Professional Matchmaker (restored) */
+    .about-host { margin: 26px auto 8px; max-width: 600px; text-align: center; padding: 22px 24px; border-top: 1px solid rgba(224,169,97,0.45); border-bottom: 1px solid rgba(224,169,97,0.45); }
+    .about-host-label { display: block; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: 1.35rem; color: var(--gold-light); margin-bottom: 8px; }
+    .about-host p { font-size: 0.93rem; line-height: 1.75; color: rgba(255,255,255,0.82); }
+    .about-host p + p { margin-top: 10px; }
+    .about-host .about-host-cta { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.1rem; color: var(--rose-light); }
+    .about-host strong { color: var(--gold-light); font-weight: 600; }
+    .about-host p:not(.about-host-cta) { font-family: inherit; font-size: 0.97rem; line-height: 1.8; color: rgba(255,255,255,0.82); font-weight: 400; }
+    .about-host p:not(.about-host-cta) strong { font-weight: 400; color: inherit; }
+    .about-host p:not(.about-host-cta) .venue-link { font-weight: 400; }
 </style>
   <script type="application/ld+json">
 {
