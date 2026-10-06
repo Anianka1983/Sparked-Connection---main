@@ -530,6 +530,37 @@
       .host-seal-inline .host-seal-text { -webkit-text-fill-color: #2a1f12; }
       .host-seal-inline .host-seal-star { -webkit-text-fill-color: #7a5416; }
     }
+
+    /* More sparkle on the Eye Mask pill */
+    @keyframes pillTwinkle { 0%, 55%, 100% { opacity: 0; transform: scale(0.2) rotate(0deg); } 68% { opacity: 1; transform: scale(1.25) rotate(40deg); } 80% { opacity: 0.85; transform: scale(0.9) rotate(70deg); } 92% { opacity: 0; transform: scale(0.4) rotate(100deg); } }
+    @keyframes gemPulse { 0%, 100% { text-shadow: 0 0 2px rgba(255,236,190,0.4); } 50% { text-shadow: 0 0 9px rgba(255,236,190,1), 0 0 16px rgba(242,200,138,0.8); } }
+    .pill-accent::before { width: 12px; height: 12px; top: -6px; right: 16%; animation-duration: 3.6s; animation-delay: 0.4s; filter: drop-shadow(0 0 4px rgba(255,236,190,0.95)); }
+    .pill-accent::after { width: 10px; height: 10px; bottom: -5px; left: 12%; animation-duration: 3.6s; animation-delay: 2.2s; filter: drop-shadow(0 0 4px rgba(255,236,190,0.95)); }
+    .pill-accent .pill-gem::before { width: 10px; height: 10px; top: -7px; animation-duration: 3.6s; animation-delay: 3.4s; filter: drop-shadow(0 0 4px rgba(255,236,190,0.95)); }
+    .pill-accent .pill-gem::after { width: 11px; height: 11px; right: 2%; bottom: -6px; animation-duration: 3.6s; animation-delay: 1.3s; filter: drop-shadow(0 0 4px rgba(255,236,190,0.95)); }
+    .pill-accent .pill-gem { animation: gemPulse 2.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .pill-accent .pill-gem { animation: none; } }
+
+    /* Eye Mask sparkle - subtler */
+    @keyframes pillTwinkle { 0%, 62%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); } 76% { opacity: 0.65; transform: scale(1.05) rotate(40deg); } 90% { opacity: 0; transform: scale(0.5) rotate(90deg); } }
+    @keyframes gemPulse { 0%, 100% { text-shadow: 0 0 2px rgba(255,236,190,0.3); } 50% { text-shadow: 0 0 5px rgba(255,236,190,0.7); } }
+    .pill-accent::before { width: 9px; height: 9px; top: -4px; animation-duration: 5s; filter: drop-shadow(0 0 2px rgba(255,236,190,0.6)); }
+    .pill-accent::after { width: 8px; height: 8px; bottom: -4px; animation-duration: 5s; filter: drop-shadow(0 0 2px rgba(255,236,190,0.6)); }
+    .pill-accent .pill-gem::before { width: 7px; height: 7px; top: -4px; animation-duration: 5s; filter: drop-shadow(0 0 2px rgba(255,236,190,0.6)); }
+    .pill-accent .pill-gem::after { width: 8px; height: 8px; bottom: -4px; animation-duration: 5s; filter: drop-shadow(0 0 2px rgba(255,236,190,0.6)); }
+    .pill-accent .pill-gem { animation-duration: 3.2s; }
+
+    /* Sparkles inside the Eye Mask pill */
+    .pill-spark { position: absolute; width: 8px; height: 8px; pointer-events: none; opacity: 0; transform: scale(0.3) rotate(0deg);
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1.1px, transparent 1.9px),
+        linear-gradient(90deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%),
+        linear-gradient(0deg, transparent 0 40%, rgba(255,244,214,0.9) 48% 52%, transparent 60% 100%);
+      filter: drop-shadow(0 0 2px rgba(255,236,190,0.6)); animation: pillTwinkle 5s ease-in-out infinite; }
+    .pill-spark.ps1 { left: 30%; top: 22%; animation-delay: 0.8s; }
+    .pill-spark.ps2 { left: 58%; top: 54%; width: 7px; height: 7px; animation-delay: 2.6s; }
+    .pill-spark.ps3 { right: 12%; top: 18%; width: 9px; height: 9px; animation-delay: 4.1s; }
+    @media (prefers-reduced-motion: reduce) { .pill-spark { animation: none; opacity: 0; } }
 </style>
   <script type="application/ld+json">
 {
@@ -702,7 +733,7 @@
   <p class="hero-lede">We're hosting a new event - an elegant masked evening for singles, at The Arts Theatre Club in Soho.</p>
   <div class="hero-pills">
     <span class="pill">Singles Event · 28+</span>
-    <span class="pill pill-accent"><span class="pill-gem">&#10022;</span> Eye Mask Mandatory</span>
+    <span class="pill pill-accent"><span class="pill-gem">&#10022;</span> Eye Mask Mandatory<i class="pill-spark ps1"></i><i class="pill-spark ps2"></i><i class="pill-spark ps3"></i></span>
     <span class="pill pill-outline">Full Costume Optional</span>
   </div>
   <p class="hero-tagline">Glamour encouraged. Mystery guaranteed!</p>
