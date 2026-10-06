@@ -1131,10 +1131,23 @@ async function handleSubmit(event) {
 // ── Payment step ──────────────────────────────────────────────
 // Paste your Spot payment links below (one per option). Until they are set,
 // the Pay button shows a "not connected yet" message instead of redirecting.
+// Phones -> Spot (Spot is phone-only for now). Laptops/desktops/tablets -> Square.
+// When Spot supports desktop, set SQUARE_PAYMENT_LINKS = SPOT_PAYMENT_LINKS (or remove the phone check).
 var SPOT_PAYMENT_LINKS = {
-  ticket: 'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU',  // TEST - Event ticket only (final £28)
-  tarot:  'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU'   // TEST - Event ticket & tarot (final £38)
+  ticket: 'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU',  // TEST link, phones only - replace with final £28 Spot link
+  tarot:  'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU'   // TEST link, phones only - replace with final £38 Spot link
 };
+var SQUARE_PAYMENT_LINKS = {
+  ticket: 'https://square.link/u/tiirSTaq',  // Event ticket only (£28)
+  tarot:  'https://square.link/u/Bqa6zbpj'   // Event ticket & tarot reading (£38)
+};
+function isPhone() {
+  var ua = navigator.userAgent || '';
+  if (/iPad|Tablet/i.test(ua)) return false;
+  if (/iPhone|iPod|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua)) return true;
+  if (/Android/i.test(ua)) return /Mobile/i.test(ua); // Android tablets lack "Mobile"
+  return false;
+}
 
 function updatePayScreen() {
   var opt = document.getElementById('pay-option').value;
@@ -1148,7 +1161,8 @@ function updatePayScreen() {
 }
 document.getElementById('pay-option').addEventListener('change', updatePayScreen);
 document.getElementById('pay-btn').addEventListener('click', function () {
-  var url = SPOT_PAYMENT_LINKS[document.getElementById('pay-option').value];
+  var links = isPhone() ? SPOT_PAYMENT_LINKS : SQUARE_PAYMENT_LINKS;
+  var url = links[document.getElementById('pay-option').value];
   if (!url) { document.getElementById('pay-warn').classList.add('show'); return; }
   window.location.href = url;
 });
