@@ -401,6 +401,10 @@
     .seo-faq details p { color: var(--muted); font-size: 0.93rem; line-height: 1.75; padding: 0 0 18px; }
     .venue-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(242,200,138,0.6); text-underline-offset: 4px; text-decoration-thickness: 1px; transition: text-decoration-color .2s ease, color .2s ease; }
     .venue-link:hover { color: var(--gold-light); text-decoration-color: var(--gold-light); }
+    .toggle-option.selected .toggle-box { border-color: #6fbf80 !important; background: #e3f5e7 !important; color: #2b6a3a !important; box-shadow: 0 0 0 3px rgba(111,191,128,0.22) !important; }
+    .toggle-option:hover .toggle-box { border-color: #9fd3aa; }
+    .toggle-option input[type="radio"]:focus-visible + .toggle-box { outline-color: #6fbf80; }
+    .dob-age-display:not(.invalid) { color: #2b6a3a; }
 </style>
   <script type="application/ld+json">
 {
@@ -636,7 +640,7 @@
   </div>
 
   <div class="form-card" id="form-card">
-    <form id="form-wrapper">
+    <form id="form-wrapper" novalidate>
       <div id="form-content">
         <div class="step-header">
           <span class="step-tag">Halloween Event</span>
@@ -751,6 +755,7 @@
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAExsZ2hUtz55GptX" style="margin-bottom:16px;"></div>
 
+        <div id="form-error-note" role="alert" style="display:none;color:#a82f4b;background:#fdecef;border:1px solid #f0b6c2;border-radius:10px;padding:12px 16px;font-weight:600;font-size:0.95rem;text-align:center;margin:0 0 16px;">Please complete all mandatory questions</div>
         <div class="btn-row">
           <button type="submit" class="btn btn-primary" id="submit-btn">
             Reserve My Place
@@ -912,7 +917,14 @@ async function handleSubmit(event) {
 
   var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !phone || !city || !dobValid || !futureChecked || !genderChecked || !tarotChecked;
 
-  if (hasError) return false;
+  var note = document.getElementById('form-error-note');
+  if (hasError) {
+    if (note) note.style.display = 'block';
+    var firstErr = document.querySelector('.field-error.visible');
+    if (firstErr && firstErr.scrollIntoView) { firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    return false;
+  }
+  if (note) note.style.display = 'none';
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting…';
