@@ -487,6 +487,49 @@
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 12' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 2l7 7 7-7'/%3E%3C/svg%3E");
       background-repeat:no-repeat; background-position:center; }
     .pay-select-hint { color:var(--rose); font-weight:500; font-size:0.82rem; text-align:center; }
+
+    /* Matchmaker Hosted badge */
+    .pill-hosted { border-color: var(--gold-light); color: #2a1f12; background: linear-gradient(135deg, #f7dca4 0%, #e3b86a 100%); font-weight: 700; letter-spacing: 0.1em; box-shadow: 0 3px 14px rgba(227,184,106,0.35); }
+    .pill-hosted .pill-gem { color: #7a5416; }
+
+    /* Matchmaker Hosted seal */
+    .host-seal { position: absolute; z-index: 5; top: 170px; right: 7%; width: 132px; height: 132px; transform: rotate(10deg); filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35)); opacity: 0; animation: sealIn 0.9s ease forwards 0.7s; }
+    .host-seal svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .host-seal-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #2a1f12; line-height: 1; }
+    .host-seal-star { font-size: 0.95rem; color: #7a5416; margin-bottom: 4px; }
+    .host-seal-top { font-family: "Jost", sans-serif; font-size: 0.5rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding-left: 0.2em; }
+    .host-seal-bot { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.5rem; font-weight: 700; margin-top: 3px; }
+    .host-seal::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.55) 50%, transparent 62%); background-size: 250% 100%; mix-blend-mode: soft-light; animation: sealShine 5s ease-in-out infinite 2s; pointer-events: none; }
+    @keyframes sealIn { from { opacity: 0; transform: rotate(10deg) scale(0.6); } to { opacity: 1; transform: rotate(10deg) scale(1); } }
+    @keyframes sealShine { 0%, 60% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
+    @media (max-width: 1100px) { .host-seal { width: 104px; height: 104px; top: 130px; right: 3%; } .host-seal-bot { font-size: 1.2rem; } .host-seal-top { font-size: 0.42rem; } }
+    @media (max-width: 640px) { .host-seal { width: 72px; height: 72px; top: 66px; right: 6px; } .host-seal-star { font-size: 0.6rem; margin-bottom: 2px; } .host-seal-top { font-size: 0.3rem; letter-spacing: 0.14em; } .host-seal-bot { font-size: 0.82rem; margin-top: 1px; } }
+    @media (prefers-reduced-motion: reduce) { .host-seal, .host-seal::after { animation: none; opacity: 1; } }
+
+    /* Hosted by a Matchmaker line */
+    .hero-hosted { position: relative; top: -0.4em; display: inline-flex; align-items: center; gap: 14px; margin: -6px 0 18px; font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 600; font-size: 1.45rem; letter-spacing: 0.04em; color: var(--gold-light); opacity: 0; animation: fadeUp 0.7s ease forwards 0.3s; }
+    .hero-hosted::before, .hero-hosted::after { content: ""; width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+    .hero-hosted::after { background: linear-gradient(270deg, transparent, var(--gold-light)); }
+    @media (max-width: 640px) { .hero-hosted { font-size: 1.12rem; gap: 10px; margin: -4px 0 12px; } .hero-hosted::before, .hero-hosted::after { width: 22px; } }
+
+    /* Seal - smaller */
+    .host-seal { width: 98px; height: 98px; top: 178px; }
+    .host-seal-star { font-size: 0.72rem; margin-bottom: 3px; }
+    .host-seal-top { font-size: 0.4rem; }
+    .host-seal-bot { font-size: 1.12rem; }
+    @media (max-width: 1100px) { .host-seal { width: 78px; height: 78px; top: 136px; } .host-seal-star { font-size: 0.58rem; } .host-seal-top { font-size: 0.33rem; } .host-seal-bot { font-size: 0.9rem; } }
+    @media (max-width: 640px) { .host-seal { width: 56px; height: 56px; top: 68px; right: 6px; } .host-seal-star { font-size: 0.45rem; margin-bottom: 1px; } .host-seal-top { font-size: 0.24rem; } .host-seal-bot { font-size: 0.64rem; } }
+
+    /* Seal above the word "Singles" (laptop); corner seal kept for tablet/phone */
+    .singles-word { position: relative; display: inline-block; }
+    .host-seal-inline { display: none; }
+    @media (min-width: 1101px) {
+      .hero { padding-top: 200px; }
+      .host-seal:not(.host-seal-inline) { display: none; }
+      .host-seal-inline { display: block; top: auto; right: auto; left: 50%; bottom: calc(100% + 2px); margin-left: -49px; }
+      .host-seal-inline .host-seal-text { -webkit-text-fill-color: #2a1f12; }
+      .host-seal-inline .host-seal-star { -webkit-text-fill-color: #7a5416; }
+    }
 </style>
   <script type="application/ld+json">
 {
@@ -648,9 +691,14 @@
 </div>
 
 <section class="hero">
+  <div class="host-seal" role="img" aria-label="Hosted by a professional matchmaker">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sealGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9e2b0"/><stop offset=".5" stop-color="#e3b86a"/><stop offset="1" stop-color="#b98a3e"/></linearGradient></defs><polygon points="50.00,0.00 54.41,5.22 59.75,0.96 63.06,6.94 69.13,3.81 71.21,10.31 77.78,8.43 78.55,15.21 85.36,14.64 84.79,21.45 91.57,22.22 89.69,28.79 96.19,30.87 93.06,36.94 99.04,40.25 94.78,45.59 100.00,50.00 94.78,54.41 99.04,59.75 93.06,63.06 96.19,69.13 89.69,71.21 91.57,77.78 84.79,78.55 85.36,85.36 78.55,84.79 77.78,91.57 71.21,89.69 69.13,96.19 63.06,93.06 59.75,99.04 54.41,94.78 50.00,100.00 45.59,94.78 40.25,99.04 36.94,93.06 30.87,96.19 28.79,89.69 22.22,91.57 21.45,84.79 14.64,85.36 15.21,78.55 8.43,77.78 10.31,71.21 3.81,69.13 6.94,63.06 0.96,59.75 5.22,54.41 0.00,50.00 5.22,45.59 0.96,40.25 6.94,36.94 3.81,30.87 10.31,28.79 8.43,22.22 15.21,21.45 14.64,14.64 21.45,15.21 22.22,8.43 28.79,10.31 30.87,3.81 36.94,6.94 40.25,0.96 45.59,5.22" fill="url(#sealGold)"/><circle cx="50" cy="50" r="38" fill="none" stroke="#7a5416" stroke-width=".8" opacity=".7"/><circle cx="50" cy="50" r="35.5" fill="none" stroke="#fff6dc" stroke-width=".5" opacity=".8"/></svg>
+    <span class="host-seal-text"><span class="host-seal-star">&#9733;</span><span class="host-seal-top">Matchmaker</span><span class="host-seal-bot">Hosted</span></span>
+  </div>
   <div class="hero-bg-blur" aria-hidden="true"></div>
   <p class="hero-eyebrow">Singles Evening</p>
-  <h1>A Masked <em class="gold-em">Halloween</em> Evening for Singles</h1>
+  <h1>A Masked <em class="gold-em">Halloween</em> Evening for <span class="singles-word">Singles<span class="host-seal host-seal-inline" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sealGold2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9e2b0"/><stop offset=".5" stop-color="#e3b86a"/><stop offset="1" stop-color="#b98a3e"/></linearGradient></defs><polygon points="50.00,0.00 54.41,5.22 59.75,0.96 63.06,6.94 69.13,3.81 71.21,10.31 77.78,8.43 78.55,15.21 85.36,14.64 84.79,21.45 91.57,22.22 89.69,28.79 96.19,30.87 93.06,36.94 99.04,40.25 94.78,45.59 100.00,50.00 94.78,54.41 99.04,59.75 93.06,63.06 96.19,69.13 89.69,71.21 91.57,77.78 84.79,78.55 85.36,85.36 78.55,84.79 77.78,91.57 71.21,89.69 69.13,96.19 63.06,93.06 59.75,99.04 54.41,94.78 50.00,100.00 45.59,94.78 40.25,99.04 36.94,93.06 30.87,96.19 28.79,89.69 22.22,91.57 21.45,84.79 14.64,85.36 15.21,78.55 8.43,77.78 10.31,71.21 3.81,69.13 6.94,63.06 0.96,59.75 5.22,54.41 0.00,50.00 5.22,45.59 0.96,40.25 6.94,36.94 3.81,30.87 10.31,28.79 8.43,22.22 15.21,21.45 14.64,14.64 21.45,15.21 22.22,8.43 28.79,10.31 30.87,3.81 36.94,6.94 40.25,0.96 45.59,5.22" fill="url(#sealGold2)"/><circle cx="50" cy="50" r="38" fill="none" stroke="#7a5416" stroke-width=".8" opacity=".7"/><circle cx="50" cy="50" r="35.5" fill="none" stroke="#fff6dc" stroke-width=".5" opacity=".8"/></svg><span class="host-seal-text"><span class="host-seal-star">&#9733;</span><span class="host-seal-top">Matchmaker</span><span class="host-seal-bot">Hosted</span></span></span></span></h1>
+  <p class="hero-hosted">Hosted by a Matchmaker</p>
   <p class="hero-lede">We're hosting a new event - an elegant masked evening for singles, at The Arts Theatre Club in Soho.</p>
   <div class="hero-pills">
     <span class="pill">Singles Event · 28+</span>
