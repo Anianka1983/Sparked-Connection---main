@@ -399,6 +399,8 @@
     .seo-faq summary::after { content: "+"; color: var(--gold); font-size: 1.4rem; line-height: 1; transition: transform .25s ease; }
     .seo-faq details[open] summary::after { transform: rotate(45deg); }
     .seo-faq details p { color: var(--muted); font-size: 0.93rem; line-height: 1.75; padding: 0 0 18px; }
+    .venue-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(242,200,138,0.6); text-underline-offset: 4px; text-decoration-thickness: 1px; transition: text-decoration-color .2s ease, color .2s ease; }
+    .venue-link:hover { color: var(--gold-light); text-decoration-color: var(--gold-light); }
 </style>
   <script type="application/ld+json">
 {
@@ -562,7 +564,7 @@
   </div>
   <p class="hero-tagline">Glamour encouraged. Mystery guaranteed!</p>
   <div class="hero-dots">
-    <span class="hero-dot">The Arts Theatre Club, Soho</span>
+    <span class="hero-dot"><a class="venue-link" href="https://www.theartstheatreclub.com/" target="_blank" rel="noopener noreferrer">The Arts Theatre Club, Soho</a></span>
     <span class="hero-dot">Friday 30 October 2026, 6:30pm</span>
     <span class="hero-dot">&pound;28 per ticket</span>
     <span class="hero-dot">Free Welcome Drink Included</span>
@@ -575,7 +577,7 @@
   <div class="about-card">
     <span class="about-eyebrow">The Evening &middot; Soho, London</span>
     <h2 class="about-title">Step Behind the <em>Mask</em></h2>
-    <p class="about-text">Join us at <strong>The Arts Theatre Club in the heart of Soho</strong> for an evening of mystery, glamour and meaningful connection. Slip on your mask, leave the small talk at the door, and meet fellow singles in an intimate, beautifully atmospheric setting where every conversation begins with a little intrigue.</p>
+    <p class="about-text">Join us at <strong><a class="venue-link" href="https://www.theartstheatreclub.com/" target="_blank" rel="noopener noreferrer">The Arts Theatre Club in the heart of Soho</a></strong> for an evening of mystery, glamour and meaningful connection. Slip on your mask, leave the small talk at the door, and meet fellow singles in an intimate, beautifully atmospheric setting where every conversation begins with a little intrigue.</p>
     <p class="about-text">Your evening begins with a drink on us, and the night unfolds from there - candlelit corners, curious introductions and, for those who dare, a glimpse into what the cards have in store. All the while, the best of the 80s and 90s will be playing - the soundtrack to your next great first impression.</p>
 
     <div class="about-perks">
@@ -609,7 +611,7 @@
       <div class="about-venue-col about-find">
         <div class="about-find-text">
           <span class="about-note-title">Find Us</span>
-          <p><strong>The Arts Theatre Club</strong><br>50 Frith St, London W1D 4SQ</p>
+          <p><strong><a class="venue-link" href="https://www.theartstheatreclub.com/" target="_blank" rel="noopener noreferrer">The Arts Theatre Club</a></strong><br>50 Frith St, London W1D 4SQ</p>
           <a class="about-map-btn" id="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=50+Frith+St%2C+London+W1D+4SQ" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10a6 6 0 10-12 0c0 4.8 6 10 6 10z"/><circle cx="10" cy="8" r="2.2"/></svg>
             Get directions
