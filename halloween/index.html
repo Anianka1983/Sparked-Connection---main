@@ -458,6 +458,26 @@
     .about-host p:not(.about-host-cta) { font-family: inherit; font-size: 0.97rem; line-height: 1.8; color: rgba(255,255,255,0.82); font-weight: 400; }
     .about-host p:not(.about-host-cta) strong { font-weight: 400; color: inherit; }
     .about-host p:not(.about-host-cta) .venue-link { font-weight: 400; }
+
+    /* Questionnaire callout - larger, more prominent */
+    .match-callout { display: flex; align-items: center; gap: 22px; background: linear-gradient(135deg, rgba(224,169,97,0.16) 0%, rgba(206,126,152,0.10) 100%); border: 1px solid rgba(224,169,97,0.55); border-radius: 18px; padding: 30px 30px; margin: 34px 0; box-shadow: 0 10px 30px rgba(30,45,74,0.08), inset 0 1px 0 rgba(255,255,255,0.6); }
+    .match-callout .match-icon { flex-shrink: 0; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); background: rgba(255,255,255,0.7); border: 1px solid rgba(224,169,97,0.6); }
+    .match-callout .match-icon svg { width: 26px; margin: 0; color: var(--gold); }
+    .match-callout .match-kicker { display: block; font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; color: var(--rose); margin-bottom: 6px; }
+    .match-callout .match-title { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 600; line-height: 1.2; color: var(--navy); margin-bottom: 6px; }
+    .match-callout .match-text { font-size: 0.98rem; line-height: 1.6; color: var(--muted); margin-bottom: 16px; }
+    .match-callout .match-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid var(--gold); color: var(--navy); background: rgba(255,255,255,0.65); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background .25s ease, color .25s ease, transform .25s ease; }
+    .match-callout .match-btn:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+    @media (max-width: 600px) { .match-callout { flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px 22px; } .match-callout .match-title { font-size: 1.35rem; } }
+
+    /* ── PAY DROPDOWN ── */
+    .pay-select-wrap label { display:block; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; font-weight:500; color:var(--rose); margin-bottom:8px; }
+    .pay-select-wrap select { -webkit-appearance:none; appearance:none; cursor:pointer; background-color:#fff; border:1.5px solid var(--rose); border-radius:10px; padding:14px 52px 14px 16px; font-family:"Jost",sans-serif; font-size:1rem; font-weight:500; color:var(--navy); box-shadow:0 2px 8px rgba(206,126,152,0.18);
+      background-image:linear-gradient(var(--rose),var(--rose)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-size:42px 100%, 14px 9px; background-position:right center, right 14px center; transition:box-shadow .2s,border-color .2s; }
+    .pay-select-wrap select:hover { box-shadow:0 3px 12px rgba(206,126,152,0.32); }
+    .pay-select-wrap select:focus { outline:none; box-shadow:0 0 0 3px rgba(206,126,152,0.28); }
+    .pay-select-hint { font-size:0.78rem; color:var(--muted); font-weight:300; margin-top:7px; }
 </style>
   <script type="application/ld+json">
 {
@@ -803,8 +823,13 @@
         </div>
 
         <div class="match-callout">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5s-6.5-4.06-6.5-8.75A3.75 3.75 0 0110 6.02 3.75 3.75 0 0116.5 8.75c0 4.69-6.5 8.75-6.5 8.75z"/></svg>
-          <p><strong>Curious if you'll be matched with someone from the night?</strong> Complete the main <a href="https://sparkedconnection.com/form/" target="_blank" rel="noopener noreferrer">Sparked Connection questionnaire</a> and we'll be in touch afterwards to let you know.</p>
+          <span class="match-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17.5s-6.5-4.06-6.5-8.75A3.75 3.75 0 0110 6.02 3.75 3.75 0 0116.5 8.75c0 4.69-6.5 8.75-6.5 8.75z"/></svg></span>
+          <div class="match-body">
+            <span class="match-kicker">A Matchmaker's Touch</span>
+            <p class="match-title">Curious if you'll be matched with someone from the night?</p>
+            <p class="match-text">Complete the main Sparked Connection questionnaire and we'll be in touch afterwards to let you know.</p>
+            <a class="match-btn" href="https://sparkedconnection.com/form/" target="_blank" rel="noopener noreferrer">Complete the Questionnaire <span aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
 
         <div class="privacy-note">
@@ -844,6 +869,7 @@
           <option value="ticket">Event ticket only - &pound;28</option>
           <option value="tarot">Event ticket &amp; tarot reading - &pound;38</option>
         </select>
+        <p class="pay-select-hint">Tap the box above to change your ticket option</p>
       </div>
 
       <div class="pay-summary">
@@ -1079,7 +1105,7 @@ async function handleSubmit(event) {
       form.reset();
       document.querySelectorAll('.toggle-option').forEach(function (opt) { opt.classList.remove('selected'); });
       if (ageDisplay) ageDisplay.textContent = '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      (function(){ var t = document.querySelector('#pay-screen .step-tag'); var y = t.getBoundingClientRect().top + window.pageYOffset - 90; window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' }); })();
     } else {
       alert('Sorry - there was a problem submitting your form. Please try again.');
     }
@@ -1097,8 +1123,8 @@ async function handleSubmit(event) {
 // Paste your Spot payment links below (one per option). Until they are set,
 // the Pay button shows a "not connected yet" message instead of redirecting.
 var SPOT_PAYMENT_LINKS = {
-  ticket: '',  // Event ticket only (£28)
-  tarot:  ''   // Event ticket & tarot reading (£38)
+  ticket: 'https://web.spot-app.co.uk/business-pay/bSntfppHB4rtPSHUrQoXCf',  // TEST £1 - Event ticket only (final £28)
+  tarot:  'https://web.spot-app.co.uk/business-pay/USXnx3QMMvoHDK5bQVLbhN'   // TEST £1.50 - Event ticket & tarot (final £38)
 };
 
 function updatePayScreen() {
