@@ -359,11 +359,23 @@
 
     /* ── SINGLES EVENING EYEBROW ── */
     .hero-eyebrow { display: inline-flex; align-items: center; justify-content: center; gap: 16px; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.42em; padding-left: 0.42em; color: var(--gold-light); text-shadow: 0 0 18px rgba(242,200,138,0.45), 0 1px 3px rgba(0,0,0,0.4); margin-bottom: 22px; }
-    .hero-eyebrow { position: relative; top: -30px; }
-    @media (max-width: 640px) { .hero-eyebrow { top: -22px; } }
+    .hero-eyebrow { position: relative; top: -46px; }
+    @media (max-width: 640px) { .hero-eyebrow { top: -30px; } }
     .hero-eyebrow::before, .hero-eyebrow::after { content: ""; width: 56px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
     .hero-eyebrow::after { background: linear-gradient(270deg, transparent, var(--gold-light)); }
     @media (max-width: 640px) { .hero-eyebrow { font-size: 0.74rem; letter-spacing: 0.32em; padding-left: 0.32em; gap: 10px; margin-bottom: 14px; } .hero-eyebrow::before, .hero-eyebrow::after { width: 26px; } }
+
+    /* v40: no sideways scroll (iOS), wider story card, full photo on mobile */
+    html, body { overflow-x: hidden; overflow-x: clip; max-width: 100%; }
+    .form-section { max-width: 900px; }
+    .form-card { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .about-text { max-width: 660px; }
+    @media (max-width: 640px) {
+      .form-section { padding-left: 0.9rem; padding-right: 0.9rem; }
+      .hero { isolation: isolate; background-color: #2a3350; background-repeat: no-repeat; background-size: 100% 100%, 100% auto; background-position: center center, center 7vw; }
+      .hero::before { content: ""; position: absolute; left: 0; right: 0; top: calc(73.67vw - 90px); height: 90px; background: linear-gradient(to bottom, rgba(42,60,90,0), #2a3c5a); z-index: -1; pointer-events: none; }
+    }
+    .hero h1 { position: relative; top: -0.5em; }
 </style>
 </head>
 <body>
