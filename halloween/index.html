@@ -566,6 +566,16 @@
     .also-listed p { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
     .also-listed a { display: inline-block; margin: 4px 5px; padding: 9px 20px; border: 1px solid var(--sand); border-radius: 999px; background: var(--white); color: var(--navy); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: border-color .2s, color .2s; }
     .also-listed a:hover { border-color: #e6a961; color: #b9772e; }
+
+    /* Seal text drawn inside the SVG so in-app browsers (Facebook, Instagram) can't enlarge it and push it outside the badge */
+    .host-seal:not(.host-seal-inline) .corner-html-text { display: none; }
+    html, body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+    /* Thinner border on Full Costume Optional pill */
+    .pill.pill-outline { border-width: 0.75px; }
+
+    /* Masquerade Mask pill - refined gold border */
+    .pill.pill-accent { border: 1.5px solid #dcb061; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 0 0 1px rgba(255,232,180,0.18), inset 0 0 18px rgba(242,200,138,0.12), 0 0 14px rgba(224,181,101,0.28), 0 6px 22px rgba(0,0,0,0.22); }
 </style>
   <script type="application/ld+json">
 {
@@ -733,8 +743,8 @@
 
 <section class="hero">
   <div class="host-seal" role="img" aria-label="Hosted by a professional matchmaker">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sealGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9e2b0"/><stop offset=".5" stop-color="#e3b86a"/><stop offset="1" stop-color="#b98a3e"/></linearGradient></defs><polygon points="50.00,0.00 54.41,5.22 59.75,0.96 63.06,6.94 69.13,3.81 71.21,10.31 77.78,8.43 78.55,15.21 85.36,14.64 84.79,21.45 91.57,22.22 89.69,28.79 96.19,30.87 93.06,36.94 99.04,40.25 94.78,45.59 100.00,50.00 94.78,54.41 99.04,59.75 93.06,63.06 96.19,69.13 89.69,71.21 91.57,77.78 84.79,78.55 85.36,85.36 78.55,84.79 77.78,91.57 71.21,89.69 69.13,96.19 63.06,93.06 59.75,99.04 54.41,94.78 50.00,100.00 45.59,94.78 40.25,99.04 36.94,93.06 30.87,96.19 28.79,89.69 22.22,91.57 21.45,84.79 14.64,85.36 15.21,78.55 8.43,77.78 10.31,71.21 3.81,69.13 6.94,63.06 0.96,59.75 5.22,54.41 0.00,50.00 5.22,45.59 0.96,40.25 6.94,36.94 3.81,30.87 10.31,28.79 8.43,22.22 15.21,21.45 14.64,14.64 21.45,15.21 22.22,8.43 28.79,10.31 30.87,3.81 36.94,6.94 40.25,0.96 45.59,5.22" fill="url(#sealGold)"/><circle cx="50" cy="50" r="38" fill="none" stroke="#7a5416" stroke-width=".8" opacity=".7"/><circle cx="50" cy="50" r="35.5" fill="none" stroke="#fff6dc" stroke-width=".5" opacity=".8"/></svg>
-    <span class="host-seal-text"><span class="host-seal-star">&#9733;</span><span class="host-seal-top">Matchmaker</span><span class="host-seal-bot">Hosted</span></span>
+    <svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sealGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9e2b0"/><stop offset=".5" stop-color="#e3b86a"/><stop offset="1" stop-color="#b98a3e"/></linearGradient></defs><polygon points="50.00,0.00 54.41,5.22 59.75,0.96 63.06,6.94 69.13,3.81 71.21,10.31 77.78,8.43 78.55,15.21 85.36,14.64 84.79,21.45 91.57,22.22 89.69,28.79 96.19,30.87 93.06,36.94 99.04,40.25 94.78,45.59 100.00,50.00 94.78,54.41 99.04,59.75 93.06,63.06 96.19,69.13 89.69,71.21 91.57,77.78 84.79,78.55 85.36,85.36 78.55,84.79 77.78,91.57 71.21,89.69 69.13,96.19 63.06,93.06 59.75,99.04 54.41,94.78 50.00,100.00 45.59,94.78 40.25,99.04 36.94,93.06 30.87,96.19 28.79,89.69 22.22,91.57 21.45,84.79 14.64,85.36 15.21,78.55 8.43,77.78 10.31,71.21 3.81,69.13 6.94,63.06 0.96,59.75 5.22,54.41 0.00,50.00 5.22,45.59 0.96,40.25 6.94,36.94 3.81,30.87 10.31,28.79 8.43,22.22 15.21,21.45 14.64,14.64 21.45,15.21 22.22,8.43 28.79,10.31 30.87,3.81 36.94,6.94 40.25,0.96 45.59,5.22" fill="url(#sealGold)"/><circle cx="50" cy="50" r="38" fill="none" stroke="#7a5416" stroke-width=".8" opacity=".7"/><circle cx="50" cy="50" r="35.5" fill="none" stroke="#fff6dc" stroke-width=".5" opacity=".8"/><g class="seal-svg-text" text-anchor="middle" fill="#2a1f12"><text x="50" y="35" font-size="9" fill="#7a5416">&#9733;</text><text x="50" y="50" font-family="Jost,sans-serif" font-weight="600" font-size="7.6" textLength="58" lengthAdjust="spacing">MATCHMAKER</text><text x="50" y="69" font-family="'Cormorant Garamond',serif" font-style="italic" font-weight="700" font-size="19">Hosted</text></g></svg>
+    <span class="host-seal-text corner-html-text"><span class="host-seal-star">&#9733;</span><span class="host-seal-top">Matchmaker</span><span class="host-seal-bot">Hosted</span></span>
   </div>
   <div class="hero-bg-blur" aria-hidden="true"></div>
   <p class="hero-eyebrow">Singles Evening</p>
@@ -742,7 +752,7 @@
   <p class="hero-hosted">Hosted by a Matchmaker</p>
   <p class="hero-lede">We're hosting a new event - an elegant masked evening for singles, at The Arts Theatre Club in Soho.</p>
   <div class="hero-pills">
-    <span class="pill">Singles Event · 28+</span>
+    <span class="pill">Singles Event</span>
     <span class="pill pill-accent"><span class="pill-gem">&#10022;</span> Masquerade Mask Mandatory<i class="pill-spark ps1"></i><i class="pill-spark ps2"></i><i class="pill-spark ps3"></i></span>
     <span class="pill pill-outline">Full Costume Optional</span>
   </div>
