@@ -667,6 +667,14 @@
     @keyframes matchCtaPulse { 0%, 100% { box-shadow: 0 10px 24px rgba(164,34,79,0.45), 0 0 0 0 rgba(196,37,74,0.40), inset 0 1px 0 rgba(255,255,255,0.28); } 50% { box-shadow: 0 10px 24px rgba(164,34,79,0.45), 0 0 0 11px rgba(196,37,74,0), inset 0 1px 0 rgba(255,255,255,0.28); } }
     @media (prefers-reduced-motion: reduce) { .match-callout .match-btn { animation: none; } }
     @media (max-width: 600px) { .match-callout { margin-top: 50px; padding-top: 42px; } .match-callout .match-edge { top: -22px; padding: 11px 18px; font-size: 0.74rem; letter-spacing: 0.1em; } .match-callout .match-btn { width: 100%; justify-content: center; } }
+
+    /* Contact email lines */
+    .contact-mail { color: var(--rose); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .step-help { font-size: 0.85rem; color: var(--muted); margin-top: 6px; font-weight: 300; }
+    .pay-help { display: flex; align-items: flex-start; gap: 10px; text-align: left; margin-top: 16px; padding: 12px 14px; border: 1px solid rgba(224,169,97,0.5); border-radius: 12px; background: rgba(224,169,97,0.10); }
+    .pay-help svg { flex-shrink: 0; margin-top: 2px; color: #b9772e; }
+    .pay-help p { font-size: 0.84rem; line-height: 1.55; color: var(--navy); font-weight: 400; }
+    footer a[href^="mailto"] { text-decoration: underline; }
 </style>
   <script type="application/ld+json">
 {
@@ -977,6 +985,7 @@
           <span class="step-tag">Halloween Event</span>
           <h2 class="step-title">Reserve Your Place</h2>
           <p class="step-sub">Share your details below - we'll see you at The Arts Theatre Club (Soho) on Friday 30 October 2026, from 6:30pm.</p>
+          <p class="step-help">Any questions before you book? Email <a class="contact-mail" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p>
         </div>
 
         <div class="field-row">
@@ -1117,6 +1126,7 @@
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
       </button>
       <div class="pay-warn" id="pay-warn">The payment link isn't connected yet - please contact hello@sparkedconnection.com to complete your booking.</div>
+      <div class="pay-help"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2.5" y="4.5" width="15" height="11" rx="2"/><path d="M3 6l7 5 7-5"/></svg><p>Any problems paying, or a question about your booking? Email <a class="contact-mail" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a> and we'll sort it out straight away.</p></div>
       <p class="pay-note">Once your payment is complete, you'll receive a confirmation email with your ticket. Please check your Junk folder and add <strong style="color:var(--navy)">hello@sparkedconnection.com</strong> to your safe senders.</p>
     </div>
 
@@ -1134,7 +1144,7 @@
 
 <section class="seo-faq" aria-labelledby="faq-title">
   <h2 id="faq-title">Halloween Singles Event in London: Your Questions</h2>
-  <p class="seo-faq-intro">Everything you need to know about our masked Halloween evening for singles in Soho.</p>
+  <p class="seo-faq-intro">Everything you need to know about our masked Halloween evening for singles in Soho. Still have a question? Email <a class="contact-mail" href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>.</p>
   <details><summary>Where is the Halloween singles event in London?</summary><p>A Masked Halloween Evening for Singles takes place at The Arts Theatre Club, 50 Frith Street, Soho, London W1D 4SQ, on Friday 30 October 2026. The evening starts at 6:30pm.</p></details>
   <details><summary>How much are tickets?</summary><p>Tickets are £28 and include a complimentary welcome drink. A tarot reading is an optional extra at £10. Happy Hour drinks are £7 between 5:30pm and 9pm.</p></details>
   <details><summary>What is the age range?</summary><p>The evening is for singles aged 28 and over.</p></details>
@@ -1152,7 +1162,7 @@
 </section>
 
 <footer>
-  &copy; 2026 Sparked Connection · <a href="https://sparkedconnection.com/privacy">Privacy Notice</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a>
+  &copy; 2026 Sparked Connection · <a href="https://sparkedconnection.com/privacy">Privacy Notice</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a> · <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>
 </footer>
 
 <script>
@@ -1360,25 +1370,11 @@ async function handleSubmit(event) {
 }
 
 // ── Payment step ──────────────────────────────────────────────
-// Paste your Spot payment links below (one per option). Until they are set,
-// the Pay button shows a "not connected yet" message instead of redirecting.
-// Phones -> Spot (Spot is phone-only for now). Laptops/desktops/tablets -> Square.
-// When Spot supports desktop, set SQUARE_PAYMENT_LINKS = SPOT_PAYMENT_LINKS (or remove the phone check).
+// Spot payment links (one per option). Everyone - phone, tablet or laptop - goes to Spot.
 var SPOT_PAYMENT_LINKS = {
-  ticket: 'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU',  // TEST link, phones only - replace with final £28 Spot link
-  tarot:  'https://web.spot-app.co.uk/single-pay/YJ6YnxVtLw85aSh8EnQrwU'   // TEST link, phones only - replace with final £38 Spot link
+  ticket: 'https://web.spot-app.co.uk/business-pay/94Bauc22P7SPoXW7LmKj8y',  // Event ticket only (£28)
+  tarot:  'https://web.spot-app.co.uk/business-pay/452hhHnkFjRwEr2YPpoPoa'   // Event ticket & tarot reading (£38)
 };
-var SQUARE_PAYMENT_LINKS = {
-  ticket: 'https://square.link/u/tiirSTaq',  // Event ticket only (£28)
-  tarot:  'https://square.link/u/Bqa6zbpj'   // Event ticket & tarot reading (£38)
-};
-function isPhone() {
-  var ua = navigator.userAgent || '';
-  if (/iPad|Tablet/i.test(ua)) return false;
-  if (/iPhone|iPod|Windows Phone|BlackBerry|IEMobile|Opera Mini/i.test(ua)) return true;
-  if (/Android/i.test(ua)) return /Mobile/i.test(ua); // Android tablets lack "Mobile"
-  return false;
-}
 
 function updatePayScreen() {
   var opt = document.getElementById('pay-option').value;
@@ -1392,8 +1388,7 @@ function updatePayScreen() {
 }
 document.getElementById('pay-option').addEventListener('change', updatePayScreen);
 document.getElementById('pay-btn').addEventListener('click', function () {
-  var links = isPhone() ? SPOT_PAYMENT_LINKS : SQUARE_PAYMENT_LINKS;
-  var url = links[document.getElementById('pay-option').value];
+  var url = SPOT_PAYMENT_LINKS[document.getElementById('pay-option').value];
   if (!url) { document.getElementById('pay-warn').classList.add('show'); return; }
   window.location.href = url;
 });
