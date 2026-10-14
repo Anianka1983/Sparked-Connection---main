@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A note for the Londonist team | Sparked Connection</title>
+<meta name="description" content="A personal hello to the Londonist team about A Masked Halloween Evening, a singles soirée at The Arts Theatre Club, Soho, on Friday 30 October.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1e2d4a; --navy-l:#2c3a52; --rose:#ce7e98; --rose-l:#e8a8be;
+  --gold:#e0a961; --gold-l:#f2c88a; --cream:#f8f5f2; --sand:#d6cfc7; --muted:#6b7a91;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--navy);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--rose-l)}
+.eyebrow.dark{color:var(--rose)}
+em.gold{font-style:italic;background:linear-gradient(90deg,var(--gold-l),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;color:#fff;text-align:center;padding:84px 24px 150px;
+  background:linear-gradient(135deg,rgba(30,45,74,.86) 0%,rgba(42,63,94,.80) 55%,rgba(59,42,61,.88) 100%),url('hero.jpg') center 38%/cover}
+.hero>*{animation:fadeUp .7s both}
+.hero .eyebrow{animation-delay:.05s}
+.hero h1{animation-delay:.18s}
+.hero .tag{animation-delay:.32s}
+.hero .dots{animation-delay:.46s}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(46px,9vw,92px);line-height:1.02;margin:18px 0 14px}
+.hero .tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,3.4vw,28px);color:var(--rose-l);max-width:620px;margin:0 auto}
+.dots{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:34px;font-size:14px;color:#e9e4ee}
+.dots span{display:inline-flex;align-items:center;gap:10px}
+.dots span:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px 2px rgba(224,169,97,.7)}
+
+/* VIDEO */
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.video-sec{margin-top:-96px;position:relative;z-index:2}
+.vcard{background:var(--navy);border-radius:20px;padding:10px;box-shadow:0 30px 70px rgba(30,45,74,.35);animation:fadeUp .8s .55s both}
+.vcard{max-width:380px;margin:0 auto}
+.vframe{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#101a2e}
+.vframe iframe,.vframe video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.vph{border:0;cursor:pointer;width:100%;color:inherit;font:inherit;position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;
+  background:linear-gradient(135deg,rgba(30,45,74,.78),rgba(59,42,61,.84)),url('hero.jpg') center/cover}
+.vph .play{transition:transform .2s;width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#b8627f);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(206,126,152,.2)}
+.vph:hover .play{transform:scale(1.07)}
+.vph .play:after{content:"";margin-left:5px;border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vph .cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--rose-l)}
+.vph.has-poster .cap{display:none}
+.vph.has-poster .play{box-shadow:0 0 0 8px rgba(255,255,255,.28),0 8px 30px rgba(0,0,0,.4)}
+.vcap{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
+
+/* LETTER */
+section{padding:72px 0 0}
+.letter{max-width:660px;margin:0 auto}
+.letter h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,5.2vw,46px);line-height:1.12;margin:10px 0 24px}
+.letter p{font-size:17px;color:#3d4b63;margin-bottom:18px}
+.letter p.lead{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.55;color:var(--navy)}
+.sign{display:flex;align-items:center;gap:16px;margin-top:30px}
+.sign img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center 20%;border:2px solid var(--gold)}
+.sign .n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;line-height:1.1}
+.sign .r{font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+
+/* DIFFERENT */
+.diff{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--sand);border-left:3px solid var(--gold);border-radius:14px;padding:30px 32px}
+.diff h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;margin:8px 0 10px}
+.diff p{color:#3d4b63;font-size:16.5px}
+
+/* DETAILS */
+.details{text-align:center}
+.details h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,5vw,44px);margin:8px 0 28px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:left}
+.cell{background:#fff;border:1px solid var(--sand);border-radius:14px;padding:20px 22px}
+.cell.prize{grid-column:1/-1;text-align:center;border:1px solid var(--gold);background:linear-gradient(135deg,#fff,#fbf3e6)}
+.cell.prize b{color:#c98a3f}
+.cell b{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
+.cell span{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.25}
+.cell small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14px;padding:15px 30px;border-radius:999px;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.p{background:linear-gradient(135deg,var(--rose),#b8627f);color:#fff;box-shadow:0 8px 24px rgba(206,126,152,.35)}
+.btn.s{border:1.5px solid var(--gold);color:var(--navy)}
+
+/* PRESS */
+.press h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.6vw,40px);text-align:center;margin:8px 0 8px}
+.press .sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:26px}
+.imgs{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start}
+.imgs figure{background:#fff;border:1px solid var(--sand);border-radius:14px;overflow:hidden}
+.imgs img{width:100%}
+.imgs figcaption{padding:12px 16px;font-size:13px;display:flex;justify-content:space-between;gap:10px;color:var(--muted)}
+.imgs a{color:var(--rose);font-weight:600;text-decoration:none}
+.blurb{margin-top:22px;background:var(--navy);color:#e9e4ee;border-radius:14px;padding:24px 28px;font-size:15.5px}
+.blurb b{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);margin-bottom:8px}
+
+footer{margin-top:84px;padding:36px 20px 44px;text-align:center;background:var(--navy);color:#b9c2d3;font-size:13px}
+footer .serif{font-size:24px;color:#fff;margin-bottom:6px}
+footer .abia{color:var(--gold-l);letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:600;margin-top:10px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@media (max-width:620px){
+  .hero{padding:64px 20px 130px}
+  .grid,.imgs{grid-template-columns:1fr}
+  .diff{padding:24px 22px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">A note for the Londonist team</div>
+  <h1>Hello, <em class="gold">Londonist</em></h1>
+  <p class="tag">A small Soho evening, and a very warm hello.</p>
+  <div class="dots">
+    <span>Fri 30 October, 6:30pm</span>
+    <span>The Arts Theatre Club, Soho</span>
+    <span>Masks mandatory</span>
+  </div>
+</header>
+
+<main>
+  <div class="wrap video-sec">
+    <div class="vcard">
+      <div class="vframe" id="vframe">
+        <button class="vph" id="vph" type="button" aria-label="Play the video"><span class="play"></span><span class="cap">A short hello from Anna</span></button>
+      </div>
+    </div>
+    <p class="vcap">A short personal message, just for you.</p>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="letter">
+        <div class="eyebrow dark">A personal note</div>
+        <h2>An invitation to include <em class="gold">A Masked Halloween Evening</em></h2>
+        <p class="lead">Londonist is where so many of us in London go to find the evenings worth leaving the house for, which is exactly why I'm writing to you.</p>
+        <p>I would be truly grateful if my Halloween singles soirée could find a place in your events listings, or anywhere else on your website or in your magazine and newsletter that you feel it fits. It is a small, carefully hosted night in one of Soho's best-kept secrets, and a mention from a publication that Londoners trust would mean a great deal to me and to the guests who are looking forward to it.</p>
+        <p>Thank you so much for taking the time to watch my video and read this far. I would love to welcome you, or any of your readers, on the night.</p>
+        <div class="sign">
+          <img src="https://sparkedconnection.com/anna-matchmaker.jpg" alt="Anna Lewandowska" width="64" height="64" onerror="this.style.display='none'">
+          <div><div class="n">Anna Lewandowska</div><div class="r">Founder, Sparked Connection</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="diff">
+        <div class="eyebrow dark">What makes it different</div>
+        <h3>The evening doesn't end when the night does</h3>
+        <p>I chat with every guest on the evening, and their optional questionnaire helps me understand who they are and what they're looking for. Afterwards, I introduce the people I think would really click.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="details">
+    <div class="wrap">
+      <div class="eyebrow dark">The evening</div>
+      <h2>A Masked Halloween Evening</h2>
+      <div class="grid">
+        <div class="cell"><b>When</b><span>Friday 30 October 2026</span><small>From 6:30pm</small></div>
+        <div class="cell"><b>Where</b><span>The Arts Theatre Club</span><small>50 Frith Street, Soho, W1D 4SQ</small></div>
+        <div class="cell"><b>Tickets</b><span>£28, welcome drink included</span><small>Optional tarot readings +£10</small></div>
+        <div class="cell"><b>On the night</b><span>80s &amp; 90s music, Happy Hour drinks</span><small>Masks mandatory, costume optional. Gender-balanced.</small></div>
+        <div class="cell prize"><b>The prize</b><span>Best Mask wins a prize</span><small>For the most captivating mask of the evening, judged on the night.</small></div>
+      </div>
+      <div class="btns">
+        <a class="btn p" href="https://sparkedconnection.com/halloween">See the event page</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="press">
+    <div class="wrap">
+      <div class="eyebrow dark">For your listing</div>
+      <h2>Everything you might need</h2>
+      <p class="sub">Images are free to use alongside any listing or mention.</p>
+      <div class="imgs">
+        <figure>
+          <img src="halloween-cover.jpg" alt="A Masked Halloween Evening, landscape image" loading="lazy">
+          <figcaption><span>Landscape</span><a href="halloween-cover.jpg" download>Download</a></figcaption>
+        </figure>
+        <figure>
+          <img src="halloween-post.jpg" alt="A Masked Halloween Evening, portrait image" loading="lazy">
+          <figcaption><span>Portrait</span><a href="halloween-post.jpg" download>Download</a></figcaption>
+        </figure>
+      </div>
+      <div class="blurb">
+        <b>Short listing text</b>
+        A Masked Halloween Evening: a singles soirée at The Arts Theatre Club, Soho. Friday 30 October, 6:30pm. Masks mandatory, 80s and 90s music, Happy Hour drinks and a prize for the best mask. £28 including a welcome drink. Bookings at sparkedconnection.com/halloween.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="serif">Sparked Connection</div>
+  <div>Modern, personal matchmaking for professionals</div>
+  <div class="abia">Approved ABIA Member</div>
+</footer>
+
+<script>
+/* VIDEO SETTINGS
+   youtube: the 11-character ID from a YouTube link (leave "" to use mp4 instead)
+   mp4:     a video file in this folder, e.g. "hello-londonist.mp4"
+   poster:  optional thumbnail picture, e.g. "thumbnail.jpg" (leave "" for the branded default) */
+var VIDEO = { youtube: "", mp4: "hello-londonist.mp4", poster: "" };
+
+(function(){
+  var f = document.getElementById('vframe'), ph = document.getElementById('vph');
+  if (!VIDEO.youtube && !VIDEO.mp4) return;
+  if (VIDEO.poster) {
+    ph.classList.add('has-poster');
+    ph.style.background = "linear-gradient(180deg,rgba(16,26,46,0) 55%,rgba(16,26,46,.55)),url('" + VIDEO.poster + "') center/cover";
+  }
+  ph.addEventListener('click', function(){
+    if (VIDEO.youtube) {
+      f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VIDEO.youtube) +
+        '?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="A short hello from Anna" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    } else {
+      f.innerHTML = '<video controls autoplay playsinline><source src="' + VIDEO.mp4 + '" type="video/mp4"></video>';
+    }
+  });
+})();
+</script>
+</body>
+</html>
