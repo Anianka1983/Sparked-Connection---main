@@ -6,6 +6,7 @@
 <title>A note for the Secret London team | Sparked Connection</title>
 <meta name="description" content="A personal hello to the Secret London team about A Masked Halloween Evening, a singles soirée at The Arts Theatre Club, Soho, on Friday 30 October.">
 <meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +27,7 @@ em.gold{font-style:italic;background:linear-gradient(90deg,var(--gold-l),var(--g
 
 /* HERO */
 .hero{position:relative;color:#fff;text-align:center;padding:84px 24px 150px;
-  background:linear-gradient(135deg,rgba(30,45,74,.86) 0%,rgba(42,63,94,.80) 55%,rgba(59,42,61,.88) 100%),url('img/hero.jpg') center 38%/cover}
+  background:linear-gradient(135deg,rgba(30,45,74,.86) 0%,rgba(42,63,94,.80) 55%,rgba(59,42,61,.88) 100%),url('hero.jpg') center 38%/cover}
 .hero>*{animation:fadeUp .7s both}
 .hero .eyebrow{animation-delay:.05s}
 .hero h1{animation-delay:.18s}
@@ -45,11 +46,14 @@ em.gold{font-style:italic;background:linear-gradient(90deg,var(--gold-l),var(--g
 .vcard{max-width:380px;margin:0 auto}
 .vframe{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#101a2e}
 .vframe iframe,.vframe video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
-.vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;
-  background:linear-gradient(135deg,rgba(30,45,74,.78),rgba(59,42,61,.84)),url('img/hero.jpg') center/cover}
-.vph .play{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#b8627f);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(206,126,152,.2)}
+.vph{border:0;cursor:pointer;width:100%;color:inherit;font:inherit;position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;
+  background:linear-gradient(135deg,rgba(30,45,74,.78),rgba(59,42,61,.84)),url('hero.jpg') center/cover}
+.vph .play{transition:transform .2s;width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#b8627f);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(206,126,152,.2)}
+.vph:hover .play{transform:scale(1.07)}
 .vph .play:after{content:"";margin-left:5px;border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
-.vph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--rose-l)}
+.vph .cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--rose-l)}
+.vph.has-poster .cap{display:none}
+.vph.has-poster .play{box-shadow:0 0 0 8px rgba(255,255,255,.28),0 8px 30px rgba(0,0,0,.4)}
 .vcap{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
 
 /* LETTER */
@@ -125,7 +129,7 @@ footer .abia{color:var(--gold-l);letter-spacing:.14em;text-transform:uppercase;f
   <div class="wrap video-sec">
     <div class="vcard">
       <div class="vframe" id="vframe">
-        <div class="vph" id="vph"><div class="play"></div><p>A short hello from Anna</p></div>
+        <button class="vph" id="vph" type="button" aria-label="Play the video"><span class="play"></span><span class="cap">A short hello from Anna</span></button>
       </div>
     </div>
     <p class="vcap">A short personal message, just for you.</p>
@@ -181,12 +185,12 @@ footer .abia{color:var(--gold-l);letter-spacing:.14em;text-transform:uppercase;f
       <p class="sub">Images are free to use alongside any feature or mention.</p>
       <div class="imgs">
         <figure>
-          <img src="img/halloween-cover.jpg" alt="A Masked Halloween Evening, landscape image" loading="lazy">
-          <figcaption><span>Landscape</span><a href="img/halloween-cover.jpg" download>Download</a></figcaption>
+          <img src="halloween-cover.jpg" alt="A Masked Halloween Evening, landscape image" loading="lazy">
+          <figcaption><span>Landscape</span><a href="halloween-cover.jpg" download>Download</a></figcaption>
         </figure>
         <figure>
-          <img src="img/halloween-post.jpg" alt="A Masked Halloween Evening, portrait image" loading="lazy">
-          <figcaption><span>Portrait</span><a href="img/halloween-post.jpg" download>Download</a></figcaption>
+          <img src="halloween-post.jpg" alt="A Masked Halloween Evening, portrait image" loading="lazy">
+          <figcaption><span>Portrait</span><a href="halloween-post.jpg" download>Download</a></figcaption>
         </figure>
       </div>
       <div class="blurb">
@@ -204,19 +208,27 @@ footer .abia{color:var(--gold-l);letter-spacing:.14em;text-transform:uppercase;f
 </footer>
 
 <script>
-/* VIDEO SETTINGS: fill in ONE of these, then save.
-   youtube: the 11-character ID from an unlisted YouTube link, e.g. "dQw4w9WgXcQ"
-   mp4:     a file in this folder, e.g. "hello-secretlondon.mp4" */
-var VIDEO = { youtube: "Deeeh__jczI", mp4: "" };
+/* VIDEO SETTINGS
+   youtube: the 11-character ID from a YouTube link (leave "" to use mp4 instead)
+   mp4:     a video file in this folder, e.g. "hello-secretlondon.mp4"
+   poster:  optional thumbnail picture, e.g. "thumbnail.jpg" (leave "" for the branded default) */
+var VIDEO = { youtube: "", mp4: "hello-secretlondon.mp4", poster: "" };
 
 (function(){
   var f = document.getElementById('vframe'), ph = document.getElementById('vph');
-  if (VIDEO.youtube) {
-    f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VIDEO.youtube) +
-      '?rel=0&modestbranding=1" title="A short hello from Anna" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
-  } else if (VIDEO.mp4) {
-    f.innerHTML = '<video controls playsinline preload="metadata" poster="img/hero.jpg"><source src="' + VIDEO.mp4 + '" type="video/mp4"></video>';
+  if (!VIDEO.youtube && !VIDEO.mp4) return;
+  if (VIDEO.poster) {
+    ph.classList.add('has-poster');
+    ph.style.background = "linear-gradient(180deg,rgba(16,26,46,0) 55%,rgba(16,26,46,.55)),url('" + VIDEO.poster + "') center/cover";
   }
+  ph.addEventListener('click', function(){
+    if (VIDEO.youtube) {
+      f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(VIDEO.youtube) +
+        '?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="A short hello from Anna" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    } else {
+      f.innerHTML = '<video controls autoplay playsinline><source src="' + VIDEO.mp4 + '" type="video/mp4"></video>';
+    }
+  });
 })();
 </script>
 </body>
