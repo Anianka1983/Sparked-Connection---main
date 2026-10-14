@@ -675,6 +675,22 @@
     .pay-help svg { flex-shrink: 0; margin-top: 2px; color: #b9772e; }
     .pay-help p { font-size: 0.84rem; line-height: 1.55; color: var(--navy); font-weight: 400; }
     footer a[href^="mailto"] { text-decoration: underline; }
+
+    /* Consent tick boxes */
+    .consent-block { margin: 26px 0 8px; padding: 18px 18px 14px; border: 1px solid var(--sand); border-radius: 14px; background: var(--cream); }
+    .consent-item + .consent-item { margin-top: 12px; }
+    .consent-row { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+    .consent-row input[type="checkbox"] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .consent-box { flex: 0 0 22px; width: 22px; height: 22px; margin-top: 1px; border: 1.5px solid var(--navy); border-radius: 6px; background: var(--white); display: inline-flex; align-items: center; justify-content: center; transition: all .2s; }
+    .consent-row input:checked + .consent-box { background: var(--navy); border-color: var(--navy); }
+    .consent-row input:checked + .consent-box::after { content: ""; width: 6px; height: 11px; border: solid #f2c88a; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px, -1px); }
+    .consent-row input:focus-visible + .consent-box { outline: 2px solid var(--rose); outline-offset: 2px; }
+    .consent-text { font-size: 0.88rem; line-height: 1.55; color: var(--navy); }
+    .consent-text a { color: var(--rose); text-decoration: underline; font-weight: 600; }
+    .consent-text .req { color: var(--rose); }
+    .consent-item .field-error { margin: 6px 0 0 34px; }
+    .consent-note { margin: 14px 0 0 0; font-size: 0.78rem; line-height: 1.55; color: var(--muted); }
+    .consent-note a { color: var(--rose); text-decoration: underline; }
 </style>
   <script type="application/ld+json">
 {
@@ -1044,21 +1060,6 @@
           <div class="field-error">Please let us know whether you'd like a tarot reading.</div>
         </div>
 
-        <div class="confirm-card" id="field-future-events">
-          <p class="confirm-question">Would you like to be informed of similar events in the future? <span class="req">*</span></p>
-          <div class="toggle-row" role="radiogroup" aria-label="Informed of similar future events">
-            <label class="toggle-option">
-              <input type="radio" name="future_events" value="Yes" />
-              <span class="toggle-box">Yes</span>
-            </label>
-            <label class="toggle-option">
-              <input type="radio" name="future_events" value="No" />
-              <span class="toggle-box">No</span>
-            </label>
-          </div>
-          <div class="field-error">Please let us know if you'd like to hear about future events.</div>
-        </div>
-
         <div class="confirm-card" id="field-gender">
           <p class="confirm-question">To make sure we have equal numbers of men and women, please confirm - are you a man or a woman? <span class="req">*</span></p>
           <div class="toggle-row" role="radiogroup" aria-label="Gender confirmation">
@@ -1074,9 +1075,23 @@
           <div class="field-error">Please confirm whether you are a man or a woman.</div>
         </div>
 
-        <div class="privacy-note">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="14" height="10" rx="2"/><path d="M7 9V6a3 3 0 016 0v3"/></svg>
-          <p>By signing up, you agree to our <a href="https://sparkedconnection.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Notice</a>. We'll only use your details to manage this event and never share them with third parties without your explicit consent.</p>
+        <div class="consent-block">
+          <div class="consent-item" id="field-terms">
+            <label class="consent-row">
+              <input type="checkbox" id="terms" name="terms_agree" value="Yes" />
+              <span class="consent-box" aria-hidden="true"></span>
+              <span class="consent-text">I agree to the <a href="https://sparkedconnection.com/event-terms" target="_blank" rel="noopener noreferrer">Event Terms &amp; Code of Conduct</a> and have read the <a href="https://sparkedconnection.com/privacy-notice" target="_blank" rel="noopener noreferrer">Privacy Notice</a>. <span class="req">*</span></span>
+            </label>
+            <div class="field-error">Please tick to agree to the Event Terms &amp; Code of Conduct.</div>
+          </div>
+          <div class="consent-item">
+            <label class="consent-row">
+              <input type="checkbox" id="marketing" name="marketing_optin" value="Yes" />
+              <span class="consent-box" aria-hidden="true"></span>
+              <span class="consent-text"><strong>Optional:</strong> I would like to hear about future events, offers and news from Sparked Connection by email. I can unsubscribe at any time.</span>
+            </label>
+          </div>
+          <p class="consent-note">We only use your details to manage this event and never share them with third parties without your explicit consent. See our <a href="https://sparkedconnection.com/privacy-notice" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.</p>
         </div>
 
         <input type="hidden" name="_subject" value="New Halloween Event Signup - Sparked Connection">
@@ -1162,7 +1177,7 @@
 </section>
 
 <footer>
-  &copy; 2026 Sparked Connection · <a href="https://sparkedconnection.com/privacy">Privacy Notice</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a> · <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>
+  &copy; 2026 Sparked Connection · <a href="https://sparkedconnection.com/privacy-notice">Privacy Notice</a> · <a href="https://sparkedconnection.com/event-terms">Event Terms</a> · <a href="https://sparkedconnection.com/">sparkedconnection.com</a> · <a href="mailto:hello@sparkedconnection.com">hello@sparkedconnection.com</a>
 </footer>
 
 <script>
@@ -1222,6 +1237,8 @@ document.querySelectorAll('.toggle-option input[type="radio"]').forEach(function
   });
 });
 
+document.getElementById('terms').addEventListener('change', function () { setError('field-terms', !this.checked); });
+
 function setError(fieldId, show) {
   var group = document.getElementById(fieldId);
   if (!group) return;
@@ -1246,7 +1263,8 @@ async function handleSubmit(event) {
   var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var ageNum = computeAge(dobVal);
   var dobValid = !!dobVal && ageNum !== null && ageNum >= 28 && ageNum <= 99;
-  var futureChecked = document.querySelector('input[name="future_events"]:checked');
+  var termsChecked = document.getElementById('terms').checked;
+  var marketingOptIn = document.getElementById('marketing').checked;
   var genderChecked = document.querySelector('input[name="gender"]:checked');
   var tarotChecked = document.querySelector('input[name="tarot"]:checked');
 
@@ -1256,11 +1274,11 @@ async function handleSubmit(event) {
   setError('field-phone', !phone);
   setError('field-city', !city);
   setError('field-dob', !dobValid);
-  setError('field-future-events', !futureChecked);
+  setError('field-terms', !termsChecked);
   setError('field-gender', !genderChecked);
   setError('field-tarot', !tarotChecked);
 
-  var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !phone || !city || !dobValid || !futureChecked || !genderChecked || !tarotChecked;
+  var hasError = !firstName || !lastName || !email || !emailRe.test(email) || !phone || !city || !dobValid || !termsChecked || !genderChecked || !tarotChecked;
 
   var note = document.getElementById('form-error-note');
   if (hasError) {
@@ -1285,7 +1303,11 @@ async function handleSubmit(event) {
       date_of_birth: dobVal,
       age: String(ageNum),
       gender: genderChecked.value,
-      informed_of_future_events: futureChecked.value,
+      informed_of_future_events: marketingOptIn ? 'Yes' : 'No',
+      marketing_optin: marketingOptIn ? 'Yes' : 'No',
+      terms_accepted: 'Yes',
+      terms_accepted_at: new Date().toISOString(),
+      terms_version: 'Event Terms & Code of Conduct - Halloween 2026',
       tarot_reading: tarotChecked.value,
       event: 'A Masked Halloween Evening',
       events_interested_in: 'A Masked Halloween Evening',
@@ -1331,7 +1353,7 @@ async function handleSubmit(event) {
         dateOfBirth: dobVal,
         age: String(ageNum),
         gender: genderChecked.value,
-        informedOfFutureEvents: futureChecked.value,
+        informedOfFutureEvents: marketingOptIn ? 'Yes' : 'No',
         eventsInterestedIn: 'A Masked Halloween Evening',
         turnstile_token: turnstileToken,
         form_rendered_at: EVENTS_RENDERED_AT,
