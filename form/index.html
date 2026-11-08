@@ -105,27 +105,27 @@
   align-items: center;
   gap: 6px;
 
-  background: hsl(145 45% 42% / .12);
-  border: 1px solid hsl(145 45% 42% / .35);
+  background: hsl(315 42% 62% / .12);
+  border: 1px solid hsl(315 42% 62% / .35);
 
-  color: hsl(145 45% 42%);
+  color: hsl(315 55% 78%);
 
   padding: 6px 16px;
   border-radius: 999px;
   font-size: .78rem;
   font-weight: 500;
 
-  box-shadow: 0 4px 14px hsl(145 45% 42% / .15);
+  box-shadow: 0 4px 14px hsl(315 42% 62% / .15);
 
   animation: timeBadgeGlow 4.5s ease-in-out infinite;
 }
 
 @keyframes timeBadgeGlow {
   0%, 100% {
-    box-shadow: 0 4px 14px hsl(145 45% 42% / .12);
+    box-shadow: 0 4px 14px hsl(315 42% 62% / .12);
   }
   50% {
-    box-shadow: 0 4px 20px hsl(145 45% 42% / .28);
+    box-shadow: 0 4px 20px hsl(315 42% 62% / .28);
   }
 }
 
@@ -234,6 +234,23 @@
     .check-list.col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 500px) { .check-list.col-2 { grid-template-columns: 1fr; } }
 
+
+    /* ── SERVICE CARDS ── */
+    .svc-card { position: relative; display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s; }
+    .svc-card:hover { border-color: hsl(340 55% 45% / .45); }
+    .svc-card input { position: absolute; opacity: 0; pointer-events: none; }
+    .svc-box { flex: 0 0 auto; width: 16px; height: 16px; border: 1.2px solid hsl(220 20% 68%); border-radius: 4px; background: #fff; transition: all .2s; position: relative; }
+    .svc-box::after { content: ""; position: absolute; left: 4.5px; top: 1.5px; width: 4px; height: 8px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); opacity: 0; }
+    .svc-card:has(input:checked) { border-color: var(--accent); background: hsl(340 55% 45% / .035); }
+    .svc-card:has(input:checked) .svc-box { background: var(--accent); border-color: var(--accent); }
+    .svc-card:has(input:checked) .svc-box::after { opacity: 1; }
+    .svc-card:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .svc-text { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; row-gap: 3px; min-width: 0; }
+    .svc-title { font-size: .88rem; font-weight: 600; color: var(--primary); letter-spacing: .005em; display: inline-flex; align-items: center; gap: 8px; }
+    .svc-desc { font-size: .78rem; font-weight: 400; color: var(--muted); line-height: 1.45; }
+    .svc-desc::before { content: "- "; }
+    @media (min-width: 760px) { .svc-text { flex-wrap: nowrap; } .svc-title, .svc-desc { white-space: nowrap; } }
+    .svc-pill { font-size: .6rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: hsl(145 40% 33%); border: 1px solid hsl(145 45% 42% / .35); background: hsl(145 45% 42% / .07); padding: 1px 8px; border-radius: 999px; }
     .check-item {
       display: flex; align-items: flex-start; gap: 10px;
       padding: 10px 14px;
@@ -541,7 +558,7 @@
 <p class="hero-eyebrow">New Member Profile</p>
 <h1>Your Profile Questionnaire</h1>
 <p>This questionnaire helps us understand who you are and what you're truly looking for.</p>
-<div class="time-badge">Joining our Singles Network is free. Most questions are optional - simply share what feels right and we'll be in touch.</div>
+<div class="time-badge">Most questions are optional - simply share what feels right.</div>
 </div>
 <div class="form-wrap">
 <form accept-charset="UTF-8" id="questionnaire" novalidate>
@@ -575,168 +592,31 @@
 </div>
 <div class="check-list" style="gap: 8px;">
 
-<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
+<label class="svc-card">
 <input name="service_interest" type="checkbox" value="Matchmaking Membership"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">💎 Personal Matchmaking</span>
-<span style="font-size: .78rem; color: var(--muted);">— fully managed, one-to-one matchmaking &amp; introductions</span>
+<span class="svc-box" aria-hidden="true"></span>
+<span class="svc-text">
+<span class="svc-title">💎 Personal Matchmaking</span>
+<span class="svc-desc">Fully managed, one-to-one matchmaking &amp; introductions.</span>
+</span>
 </label>
 
-<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
-<input id="service-singles-network" name="service_interest" type="checkbox" value="Singles Network (Free)"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">🌐 Join the Singles Network</span>
-<span style="font-size: .72rem; font-weight: 500; background: hsl(145 45% 42% / .12); color: hsl(145 45% 42%); border: 1px solid hsl(145 45% 42% / .3); padding: 2px 9px; border-radius: 999px;">Free</span>
-<span style="font-size: .78rem; color: var(--muted);">— community, mentorship, events &amp; optional introductions</span>
+<label class="svc-card">
+<input id="service-singles-club" name="service_interest" type="checkbox" value="Sparked Singles Club (Free)"/>
+<span class="svc-box" aria-hidden="true"></span>
+<span class="svc-text">
+<span class="svc-title">✨ Sparked Singles Club<span class="svc-pill">Free</span></span>
+<span class="svc-desc">Join our free pool of singles and be introduced to our clients at no cost.</span>
+</span>
 </label>
 
-<!-- Shown only when 'Join the Singles Network' is selected above -->
-<div class="conditional" id="looking-for-embed">
-<div style="margin: 2px 0 4px 30px; padding-left: 16px; border-left: 3px solid var(--border);">
-<div id="looking-for-group">
-<label>What are you looking for? <span class="req">*</span></label>
-<p class="hint">Select everything that applies - most members choose more than one.</p>
-</div>
-<div class="check-list" style="gap: 8px; margin-top: 8px;">
-
-<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
-<input name="looking_for" type="checkbox" value="Friendship & Community"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🤝 New friendships &amp; community</span>
-</label>
-
-<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
-<input name="looking_for" type="checkbox" value="Mentorship"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🎓 Mentorship</span>
-</label>
-
-<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
-<input name="looking_for" type="checkbox" value="Events & Workshops"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">📅 Events, workshops &amp; socials</span>
-</label>
-
-<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
-<input name="looking_for" type="checkbox" value="Considered Introductions"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">💛 A relationship</span>
-</label>
-
-<label class="check-item" style="align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap;">
-<input name="looking_for" type="checkbox" value="Not sure yet"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .85rem;">🤷 Not sure yet - open to it all</span>
-</label>
-
-</div>
-
-<!-- Mentorship follow-up, shown only if Mentorship is selected above -->
-<div class="conditional" id="mentorship-details">
-<div class="field-group-label">A Little More About Mentorship</div>
-<div class="fields-stack">
-<div class="field">
-<label>Are you looking for a mentor, to mentor others, or both? <span class="opt">(Optional)</span></label>
-<div class="radio-pills" id="mentorship-role-group">
-<label class="radio-pill"><input name="mentorship_role" type="radio" value="A mentor for me"/> A mentor for me</label>
-<label class="radio-pill"><input name="mentorship_role" type="radio" value="To mentor others"/> To mentor others</label>
-<label class="radio-pill"><input name="mentorship_role" type="radio" value="Both"/> Both</label>
-<label class="radio-pill"><input name="mentorship_role" type="radio" value="Not sure yet"/> Not sure yet</label>
-</div>
-</div>
-<!-- Shown when looking for a mentor (or open to it) -->
-<div class="conditional" id="mentorship-receiving-field">
-<div class="field">
-<label>What sort of mentorship would you be interested in receiving? <span class="opt">(Optional)</span></label>
-<select id="mentorship-receiving-select" name="mentorship_topics_receiving">
-<option value="">Select an area</option>
-<option>Career progression &amp; promotion</option>
-<option>Starting or growing a business</option>
-<option>Leadership &amp; management</option>
-<option>AI &amp; new technology skills</option>
-<option>Personal branding &amp; visibility</option>
-<option>Public speaking &amp; communication</option>
-<option>Negotiation</option>
-<option>Career pivots &amp; reinvention</option>
-<option value="Other">Other (please specify)</option>
-</select>
-</div>
-<div class="other-field" id="mentorship-receiving-other-field">
-<input name="mentorship_topics_receiving_other" placeholder="Please specify" type="text"/>
-</div>
-</div>
-<!-- Shown when open to mentoring others -->
-<div class="conditional" id="mentorship-giving-field">
-<div class="field">
-<label>What areas would you feel comfortable being a mentor in? <span class="opt">(Optional)</span></label>
-<select id="mentorship-giving-select" name="mentorship_topics_giving">
-<option value="">Select an area</option>
-<option>Career progression &amp; promotion</option>
-<option>Starting or growing a business</option>
-<option>Leadership &amp; management</option>
-<option>AI &amp; new technology skills</option>
-<option>Personal branding &amp; visibility</option>
-<option>Public speaking &amp; communication</option>
-<option>Negotiation</option>
-<option>Career pivots &amp; reinvention</option>
-<option value="Other">Other (please specify)</option>
-</select>
-</div>
-<div class="other-field" id="mentorship-giving-other-field">
-<input name="mentorship_topics_giving_other" placeholder="Please specify" type="text"/>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Events & Workshops follow-up, shown only if Events & Workshops is selected above -->
-<div class="conditional" id="events-details">
-<div class="field-group-label">A Little More About Events &amp; Workshops</div>
-<div class="fields-stack">
-<div class="field">
-<label>Which workshop topics interest you most? <span class="opt">(Optional)</span></label>
-<p class="hint">Select all that apply</p>
-<div class="check-list col-2">
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="AI tools for your industry"/> AI tools for your industry</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Career development"/> Career development</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Personal branding"/> Personal branding</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Negotiation skills"/> Negotiation skills</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Public speaking"/> Public speaking</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Career pivots & reinvention"/> Career pivots &amp; reinvention</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Wellbeing & work-life balance"/> Wellbeing &amp; work-life balance</label>
-<label class="check-item"><input name="workshop_topics" type="checkbox" value="Financial & investment literacy"/> Financial &amp; investment literacy</label>
-<label class="check-item" id="workshop-other-check"><input id="workshop-other-cb" name="workshop_topics" type="checkbox" value="Other"/> Other</label>
-</div>
-<div class="other-field" id="workshop-other-field">
-<input name="workshop_topics_other" placeholder="Please specify" type="text"/>
-</div>
-</div>
-<div class="field">
-<label>What kind of social events appeal to you? <span class="opt">(Optional)</span></label>
-<p class="hint">Select all that apply</p>
-<div class="check-list col-2">
-<label class="check-item"><input name="event_types" type="checkbox" value="Pub quizzes & socials"/> Pub quizzes &amp; socials</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Padel / sport"/> Padel / sport</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Co-working days"/> Co-working days</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Dinners & supper clubs"/> Dinners &amp; supper clubs</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Retreats & getaways"/> Retreats &amp; getaways</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Golf events"/> Golf events</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Online workshops"/> Online workshops</label>
-<label class="check-item"><input name="event_types" type="checkbox" value="Online Dial-In Games (via Zoom/Google Meet etc.)"/> Online Dial-In Games (via Zoom/Google Meet etc.)</label>
-</div>
-</div>
-<div class="field">
-<label>How often would you like to attend events? <span class="opt">(Optional)</span></label>
-<div class="radio-pills">
-<label class="radio-pill"><input name="event_frequency" type="radio" value="Weekly"/> Weekly</label>
-<label class="radio-pill"><input name="event_frequency" type="radio" value="A few times a month"/> A few times a month</label>
-<label class="radio-pill"><input name="event_frequency" type="radio" value="Monthly"/> Monthly</label>
-<label class="radio-pill"><input name="event_frequency" type="radio" value="Just let me know what's on"/> Just let me know what's on</label>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<label class="check-item" style="align-items: center; padding: 12px 14px; gap: 10px; flex-wrap: wrap;">
+<label class="svc-card">
 <input name="service_interest" type="checkbox" value="Not sure yet - tell me more"/>
-<span style="font-weight: 600; color: var(--primary); font-size: .9rem;">🤔 Not sure yet</span>
-<span style="font-size: .78rem; color: var(--muted);">— tell me more, a matchmaker will walk you through it</span>
+<span class="svc-box" aria-hidden="true"></span>
+<span class="svc-text">
+<span class="svc-title">🤔 Not sure yet</span>
+<span class="svc-desc">Tell me more, a matchmaker will walk you through it.</span>
+</span>
 </label>
 
 </div>
@@ -1024,7 +904,7 @@
 <div class="other-field" id="profession-level-other-field">
 <input name="profession_level_other" placeholder="Please describe your profession level" type="text"/>
 </div>
-<!-- Shown only if "Join the Singles Network" is selected AND profession level is Entrepreneur / Business owner -->
+<!-- Shown only if "Join the Sparked Singles Club" is selected AND profession level is Entrepreneur / Business owner -->
 <div class="conditional" id="business-details-field">
 <div class="grid-2">
 <div class="field">
@@ -1567,12 +1447,12 @@
 <p><strong>Optional section – we recommend completing at least one test; you may be surprised what you discover about yourself.</strong><br><br></p></div>
 <div class="section-time">⏱ ~15 min for everyone · up to ~35–40 min if introductions apply</div>
 </div>
-<!-- MBTI - always shown, useful for friendship, mentorship and romantic compatibility -->
+<!-- MBTI - always shown -->
 <div class="psych-card">
 <div class="psych-header">
 <div>
 <div class="psych-title">1. The Myers-Briggs Personality Test (MBTI)</div>
-<div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world - useful for finding friends and mentors whose working style complements yours, as well as for romantic compatibility. Once completed, select your personality type below.</div>
+<div class="psych-desc">Please take the free test in the link below. This test analyses how you process information, make decisions, and interact with the world - useful for finding someone whose style complements yours. Once completed, select your personality type below.</div>
 </div>
 <div class="psych-time">⏱ Takes 10–12 minutes</div>
 </div>
@@ -1607,7 +1487,7 @@
 </div>
 <!-- Love Language & Attachment Style - only relevant if introductions are in play -->
 <div class="conditional" id="psych-romantic-cards">
-<p class="hint" style="margin-bottom:16px;">The two tests below appear because you told us you're open to a relationship - they help us make better romantic introductions.</p>
+<p class="hint" style="margin-bottom:16px;">The two tests below help us make better introductions.</p>
 <!-- LOVE LANGUAGE -->
 <div class="psych-card">
 <div class="psych-header">
@@ -1708,7 +1588,7 @@
 <p>Please review and confirm before submitting your profile.</p>
 </div>
 </div>
-<p class="consent-intro">The information you've shared helps us build a well-matched community around you - whether that's friendships, mentorship, events, or considered introductions. Your information is treated with discretion and used only for the purposes you've told us matter to you.</p>
+<p class="consent-intro">The information you've shared helps us build a well-matched community around you - through considered introductions. Your information is treated with discretion and used only for the purposes you've told us matter to you.</p>
 <div class="consent-list">
 <label class="consent-item">
 <input name="consent_accurate" required="" type="checkbox"/>
@@ -1728,7 +1608,7 @@
 </label>
 <label class="consent-item">
 <input name="consent_code_of_conduct" required="" type="checkbox"/>
-<span>I agree to treat other Sparked Connection members with respect, and to follow our Community Code of Conduct in all interactions - online, at events, and in any mentorship or introductions. <span style="color:var(--accent)">*</span></span>
+<span>I agree to treat other Sparked Connection members with respect, and to follow our Community Code of Conduct in all interactions - online, at events, and in any introductions. <span style="color:var(--accent)">*</span></span>
 </label>
 <!-- Shown if Friendship & Community, Mentorship, or Events & Workshops was selected -->
 <div class="conditional" id="consent-directory-item">
@@ -2382,26 +2262,22 @@
   function updateLookingForVisibility() {
     const serviceValues = getServiceInterestValues();
     const isMatchmaking = serviceValues.includes('Matchmaking Membership');
-    const isSinglesNetwork = serviceValues.includes('Singles Network (Free)');
+    const isSinglesNetwork = serviceValues.includes('Sparked Singles Club (Free)');
+    const isNotSureService = serviceValues.includes('Not sure yet - tell me more');
 
-    // The "What are you looking for?" block only appears under the Singles Network option.
-    document.getElementById('looking-for-embed')?.classList.toggle('visible', isSinglesNetwork);
 
-    // Business name/website only relevant for Singles Network members who are entrepreneurs/business owners.
+    // Business name/website only relevant for Singles Club members who are entrepreneurs/business owners.
     const isEntrepreneur = document.getElementById('profession-level')?.value === 'Entrepreneur / Business owner';
     const showBusinessDetails = isSinglesNetwork && isEntrepreneur;
     document.getElementById('business-details-field')?.classList.toggle('visible', showBusinessDetails);
     const businessNameInput = document.querySelector('input[name="business_name"]');
     if (businessNameInput) businessNameInput.required = showBusinessDetails;
 
-    const values = isSinglesNetwork ? getLookingForValues() : [];
-    const notSure = values.includes('Not sure yet');
-    const wantsFriendship = values.includes('Friendship & Community');
-    const wantsMentorship = values.includes('Mentorship') || notSure;
-    const wantsEvents = values.includes('Events & Workshops') || notSure;
-    // Personal Matchmaking always implies introductions; on the Singles Network path it depends on what's ticked.
-    const wantsIntroductions = isMatchmaking || values.includes('Considered Introductions') || notSure;
-    const wantsCommunity = wantsFriendship || wantsMentorship || wantsEvents;
+    // Sparked Singles Club is a free pool for introductions to clients, so it follows the same path as Personal Matchmaking.
+    const wantsMentorship = false;
+    const wantsEvents = false;
+    const wantsCommunity = false;
+    const wantsIntroductions = isMatchmaking || isSinglesNetwork || isNotSureService;
 
     document.getElementById('mentorship-details')?.classList.toggle('visible', wantsMentorship);
     updateMentorshipRoleVisibility();
@@ -2440,9 +2316,6 @@
 
   document.querySelectorAll('input[name="service_interest"]').forEach(r => {
     r.addEventListener('change', updateLookingForVisibility);
-  });
-  document.querySelectorAll('input[name="looking_for"]').forEach(cb => {
-    cb.addEventListener('change', updateLookingForVisibility);
   });
 
   function validateServiceInterest() {
