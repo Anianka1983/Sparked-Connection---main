@@ -1781,28 +1781,38 @@ Sparked Connection exists to change that. I organise events where you actually m
 <style id="sc-club-styles">
 #singles-club .sc-club-art{display:block;width:100%;max-width:560px;height:auto;margin:0 auto 18px}
 #singles-club .sc-club-eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:hsl(340 55% 45%);margin-bottom:12px}
-#singles-club .sc-club-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:860px;margin:40px auto 0}
-#singles-club .sc-club-card{background:hsl(36 30% 98%);border:1px solid hsl(36 20% 86%);border-radius:16px;padding:30px 28px;text-align:left;box-shadow:0 2px 12px hsl(220 30% 20% / .05)}
-#singles-club .sc-club-pill{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:hsl(145 40% 33%);border:1px solid hsl(145 45% 42% / .35);background:hsl(145 45% 42% / .08);padding:3px 11px;border-radius:999px;margin-bottom:14px}
-#singles-club .sc-club-card h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.55rem;font-weight:600;color:hsl(220 50% 25%);margin-bottom:10px;line-height:1.2}
-#singles-club .sc-club-card p{font-size:.95rem;line-height:1.65;color:hsl(220 20% 38%)}
-#singles-club .sc-club-cta{display:inline-block;margin-top:36px;background:hsl(340 55% 45%);color:#fff;font-weight:600;font-size:.95rem;padding:14px 38px;border-radius:999px;box-shadow:0 6px 18px hsl(340 55% 45% / .3);transition:transform .25s ease}
-#singles-club .sc-club-cta:hover{transform:translateY(-2px)}
-#singles-club .sc-club-note{margin-top:16px;font-size:.8rem;color:hsl(220 20% 45%)}
-#singles-club .sc-club-how{max-width:860px;margin:28px auto 0;background:hsl(220 50% 25%);border-radius:16px;padding:30px 28px;color:#fff;text-align:left}
-#singles-club .sc-club-how h3,.sc-event-usp h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;font-weight:600;margin-bottom:6px;line-height:1.2}
+#singles-club .sc-club-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:760px;margin:30px auto 0}
+#singles-club .sc-club-card{position:relative;overflow:hidden;background:linear-gradient(180deg,#fffdf9,#f9f2e9);border:1px solid hsl(40 38% 80%);border-radius:18px;padding:26px 24px 24px;text-align:center;box-shadow:0 1px 0 #fff inset,0 14px 36px -16px hsl(220 40% 20% / .22),0 2px 6px hsl(220 30% 20% / .05);transition:transform .35s ease,box-shadow .35s ease}
+#singles-club .sc-club-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,#c9a55c,transparent)}
+#singles-club .sc-club-card:hover{transform:translateY(-4px);box-shadow:0 1px 0 #fff inset,0 22px 44px -16px hsl(220 40% 20% / .28),0 2px 6px hsl(220 30% 20% / .06)}
+#singles-club .sc-club-pill{display:inline-block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#8a6a2e;background:transparent;border:1px solid #c9a55c;padding:3px 12px;border-radius:999px;margin-bottom:12px}
+#singles-club .sc-club-card h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.4rem;font-weight:600;color:hsl(220 50% 25%);margin-bottom:8px;line-height:1.2}
+#singles-club .sc-club-card p{font-size:.88rem;line-height:1.55;max-width:30ch;margin:0 auto;color:hsl(220 20% 38%)}
+.sc-prem-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:#b08a4a;margin-bottom:8px}
+.sc-prem-eyebrow::before,.sc-prem-eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#c9a55c)}
+.sc-prem-eyebrow::after{transform:scaleX(-1)}
+#singles-club .sc-club-how,.sc-event-usp{position:relative;max-width:760px;padding:30px 32px 28px;border-radius:16px;text-align:center}
+#singles-club .sc-club-how::before,.sc-event-usp::before{content:"";position:absolute;inset:7px;border:1px solid hsl(40 50% 62% / .5);border-radius:10px;pointer-events:none}
+#singles-club .sc-club-how{margin:22px auto 0;color:#fff;background:radial-gradient(120% 90% at 12% 0%,hsl(40 60% 58% / .2),transparent 55%),linear-gradient(155deg,#14214a 0%,#2a2757 58%,#4b2757 100%);box-shadow:0 26px 54px -22px hsl(230 50% 12% / .7),0 2px 8px hsl(230 40% 15% / .2)}
+.sc-event-usp{margin:0 auto 34px;background:radial-gradient(110% 80% at 50% -10%,hsl(40 70% 80% / .35),transparent 60%),linear-gradient(180deg,#fffdf9,#f8f0e5);border:1px solid hsl(40 40% 76%);box-shadow:0 1px 0 #fff inset,0 24px 50px -22px hsl(220 40% 20% / .3),0 2px 6px hsl(220 30% 20% / .05)}
+#singles-club .sc-club-how h3,.sc-event-usp h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.6rem;font-weight:600;margin-bottom:8px;line-height:1.2}
 #singles-club .sc-club-how h3{color:#fff}
-#singles-club .sc-club-how>p{font-size:.92rem;line-height:1.6;color:hsl(36 30% 90%);margin-bottom:20px}
-#singles-club .sc-club-steps,.sc-event-usp .sc-club-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sc-club-step b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.9rem;color:#d9b26f;line-height:1;margin-bottom:6px}
-.sc-club-step span{font-size:.88rem;line-height:1.55}
-.sc-event-usp{max-width:860px;margin:0 auto 44px;border:1px solid hsl(36 20% 86%);border-left:4px solid hsl(340 55% 45%);background:hsl(36 30% 98%);border-radius:14px;padding:26px 28px;text-align:left;box-shadow:0 2px 12px hsl(220 30% 20% / .05)}
 .sc-event-usp h3{color:hsl(220 50% 25%)}
-.sc-event-usp>p{font-size:.93rem;line-height:1.65;color:hsl(220 20% 38%);margin-bottom:18px}
+#singles-club .sc-club-how>p,.sc-event-usp>p{max-width:48ch;margin:0 auto 22px;font-size:.9rem;line-height:1.6}
+#singles-club .sc-club-how>p{color:hsl(36 30% 90%)}
+.sc-event-usp>p{color:hsl(220 20% 38%)}
+#singles-club .sc-club-steps,.sc-event-usp .sc-club-steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+#singles-club .sc-club-steps::before,.sc-event-usp .sc-club-steps::before{content:"";position:absolute;top:19px;left:17%;right:17%;height:1px;background:linear-gradient(90deg,transparent,#c9a55c 20%,#c9a55c 80%,transparent)}
+.sc-club-step{position:relative;text-align:center}
+.sc-club-step b{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:38px;height:38px;margin:0 auto 10px;border-radius:50%;border:1px solid #c9a55c;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;color:#c9a55c;line-height:1}
+#singles-club .sc-club-how .sc-club-step b{background:#241f52}
+.sc-event-usp .sc-club-step b{background:#fbf5ec;color:#a8832f}
+.sc-club-step span{display:block;max-width:22ch;margin:0 auto;font-size:.82rem;line-height:1.5}
 .sc-event-usp .sc-club-step span{color:hsl(220 20% 30%)}
-.sc-event-incl{display:inline-block;margin-top:16px;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:hsl(145 40% 33%);border:1px solid hsl(145 45% 42% / .35);background:hsl(145 45% 42% / .08);padding:4px 12px;border-radius:999px}
-@media(max-width:700px){#singles-club .sc-club-steps,.sc-event-usp .sc-club-steps{grid-template-columns:1fr}}
-@media(max-width:700px){#singles-club .sc-club-grid{grid-template-columns:1fr}}
+#singles-club .sc-club-cta{display:inline-block;margin-top:26px;background:hsl(340 55% 45%);color:#fff;font-weight:600;font-size:.95rem;padding:12px 32px;border-radius:999px;box-shadow:0 6px 18px hsl(340 55% 45% / .3);transition:transform .25s ease}
+#singles-club .sc-club-cta:hover{transform:translateY(-2px)}
+#singles-club .sc-club-note{margin-top:12px;font-size:.76rem;color:hsl(220 20% 45%)}
+@media(max-width:700px){#singles-club .sc-club-grid{grid-template-columns:1fr}#singles-club .sc-club-steps,.sc-event-usp .sc-club-steps{grid-template-columns:1fr}#singles-club .sc-club-steps::before,.sc-event-usp .sc-club-steps::before{display:none}#singles-club .sc-club-how,.sc-event-usp{padding:26px 20px}}
 </style>
 <section class="py-14 md:py-20 bg-secondary" id="singles-club">
 <div class="container mx-auto px-4 text-center">
@@ -1821,30 +1831,31 @@ Sparked Connection exists to change that. I organise events where you actually m
 <path d="M531.16 76.53999999999999a8.84 7.82 0 0 1 17.68 0z" fill="#fff" fill-opacity=".92"/></g><circle cx="300" cy="52" r="27" fill="#8e2d4f" stroke="#d9b26f" stroke-width="1.5"/><path d="M300 66c-12-8-17-14-17-20a8.5 8.5 0 0 1 17-2 8.5 8.5 0 0 1 17 2c0 6-5 12-17 20z" fill="#fff"/></svg>
 <p class="sc-club-eyebrow">The Singles Club</p>
 <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-6">Get matched, entirely free</h2>
-<p class="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">The Singles Club is for people who are open to meeting someone and would like an introduction without paying for one. Complete a short profile and you'll be considered for introductions to my clients. It's a passive service, available only if you match with one of my clients or attend one of our events.</p>
+<p class="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">Complete a short profile and be considered for introductions to Anna's clients. It's a passive service: you're introduced only if you match with a client or attend one of our events.</p>
 <div class="sc-club-grid">
 <div class="sc-club-card">
 <span class="sc-club-pill">Free</span>
 <h3>Free to join</h3>
-<p>Joining costs nothing. Your profile is held on file, and if you match with one of my clients I'll introduce you. There's no search on your behalf, and your details are only shared with your consent, as part of an introduction.</p>
+<p>Joining costs nothing. If you match with one of Anna's clients, you'll be introduced. Your details are only shared with your consent.</p>
 </div>
 <div class="sc-club-card">
 <span class="sc-club-pill">Included</span>
 <h3>Matching at every event</h3>
-<p>Matching is built into every event I run, at no extra cost. Come along, meet people in the room, and if there's a connection I'll help it along.</p>
+<p>Matching is included in every event, at no extra cost.</p>
 </div>
 </div>
 <div class="sc-club-how">
+<div class="sc-prem-eyebrow" style="color:#d9b26f">Our signature</div>
 <h3>What makes our events different</h3>
-<p>Most events leave you to work out who to talk to. We collect a profile questionnaire from every guest, then match people after the event. Matching is included in the price of your ticket.</p>
+<p>Every guest completes a profile questionnaire, and guests are matched after the event. Matching is included in your ticket price.</p>
 <div class="sc-club-steps">
-<div class="sc-club-step"><b>1</b><span>You complete a short profile questionnaire, before or after the event.</span></div>
-<div class="sc-club-step"><b>2</b><span>Afterwards, I match you with people you met based on your profiles and let you know who. You decide whether you'd like to meet your match.</span></div>
+<div class="sc-club-step"><b>1</b><span>Complete a short questionnaire, before or after the event.</span></div>
+<div class="sc-club-step"><b>2</b><span>You're matched afterwards and told who. You decide whether to meet.</span></div>
 <div class="sc-club-step"><b>3</b><span>If you both agree, you can go on a date.</span></div>
 </div>
 </div>
 <a class="sc-club-cta" href="https://sparkedconnection.com/form/">Join the Singles Club - it's free</a>
-<p class="sc-club-note">The Singles Club is a passive service, available only if you match with a client or attend our events. One-to-one matchmaking is a paid service.</p>
+<p class="sc-club-note">A passive service, available only if you match with a client or attend our events. One-to-one matchmaking is a paid service.</p>
 </div>
 </section>
 <section class="py-14 md:py-20 bg-background" id="events">
@@ -1858,14 +1869,14 @@ Sparked Connection exists to change that. I organise events where you actually m
          </p>
 </div>
 <div class="sc-event-usp">
+<div class="sc-prem-eyebrow">Our signature</div>
 <h3>Matching is included in every ticket</h3>
-<p>What sets our events apart is what happens afterwards. We collect a profile questionnaire from every guest, so introductions are made on compatibility, not luck.</p>
+<p>Every guest completes a profile questionnaire, so introductions are made on compatibility, not luck.</p>
 <div class="sc-club-steps">
-<div class="sc-club-step"><b>1</b><span>You complete a short profile questionnaire, before or after the event.</span></div>
-<div class="sc-club-step"><b>2</b><span>Afterwards, I match you with people you met based on your profiles and let you know who. You decide whether you'd like to meet your match.</span></div>
+<div class="sc-club-step"><b>1</b><span>Complete a short questionnaire, before or after the event.</span></div>
+<div class="sc-club-step"><b>2</b><span>You're matched afterwards and told who. You decide whether to meet.</span></div>
 <div class="sc-club-step"><b>3</b><span>If you both agree, you can go on a date.</span></div>
 </div>
-<span class="sc-event-incl">Matching included in the ticket price</span>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 <div class="group rounded-2xl overflow-hidden bg-card border border-border hover:shadow-lg transition-all duration-300 animate-fade-in-up" style="animation-delay:0s">
